@@ -1,7 +1,7 @@
 eizo::debian::packages:
-  zsh:
-  mg:
-  vim-tiny:
-  git:
+  zsh: {}
+  mg: {}
+  vim-tiny: {}
+  git: {}
 eizo::debian::backports:
-  linux-image-amd64:
+  linux-image-amd64: {}
