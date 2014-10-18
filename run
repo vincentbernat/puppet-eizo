@@ -6,6 +6,12 @@ cd "$(dirname "$(readlink -f "$0")")"
 [ x"${USER}" = x"root" ] || \
     SUDO=sudo
 
+[ ! -f .git/refs/heads/private ] || {
+    git checkout private
+    git reset --hard origin/private
+    git merge master
+}
+
 $SUDO bundle install
 $SUDO bundle exec librarian-puppet install
 $SUDO bundle exec puppet apply \
