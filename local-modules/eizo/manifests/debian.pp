@@ -42,7 +42,7 @@ class eizo::debian(
 
   apt::pin { "wheezy-backports":
     priority => 500,
-    originator => 'Debian',
+    originator => 'Debian Backports',
     packages => concat($backports, [ 'systemd', 'systemd-sysv' ])
   }
   ensure_resource(package, $packages, { ensure => present })
