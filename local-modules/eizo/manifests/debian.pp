@@ -45,7 +45,7 @@ class eizo::debian(
     originator => 'Debian',
     packages => $backports
   }
-  create_resources(package, $packages, { ensure => present })
-  create_resources(package, $backports, { ensure => present })
+  ensure_resource(package, $packages, { ensure => present })
+  ensure_resource(package, $backports, { ensure => present })
 
 }
