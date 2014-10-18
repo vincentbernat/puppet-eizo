@@ -1,14 +1,9 @@
 class eizo::debian($packages = {}) {
 
-  stage { 'apt-configuration':
-    before => Stage['main']
-  }
-
   class { "apt":
     purge_sources_list   => true,
     purge_sources_list_d => true,
-    purge_preferences_d  => true,
-    stage => 'apt-configuration'
+    purge_preferences_d  => true
   }
 
   package { "aptitude": ensure => installed } ->
