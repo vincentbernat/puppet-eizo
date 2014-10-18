@@ -9,7 +9,7 @@ cd "$(dirname "$(readlink -f "$0")")"
 [ ! -f .git/refs/heads/private ] || {
     git checkout private
     git reset --hard private
-    git merge master
+    EDITOR=true git merge master
 }
 
 $SUDO bundle install
