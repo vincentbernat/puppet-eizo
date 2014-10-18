@@ -3,3 +3,5 @@ eizo::debian::packages:
   mg:
   vim-tiny:
   git:
+eizo::debian::backports:
+  linux-image-amd64:

@@ -1,4 +1,7 @@
-class eizo::debian($packages = {}) {
+class eizo::debian(
+  $packages = {},
+  $backports = {}
+  ) {
 
   class { "apt":
     purge_sources_list   => true,
@@ -37,6 +40,12 @@ class eizo::debian($packages = {}) {
     include_src       => false
   }
 
+  apt::pin { "wheezy-backports":
+    priority => 500,
+    originator => 'Debian',
+    packages => $backports
+  }
   create_resources(package, $packages, { ensure => present })
+  create_resources(package, $backports, { ensure => present })
 
 }
