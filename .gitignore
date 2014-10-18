@@ -6,4 +6,4 @@
 /modules
 
 # privacy
-/hiera/*.private
+/hiera/private
