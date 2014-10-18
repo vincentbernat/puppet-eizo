@@ -1,0 +1,5 @@
+eizo::debian::packages:
+  zsh:
+  mg:
+  vim-tiny:
+  git:

@@ -1,0 +1,9 @@
+# bundler
+/Gemfile.lock
+
+# librarian-puppet
+/Puppetfile.lock
+/modules
+
+# privacy
+/hiera/*.private

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+cd "$(dirname "$(readlink -f "$0")")"
+[ x"${USER}" = x"root" ] || \
+    SUDO=sudo
+
+$SUDO bundle install
+$SUDO bundle exec librarian-puppet install
+$SUDO bundle exec puppet apply \
+    --confdir=$PWD \
+    --modulepath=$PWD/local-modules:$PWD/modules:/usr/share/puppet/modules \
+    "$@" \
+    manifests/site.pp
