@@ -8,7 +8,7 @@ cd "$(dirname "$(readlink -f "$0")")"
 
 [ ! -f .git/refs/heads/private ] || {
     git checkout private
-    git reset --hard origin/private
+    git reset --hard private
     git merge master
 }
 
