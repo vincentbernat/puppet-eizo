@@ -5,6 +5,7 @@ forge "https://forge.puppetlabs.com"
 # with `librarian-puppet outdated` command.
 
 mod "puppetlabs/apt",       "~> 1.6.0"
+mod "jhoblitt/udev",        "~> 1.2.0"
 
 # Local Variables:
 # mode: Ruby
