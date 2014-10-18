@@ -8,5 +8,6 @@ eizo::debian::packages:
   - usbutils
   - lshw
   - pciutils
+  - parted
 eizo::debian::backports:
   - linux-image-amd64
