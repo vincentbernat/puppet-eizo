@@ -3,5 +3,10 @@ eizo::debian::packages:
   - mg
   - vim-tiny
   - git
+  - lm-sensors
+  - smartmontools
+  - usbutils
+  - lshw
+  - pciutils
 eizo::debian::backports:
   - linux-image-amd64
