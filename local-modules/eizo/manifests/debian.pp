@@ -1,6 +1,6 @@
 class eizo::debian(
-  $packages = {},
-  $backports = {}
+  $packages = [],
+  $backports = []
   ) {
 
   class { "apt":
@@ -43,9 +43,16 @@ class eizo::debian(
   apt::pin { "wheezy-backports":
     priority => 500,
     originator => 'Debian',
-    packages => $backports
+    packages => concat($backports, [ 'systemd', 'systemd-sysv' ])
   }
   ensure_resource(package, $packages, { ensure => present })
-  ensure_resource(package, $backports, { ensure => present })
+  ensure_resource(
+    package,
+    concat($backports, [ 'systemd', 'systemd-sysv' ]),
+    { ensure => present })
 
+  # systemd
+  Service {
+    provider => "systemd"
+  }
 }

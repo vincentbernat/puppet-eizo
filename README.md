@@ -12,5 +12,6 @@ installed:
 
  - `ruby`
  - `bundler`
+ - `systemd-sysv` (and a reboot would be welcome)
 
 [Debian Wheezy]: https://www.debian.org/releases/wheezy/
