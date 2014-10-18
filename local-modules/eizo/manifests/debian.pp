@@ -31,8 +31,7 @@ class eizo::debian($packages = {}) {
     release           => 'wheezy',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
-    include_src       => false,
-    stage => 'apt-configuration'
+    include_src       => false
   }
 
   apt::source { "wheezy-backports":
@@ -40,8 +39,7 @@ class eizo::debian($packages = {}) {
     release           => 'wheezy-backports',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
-    include_src       => false,
-    stage => 'apt-configuration'
+    include_src       => false
   }
 
   create_resources(package, $packages, { ensure => present })
