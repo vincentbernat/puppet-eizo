@@ -6,14 +6,7 @@ class eizo::xbmc::install inherits eizo::xbmc {
     release       => 'xbmc-ffmpeg-unstable/',
     repos         => '',
     key           => '21E764DF',
-    pin           => 1,
     include_src   => false
-  }
-  ->
-  apt::pin { "xbmc":
-    priority => 500,
-    label => "rbalint",
-    packages => "xbmc"
   }
   ->
   package { 'xbmc':
