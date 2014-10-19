@@ -4,7 +4,7 @@ class eizo::transmission::config inherits eizo::transmission {
     ensure => present,
     content => template("eizo/transmission/settings.json.erb"),
     group => "debian-transmission",
-    mode => "0750"
+    mode => "0640"
   }
 
 }
