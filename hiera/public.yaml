@@ -13,6 +13,7 @@ eizo::debian::packages:
   - i965-va-driver
   - alsa-utils
   - lldpd
+  - htop
 
 eizo::xbmc::home: /srv/xbmc
 eizo::xbmc::edid: 
