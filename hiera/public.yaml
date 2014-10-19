@@ -24,3 +24,32 @@ eizo::xbmc::edid:
     SxpREQAKICAgICAgAdoCAzzxT5AfBBMFFAMSICEiDx4kJi8JfwcPfwcXB1A/BsBXBgCDTwAAbAMM
     ACMAgCHAAAAAAOMFAwHiAA8BHQByUdAeIG4oVQCgWgAAAB4BHQC8UtAeILgoVUCgWgAAAB4BHYAY
     cRwWIFgsJQCgWgAAAJ4AAAAAAAAAAAAAAAAAbQ==
+
+eizo::transmission::download: /srv/transmission
+eizo::transmission::whitelist:
+
+eizo::transmission::config:
+  alt-speed-down: 200
+  alt-speed-up: 10
+  alt-speed-enabled: false
+  alt-speed-time-enabled: false
+  speed-limit-down: 400
+  speed-limit-down-enabled: true
+  speed-limit-up: 30
+  speed-limit-up-enabled: true
+  encryption: 2
+  peer-port: 9090
+  peer-limit-global: 240
+  peer-limit-per-torrent: 60
+  download-queue-enabled: true
+  download-queue-size: 5
+  ratio-limit: 1
+  ratio-limit-enabled: true
+  rpc-whitelist:
+    - "127.0.0.1"
+    - "192.168.116.*"
+  rpc-whitelist-enabled: true
+  rpc-bind-address: "0.0.0.0"
+  rpc-enabled: true
+  rpc-port: 9091
+  rpc-url: "/transmission"

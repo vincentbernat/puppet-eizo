@@ -7,6 +7,7 @@ class eizo {
 
   # Applications
   include ::eizo::xbmc
+  include ::eizo::transmission
 
   # Defaults
   Service {

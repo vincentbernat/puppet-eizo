@@ -1,0 +1,11 @@
+{
+<%- @config.each do |directive, value| -%>
+     "<%= directive %>": <%= value %>
+<%- end -%>
+
+    "download-dir": "<%= @download %>/complete",
+    "incomplete-dir": "<%= @download %>/incomplete",
+    "incomplete-dir-enabled": true,
+    "watch-dir": "<%= @download %>/watch",
+    "watch-dir-enable": true
+}
