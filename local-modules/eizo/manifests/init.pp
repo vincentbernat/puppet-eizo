@@ -8,9 +8,13 @@ class eizo {
   # Applications
   include ::eizo::xbmc
 
-  # Use systemd
+  # Defaults
   Service {
     provider => "systemd"
+  }
+  File {
+    owner => "root",
+    group => "root"
   }
 
 }
