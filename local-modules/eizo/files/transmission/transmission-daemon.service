@@ -1,0 +1,2 @@
+[Service]
+ExecStart = /usr/bin/transmission-daemon -f --log-error --config-dir=/var/lib/transmission-daemon/info --iosched idle --nicelevel 10
