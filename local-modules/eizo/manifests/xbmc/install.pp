@@ -33,7 +33,7 @@ class eizo::xbmc::install inherits eizo::xbmc {
   # want to have ownership.
   ensure_resource(
     package,
-    [ 'xserver-xorg', 'xinit' ],
+    [ 'xserver-xorg', 'xinit', 'x11-xserver-utils' ],
     { ensure => present })
 
 }
