@@ -12,5 +12,6 @@ eizo::debian::packages:
   - avahi-daemon
 eizo::debian::backports:
   - linux-image-amd64
+  - xserver-xorg-video-intel
 
 eizo::xbmc::home: /srv/xbmc
