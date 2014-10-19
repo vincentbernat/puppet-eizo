@@ -1,0 +1,16 @@
+[Unit]
+Description = XBMC Media Center
+After = remote-fs.target
+After = syslog.target
+ 
+[Service]
+User = xbmc
+Group = xbmc
+Type = simple
+Restart = always
+RestartSec=5
+KillMode=process
+ExecStart = /usr/bin/xinit /usr/bin/xbmc-standalone -- :0
+ 
+[Install]
+WantedBy = multi-user.target
