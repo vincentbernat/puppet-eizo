@@ -4,11 +4,13 @@ After = remote-fs.target
 After = syslog.target
  
 [Service]
+User = xbmc
+Group = xbmc
 Type = simple
 Restart = always
 RestartSec=5
 KillMode=process
-ExecStart = /sbin/getty -L tty9 -a xbmc -l /usr/local/bin/xbmc-xinit
+ExecStart = /usr/bin/xinit /usr/bin/xbmc-standalone -- :0
  
 [Install]
 WantedBy = multi-user.target

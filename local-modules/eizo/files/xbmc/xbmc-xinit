@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec /usr/bin/xinit /usr/bin/xbmc-standalone -- :0
