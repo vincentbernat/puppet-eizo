@@ -1,6 +1,6 @@
 class eizo::xbmc::install inherits eizo::xbmc {
 
-  package { 'xbmc':
+  package { ['xbmc', 'xbmc-eventclients-xbmc-send']:
     ensure => present
   }
 

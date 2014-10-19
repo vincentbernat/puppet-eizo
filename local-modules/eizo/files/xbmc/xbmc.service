@@ -11,6 +11,7 @@ Restart = always
 RestartSec = 15
 KillMode = process
 ExecStart = /usr/bin/xinit /usr/bin/xbmc-standalone -- :0
+ExecStop = /usr/bin/xbmc-send --action="XBMC.Quit"
 TTYPath = /dev/tty9
 StandardInput = tty
 StandardOutput = journal
