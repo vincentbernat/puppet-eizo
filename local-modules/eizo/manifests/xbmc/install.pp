@@ -1,11 +1,5 @@
 class eizo::xbmc::install inherits eizo::xbmc {
 
-  apt::pin { 'xbmc from backports':
-    priority => 500,
-    originator => 'Debian Backports',
-    packages => 'xbmc'
-  }
-  ->
   package { 'xbmc':
     ensure => present
   }
