@@ -10,7 +10,8 @@ Type = simple
 Restart = always
 RestartSec = 15
 KillMode = process
-ExecStartPre = 
+PermissionsStartOnly = true
+ExecStartPre = /usr/local/bin/xbmc-edid
 ExecStart = /usr/bin/xinit /usr/bin/xbmc-standalone -- :0
 ExecStop = /usr/bin/xbmc-send --action="XBMC.Quit"
 TTYPath = /dev/tty9
