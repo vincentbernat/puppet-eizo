@@ -9,6 +9,7 @@ class eizo::debian(
     purge_preferences_d  => true
   }
 
+  package { "apt-transport-https": ensure => installed }
   package { "aptitude": ensure => installed } ->
   file { "/etc/apt/apt.conf.d/25aptitude":
     source => "puppet:///modules/eizo/debian/apt/25aptitude"
