@@ -1,6 +1,6 @@
 {
 <%- @config.each do |directive, value| -%>
-    "<%= directive %>": <%= if value.respond_to?('join') then value.join(',') else value.inspect end %>
+    "<%= directive %>": <%= if value.respond_to?('join') then value.join(',').inspect else value end %>
 <%- end -%>
 
     "download-dir": "<%= @download %>/complete",
