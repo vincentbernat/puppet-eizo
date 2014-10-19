@@ -1,14 +1,5 @@
 class eizo::xbmc::install inherits eizo::xbmc {
 
-  apt::source { "xbmc-ffmpeg":
-    comment       => "XBMC repository with ffmpeg",
-    location      => 'https://people.debian.org/~rbalint/ppa/xbmc-ffmpeg',
-    release       => 'xbmc-ffmpeg-unstable/',
-    repos         => '',
-    key           => '21E764DF',
-    include_src   => false
-  }
-  ->
   package { 'xbmc':
     ensure => present
   }
