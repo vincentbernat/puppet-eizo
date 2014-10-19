@@ -10,7 +10,7 @@ class eizo::xbmc::service inherits eizo::xbmc {
     refreshonly => true,
     command => 'systemctl daemon-reload'
   }
-
+  ->
   service { 'xbmc':
     ensure => running,
     enable => true
