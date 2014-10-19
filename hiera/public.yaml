@@ -10,6 +10,7 @@ eizo::debian::packages:
   - pciutils
   - parted
   - avahi-daemon
+  - i965-va-driver
 eizo::debian::backports:
   - linux-image-amd64
   - xserver-xorg-video-intel
