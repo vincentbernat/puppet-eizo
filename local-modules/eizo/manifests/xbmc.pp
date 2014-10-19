@@ -1,5 +1,6 @@
 class eizo::xbmc(
-  $home
+  $home,
+  $edid = undef
   ) {
 
   class { '::eizo::xbmc::install': } ->
