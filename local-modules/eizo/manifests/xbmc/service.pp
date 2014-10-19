@@ -13,7 +13,8 @@ class eizo::xbmc::service inherits eizo::xbmc {
   ->
   service { 'xbmc':
     ensure => running,
-    enable => true
+    enable => true,
+    provider => "systemd"
   }
 
 }
