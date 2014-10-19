@@ -52,4 +52,4 @@ eizo::transmission::config:
   rpc-bind-address: "0.0.0.0"
   rpc-enabled: true
   rpc-port: 9099
-  rpc-url: "/rpc"
+  rpc-url: "/rpc/"
