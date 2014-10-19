@@ -11,7 +11,9 @@ Restart = always
 RestartSec=5
 KillMode=process
 ExecStart = /usr/bin/xinit /usr/bin/xbmc-standalone -- :0
-TTYPath=/dev/tty9
- 
+TTYPath = /dev/tty9
+StandardInput = tty
+StandardOutput = journal
+
 [Install]
 WantedBy = multi-user.target
