@@ -8,4 +8,9 @@ class eizo {
   # Applications
   include ::eizo::xbmc
 
+  # Use systemd
+  Service {
+    provider => "systemd"
+  }
+
 }

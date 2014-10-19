@@ -51,8 +51,4 @@ class eizo::debian(
     concat($backports, [ 'systemd', 'systemd-sysv' ]),
     { ensure => present })
 
-  # systemd
-  Service {
-    provider => "systemd"
-  }
 }
