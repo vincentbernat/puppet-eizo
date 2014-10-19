@@ -5,4 +5,7 @@ class eizo {
   include ::eizo::disk
   include ::eizo::postfix
 
+  # Applications
+  include ::eizo::xbmc
+
 }

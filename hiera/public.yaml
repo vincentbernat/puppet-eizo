@@ -9,5 +9,8 @@ eizo::debian::packages:
   - lshw
   - pciutils
   - parted
+  - avahi-daemon
 eizo::debian::backports:
   - linux-image-amd64
+
+eizo::xbmc::home: /srv/xbmc
