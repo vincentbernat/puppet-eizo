@@ -6,17 +6,14 @@ class eizo::xbmc::config inherits eizo::xbmc {
     $output = $edid['output']
 
     file { '/lib/firmware/edid': ensure => directory }
-    file { '/lib/firmware/edid/custom-edid.bin':
+    file { "/lib/firmware/edid/edid-${output}.bin":
       ensure => present,
       content => $blob
     }
-    ->
-    file { '/etc/modprobe.d/custom-edid.conf':
-      content => "options drm_kms_helper edid_firmware=${output}:edid/custom-edid.bin"
-    }
-    ->
-    file { '/sys/modules/drm_kms_helper/parameters/edid_firmware':
-      content => "${output}:edid/custom-edid.bin"
+    file { '/usr/local/bin/xbmc-edid':
+      ensure => present,
+      mode => 'a+x',
+      source => "puppet:///modules/eizo/xbmc/xbmc-edid"
     }
   }
 

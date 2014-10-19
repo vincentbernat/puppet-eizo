@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Load EDID firmware
+cd /sys/class/drm/card0
+for output in card0-*; do
+    [ -f $output/edid ] || continue
+    output=${output#card0-}
+    [ -f /lib/firmware/edid/edid-${output}.bin ] || continue
+    echo ${output}:edid/edid-${output}.bin > /sys/module/drm_kms_helper/parameters/edid_firmware
+done
