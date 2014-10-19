@@ -12,6 +12,7 @@ class eizo::xbmc::install inherits eizo::xbmc {
   user { 'xbmc':
     ensure => present,
     gid => 'xbmc',
+    groups => [ 'audio', 'video' ],
     comment => 'XBMC user',
     home => $home,
     system => true,
