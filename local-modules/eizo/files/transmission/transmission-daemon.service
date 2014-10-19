@@ -1,3 +1,12 @@
+[Unit]
+Description=Transmission BitTorrent Daemon
+After=network.target
+
 [Service]
+User=debian-transmission
 ExecStart = /usr/bin/transmission-daemon -f --log-error --config-dir=/var/lib/transmission-daemon/info
+ExecReload=/bin/kill -s HUP $MAINPID
 Restart = on-failure
+
+[Install]
+WantedBy=multi-user.target
