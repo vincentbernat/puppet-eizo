@@ -14,4 +14,4 @@ StandardInput = tty
 StandardOutput = journal
 
 [Install]
-WantedBy = xbmc.target
+WantedBy = multi-user.target
