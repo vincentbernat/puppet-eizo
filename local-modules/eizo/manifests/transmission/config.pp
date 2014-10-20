@@ -8,7 +8,6 @@ class eizo::transmission::config inherits eizo::transmission {
   exec { "copy transmission-daemon settings":
     refreshonly => true,
     path => [ '/bin', '/sbin' ],
-    refreshonly => true,
     command => 'cp /etc/transmission-daemon/settings.json.puppet /etc/transmission-daemon/settings.json'
   }
   ~>
