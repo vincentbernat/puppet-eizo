@@ -15,12 +15,18 @@ class eizo::flexget::install inherits eizo::flexget {
   }
   ->
   python::virtualenv { "${home}/venv":
-    require => Package['virtualenv']
+    require => Package['virtualenv'],
+    before => [ Python::Pip['flexget'],
+                Python::Pip['transmissionrpc'] ]
   }
-  ->
+
   python::pip { 'flexget':
     pkgname => "FlexGet==${version}",
-    virtualenv => "${home}/venv",
+    virtualenv => "${home}/venv"
+  }
+  python::pip { 'transmissionrpc':
+    pkgname => "transmissionrpc",
+    virtualenv => "${home}/venv"
   }
 
   ensure_resource(
