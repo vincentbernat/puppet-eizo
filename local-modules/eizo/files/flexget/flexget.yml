@@ -21,6 +21,7 @@ templates:
       port: 9099
       finished_for: 2 days
       min_ratio: 1
+    magnets: no
 
   anime:
     series:
@@ -118,4 +119,4 @@ tasks:
             from_start: yes
       from:
         - torrentz: verified
-      interval: 4 hours
+    interval: 4 hours
