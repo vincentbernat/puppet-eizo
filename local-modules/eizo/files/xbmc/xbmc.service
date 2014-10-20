@@ -9,7 +9,6 @@ Group = xbmc
 Type = simple
 Restart = always
 RestartSec = 15
-KillMode = process
 Environment = "AE_SINK=ALSA"
 ExecStart = /usr/bin/xinit /usr/bin/xbmc-standalone -- :0
 ExecStop = /usr/bin/xbmc-send --action="XBMC.Quit"
