@@ -35,11 +35,11 @@ class eizo::xbmc::install inherits eizo::xbmc {
   }
 
   file { "/usr/local/bin/xbmc-start":
-    source => "puppet:///module/eizo/xbmc/xbmc-start",
+    source => "puppet:///modules/eizo/xbmc/xbmc-start",
     mode => "a+x"
   }
   file { "/usr/local/bin/xbmc-stop":
-    source => "puppet:///module/eizo/xbmc/xbmc-stop",
+    source => "puppet:///modules/eizo/xbmc/xbmc-stop",
     mode => "a+x"
   }
 
