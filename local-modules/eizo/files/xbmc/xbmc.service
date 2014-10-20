@@ -12,6 +12,7 @@ ExecStop = /usr/local/bin/xbmc-stop
 TTYPath = /dev/tty9
 StandardInput = tty
 StandardOutput = journal
+ConditionFileNotEmpty = /sys/class/drm/card0/card0-HDMI-A-3/edid
 
 [Install]
 WantedBy = xbmc.target
