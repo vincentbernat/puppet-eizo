@@ -18,4 +18,9 @@ class eizo {
     group => "root"
   }
 
+  group { 'nas':
+    ensure => present,
+    system => true
+  }
+
 }

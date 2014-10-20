@@ -21,11 +21,12 @@ class eizo::xbmc::install inherits eizo::xbmc {
   user { 'xbmc':
     ensure => present,
     gid => 'xbmc',
-    groups => [ 'audio', 'video' ],
+    groups => [ 'audio', 'video', 'nas' ],
     comment => 'XBMC user',
     home => $home,
     system => true,
-    password => '*'
+    password => '*',
+    require => Group['nas']
   }
   ->
   file { "${home}/.xbmc":
