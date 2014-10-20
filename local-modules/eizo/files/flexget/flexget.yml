@@ -115,8 +115,7 @@ tasks:
       - tv
     discover:
       what:
-        - emit_series:
-            from_start: yes
+        - emit_series: yes
       from:
         - torrentz: verified
     interval: 4 hours
