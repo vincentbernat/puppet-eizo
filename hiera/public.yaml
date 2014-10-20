@@ -26,8 +26,6 @@ eizo::xbmc::edid:
     cRwWIFgsJQCgWgAAAJ4AAAAAAAAAAAAAAAAAbQ==
 
 eizo::transmission::download: /srv/transmission
-eizo::transmission::whitelist:
-
 eizo::transmission::config:
   alt-speed-down: 200
   alt-speed-up: 10
@@ -53,3 +51,5 @@ eizo::transmission::config:
   rpc-enabled: true
   rpc-port: 9099
   rpc-url: "/transmission/"
+
+eizo::flexget::home: /srv/flexget

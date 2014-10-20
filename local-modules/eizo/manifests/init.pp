@@ -8,6 +8,7 @@ class eizo {
   # Applications
   include ::eizo::xbmc
   include ::eizo::transmission
+  include ::eizo::flexget
 
   # Defaults
   Service {

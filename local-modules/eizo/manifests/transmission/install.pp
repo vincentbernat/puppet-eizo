@@ -10,6 +10,14 @@ class eizo::transmission::install inherits eizo::transmission {
     ensure => present
   }
   ->
+  user { 'transmission-daemon':
+    ensure => present,
+    groups => [ 'nas' ],
+    system => true,
+    gid => 'xbmc',
+    password => '*',
+    require => Group['nas']
+  }
   file { "${download}":
     ensure => directory,
   }

@@ -1,7 +1,4 @@
-class eizo::xbmc(
-  $home,
-  $edid = undef
-  ) {
+class eizo::xbmc($home) {
 
   class { '::eizo::xbmc::install': } ->
   class { '::eizo::xbmc::config':  } ~>

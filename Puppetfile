@@ -7,6 +7,7 @@ forge "https://forgeapi.puppetlabs.com"
 mod "puppetlabs/stdlib",    "~> 4.3.2"
 mod "puppetlabs/apt",       "~> 1.6.0"
 mod "jhoblitt/udev",        "~> 1.2.0"
+mod "stankevich/python",    "~> 1.7.12"
 
 # Local Variables:
 # mode: Ruby
