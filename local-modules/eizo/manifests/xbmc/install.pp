@@ -34,6 +34,15 @@ class eizo::xbmc::install inherits eizo::xbmc {
     target => "${home}"
   }
 
+  file { "/usr/local/bin/xbmc-start":
+    source => "puppet:///module/eizo/xbmc/xbmc-start",
+    mode => "a+x"
+  }
+  file { "/usr/local/bin/xbmc-stop":
+    source => "puppet:///module/eizo/xbmc/xbmc-stop",
+    mode => "a+x"
+  }
+
   # Also install X stuff. We use `ensure_resource` because we don't
   # want to have ownership.
   ensure_resource(

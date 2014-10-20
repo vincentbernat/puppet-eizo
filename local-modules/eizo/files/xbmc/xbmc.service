@@ -4,14 +4,11 @@ After = remote-fs.target
 After = syslog.target
  
 [Service]
-User = xbmc
-Group = xbmc
 Type = simple
 Restart = always
 RestartSec = 15
-Environment = "AE_SINK=ALSA"
-ExecStart = /usr/bin/xinit /usr/bin/xbmc-standalone -- :0
-ExecStop = /usr/bin/xbmc-send --action="XBMC.Quit"
+ExecStart = /usr/local/bin/xbmc-start
+ExecStop = /usr/local/bin/xbmc-stop
 TTYPath = /dev/tty9
 StandardInput = tty
 StandardOutput = journal

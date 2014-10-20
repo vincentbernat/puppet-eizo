@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec sudo -u xbmc env \
+    AE_SINK=ALSE \
+    /usr/bin/xinit /usr/bin/xbmc-standalone -- :0
