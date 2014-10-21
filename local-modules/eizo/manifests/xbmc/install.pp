@@ -35,7 +35,7 @@ class eizo::xbmc::install inherits eizo::xbmc {
   }
 
   file { "/usr/local/bin/xbmc-start":
-    source => "puppet:///modules/eizo/xbmc/xbmc-start",
+    content => template("eizo/xbmc/xbmc-start.erb"),
     mode => "a+x"
   }
   file { "/usr/local/bin/xbmc-stop":

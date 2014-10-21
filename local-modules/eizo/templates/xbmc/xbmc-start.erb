@@ -1,6 +1,7 @@
 #!/bin/sh
 
-screen="card0-HDMI-A-3"
+<% if @screen -%>
+screen="<%= @screen %>"
 
 for i in $(seq 1 3); do
     [ x"$(cat /sys/class/drm/$screen/status)" = x"connected" ] || {
@@ -13,6 +14,7 @@ for i in $(seq 1 3); do
     }
     sleep 1
 done
+<% end -%>
 
 exec sudo -u xbmc env \
     AE_SINK=ALSE \
