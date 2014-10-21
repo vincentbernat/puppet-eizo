@@ -25,12 +25,12 @@ class eizo::transmission::install inherits eizo::transmission {
   file { ["${download}/incomplete", "${download}/complete"]:
     ensure => directory,
     group => "nas",
-    mode => "g=rws"
+    mode => "g=rwxs"
   }
   ->
   file { "${download}/watch":
     ensure => directory,
-    mode => "g=rx,o=rwt"
+    mode => "g=rx,o=rwxt"
   }
 
 }
