@@ -4,7 +4,7 @@ class eizo {
   include ::eizo::debian
   include ::eizo::disk
   include ::eizo::postfix
-  include ::eize::ddns
+  include ::eizo::ddns
 
   # Applications
   include ::eizo::xbmc
