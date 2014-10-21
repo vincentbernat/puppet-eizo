@@ -4,7 +4,7 @@
 class eizo::ddns($key, $secret, $domain, $ttl=60) {
 
   file { "/usr/local/bin/ddns-updater":
-    content => template("system/network/ddns-updater.erb"),
+    content => template("eizo/ddns/ddns-updater.erb"),
     owner => root,
     mode => "0700"
   }
