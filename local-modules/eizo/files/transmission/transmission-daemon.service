@@ -7,7 +7,6 @@ User=debian-transmission
 ExecStart = /usr/bin/transmission-daemon -f --log-error --config-dir=/var/lib/transmission-daemon/info
 ExecReload=/bin/kill -s HUP $MAINPID
 Restart = on-failure
-Umask = 0002
 
 [Install]
 WantedBy=multi-user.target
