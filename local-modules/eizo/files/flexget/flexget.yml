@@ -36,7 +36,7 @@ templates:
       settings:
         normal:
           timeframe: 30 hours
-          quality: 720p+
+          quality: 720p
           propers: 4 days
       normal:
         - Modern Family
