@@ -7,6 +7,10 @@ for i in $(seq 1 3); do
         >&2 echo "Screen $screen is disconnected, do not start now"
         exit 3
     }
+    [ x"$(cat /sys/class/drm/$screen/edid | wc -c)" != x"0" ] || {
+        >&2 echo "Screen $screen doesn't have a valid EDID, do not start now"
+        exit 4
+    }
     sleep 1
 done
 
