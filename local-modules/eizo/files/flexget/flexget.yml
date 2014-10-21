@@ -36,7 +36,7 @@ templates:
       settings:
         normal:
           timeframe: 8 hours
-          target: 720p hdtv+ dd5.1+
+          target: 720p hdtv+ dd5.1|ac3|dts
           quality: 720p
           propers: 4 days
       normal:
