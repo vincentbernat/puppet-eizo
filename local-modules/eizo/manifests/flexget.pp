@@ -1,4 +1,4 @@
-class eizo::flexget($home, $version="1.2.209") {
+class eizo::flexget($home, $config, $version="1.2.209") {
 
   class { '::eizo::flexget::install': } ->
   class { '::eizo::flexget::config':  } ~>

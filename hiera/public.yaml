@@ -54,3 +54,126 @@ eizo::transmission::config:
   rpc-url: "/transmission/"
 
 eizo::flexget::home: /srv/flexget
+eizo::flexget::config:
+  templates:
+
+    global:
+      headers:
+        User-Agent: "Mozilla/5.0 (Windows NT 5.1; rv:16.0) Gecko/20100101 Firefox/16.0"
+      email:
+        active: True
+        from: bernat@luffy.cx
+        to: bernat@luffy.cx
+        smtp_host: localhost
+      content_filter:
+        reject: '*.rar'
+      transmission:
+        host: localhost
+        port: 9099
+        main_file_only: Yes
+        include_subs: Yes
+        path: "/srv/transmission/complete/{{ series_name }}"
+      clean_transmission:
+        host: localhost
+        port: 9099
+        finished_for: 2 days
+        min_ratio: 1
+      magnets: no
+
+    anime:
+      series:
+        720p:
+          - Naruto Shippuuden
+          - Fairy Tail
+          - One Piece
+
+    tv:
+      cookies: ~/.flexget/cookies.txt
+      series:
+        settings:
+          normal:
+            timeframe: 8 hours
+            target: 720p hdtv+ dd5.1|ac3|dts
+            quality: 720p
+            propers: 4 days
+        normal:
+          - Modern Family
+          - Breaking Bad
+          - The Big Bang Theory
+          - Two and a Half Men
+          - The Walking Dead
+          - Boardwalk Empire
+          - Justified
+          - Orange is the New Black
+          - Game Of Thrones
+          - Homeland
+          - 2 Broke Girls
+          - Person of Interest
+          - House of Cards
+          - Parks and Recreation
+          - True Detective
+          - Banshee
+          - Broadchurch
+          - Silicon Valley
+          - Sherlock
+          - Gotham
+          - Suits
+          - The Flash
+          - In the Flesh
+          - Episodes:
+              exact: yes
+
+  tasks:
+    yibis:
+      rss: 'http://tracker.yibis.com/rss.xml'
+      template:
+        - anime
+      interval: 4 hours
+    horriblesubs:
+      rss: 'http://www.nyaatorrents.org/?page=rss&term=HorribleSubs+mkv'
+      template:
+        - anime
+
+    thepiratebay:
+      rss: "http://rss.thepiratebay.se/208"
+      template:
+        - tv
+      priority: 9
+    kickass:
+      rss: "http://kickass.to/tv/?rss=1"
+      template:
+        - tv
+      priority: 10
+    eztv:
+      rss: "http://feeds.feedburner.com/eztv-rss-atom-feeds?format=xml"
+      template:
+        - tv
+      priority: 11
+    torrentz.eu:
+      rss: 'http://torrentz.eu/feed?q=hdtv+720p'
+      interval: 60 minutes
+      template:
+        - tv
+      priority: 12
+    btchat:
+      rss: "http://rss.bt-chat.com/?cat=9"
+      template:
+        - tv
+      priority: 20
+      interval: 1 hour
+    showrss:
+      rss: "http://showrss.info/feeds/all.rss"
+      template:
+        - tv
+      priority: 21
+      interval: 1 hour
+
+    search series:
+      template:
+        - tv
+      discover:
+        what:
+          - emit_series: yes
+        from:
+          - torrentz: verified
+      interval: 4 hours

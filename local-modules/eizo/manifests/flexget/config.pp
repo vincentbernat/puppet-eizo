@@ -10,7 +10,7 @@ class eizo::flexget::config inherits eizo::flexget {
     target => "/etc/flexget.yml"
   }
   file { "/etc/flexget.yml":
-    source => "puppet:///modules/eizo/flexget/flexget.yml"
+    content => template("eizo/flexget/config.yml.erb")
   }
 
 }
