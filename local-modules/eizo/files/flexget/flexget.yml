@@ -70,6 +70,7 @@ tasks:
     rss: 'http://tracker.yibis.com/rss.xml'
     template:
       - anime
+    interval: 4 hours
   horriblesubs:
     rss: 'http://www.nyaatorrents.org/?page=rss&term=HorribleSubs+mkv'
     template:
@@ -101,13 +102,13 @@ tasks:
     template:
       - tv
     priority: 20
-    interval: 120 minutes
+    interval: 1 hour
   showrss:
     rss: "http://showrss.info/feeds/all.rss"
     template:
       - tv
     priority: 21
-    interval: 120 minutes
+    interval: 1 hour
 
   search series:
     template:
