@@ -1,7 +1,7 @@
 #
 # Dynamic DNS update using Route53
 #
-class system::network::ddns($key, $secret, $domain, $ttl=60) {
+class eizo::ddns($key, $secret, $domain, $ttl=60) {
 
   file { "/usr/local/bin/ddns-updater":
     content => template("system/network/ddns-updater.erb"),
