@@ -35,7 +35,8 @@ templates:
     series:
       settings:
         normal:
-          timeframe: 30 hours
+          timeframe: 8 hours
+          target: 720p hdtv+ dd5.1+
           quality: 720p
           propers: 4 days
       normal:
