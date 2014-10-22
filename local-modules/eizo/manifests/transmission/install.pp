@@ -15,13 +15,6 @@ class eizo::transmission::install inherits eizo::transmission {
     password => '*',
     require => Group['nas']
   }
-  file { "${download}":
-    ensure => directory,
-    mode => "0755",
-    owner => root,
-    group => root
-  }
-  ->
   file { ["${download}/incomplete", "${download}/complete"]:
     ensure => directory,
     owner => "debian-transmission",
