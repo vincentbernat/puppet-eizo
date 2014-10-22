@@ -10,6 +10,7 @@ class eizo {
   include ::eizo::xbmc
   include ::eizo::transmission
   include ::eizo::flexget
+  include ::eizo::nginx
 
   # Defaults
   Service {

@@ -18,6 +18,7 @@ eizo::debian::packages:
 eizo::xbmc::home: /srv/xbmc
 eizo::xbmc::screen: 'card0-HDMI-A-3'
 
+eizo::transmission::rpcport: 9099
 eizo::transmission::download: /srv/transmission
 eizo::transmission::config:
   alt-speed-down: 200
@@ -43,7 +44,7 @@ eizo::transmission::config:
   rpc-whitelist-enabled: true
   rpc-bind-address: "0.0.0.0"
   rpc-enabled: true
-  rpc-port: 9099
+  rpc-port: "%{hiera('eizo::transmission::rpcport')}"
   rpc-url: "/transmission/"
 
 eizo::flexget::home: /srv/flexget
@@ -151,3 +152,33 @@ eizo::flexget::config:
         path: "/srv/transmission/complete/TV/{{ series_name }}"
         main_file_only: Yes
         include_subs: Yes
+
+nginx::package::package_name: nginx-full
+
+nginx::nginx_upstreams:
+  'transmission':
+    members:
+      - "localhost:%{hiera('eizo::transmission::rpcport')}"
+
+nginx::nginx_vhosts:
+  "%{::fqdn}":
+    ssl: true
+    ssl_cert: "/etc/nginx/ssl/%{::hostname}.pem"
+    ssl_key: "/etc/nginx/ssl/%{::hostname}.key"
+    ssl_port: 443
+    ssl_protocols: "TLSv1 TLSv1.1 TLSv1.2"
+    ssl_ciphers: "EECDH+AESGCM:EECDH+AES:!SHA"
+    ssl_stapling: true
+    ssl_trusted_cert: "/etc/ssl/certs/StartCom_Certification.pem"
+    spdy: true
+    rewrite_to_https: true
+    access_log: "/var/log/nginx/%{::hostname}_access.log"
+    error_log: "/var/log/nginx/%{::hostname}_error.log"
+    www_root: /var/www/html
+    index_files: "index.html index.htm index.nginx-debian.html"
+
+nginx::nginx_locations:
+  'transmission':
+    location: /transmission
+    vhost: "%{::fqdn}"
+    proxy: transmission

@@ -1,5 +1,7 @@
 ---
-:backends: yaml
+:backends:
+  - yaml
+  - module_data
 :yaml:
   :datadir: "%{settings::confdir}/hiera"
 :hierarchy:
