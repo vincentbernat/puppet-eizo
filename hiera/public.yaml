@@ -185,6 +185,7 @@ nginx::nginx_locations:
     location: /transmission
     vhost: "%{::fqdn}"
     proxy: transmission
+    ssl: true
 
 eizo::nginx::certs:
   "/etc/nginx/ssl/StartCom_Class_1.pem":
