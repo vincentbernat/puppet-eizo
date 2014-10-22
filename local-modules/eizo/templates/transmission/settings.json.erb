@@ -3,6 +3,9 @@
     "<%= directive %>": <%= if value.respond_to?('join') then value.join(',').inspect else value.inspect end %>,
 <%- end -%>
 
+<% if @rpcport then -%>
+    "rpc-port": <%= @rpcport %>
+<% end -%>
     "download-dir": "<%= @download %>/complete",
     "incomplete-dir": "<%= @download %>/incomplete",
     "incomplete-dir-enabled": true,

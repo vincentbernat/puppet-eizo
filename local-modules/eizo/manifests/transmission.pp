@@ -1,5 +1,6 @@
 class eizo::transmission(
   $download,
+  $rpcport,
   $config = {}
   ) {
 

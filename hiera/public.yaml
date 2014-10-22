@@ -44,7 +44,6 @@ eizo::transmission::config:
   rpc-whitelist-enabled: true
   rpc-bind-address: "0.0.0.0"
   rpc-enabled: true
-  rpc-port: "%{hiera('eizo::transmission::rpcport')}"
   rpc-url: "/transmission/"
 
 eizo::flexget::home: /srv/flexget
