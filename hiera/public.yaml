@@ -163,6 +163,7 @@ nginx::nginx_upstreams:
 
 nginx::nginx_vhosts:
   "%{::fqdn}":
+    ipv6_enable: true
     ssl: true
     ssl_cert: "/etc/nginx/ssl/%{::hostname}.pem"
     ssl_key: "/etc/nginx/ssl/%{::hostname}.key"
