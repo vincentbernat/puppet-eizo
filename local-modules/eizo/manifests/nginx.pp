@@ -2,9 +2,7 @@ class eizo::nginx {
 
   include ::nginx
 
-  $confdir = hiera("nginx::config::conf_dir")
-
-  file { "${confdir}/ssl":
+  file { "/etc/nginx/ssl":
     ensure => directory,
     mode => "0755"
   }
