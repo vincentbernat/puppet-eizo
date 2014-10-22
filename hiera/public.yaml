@@ -188,7 +188,6 @@ nginx::nginx_locations:
 
 eizo::nginx::certs:
   "/etc/nginx/ssl/StartCom_Class_1.pem":
-    mode: "0644"
     content: |
       -----BEGIN CERTIFICATE-----
       MIIGNDCCBBygAwIBAgIBHjANBgkqhkiG9w0BAQUFADB9MQswCQYDVQQGEwJJTDEW

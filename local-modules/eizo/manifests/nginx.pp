@@ -10,7 +10,6 @@ class eizo::nginx {
   create_resources(
     file,
     hiera_hash("eizo::nginx::certs", {}),
-    { before => Class['::Nginx'],
-      mode => "0600" })
+    {})
 
 }
