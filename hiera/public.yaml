@@ -170,12 +170,14 @@ nginx::nginx_vhosts:
     ssl_ciphers: "EECDH+AESGCM:EECDH+AES:!SHA"
     ssl_stapling: true
     ssl_trusted_cert: "/etc/nginx/ssl/StartCom_Class_1.pem"
-    spdy: true
+    spdy: "on"
     rewrite_to_https: true
     access_log: "/var/log/nginx/%{::hostname}_access.log"
     error_log: "/var/log/nginx/%{::hostname}_error.log"
     www_root: /var/www/html
-    index_files: "index.html index.htm index.nginx-debian.html"
+    index_files:
+      - index.html
+      - index.nginx-debian.html
 
 nginx::nginx_locations:
   'transmission':
