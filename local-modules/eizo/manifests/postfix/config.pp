@@ -6,7 +6,7 @@ class eizo::postfix::config inherits eizo::postfix {
 
   if ($key != undef) {
     file { "/etc/ssl/private/postfix.key":
-      mode => 0600,
+      mode => "0600",
       content => "${key}",
     }
   }
