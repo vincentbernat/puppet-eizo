@@ -71,6 +71,30 @@ eizo::flexget::config:
       magnets: no
 
   tasks:
+
+    movie:
+      movie_queue: yes
+      discover:
+        what:
+          - emit_movie_queue: yes
+        from:
+          - kat:
+              category: movies
+              verified: yes
+          - piratebay:
+              category: "highres movies"
+              sort_by: seeds
+          - torrentz: verified
+      set:
+        path: "/srv/transmission/complete/Film"
+        main_file_only: Yes
+        include_subs: Yes
+      timeframe: 8 hours
+      target: 1080p bluray dd5.1|ac3|dts
+      quality: 720p+ webdl+
+      content_size:
+        max: 5000
+
     anime:
       inputs:
         - rss: 'http://tracker.yibis.com/rss.xml'
