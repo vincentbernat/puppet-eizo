@@ -25,8 +25,5 @@ class eizo::postfix::config inherits eizo::postfix {
   file { "/etc/mailname":
     content => template("eizo/postfix/mailname.erb"),
   }
-  mailalias { 'root':
-    target => "root@${origin}"
-  }
 
 }
