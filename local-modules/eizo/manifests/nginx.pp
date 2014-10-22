@@ -6,12 +6,13 @@ class nginx {
 
   file { "${confdir}/ssl":
     ensure => directory,
-    mode => "0700"
+    mode => "0755"
   }
 
   create_resources(
     file,
     hiera_hash("eizo::nginx::certs", {}),
-    { before => Class['::Nginx'] })
+    { before => Class['::Nginx'],
+      mode => "0600" })
 
 }
