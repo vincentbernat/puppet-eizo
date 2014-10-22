@@ -13,7 +13,8 @@ class eizo::transmission::service inherits eizo::transmission {
   ->
   service { 'transmission-daemon':
     ensure => running,
-    enable => true
+    enable => true,
+    restart => "systemctl reload transmission-daemon"
   }
 
 }
