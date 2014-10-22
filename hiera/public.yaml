@@ -174,6 +174,10 @@ nginx::nginx_vhosts:
       ssl_verify_client: 'on'
       ssl_verify_depth: 2
       ssl_client_certificate: "/etc/nginx/ssl/StartCom_Class_1.pem"
+    location_raw_prepend: |
+      if ($ssl_client_i_sn != "/CN=bernat@luffy.cx/emailAddress=bernat@luffy.cx") {
+          return 403;
+      }
       
     spdy: "on"
     rewrite_to_https: true
