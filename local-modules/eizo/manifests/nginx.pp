@@ -11,7 +11,7 @@ class nginx {
 
   create_resources(
     file,
-    hiera_hash("nginx::certs", {}),
+    hiera_hash("eizo::nginx::certs", {}),
     { before => Class['::Nginx'] })
 
 }
