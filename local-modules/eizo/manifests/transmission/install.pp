@@ -1,8 +1,6 @@
 class eizo::transmission::install inherits eizo::transmission {
 
   File {
-    owner => "debian-transmission",
-    group => "debian-transmission",
     require => Group['nas']
   }
   package { 'transmission-daemon':
@@ -19,18 +17,23 @@ class eizo::transmission::install inherits eizo::transmission {
   }
   file { "${download}":
     ensure => directory,
-    mode => "0755"
+    mode => "0755",
+    owner => root,
+    group => root
   }
   ->
   file { ["${download}/incomplete", "${download}/complete"]:
     ensure => directory,
+    owner => "debian-transmission",
     group => "nas",
     mode => "g=rwxs"
   }
   ->
   file { "${download}/watch":
     ensure => directory,
-    mode => "g=rx,o=rwxt"
+    mode => "g=rx,o=rwxt",
+    owner => "debian-transmission",
+    group => "debian-transmission"
   }
 
 }
