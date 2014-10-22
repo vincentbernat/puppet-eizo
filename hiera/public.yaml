@@ -203,7 +203,6 @@ nginx::nginx_locations:
     proxy: http://transmission/transmission
     ssl: true
     ssl_only: true
-nginx::nginx_locations:
   'xbmc':
     location: /xbmc
     vhost: "%{::fqdn}"
