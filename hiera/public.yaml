@@ -160,9 +160,6 @@ nginx::nginx_upstreams:
   'transmission':
     members:
       - "127.0.0.1:%{hiera('eizo::transmission::rpcport')}"
-  'xbmc':
-    members:
-      - "127.0.0.1:9090"
 
 nginx::nginx_vhosts:
   "%{::fqdn}":
@@ -201,12 +198,6 @@ nginx::nginx_locations:
     location: /transmission
     vhost: "%{::fqdn}"
     proxy: http://transmission/transmission
-    ssl: true
-    ssl_only: true
-  'xbmc':
-    location: /xbmc
-    vhost: "%{::fqdn}"
-    proxy: http://xbmc
     ssl: true
     ssl_only: true
 
