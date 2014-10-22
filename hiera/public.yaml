@@ -160,13 +160,3 @@ eizo::flexget::config:
         - tv
       priority: 21
       interval: 1 hour
-
-    search series:
-      template:
-        - tv
-      discover:
-        what:
-          - emit_series: yes
-        from:
-          - torrentz: verified
-      interval: 4 hours
