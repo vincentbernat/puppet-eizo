@@ -158,7 +158,7 @@ nginx::package::debian::manage_repo: false
 nginx::nginx_upstreams:
   'transmission':
     members:
-      - "localhost:%{hiera('eizo::transmission::rpcport')}"
+      - "127.0.0.1:%{hiera('eizo::transmission::rpcport')}"
 
 nginx::nginx_vhosts:
   "%{::fqdn}":
@@ -185,7 +185,7 @@ nginx::nginx_locations:
   'transmission':
     location: /transmission
     vhost: "%{::fqdn}"
-    proxy: transmission
+    proxy: http://transmission/transmission
     ssl: true
     ssl_only: true
 
