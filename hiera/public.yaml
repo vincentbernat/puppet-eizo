@@ -89,8 +89,6 @@ eizo::flexget::config:
         path: "/srv/transmission/complete/Film"
         main_file_only: Yes
         include_subs: Yes
-      timeframe: 8 hours
-      target: 1080p bluray dd5.1|ac3|dts
       quality: 720p+ webdl+
       content_size:
         max: 5000
