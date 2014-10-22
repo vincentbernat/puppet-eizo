@@ -172,6 +172,8 @@ nginx::nginx_vhosts:
     ssl_ciphers: "EECDH+AESGCM:EECDH+AES:!SHA"
     ssl_stapling: true
     ssl_trusted_cert: "/etc/nginx/ssl/StartCom_Class_1.pem"
+    vhost_cfg_append:
+      - ssl_verify_client: 'on'
     spdy: "on"
     rewrite_to_https: true
     access_log: "/var/log/nginx/%{::hostname}_access.log"
