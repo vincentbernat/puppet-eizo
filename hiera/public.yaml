@@ -154,6 +154,7 @@ eizo::flexget::config:
 
 nginx::package::debian::package_name: nginx-full
 nginx::package::debian::manage_repo: false
+nginx::service_ensure: running
 
 nginx::nginx_upstreams:
   'transmission':
