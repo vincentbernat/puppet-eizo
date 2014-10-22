@@ -186,6 +186,7 @@ nginx::nginx_locations:
     vhost: "%{::fqdn}"
     proxy: transmission
     ssl: true
+    ssl_only: true
 
 eizo::nginx::certs:
   "/etc/nginx/ssl/StartCom_Class_1.pem":
