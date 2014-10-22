@@ -1,4 +1,4 @@
-class nginx {
+class eizo::nginx {
 
   include ::nginx
 
