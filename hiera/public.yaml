@@ -63,9 +63,6 @@ eizo::flexget::config:
       transmission:
         host: localhost
         port: 9099
-        main_file_only: Yes
-        include_subs: Yes
-        path: "/srv/transmission/complete/{{ series_name }}"
       clean_transmission:
         host: localhost
         port: 9099
@@ -74,6 +71,8 @@ eizo::flexget::config:
       magnets: no
 
     anime:
+      set:
+        path: "/srv/transmission/complete/TV/{{ series_name }}"
       series:
         720p:
           - Naruto Shippuuden
@@ -81,6 +80,10 @@ eizo::flexget::config:
           - One Piece
 
     tv:
+      set:
+        path: "/srv/transmission/complete/TV/{{ series_name }}"
+        main_file_only: Yes
+        include_subs: Yes
       cookies: ~/.flexget/cookies.txt
       series:
         settings:
