@@ -70,20 +70,27 @@ eizo::flexget::config:
         min_ratio: 1
       magnets: no
 
+  tasks:
     anime:
-      set:
-        path: "/srv/transmission/complete/TV/{{ series_name }}"
+      inputs:
+        - rss: 'http://tracker.yibis.com/rss.xml'
+        - rss: 'http://www.nyaatorrents.org/?page=rss&term=HorribleSubs+mkv'
       series:
         720p:
           - Naruto Shippuuden
           - Fairy Tail
           - One Piece
-
-    tv:
       set:
         path: "/srv/transmission/complete/TV/{{ series_name }}"
-        main_file_only: Yes
-        include_subs: Yes
+
+    tv:
+      inputs:
+        - rss: "http://rss.thepiratebay.se/208"
+        - rss: "http://kickass.to/tv/?rss=1"
+        - rss: "http://feeds.feedburner.com/eztv-rss-atom-feeds?format=xml"
+        - rss: 'http://torrentz.eu/feed?q=hdtv+720p'
+        - rss: "http://rss.bt-chat.com/?cat=9"
+        - rss: "http://showrss.info/feeds/all.rss"
       cookies: ~/.flexget/cookies.txt
       series:
         settings:
@@ -118,48 +125,7 @@ eizo::flexget::config:
           - In the Flesh
           - Episodes:
               exact: yes
-
-  tasks:
-    yibis:
-      rss: 'http://tracker.yibis.com/rss.xml'
-      template:
-        - anime
-      interval: 4 hours
-    horriblesubs:
-      rss: 'http://www.nyaatorrents.org/?page=rss&term=HorribleSubs+mkv'
-      template:
-        - anime
-
-    thepiratebay:
-      rss: "http://rss.thepiratebay.se/208"
-      template:
-        - tv
-      priority: 9
-    kickass:
-      rss: "http://kickass.to/tv/?rss=1"
-      template:
-        - tv
-      priority: 10
-    eztv:
-      rss: "http://feeds.feedburner.com/eztv-rss-atom-feeds?format=xml"
-      template:
-        - tv
-      priority: 11
-    torrentz.eu:
-      rss: 'http://torrentz.eu/feed?q=hdtv+720p'
-      interval: 60 minutes
-      template:
-        - tv
-      priority: 12
-    btchat:
-      rss: "http://rss.bt-chat.com/?cat=9"
-      template:
-        - tv
-      priority: 20
-      interval: 1 hour
-    showrss:
-      rss: "http://showrss.info/feeds/all.rss"
-      template:
-        - tv
-      priority: 21
-      interval: 1 hour
+      set:
+        path: "/srv/transmission/complete/TV/{{ series_name }}"
+        main_file_only: Yes
+        include_subs: Yes
