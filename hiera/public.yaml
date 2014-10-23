@@ -172,7 +172,7 @@ nginx::nginx_vhosts:
     ssl_ciphers: "EECDH+AESGCM:EECDH+AES:!SHA"
     ssl_stapling: true
     ssl_stapling_verify: true
-    ssl_trusted_certificate: "/etc/nginx/ssl/StartCom_Server_Class_1.pem"
+    ssl_trusted_cert: "/etc/nginx/ssl/StartCom_Server_Class_1.pem"
     resolver:
       - 8.8.8.8
     vhost_cfg_append:
