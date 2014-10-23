@@ -1,3 +1,4 @@
+# Debian packages
 eizo::debian::packages:
   - zsh
   - mg
@@ -15,9 +16,11 @@ eizo::debian::packages:
   - lldpd
   - htop
 
+# XBMC configuration
 eizo::xbmc::home: /srv/xbmc
 eizo::xbmc::screen: 'card0-HDMI-A-3'
 
+# Transmission configuration
 eizo::transmission::rpcport: 9099
 eizo::transmission::download: /srv/transmission
 eizo::transmission::config:
@@ -45,6 +48,7 @@ eizo::transmission::config:
   rpc-enabled: true
   rpc-url: "/transmission/"
 
+# Flexget configuration
 eizo::flexget::home: /srv/flexget
 eizo::flexget::config:
   templates:
@@ -151,6 +155,7 @@ eizo::flexget::config:
         main_file_only: Yes
         include_subs: Yes
 
+# nginx configuration
 nginx::package::debian::package_name: nginx-full
 nginx::package::debian::manage_repo: false
 nginx::service_ensure: running
