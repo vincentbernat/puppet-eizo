@@ -10,8 +10,8 @@ doesn't pretend to apply to any other host than *eizo*.
 This requires [Debian Jessie][] and the following packages to be
 installed:
 
- - `ruby`
- - `bundler`
+ - `puppet`
+ - `librarian-puppet`
  - `systemd-sysv` (and a reboot would be welcome)
 
 [Debian Jessie]: https://www.debian.org/releases/jessie/

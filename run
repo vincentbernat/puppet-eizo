@@ -11,9 +11,7 @@ cd "$(dirname "$(readlink -f "$0")")"
     EDITOR=true git merge master
 }
 
-bundle install
-bundle exec librarian-puppet install
-$SUDO bundle exec puppet apply \
+$SUDO puppet apply \
     --confdir=$PWD \
     --modulepath=$PWD/local-modules:$PWD/modules:/usr/share/puppet/modules \
     "${@:---test}" \
