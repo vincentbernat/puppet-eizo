@@ -156,8 +156,8 @@ eizo::flexget::config:
         include_subs: Yes
 
 # nginx configuration
-nginx::package::debian::package_name: nginx-full
-nginx::package::debian::manage_repo: false
+nginx::package::package_name: nginx-full
+nginx::package::manage_repo: false
 nginx::service_ensure: running
 
 nginx::nginx_upstreams:
