@@ -35,6 +35,6 @@ define eizo::interface::physical($path, $description, $vlans = {}) {
   create_resources(
     'eizo::interface::vlan',
     $vlans,
-    { notify => Service["systemd-network"] })
+    { notify => Service["systemd-networkd"] })
 
 }
