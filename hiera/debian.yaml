@@ -1,0 +1,18 @@
+# Debian packages
+eizo::debian::packages:
+  - zsh
+  - mg
+  - vim-tiny
+  - git
+  - lm-sensors
+  - smartmontools
+  - usbutils
+  - lshw
+  - pciutils
+  - parted
+  - avahi-daemon
+  - i965-va-driver
+  - alsa-utils
+  - lldpd
+  - htop
+
