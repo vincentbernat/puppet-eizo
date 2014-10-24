@@ -7,4 +7,5 @@
 :hierarchy:
   - debian
   - apps
+  - router
   - private

@@ -1,0 +1,27 @@
+eizo::interfaces:
+  lan:
+    description: "Internal network"
+    path: "pci-0000:00:19.0"
+    vlans:
+      lan-trusted:
+        description: "Trusted LAN network"
+        id: 6
+      lan-suspect:
+        description: "Untrusted LAN network"
+        id: 7
+      lan-guest:
+        description: "Guest LAN network"
+        id: 8
+  wlan:
+    description: "Wireless network"
+    path: "pci-0000:03:00.0"
+    vlans:
+      wlan-trusted:
+        description: "Trusted WLAN network"
+        id: 6
+      wlan-suspect:
+        description: "Untrusted WLAN network"
+        id: 7
+      wlan-guest:
+        description: "Guest WLAN network"
+        id: 8

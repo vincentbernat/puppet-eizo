@@ -12,6 +12,9 @@ class eizo {
   include ::eizo::flexget
   include ::eizo::nginx
 
+  # Router stuff
+  include ::eizo::interfaces
+
   # Defaults
   Service {
     provider => "systemd"
