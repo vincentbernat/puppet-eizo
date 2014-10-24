@@ -3,6 +3,6 @@ Name = <%= @name %>
 
 [Network]
 Description = <%= @description %>
-<% @vlans.each do |vlan| -%>
+<% @vlans.each do |vlan, params| -%>
 VLAN = <%= vlan %>
 <% end -%>
