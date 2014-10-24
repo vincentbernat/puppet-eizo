@@ -3,15 +3,15 @@
 # configuration is done through systemd.
 class eizo::interfaces {
 
-  exec { 'reload systemd for network interfaces':
-    path => [ '/bin', '/sbin' ],
-    refreshonly => true,
-    command => 'systemctl daemon-reload'
+  service { "systemd-networkd":
+    ensure => running,
+    enable => true,
+    restart => "systemctl daemon-reload"
   }
 
   create_resources(
     'eizo::interface::physical',
     hiera_hash('eizo::interfaces'),
-    { notify => Exec["reload systemd for network interfaces"] })
+    { notify => Service["systemd-networkd"] })
 
 }
