@@ -22,11 +22,11 @@
 #  Associated VLAN. It is map from names to eizo::interface::vlan
 #  stuff
 #
-class eizo::interface::physical($path, $description, $vlans = {}) {
+define eizo::interface::physical($path, $description, $vlans = {}) {
 
   file { "/etc/systemd/network/$name.link":
     ensure => present,
-    content => template("eizo/interface/physical.erb")
+    content => template("eizo/interfaces/physical.erb")
   }
   file { "/etc/systemd/network/$name.network":
     ensure => present,

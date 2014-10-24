@@ -14,11 +14,11 @@
 # [*description*]
 #  A description for the usage of this interface
 #
-class eizo::interface::physical($id, $description) {
+define eizo::interface::physical($id, $description) {
 
   file { "/etc/systemd/network/$name.netdev":
     ensure => present,
-    content => template("eizo/interface/vlan.erb")
+    content => template("eizo/interfaces/vlan.erb")
   }
 
 }
