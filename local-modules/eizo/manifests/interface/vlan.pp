@@ -14,7 +14,7 @@
 # [*description*]
 #  A description for the usage of this interface
 #
-define eizo::interface::physical($id, $description) {
+define eizo::interface::vlan($id, $description) {
 
   file { "/etc/systemd/network/$name.netdev":
     ensure => present,
