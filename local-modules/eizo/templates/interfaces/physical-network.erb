@@ -1,0 +1,8 @@
+[Match]
+Name = <%= @name %>
+
+[Network]
+Description = <%= @description %>
+<% @vlans.each do |vlan| -%>
+VLAN = <%= vlan %>
+<% end -%>

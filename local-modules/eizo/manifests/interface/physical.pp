@@ -28,7 +28,10 @@ class eizo::interface::physical($path, $description, $vlans = {}) {
     ensure => present,
     content => template("eizo/interface/physical.erb")
   }
-
+  file { "/etc/systemd/network/$name.network":
+    ensure => present,
+    content => template("eizo/interfaces/physical-network.erb")
+  }
   create_resources(
     'eizo::interface::vlan',
     $vlans,
