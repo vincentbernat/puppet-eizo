@@ -5,8 +5,7 @@ class eizo::interfaces {
 
   service { "systemd-networkd":
     ensure => running,
-    enable => true,
-    restart => "systemctl daemon-reload"
+    enable => true
   }
 
   create_resources(
