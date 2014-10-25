@@ -49,7 +49,7 @@ function ip46tables () {
 
 # Execute each rule file
 for rule in $(run-parts --list --regex '^[.a-zA-Z0-9_-]+$' ${0%/*}/rules); do
-    . rule
+    . $rule
 done
 
 # In test namespace, save the rules
