@@ -6,7 +6,7 @@ BindsTo = sys-subsystem-net-devices-%i.device
 After = sys-subsystem-net-devices-%i.device
 
 [Service]
-Type = fork
+Type = forking
 PIDFile = /run/dhclient-%I.pid
 ExecStart = /usr/bin/dhclient -v -pf /run/dhclient.%I.pid -lf /var/lib/dhcp/dhclient.%I.leases %I
 
