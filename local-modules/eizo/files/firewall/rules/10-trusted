@@ -32,5 +32,8 @@ ip46tables -A LAN-TRUSTED-FORWARD -o wlan-trusted -p tcp --dport ssh -j ACCEPT
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-trusted -j ACCEPT
 ip46tables -A LAN-TRUSTED-FORWARD -o wlan-trusted -j ACCEPT
 
+# mdns
+ip46tables -A LAN-TRUSTED-INPUT -p udp --dport mdns -j ACCEPT
+
 reject LAN-TRUSTED-INPUT
 reject LAN-TRUSTED-FORWARD
