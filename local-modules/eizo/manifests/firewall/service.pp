@@ -14,4 +14,11 @@ class eizo::firewall::service inherits eizo::firewall {
     content => "systemctl start firewall || true\n"
   }
 
+  exec { "firewall reload":
+    path => [ "/sbin", "/bin" ],
+    command => "systemctl start firewall",
+    require => Service["firewall"],
+    refreshonly => true
+  }
+
 }
