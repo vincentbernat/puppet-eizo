@@ -1,0 +1,63 @@
+# -*- sh -*-
+
+function reject () {
+    chain=$1 ; shift
+
+    # Those are noisy ports
+    ip46tables -A $chain -p tcp -m multiport --dport 135,137,138,139,445 -j REJECT_ALL
+    # Log the remaining
+    ip46tables -A $chain -m limit --limit 5/s -j LOG --log-prefix "NF: $chain-reject: "
+    # And reject
+    ip46tables -A $chain -p tcp -j REJECT --reject-with tcp-reset
+    iptables   -A $chain -p udp -j REJECT --reject-with icmp-admin-prohibited
+    ip6tables  -A $chain -p udp -j REJECT --reject-with icmp6-adm-prohibited
+}
+
+function dhcp () {
+    chain=$1 ; shift
+
+    iptables   -A $chain -p udp --source-port bootpc --destination-port bootps -j ACCEPT
+    ip46tables -A $chain -p udp --destination-port dns -j ACCEPT
+    ip46tables -A $chain -p tcp --destination-port dns -j ACCEPT
+}
+
+function icmp () {
+    chain=$1 ; shift
+    limit=${2:-100}
+    iptables  -A $chain -p icmp --icmp-type echo-request -m limit --limit ${limit}/s -j ACCEPT
+    iptables  -A $chain -p icmp --icmp-type echo-request -j DROP
+    ip6tables -A $chain -p icmpv6 --icmpv6-type echo-request -m limit --limit ${limit}/s -j ACCEPT
+    ip6tables -A $chain -p icmpv6 --icmpv6-type echo-request -j DROP
+}
+
+function first () {
+    net=$1 ; shift
+    IFS=. read -r m1 m2 m3 m4 <<< ${net%/*}
+    printf "%d.%d.%d.%d/%d\n" $m1 $m2 $m3 $(($m4 + 1)) ${net#*/}
+}
+function first6 () {
+    net=$1 ; shift
+    echo ${net%/*}1${net#*/}
+}
+
+# Build some kind of address book
+typeset -A ip
+() {
+
+    # Grab stuff from DHCP lease
+    function from-dhcp-lease () {
+        sed -n -e '1,/lease {/d' -e "s/  $1"' \(.*\);/\1/p' /var/lib/dhcp/dhclient.internet.leases
+    }
+
+    # Firewall and DNS
+    ip[firewall]=$(from-dhcp-lease "fixed-address")
+    ip[dns]=$(from-dhcp-lease "option domain-name-servers")
+
+    ip[lan-guest]=192.168.118.0/26
+    ip[wlan-guest]=192.168.118.64/26
+    ip[lan-suspect]=192.168.118.128/26
+    ip[wlan-suspect]=192.168.118.192/26
+    ip[lan-trusted]=192.168.116.0/26
+    ip[wlan-trusted]=192.168.116.64/26
+
+}

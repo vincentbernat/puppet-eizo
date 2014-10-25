@@ -14,6 +14,7 @@ class eizo {
 
   # Router stuff
   include ::eizo::interfaces
+  include ::eizo::firewall
 
   # Defaults
   exec { 'reload systemd':

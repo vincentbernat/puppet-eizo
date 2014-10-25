@@ -1,0 +1,16 @@
+# -*- mode: sh; -*-
+
+# Default policy is to reject everything
+for chain in INPUT OUTPUT FORWARD; do
+    reject $chain
+    ip46tables -P $chain DROP
+done
+
+# Enable RPF. We are using dynamic IP, to avoid to check IP in
+# firewalls, we ensure that the routing table does that work for
+# us. We want to be strict.
+main sysctl -qw net.ipv4.conf.all.rp_filter=1
+
+# Enable forwarding
+main sysctl -qw net.ipv4.ip_forward=1
+main sysctl -qw net.ipv6.conf.all.forwarding=1

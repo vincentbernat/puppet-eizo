@@ -1,0 +1,59 @@
+#!/bin/zsh
+
+# Apply firewall rules in ${0%/*}/rules.
+
+# To test if the firewall rules are correct, we build them in a
+# test namespace. If the build successfully, they are applied
+# atomically in the main namespace.
+#
+# The rules are first played in the test namespace. At the end, the
+# output of `iptables-save' and `ip6tables-save' are sent back to the
+# main namespace. The main namespace executes `iptables-restore' and
+# `ip6tables-restore' on them. The main namespace executes again the
+# rules, but excludes iptables/ip6tables commands.
+#
+# Any command can be used in the rules, however, since they are also
+# executed in the test namespace, the environment may be
+# different. Prefix a command by `main' to execute it only in the main
+# namespace. You should do that for anything that's not related to
+# setting iptables rules, like configuring network interfaces and
+# setting sysctl.
+#
+
+# Usage: ./run [ -n | --dry-run ] [ -t | --trace ]
+
+set -e
+
+zparseopts -D n=dryrun -dry-run=dryrun t=trace -trace=trace f=iptables
+
+# Enable tracing
+[[ -z $trace ]] || setopt xtrace
+
+# Configure the test namespace
+alias main='/bin/true ||'
+[[ -n $iptables ]] || {
+    [[ ! -z $dryrun ]] || {
+        unshare -n -- $0 -f ${trace:+-t} 4> >(sed 's/^/IPv4: /') 6> >(sed 's/^/IPv6: /')
+        exit $?
+    }
+    unshare -n -- $0 -f ${trace:+-t} 4> >(iptables-restore) 6> >(ip6tables-restore)
+    alias iptables=/bin/true
+    alias ip6tables=/bin/true
+    alias main='/bin/false ||'
+}
+
+function ip46tables () {
+    iptables "$@"
+    ip6tables "$@"
+}
+
+# Execute each rule file
+for rule in $(run-parts --list --regex '^[.a-zA-Z0-9_-]+$' ${0%/*}/rules); do
+    . rule
+done
+
+# In test namespace, save the rules
+[[ -z $iptables ]] || {
+    iptables-save >&4
+    ip6tables-save >&6
+}

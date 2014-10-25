@@ -1,0 +1,29 @@
+# -*- sh -*-
+
+# Rules when Internet is the source
+
+ip46tables -N INTERNET-INPUT
+ip46tables -N INTERNET-FORWARD
+iptables  -A INPUT -i internet -j INTERNET-INPUT
+ip6tables -A INPUT -i internet6 -j INTERNET-INPUT
+iptables  -A FORWARD -i internet -j INTERNET-FORWARD
+ip6tables -A FORWARD -i internet6 -j INTERNET-FORWARD
+
+icmp INTERNET-INPUT 50
+icmp INTERNET-FORWARD 50
+
+# We can access port 80 and 443 on firewall
+ip46tables -A INTERNET-INPUT -p tcp --dport http -j ACCEPT
+ip46tables -A INTERNET-INPUT -p tcp --dport https -j ACCEPT
+
+# We can access port 9098 for transmission
+ip46tables -A INTERNET-INPUT -p tcp --dport 9098 -j ACCEPT
+ip46tables -A INTERNET-INPUT -p udp --dport 9098 -j ACCEPT
+
+# SSH acces
+ip46tables -A INTERNET-INPUT -p tcp --dport ssh -j ACCEPT
+ip46tables -A INTERNET-FORWARD -p tcp -o lan-trusted -j ACCEPT
+ip46tables -A INTERNET-FORWARD -p tcp -o wlan-trusted -j ACCEPT
+
+reject INTERNET-INPUT
+reject INTERNET-FORWARD

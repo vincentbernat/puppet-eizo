@@ -1,0 +1,9 @@
+# -*- mode: sh; -*-
+
+# Mitigate SSH scan.
+iptables -N SSHSCAN
+iptables -A INPUT   -i internet -p tcp --dport 22 -m state --state NEW -j SSHSCAN
+iptables -A FORWARD -i internet -p tcp --dport 22 -m state --state NEW -j SSHSCAN
+iptables -A SSHSCAN -m recent --set --name SSH
+iptables -A SSHSCAN -m recent --update \
+    --seconds 60 --hitcount 20 --name SSH -j DROP

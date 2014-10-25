@@ -1,0 +1,6 @@
+[Unit]
+Description = Setup networking and firewall
+
+[Service]
+Type = oneshot
+ExecStart = /etc/firewall/run

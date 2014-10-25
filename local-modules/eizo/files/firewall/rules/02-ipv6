@@ -1,0 +1,11 @@
+# -*- mode: sh; -*-
+
+# Disallow RT header
+# http://www.ietf.org/mail-archive/web/ipv6/current/msg07323.html
+for chain in INPUT OUTPUT; do
+  ip6tables -A $chain -m rt --rt-type 0 -j DROP
+  ip6tables -A $chain -p icmpv6 --icmpv6-type neighbor-solicitation -m hl --hl-eq 255 -j ACCEPT
+  ip6tables -A $chain -p icmpv6 --icmpv6-type neighbor-advertisement -m hl --hl-eq 255 -j ACCEPT
+done
+
+# Also, we need to configure 6rd

@@ -1,0 +1,30 @@
+# -*- sh -*-
+
+# Rules when the firewall is the source.
+
+ip46tables -N FIREWALL-OUTPUT
+ip46tables -A OUTPUT -j FIREWALL-OUTPUT
+
+icmp FIREWALL-OUTPUT 50
+
+# Can emit DHCP requests
+iptables -A FIREWALL-OUTPUT -p udp --source-port bootpc --destination-port bootps -o internet -j ACCEPT
+for dns in $=ip[dns]; do
+    iptables -A FIREWALL-OUTPUT -p udp -d $dns --destination-port dns -o internet -j ACCEPT
+    iptables -A FIREWALL-OUTPUT -p tcp -d $dns --destination-port dns -o internet -j ACCEPT
+done
+
+# Some users have unlimited Internet access, except port 25
+ip46tables -N FIRWALL-OUTPUT-INET
+ip46tables -A FIREWALL-OUTPUT-INET -p tcp --dport smtp -j RETURN
+ip46tables -A FIREWALL-OUTPUT-INET -j ACCEPT
+for user in debian-transmission bernat; do
+    ip46tables -A FIREWALL-OUTPUT -o internet -m owner --uid-owner $user -j FIREWALL-OUTPUT-INET
+done
+
+# Others may access HTTP and HTTPS
+for port in http https; do
+    ip46tables -A FIREWALL-OUTPUT -o internet -m owner --uid-owner root -p tcp --dport $port -j ACCEPT
+done
+
+reject FIREWALL-OUTPUT
