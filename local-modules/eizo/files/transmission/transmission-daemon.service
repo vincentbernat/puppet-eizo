@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 User=debian-transmission
-ExecStart = /usr/bin/transmission-daemon -f --log-error --config-dir=/var/lib/transmission-daemon/info
+ExecStart = /usr/bin/transmission-daemon -f --log-info --config-dir=/var/lib/transmission-daemon/info
 ExecReload=/bin/kill -s HUP $MAINPID
 Restart = on-failure
 
