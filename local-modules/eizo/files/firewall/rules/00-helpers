@@ -12,6 +12,7 @@ function reject () {
     ip46tables -A $chain -p tcp -j REJECT --reject-with tcp-reset
     iptables   -A $chain -p udp -j REJECT --reject-with icmp-admin-prohibited
     ip6tables  -A $chain -p udp -j REJECT --reject-with icmp6-adm-prohibited
+    ip46tables -A $chain -j DROP
 }
 
 function dhcp () {
