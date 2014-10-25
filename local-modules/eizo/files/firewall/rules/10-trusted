@@ -15,7 +15,7 @@ main ip addr replace $(first $ip[wlan-trusted]) dev wlan-trusted
 
 icmp LAN-TRUSTED-INPUT   100
 icmp LAN-TRUSTED-FORWARD 1000
-dhcp LAN-TRUSTED-INPUT
+dhcp LAN-TRUSTED
 
 # Internet access, except port 25
 ip46tables -N LAN-TRUSTED-FORWARD-INET

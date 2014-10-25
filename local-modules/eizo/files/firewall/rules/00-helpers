@@ -16,9 +16,9 @@ function reject () {
 function dhcp () {
     chain=$1 ; shift
 
-    iptables   -A $chain -p udp --source-port bootpc --destination-port bootps -j ACCEPT
-    ip46tables -A $chain -p udp --destination-port dns -j ACCEPT
-    ip46tables -A $chain -p tcp --destination-port dns -j ACCEPT
+    iptables   -A $chain-INPUT -p udp --source-port bootpc --destination-port bootps -j ACCEPT
+    ip46tables -A $chain-INPUT -p udp --destination-port domain -j ACCEPT
+    ip46tables -A $chain-INPUT -p tcp --destination-port domain -j ACCEPT
 }
 
 function icmp () {

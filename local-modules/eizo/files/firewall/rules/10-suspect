@@ -17,7 +17,7 @@ main ip addr replace $(first $ip[wlan-suspect]) dev wlan-suspect
 
 icmp LAN-SUSPECT-INPUT   10
 icmp LAN-SUSPECT-FORWARD 100
-dhcp LAN-SUSPECT-INPUT
+dhcp LAN-SUSPECT
 
 # Internet access, except port 25
 ip46tables -N LAN-SUSPECT-FORWARD-INET
