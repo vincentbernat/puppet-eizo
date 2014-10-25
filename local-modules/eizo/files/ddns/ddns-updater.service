@@ -1,0 +1,7 @@
+[Unit]
+Description = ddns-updater
+After = network.target
+
+[Service]
+Type = oneshot
+ExecStart = /usr/local/bin/ddns-updater

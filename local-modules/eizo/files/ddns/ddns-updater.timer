@@ -1,0 +1,9 @@
+[Unit]
+Description=Run ddns-updater at regular interval
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=30min
+
+[Install]
+WantedBy=timers.target
