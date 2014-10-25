@@ -10,8 +10,8 @@ ip46tables -A FORWARD -i lan-trusted  -j LAN-TRUSTED-FORWARD
 ip46tables -A FORWARD -i wlan-trusted -j LAN-TRUSTED-FORWARD
 
 # Configure IP addresses
-main ip addr add $(first $ip[lan-trusted]) dev lan-trusted
-main ip addr add $(first $ip[wlan-trusted]) dev wlan-trusted
+main ip addr replace $(first $ip[lan-trusted]) dev lan-trusted
+main ip addr replace $(first $ip[wlan-trusted]) dev wlan-trusted
 
 icmp LAN-TRUSTED-INPUT   100
 icmp LAN-TRUSTED-FORWARD 1000

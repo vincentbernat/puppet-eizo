@@ -12,8 +12,8 @@ ip46tables -A FORWARD -i lan-guest  -j LAN-GUEST-FORWARD
 ip46tables -A FORWARD -i wlan-guest -j LAN-GUEST-FORWARD
 
 # Configure IP addresses
-main ip addr add $(first $ip[lan-guest]) dev lan-guest
-main ip addr add $(first $ip[wlan-guest]) dev wlan-guest
+main ip addr replace $(first $ip[lan-guest]) dev lan-guest
+main ip addr replace $(first $ip[wlan-guest]) dev wlan-guest
 
 icmp LAN-GUEST-INPUT   10
 icmp LAN-GUEST-FORWARD 100

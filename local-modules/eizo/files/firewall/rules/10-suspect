@@ -12,8 +12,8 @@ ip46tables -A FORWARD -i lan-suspect  -j LAN-SUSPECT-FORWARD
 ip46tables -A FORWARD -i wlan-suspect -j LAN-SUSPECT-FORWARD
 
 # Configure IP addresses
-main ip addr add $(first $ip[lan-suspect]) dev lan-suspect
-main ip addr add $(first $ip[wlan-suspect]) dev wlan-suspect
+main ip addr replace $(first $ip[lan-suspect]) dev lan-suspect
+main ip addr replace $(first $ip[wlan-suspect]) dev wlan-suspect
 
 icmp LAN-SUSPECT-INPUT   10
 icmp LAN-SUSPECT-FORWARD 100
