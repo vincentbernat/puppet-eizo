@@ -15,7 +15,7 @@ for dns in $=ip[dns]; do
 done
 
 # Some users have unlimited Internet access, except port 25
-ip46tables -N FIRWALL-OUTPUT-INET
+ip46tables -N FIREWALL-OUTPUT-INET
 ip46tables -A FIREWALL-OUTPUT-INET -p tcp --dport smtp -j RETURN
 ip46tables -A FIREWALL-OUTPUT-INET -j ACCEPT
 for user in debian-transmission bernat; do
