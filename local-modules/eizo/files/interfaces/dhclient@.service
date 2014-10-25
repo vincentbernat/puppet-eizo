@@ -7,7 +7,7 @@ After = sys-subsystem-net-devices-%i.device
 
 [Service]
 Type = forking
-PIDFile = /run/dhclient-%I.pid
+PIDFile = /run/dhclient.%I.pid
 ExecStart = /sbin/dhclient -v -pf /run/dhclient.%I.pid -lf /var/lib/dhcp/dhclient.%I.leases %I
 
 [Install]
