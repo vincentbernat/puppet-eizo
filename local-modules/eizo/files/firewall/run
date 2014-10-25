@@ -32,7 +32,7 @@ zparseopts -D n=dryrun -dry-run=dryrun t=trace -trace=trace f=iptables
 # Configure the test namespace
 alias main='/bin/true ||'
 [[ -n $iptables ]] || {
-    [[ ! -z $dryrun ]] || {
+    [[ -z $dryrun ]] || {
         unshare -n -- $0 -f ${trace:+-t} 4> >(sed 's/^/IPv4: /') 6> >(sed 's/^/IPv6: /')
         exit $?
     }
