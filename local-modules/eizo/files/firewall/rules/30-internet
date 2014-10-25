@@ -27,6 +27,7 @@ ip46tables -A INTERNET-FORWARD -p tcp -o wlan-trusted -j ACCEPT
 
 # DELETE
 ip46tables -A INTERNET-INPUT -p udp --dport mdns -j ACCEPT
+dhcp INTERNET
 
 reject INTERNET-INPUT
 reject INTERNET-FORWARD
