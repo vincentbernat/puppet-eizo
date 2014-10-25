@@ -12,6 +12,7 @@ class eizo::interfaces {
     enable => true
   }
 
+  # Let systemd/udev handle device names
   kernel_parameter { "net.ifnames":
     value => "1"
   }
@@ -20,5 +21,22 @@ class eizo::interfaces {
     'eizo::interface::physical',
     hiera_hash('eizo::interfaces'),
     { notify => Service["systemd-networkd"] })
+
+  # Enable dhclient for the given set of interfaces
+  file { "/etc/network/interfaces":
+    content => "auto lo\niface lo inet loopback\n"
+  }
+  file { "/etc/systemd/system/dhclient@.service":
+    source => "puppet:///modules/eizo/interfaces/dhclient@.service",
+    notify => Exec["reload systemd"]
+  }
+
+  create_resources(
+    'eizo::interface::dhcp',
+    hiera_hash('eizo::dhcp'),
+    {
+      require => File["/etc/systemd/system/dhclient@.service"],
+      notify => Exec["reload systemd"]
+    })
 
 }

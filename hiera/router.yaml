@@ -1,4 +1,7 @@
 eizo::interfaces:
+  internet:
+    description: "FTTH Swisscom connection"
+    path: "pci-0000:02:00.0"
   lan:
     description: "Internal network"
     path: "pci-0000:00:19.0"
@@ -25,3 +28,6 @@ eizo::interfaces:
       wlan-guest:
         description: "Guest WLAN network"
         id: 8
+eizo::dhcp:
+  internet: {}
+

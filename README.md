@@ -12,6 +12,11 @@ installed:
 
  - `puppet`
  - `librarian-puppet`
+ - `libaugeas-ruby`
  - `systemd-sysv` (and a reboot would be welcome)
+
+The interface configuration part is tricky. The easiest way to get it
+going is to remove `/etc/udev/rules.d/70-persistent-net.rules` and
+reboot since it needs a modification of kernel parameters to work.
 
 [Debian Jessie]: https://www.debian.org/releases/jessie/

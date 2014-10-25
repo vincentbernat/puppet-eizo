@@ -16,6 +16,11 @@ class eizo {
   include ::eizo::interfaces
 
   # Defaults
+  exec { 'reload systemd':
+    path => [ '/bin', '/sbin' ],
+    refreshonly => true,
+    command => 'systemctl daemon-reload'
+  }
   Service {
     provider => "systemd"
   }
