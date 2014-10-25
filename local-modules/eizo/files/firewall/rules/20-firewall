@@ -15,11 +15,11 @@ for dns in $=ip[dns]; do
 done
 
 # Can do mdns
-ip46tables -A FIREWALL-OUTPUT p udp --dport mdns -o lan-trusted -j ACCEPT
-ip46tables -A FIREWALL-OUTPUT p udp --dport mdns -o wlan-trusted -j ACCEPT
+ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-trusted -j ACCEPT
+ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o wlan-trusted -j ACCEPT
 
 # DELETE
-ip46tables -A FIREWALL-OUTPUT p udp --dport mdns -o internet -j ACCEPT
+ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o internet -j ACCEPT
 
 # Some users have unlimited Internet access, except port 25
 ip46tables -N FIREWALL-OUTPUT-INET
