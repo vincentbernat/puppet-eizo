@@ -26,7 +26,7 @@ eizo::transmission::config:
   rpc-whitelist:
     - "127.0.0.1"
   rpc-whitelist-enabled: true
-  rpc-bind-address: "0.0.0.0"
+  rpc-bind-address: "127.0.0.1"
   rpc-enabled: true
   rpc-url: "/transmission/"
 
