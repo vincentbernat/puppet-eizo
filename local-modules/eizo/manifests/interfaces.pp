@@ -12,17 +12,8 @@ class eizo::interfaces {
     enable => true
   }
 
-  shellvar { 'GRUB_CMDLINE_LINUX':
-    ensure       => present,
-    target       => '/etc/default/grub',
-    value        => 'net.ifnames=1',
-    array_append => true,
-    array_type   => 'double',
-  }
-  ~>
-  exec { "udpate GRUB configuration":
-    cmd => "/usr/sbin/update-grub",
-    refreshonly => true
+  kernel_parameter { "net.ifnames":
+    value => "1"
   }
 
   create_resources(
