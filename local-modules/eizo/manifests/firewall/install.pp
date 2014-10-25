@@ -1,6 +1,6 @@
 class eizo::firewall::install inherits eizo::firewall {
 
-  package { ['iptables', 'ip6tables', 'ebtables', 'iproute2']:
+  package { ['iptables', 'ebtables', 'iproute2']:
     ensure => installed
   }
 
