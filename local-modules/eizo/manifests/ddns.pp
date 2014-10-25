@@ -9,14 +9,13 @@ class eizo::ddns($key, $secret, $domain, $ttl=60) {
     mode => "0700"
   }
 
-  cron { "ddns-updater":
-    command => "/usr/local/bin/ddns-updater",
-    minute => '*/10',
-    require => File['/usr/local/bin/ddns-updater']
+  file { "/etc/systemd/system/ddns-updater.service":
+    content => "puppet:///modules/ddns/ddns-updater.service",
+    notify => Exec["reload systemd"]
   }
-
+  ->
   file { '/etc/dhcp/dhclient-exit-hooks.d/ddns-updater':
-    content => "/usr/local/bin/ddns-updater || true\n"
+    content => "systemctl start ddns-updater || true\n"
   }
 
   ensure_resource(
