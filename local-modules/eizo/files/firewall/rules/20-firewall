@@ -10,8 +10,8 @@ icmp FIREWALL-OUTPUT 50
 # Can emit DHCP requests
 iptables -A FIREWALL-OUTPUT -p udp --source-port bootpc --destination-port bootps -o internet -j ACCEPT
 for dns in $=ip[dns]; do
-    iptables -A FIREWALL-OUTPUT -p udp -d $dns --destination-port dns -o internet -j ACCEPT
-    iptables -A FIREWALL-OUTPUT -p tcp -d $dns --destination-port dns -o internet -j ACCEPT
+    iptables -A FIREWALL-OUTPUT -p udp -d $dns --destination-port domain -o internet -j ACCEPT
+    iptables -A FIREWALL-OUTPUT -p tcp -d $dns --destination-port domain -o internet -j ACCEPT
 done
 
 # Some users have unlimited Internet access, except port 25
