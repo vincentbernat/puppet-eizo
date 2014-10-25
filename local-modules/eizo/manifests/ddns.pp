@@ -10,7 +10,7 @@ class eizo::ddns($key, $secret, $domain, $ttl=60) {
   }
 
   file { "/etc/systemd/system/ddns-updater.service":
-    source => "puppet:///modules/ddns/ddns-updater.service",
+    source => "puppet:///modules/eizo/ddns/ddns-updater.service",
     notify => Exec["reload systemd"]
   }
   ->
