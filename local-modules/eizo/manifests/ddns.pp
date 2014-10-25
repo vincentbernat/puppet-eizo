@@ -18,6 +18,12 @@ class eizo::ddns($key, $secret, $domain, $ttl=60) {
     content => "systemctl start ddns-updater || true\n"
   }
 
+  file { "/etc/systemd/system/ddns-updater.timer":
+    source => "puppet:///modules/eizo/ddns/ddns-updater.timer",
+    require => File["/etc/systemd/system/ddns-updater.service"],
+    notify => Exec["reload systemd"]
+  }
+
   ensure_resource(
     package,
     'python-boto',
