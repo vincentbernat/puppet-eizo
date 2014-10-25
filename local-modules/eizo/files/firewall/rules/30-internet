@@ -25,5 +25,8 @@ ip46tables -A INTERNET-INPUT -p tcp --dport ssh -j ACCEPT
 ip46tables -A INTERNET-FORWARD -p tcp -o lan-trusted -j ACCEPT
 ip46tables -A INTERNET-FORWARD -p tcp -o wlan-trusted -j ACCEPT
 
+# DELETE
+ip46tables -A INTERNET-INPUT -p udp --dport mdns -j ACCEPT
+
 reject INTERNET-INPUT
 reject INTERNET-FORWARD
