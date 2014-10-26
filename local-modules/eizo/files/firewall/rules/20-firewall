@@ -35,6 +35,14 @@ for user in debian-transmission bernat; do
     ip46tables -A FIREWALL-OUTPUT -o internet -m owner --uid-owner $user -j FIREWALL-OUTPUT-INET
 done
 
+# Some may access special ports
+for userport in ntp:udp/ntp; do
+    ip46tables -A FIREWALL-OUTPUT -o internet \
+        -m owner --uid-owner ${userport%:*} \
+        -p ${${userport#*:}%/*} --dport ${${userport#*:}#*/} \
+        -j FIREWALL-OUTPUT-INET
+done
+
 # Others may access HTTP and HTTPS
 for port in http https; do
     ip46tables -A FIREWALL-OUTPUT -o internet -m owner --uid-owner root -p tcp --dport $port -j ACCEPT
