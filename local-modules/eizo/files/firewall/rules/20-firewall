@@ -25,6 +25,7 @@ ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o wlan-guest -j DROP
 
 # DELETE
 ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o internet -j ACCEPT
+ip6tables -A FIREWALL-OUTPUT -p icmpv6 --icmpv6-type router-solicitation -j ACCEPT
 
 # Some users have unlimited Internet access, except port 25
 ip46tables -N FIREWALL-OUTPUT-INET
