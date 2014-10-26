@@ -4,6 +4,11 @@
 # librarian-puppet
 /Puppetfile.lock
 /modules
+/.librarian
+/.tmp
 
 # privacy
 /hiera/private.yaml
+
+# backup
+*~
