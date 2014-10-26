@@ -2,7 +2,7 @@
 
 # Allow localhost stuff
 ip46tables -A INPUT -i lo -j ACCEPT
-ip46tables -A INPUT -o lo -j ACCEPT
+ip46tables -A OUTPUT -o lo -j ACCEPT
 
 # Allow RELATED/ESTABLISHED stuff, drop INVALID stuff
 for chain in INPUT OUTPUT FORWARD; do
