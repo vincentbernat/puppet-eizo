@@ -21,4 +21,8 @@ class eizo::firewall::service inherits eizo::firewall {
     refreshonly => true
   }
 
+  service { 'ulogd':
+    ensure => running,
+    enable => true
+  }
 }
