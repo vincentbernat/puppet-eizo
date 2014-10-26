@@ -15,6 +15,9 @@ eizo::interfaces:
       lan-guest:
         description: "Guest LAN network"
         id: 8
+      lan-isolated:
+        description: "Isolated LAN network"
+        id: 9
   wlan:
     description: "Wireless network"
     path: "pci-0000:03:00.0"

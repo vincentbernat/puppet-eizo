@@ -1,0 +1,18 @@
+# -*- sh -*-
+
+# Rules when the isolated LAN is the source. This VLAN is not allowed to go outside.
+
+ip46tables -N LAN-ISOLATED-INPUT
+ip46tables -N LAN-ISOLATED-FORWARD
+ip46tables -A INPUT -i lan-isolated    -j LAN-ISOLATED-INPUT
+ip46tables -A FORWARD -i lan-isolated  -j LAN-ISOLATED-FORWARD
+
+# Configure IP addresses
+main ip addr replace $(first $ip[lan-isolated]) dev lan-isolated
+
+icmp LAN-ISOLATED-INPUT   10
+icmp LAN-ISOLATED-FORWARD 100
+dhcp LAN-ISOLATED
+
+reject LAN-ISOLATED-INPUT
+reject LAN-ISOLATED-FORWARD

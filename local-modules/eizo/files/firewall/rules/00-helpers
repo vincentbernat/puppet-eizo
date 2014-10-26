@@ -56,6 +56,7 @@ typeset -A ip
     ip[firewall]=$(from-dhcp-lease "fixed-address")
     ip[dns]=$(from-dhcp-lease "option domain-name-servers")
 
+    ip[lan-isolated]=192.168.119.0/26
     ip[lan-guest]=192.168.118.0/26
     ip[wlan-guest]=192.168.118.64/26
     ip[lan-suspect]=192.168.118.128/26
