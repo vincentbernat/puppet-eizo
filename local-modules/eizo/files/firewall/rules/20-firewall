@@ -40,7 +40,7 @@ for userport in ntp:udp/ntp; do
     ip46tables -A FIREWALL-OUTPUT -o internet \
         -m owner --uid-owner ${userport%:*} \
         -p ${${userport#*:}%/*} --dport ${${userport#*:}#*/} \
-        -j FIREWALL-OUTPUT-INET
+        -j ACCEPT
 done
 
 # Others may access HTTP and HTTPS
