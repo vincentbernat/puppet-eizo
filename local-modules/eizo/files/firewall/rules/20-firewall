@@ -39,6 +39,7 @@ for userport in \
     root:udp/ntp \
     root:tcp/http root:tcp/https \
     xbmc:tcp/http xbmc:tcp/https \
+    postfix:tcp/submission \
     flexget:tcp/http flexget:tcp/https; do
 
     ip46tables -A FIREWALL-OUTPUT -o internet \
