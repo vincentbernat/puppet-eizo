@@ -35,7 +35,11 @@ for user in debian-transmission bernat; do
 done
 
 # Some may access special ports
-for userport in root:udp/ntp root:tcp/http root:tcp/https; do
+for userport in \
+    root:udp/ntp \
+    root:tcp/http root:tcp/https \
+    flexget:tcp/http flexget:tcp/https; do
+
     ip46tables -A FIREWALL-OUTPUT -o internet \
         -m owner --uid-owner ${userport%:*} \
         -p ${${userport#*:}%/*} --dport ${${userport#*:}#*/} \
