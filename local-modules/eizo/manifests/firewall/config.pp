@@ -8,7 +8,9 @@ class eizo::firewall::config inherits eizo::firewall {
   }
 
   file { '/etc/ulogd.conf':
-    source => "puppet:///modules/eizo/firwall/ulogd.conf"
+    source => "puppet:///modules/eizo/firewall/ulogd.conf",
+    owner => "root",
+    mode => "go="
   }
 
 }
