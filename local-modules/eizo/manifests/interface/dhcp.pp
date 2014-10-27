@@ -1,5 +1,9 @@
-define eizo::interface::dhcp {
+define eizo::interface::dhcp($conf) {
 
+  file { "/etc/dhcp/dhclient.${name}.conf":
+    content => template("eizo/interfaces/dhclient.conf.erb")
+  }
+  ~>
   exec { "enable DHCP for $name":
     command => "systemctl enable dhclient@$name",
     path => [ "/bin", "/sbin" ],

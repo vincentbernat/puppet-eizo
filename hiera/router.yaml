@@ -32,5 +32,9 @@ eizo::interfaces:
         description: "Guest WLAN network"
         id: 8
 eizo::dhcp:
-  internet: {}
-
+  internet:
+    conf:
+      timeout: 60
+      retry: 1
+      select-timeout: 0
+      "send dhcp-class-identifier": "100008,0001"
