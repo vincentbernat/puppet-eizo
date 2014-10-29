@@ -31,6 +31,7 @@ eizo::interfaces:
       wlan-guest:
         description: "Guest WLAN network"
         id: 8
+
 eizo::dhcp:
   internet:
     conf:
@@ -38,3 +39,12 @@ eizo::dhcp:
       retry: 1
       select-timeout: 0
       "send dhcp-class-identifier": "100008,0001"
+
+eizo::firewall:ips:
+  lan-isolated: 192.168.119.0/26
+  lan-guest: 192.168.118.0/26
+  wlan-guest: 192.168.118.64/26
+  lan-suspect: 192.168.118.128/26
+  wlan-suspect: 192.168.118.192/26
+  lan-trusted: 192.168.117.0/26
+  wlan-trusted: 192.168.117.64/26

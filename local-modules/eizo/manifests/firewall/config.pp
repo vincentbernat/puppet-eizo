@@ -1,5 +1,9 @@
 class eizo::firewall::config inherits eizo::firewall {
 
+  file { '/etc/firewall/ips':
+    content => template("eizo/firewall/ips.erb")
+  }
+  ->
   file { '/etc/firewall/rules':
     ensure => directory,
     recurse => true,

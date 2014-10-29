@@ -3,7 +3,7 @@
 # setup)
 #
 
-class eizo::firewall {
+class eizo::firewall($ips = {}) {
 
   class { '::eizo::firewall::install': } ->
   class { '::eizo::firewall::config':  } ~>
