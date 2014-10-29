@@ -1,0 +1,26 @@
+# Managed by Puppet
+
+interface=<%= @interface %>
+driver=<%= @driver %>
+ssid=<%= @ssid %>
+hw_mode=<%= @hw_mode %>
+channel=<%= @channel %>
+auth_algs=1
+wpa=<%= @wpa %>
+wpa_passphrase=<%= @wpa_passphrase %>
+wpa_key_mgmt=<%= @wpa_key_mgmt %>
+wpa_pairwise=<%= @wpa_pairwise %>
+rsn_pairwise=<%= @rsn_pairwise %>
+
+# Logging
+logger_syslog=-1
+logger_syslog_level=2
+logger_stdout=-1
+logger_stdout_level=2
+
+ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0
+
+<% @extra.each do |key, val| -%>
+<%= key %>=<%= val %>
+<% end -%>

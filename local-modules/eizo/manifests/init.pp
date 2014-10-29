@@ -17,6 +17,7 @@ class eizo {
   # Router stuff
   include ::eizo::interfaces
   include ::eizo::dnsmasq
+  include ::eizo::hostapd
   class { "::eizo::firewall":
     stage => last
   }

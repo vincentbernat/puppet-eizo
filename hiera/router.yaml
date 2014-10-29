@@ -35,3 +35,9 @@ eizo::firewall::ips:
 
 # That's unfortunate, but lookup will done in Puppet
 eizo::dnsmasq::dhcp: "eizo::firewall::ips"
+
+eizo::hostapd::interface: wlan-guest
+eizo::hostapd::extra:
+  wmm_enabled: 1
+  ieee80211n: 1
+  ht_capab: "[HT40-][HT40+][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40][DSSS_CCK-40][DSSS_CCK-40]"
