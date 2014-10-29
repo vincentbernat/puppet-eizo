@@ -37,6 +37,7 @@ eizo::firewall::ips:
 eizo::dnsmasq::dhcp: "eizo::firewall::ips"
 
 eizo::hostapd::interface: wlan-guest
+eizo::hostapd::channel: 11
 eizo::hostapd::extra:
   wmm_enabled: 1
   ieee80211n: 1

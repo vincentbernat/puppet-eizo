@@ -1,7 +1,7 @@
 class eizo::hostapd(
   $ssid,
   $interface,
-  $channel        = 0,
+  $channel,
   $driver         = "nl80211",
   $hw_mode        = "g",
   $wpa            = 2,
