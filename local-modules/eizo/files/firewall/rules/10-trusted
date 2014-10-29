@@ -5,13 +5,10 @@
 ip46tables -N LAN-TRUSTED-INPUT
 ip46tables -N LAN-TRUSTED-FORWARD
 ip46tables -A INPUT -i lan-trusted    -j LAN-TRUSTED-INPUT
-ip46tables -A INPUT -i wlan-trusted   -j LAN-TRUSTED-INPUT
 ip46tables -A FORWARD -i lan-trusted  -j LAN-TRUSTED-FORWARD
-ip46tables -A FORWARD -i wlan-trusted -j LAN-TRUSTED-FORWARD
 
 # Configure IP addresses
 main ip addr replace $(first $ip[lan-trusted]) dev lan-trusted
-main ip addr replace $(first $ip[wlan-trusted]) dev wlan-trusted
 
 icmp LAN-TRUSTED-INPUT   100
 icmp LAN-TRUSTED-FORWARD 1000
@@ -26,7 +23,6 @@ ip46tables -A LAN-TRUSTED-FORWARD-INET -j ACCEPT
 # Access to SSH
 ip46tables -A LAN-TRUSTED-INPUT -p tcp --dport ssh -j ACCEPT
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-trusted -p tcp --dport ssh -j ACCEPT
-ip46tables -A LAN-TRUSTED-FORWARD -o wlan-trusted -p tcp --dport ssh -j ACCEPT
 
 # Access to stuff in the isolated network
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-isolated -p tcp --dport printer -j ACCEPT
@@ -37,7 +33,6 @@ ip46tables -A LAN-TRUSTED-FORWARD -o lan-isolated -p tcp --dport ssh -j ACCEPT
 
 # Access to each other
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-trusted -j ACCEPT
-ip46tables -A LAN-TRUSTED-FORWARD -o wlan-trusted -j ACCEPT
 
 # mdns
 ip46tables -A LAN-TRUSTED-INPUT -p udp --dport mdns -j ACCEPT

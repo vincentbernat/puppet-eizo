@@ -1,8 +1,6 @@
 # -*- sh -*-
 
-# Rules when the guest LAN is the source. The guest LAN is supposed to
-# be isolated. No access to internal services and people shouldn't be
-# able to talk to each other.
+# Rules when the guest LAN is the source.
 
 ip46tables -N LAN-GUEST-INPUT
 ip46tables -N LAN-GUEST-FORWARD
@@ -18,6 +16,10 @@ main ip addr replace $(first $ip[wlan-guest]) dev wlan-guest
 icmp LAN-GUEST-INPUT   10
 icmp LAN-GUEST-FORWARD 100
 dhcp LAN-GUEST
+
+# Access to SSH to trusted lan
+ip46tables -A LAN-GUEST-INPUT -p tcp --dport ssh -j ACCEPT
+ip46tables -A LAN-GUEST-FORWARD -o lan-trusted -p tcp --dport ssh -j ACCEPT
 
 # Internet access, except port 25
 ip46tables -N LAN-GUEST-FORWARD-INET

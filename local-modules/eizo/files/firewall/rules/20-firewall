@@ -16,10 +16,7 @@ done
 
 # Can do mdns
 ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-trusted -j ACCEPT
-ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o wlan-trusted -j ACCEPT
 # But not on others
-ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-suspect -j DROP
-ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o wlan-suspect -j DROP
 ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-guest -j DROP
 ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o wlan-guest -j DROP
 
