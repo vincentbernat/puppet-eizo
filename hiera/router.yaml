@@ -40,7 +40,7 @@ eizo::dhcp:
       select-timeout: 0
       "send dhcp-class-identifier": "100008,0001"
 
-eizo::firewall:ips:
+eizo::firewall::ips:
   lan-isolated: 192.168.119.0/26
   lan-guest: 192.168.118.0/26
   wlan-guest: 192.168.118.64/26
