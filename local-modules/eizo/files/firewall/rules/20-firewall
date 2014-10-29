@@ -14,6 +14,12 @@ for dns in $=ip[dns]; do
     iptables -A FIREWALL-OUTPUT -p tcp -d $dns --destination-port domain -o internet -j ACCEPT
 done
 
+# Can answer to DHCP requests (conntrack woes)
+iptables -A FIREWALL-OUTPUT -p udp --source-port bootps --destination-port  bootpc -o wlan-guest -j ACCEPT
+iptables -A FIREWALL-OUTPUT -p udp --source-port bootps --destination-port  bootpc -o lan-guest -j ACCEPT
+iptables -A FIREWALL-OUTPUT -p udp --source-port bootps --destination-port  bootpc -o lan-trusted -j ACCEPT
+iptables -A FIREWALL-OUTPUT -p udp --source-port bootps --destination-port  bootpc -o lan-isolated -j ACCEPT
+
 # Can do mdns
 ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-trusted -j ACCEPT
 # But not on others
