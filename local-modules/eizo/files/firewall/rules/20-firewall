@@ -41,6 +41,7 @@ for userport in \
     xbmc:tcp/http xbmc:tcp/https \
     postfix:tcp/submission \
     www-data:udp/domain \
+    dnsmasq:udp/domain dnsmasq:tcp/domain \
     flexget:tcp/http flexget:tcp/https; do
 
     ip46tables -A FIREWALL-OUTPUT -o internet \

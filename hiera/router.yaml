@@ -48,3 +48,6 @@ eizo::firewall::ips:
   wlan-suspect: 192.168.118.192/26
   lan-trusted: 192.168.117.0/26
   wlan-trusted: 192.168.117.64/26
+
+# That's unfortunate, but lookup will done in Puppet
+eizo::dnsmasq::dhcp: "eizo::firewall::ips"

@@ -1,0 +1,35 @@
+# Configuration file for dnsmasq
+
+# Enable DNS
+port=53
+
+# Always require a domain part
+domain-needed
+
+# DNSSEC
+conf-file=/usr/share/dnsmasq/trust-anchors.conf
+dnssec
+# dnssec-check-unsigned
+
+# User/group
+user=dnsmasq
+group=dnsmasq
+
+# Don't listen to Internet
+except-interface=internet
+except-interface=internet6
+
+# Default domain
+domain=tri-island
+
+<% require 'ipaddr' -%>
+# DHCP
+<% @dhcp.each do |iface, net|
+     range = (IPAddr.new net).to_range.to_a
+-%>
+# IPv4
+dhcp-range=<%= range[2] %>,<%= range[-2] %>,4h
+synth-domain=tri-island,<%= net %>,internal-
+# IPv6
+dhcp-range=::,constructor:<%= iface %>,ra-names,ra-stateless
+<% end -%>
