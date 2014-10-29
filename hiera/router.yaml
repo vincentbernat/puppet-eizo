@@ -18,19 +18,15 @@ eizo::interfaces:
       lan-isolated:
         description: "Isolated LAN network"
         id: 9
-  wlan:
-    description: "Wireless network"
-    path: "pci-0000:03:00.0"
-    vlans:
       wlan-trusted:
         description: "Trusted WLAN network"
-        id: 6
+        id: 16
       wlan-suspect:
         description: "Untrusted WLAN network"
-        id: 7
+        id: 17
       wlan-guest:
         description: "Guest WLAN network"
-        id: 8
+        id: 18
 
 eizo::dhcp:
   internet:

@@ -15,5 +15,4 @@ eizo::debian::packages:
   - alsa-utils
   - lldpd
   - htop
-  - firmware-iwlwifi
   - ntp
