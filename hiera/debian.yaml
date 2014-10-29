@@ -16,3 +16,6 @@ eizo::debian::packages:
   - lldpd
   - htop
   - ntp
+  - ethtool
+  - iw
+  - firmware-iwlwifi
