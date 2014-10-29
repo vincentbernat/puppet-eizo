@@ -59,6 +59,6 @@ typeset -A ip
     ip[firewall]=$(from-dhcp-lease "fixed-address")
     ip[dns]=$(from-dhcp-lease "option domain-name-servers")
 
-    . ../ips
+    . /etc/firewall/ips
 
 }
