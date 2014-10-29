@@ -1,5 +1,5 @@
 # Managed by puppet
 
-<% @ips.each |name, value| -%>
+<% @ips.each do |name, value| -%>
 <%= name %>=<%= value %>
 <% end -%>
