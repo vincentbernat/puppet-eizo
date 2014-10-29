@@ -7,7 +7,7 @@ port=53
 domain-needed
 
 # DNSSEC
-conf-file=/usr/share/dnsmasq/trust-anchors.conf
+conf-file=/usr/share/dnsmasq-base/trust-anchors.conf
 dnssec
 # dnssec-check-unsigned
 
@@ -27,9 +27,8 @@ domain=tri-island
 <% @dhcp.each do |iface, net|
      range = (IPAddr.new net).to_range.to_a
 -%>
-# IPv4
+# <%= iface  %>
 dhcp-range=<%= range[2] %>,<%= range[-2] %>,4h
 synth-domain=tri-island,<%= net %>,internal-
-# IPv6
 dhcp-range=::,constructor:<%= iface %>,ra-names,ra-stateless
 <% end -%>
