@@ -1,5 +1,7 @@
 class eizo {
 
+  Stage['main'] -> stage { 'last': }
+
   # System stuff
   include ::eizo::debian
   include ::eizo::disk
@@ -14,8 +16,10 @@ class eizo {
 
   # Router stuff
   include ::eizo::interfaces
-  include ::eizo::firewall
   include ::eizo::dnsmasq
+  class { "::eizo::firewall":
+    stage => last
+  }
 
   # Defaults
   exec { 'reload systemd':

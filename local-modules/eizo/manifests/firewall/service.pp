@@ -1,9 +1,15 @@
 class eizo::firewall::service inherits eizo::firewall {
 
+  exec { 'reload systemd (firewall)':
+    path => [ '/bin', '/sbin' ],
+    refreshonly => true,
+    command => 'systemctl daemon-reload'
+  }
+
   file { '/etc/systemd/system/firewall.service':
     ensure => present,
     source => "puppet:///modules/eizo/firewall/firewall.service",
-    notify => Exec["reload systemd"]
+    notify => Exec["reload systemd (firewall)"]
   }
   ->
   service { 'firewall':
