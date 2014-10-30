@@ -22,5 +22,5 @@ make_resolv_conf() {
     done
     shopt -u nocasematch
 
-    [ -z "$R" ] || echo -n $R > /etc/resolv.conf.dhclient
+    [ -z "$R" ] || echo -n "$R" > /etc/resolv.conf.dhclient
 }
