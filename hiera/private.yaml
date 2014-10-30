@@ -1,0 +1,26 @@
+eizo::postfix::cert: |
+  -----BEGIN CERTIFICATE-----
+  -----END CERTIFICATE-----
+eizo::postfix::key: |
+  -----BEGIN RSA PRIVATE KEY-----
+  -----END RSA PRIVATE KEY-----
+
+eizo::ddns::key: XXXXXXXXXXXXXXXXXXXX
+eizo::ddns::secret: XX/XXXXXXXXXXXXXXX/XXXXXXXXXX
+eizo::ddns::domain: example.com
+
+eizo::nginx::certs:
+  "/etc/nginx/ssl/%{::hostname}.key":
+    mode: "0600"
+    content: |
+      -----BEGIN PRIVATE KEY-----
+      -----END PRIVATE KEY-----
+  "/etc/nginx/ssl/%{::hostname}.pem":
+    content: |
+      -----BEGIN CERTIFICATE-----
+      -----END CERTIFICATE-----
+      -----BEGIN CERTIFICATE-----
+      -----END CERTIFICATE-----
+
+eizo::hostapd::ssid: "XXXXXXXXXXX"
+eizo::hostapd::wpa_passphrase: "XXXXXXXXXXXXXXXX"

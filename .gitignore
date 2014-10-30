@@ -7,8 +7,5 @@
 /.librarian
 /.tmp
 
-# privacy
-/hiera/private.yaml
-
 # backup
 *~
