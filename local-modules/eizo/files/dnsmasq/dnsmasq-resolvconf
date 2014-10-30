@@ -1,0 +1,26 @@
+#!/bin/sh
+
+make_resolv_conf() {
+    local R
+    local nameserver
+    for nameserver in $new_domain_name_servers ; do
+        R="${R}nameserver $nameserver
+"
+    done
+
+    shopt -s nocasematch
+    for nameserver in $new_dhcp6_name_servers ; do
+        # If the nameserver has a link-local address
+        # then add a zone ID (interface name) to it.
+        if  [[ "$nameserver" =~ ^fe80:: ]] ; then
+            zone_id="%$interface"
+        else
+            zone_id=""
+        fi
+        R="${R}nameserver $nameserver$zone_id
+"
+    done
+    shopt -u nocasematch
+
+    [ -z "$R" ] || echo -n $R > /etc/resolv.conf.dhclient
+}

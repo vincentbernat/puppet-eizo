@@ -25,6 +25,9 @@ domain=home
 # /etc/hosts is not useful
 no-hosts
 
+# Let use an alternative resolv.conf
+resolv-file=/etc/resolv.conf.dhclient
+
 <% require 'ipaddr' -%>
 # DHCP
 <% @dhcp.each do |iface, net|
