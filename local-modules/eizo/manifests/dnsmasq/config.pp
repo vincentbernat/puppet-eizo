@@ -11,7 +11,7 @@ class eizo::dnsmasq::config inherits eizo::dnsmasq {
   }
   ->
   file { '/etc/resolv.conf':
-    content => "search local\nnameserver 127.0.0.1\n"
+    content => "search home\nnameserver 127.0.0.1\n"
   }
 
 }

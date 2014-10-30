@@ -20,7 +20,7 @@ except-interface=internet
 except-interface=internet6
 
 # Default domain
-domain=local
+domain=home
 
 # /etc/hosts is not useful
 no-hosts
@@ -35,7 +35,7 @@ resolv-file=/etc/resolv.conf.dhclient
 -%>
 # <%= iface  %>
 dhcp-range=<%= range[2] %>,<%= range[-2] %>,4h
-synth-domain=local,<%= net %>,internal-
-host-record=<%= @hostname %>,<%= @hostname %>.local,<%= range[1] %>
+synth-domain=home,<%= net %>,internal-
+host-record=<%= @hostname %>,<%= @hostname %>.home,<%= range[1] %>
 dhcp-range=::,constructor:<%= iface %>,ra-names,ra-stateless
 <% end -%>
