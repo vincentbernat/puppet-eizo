@@ -20,7 +20,8 @@ except-interface=internet
 except-interface=internet6
 
 # Default domain
-domain=tri-island
+domain=home
+
 # /etc/hosts is not useful
 no-hosts
 
@@ -31,6 +32,6 @@ no-hosts
 -%>
 # <%= iface  %>
 dhcp-range=<%= range[2] %>,<%= range[-2] %>,4h
-synth-domain=tri-island,<%= net %>,internal-
+synth-domain=home,<%= net %>,internal-
 dhcp-range=::,constructor:<%= iface %>,ra-names,ra-stateless
 <% end -%>
