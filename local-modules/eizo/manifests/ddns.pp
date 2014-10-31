@@ -15,7 +15,7 @@ class eizo::ddns($key, $secret, $domain, $ttl=60) {
   }
   ->
   file { '/etc/dhcp/dhclient-exit-hooks.d/ddns-updater':
-    content => "systemctl start ddns-updater || true\n"
+    source => "puppet:///modules/eizo/ddns/dhcp-hook"
   }
 
   cron { "ddns-updater":
