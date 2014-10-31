@@ -34,7 +34,7 @@ resolv-file=/etc/resolv.conf.dhclient
      range = (IPAddr.new net).to_range.to_a
 -%>
 # <%= iface  %>
-dhcp-range=<%= range[2] %>,<%= range[-2] %>,4h
+dhcp-range=<%= range[2] %>,<%= range[-2] %>,1h
 synth-domain=home,<%= net %>,internal-
 host-record=<%= @hostname %>.home,<%= range[1] %>
 dhcp-range=::,constructor:<%= iface %>,ra-names,ra-stateless
