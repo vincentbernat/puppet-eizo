@@ -14,7 +14,7 @@ class eizo::ddns($key, $secret, $domain, $ttl=60) {
     notify => Exec["reload systemd"]
   }
   ->
-  file { '/etc/dhcp/dhclient-exit-hooks.d/ddns-updater':
+  file { '/etc/dhcp/dhclient-exit-hooks.d/zzz-ddns-updater':
     source => "puppet:///modules/eizo/ddns/dhcp-hook"
   }
 
