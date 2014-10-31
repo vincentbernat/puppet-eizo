@@ -1,10 +1,12 @@
 # -*- sh -*-
 
-main ip link set txqueuelen 32 dev wlan-guest
-main ip link set txqueuelen 32 dev internet
-main ip link set txqueuelen 128 dev lan
-
 main sysctl -w net.core.default_qdisc=fq_codel
-main tc qdisc del dev wlan-guest root 2> /dev/null || true
-main tc qdisc del dev internet root 2> /dev/null || true
-main tc qdisc del dev lan root 2> /dev/null || true
+
+for iface in /sys/class/net/*; do
+    [[ ${iface##*/} != "lo" ]] || continue
+    [[ $(<$iface/tx_queue_len) != 0 ]] || continue
+    [[ $(<$iface/iflink) = $(<$iface/ifindex) ]] || continue
+
+    main ip link set txqueuelen 32 dev ${iface##*/}
+    main tc qdisc del dev ${iface##*/} root 2> /dev/null || true
+done
