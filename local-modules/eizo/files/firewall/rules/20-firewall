@@ -26,9 +26,6 @@ ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-trusted -j ACCEPT
 ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-guest -j DROP
 ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o wlan-guest -j DROP
 
-# DELETE
-ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o internet -j ACCEPT
-
 # Some users have unlimited Internet access, except port 25
 ip46tables -N FIREWALL-OUTPUT-INET
 ip46tables -A FIREWALL-OUTPUT-INET -p tcp --dport smtp -j RETURN

@@ -24,10 +24,5 @@ ip46tables -A INTERNET-INPUT -p udp --dport 9098 -j ACCEPT
 ip46tables -A INTERNET-INPUT -p tcp --dport ssh -j ACCEPT
 ip46tables -A INTERNET-FORWARD -p tcp -o lan-trusted -j ACCEPT
 
-# DELETE
-ip46tables -A INTERNET-INPUT -p udp --dport mdns -j ACCEPT
-ip6tables  -A INTERNET-INPUT -p icmpv6 --icmpv6-type router-advertisement -m hl --hl-eq 255 -j ACCEPT
-ip6tables  -A INTERNET-INPUT -p icmpv6 --icmpv6-type router-solicitation -m hl --hl-eq 64 -j ACCEPT
-
 reject INTERNET-INPUT
 reject INTERNET-FORWARD
