@@ -40,4 +40,7 @@ host-record=<%= @hostname %>.home,<%= range[1] %>
 dhcp-range=::,constructor:<%= iface %>,ra-names,ra-stateless
 <% end -%>
 
+# NTP
 cname=ntp.home,<%= @hostname %>.home
+dhcp-option=option:ntp-server,0.0.0.0
+dhcp-option=option6:ntp-server,[fe80::]
