@@ -2,6 +2,6 @@
 
 case reason in
     BOUND|RENEW|REBIND|REBOOT)
-        systemctl start ddns-updater || true
+        systemctl start --no-block ddns-updater || true
         ;;
 esac
