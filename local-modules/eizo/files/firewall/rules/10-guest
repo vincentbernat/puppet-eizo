@@ -21,6 +21,10 @@ dhcp LAN-GUEST
 ip46tables -A LAN-GUEST-INPUT -p tcp --dport ssh -j ACCEPT
 ip46tables -A LAN-GUEST-FORWARD -o lan-trusted -p tcp --dport ssh -j ACCEPT
 
+# We can access port 80 and 443 on firewall
+ip46tables -A LAN-GUEST-INPUT -p tcp --dport http -j ACCEPT
+ip46tables -A LAN-GUEST-INPUT -p tcp --dport https -j ACCEPT
+
 # Internet access, except port 25
 ip46tables -N LAN-GUEST-FORWARD-INET
 ip46tables -A LAN-GUEST-FORWARD -o internet -j LAN-GUEST-FORWARD-INET
