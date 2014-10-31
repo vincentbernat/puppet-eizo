@@ -23,6 +23,7 @@ eizo::dhcp:
       retry: 1
       select-timeout: 0
       "send vendor-class-identifier": "100008,0001,,pfSense dhclient2.1"
+      "also request": "option-6rd"
 
 eizo::firewall::ips:
   lan-isolated: 192.168.119.0/26
