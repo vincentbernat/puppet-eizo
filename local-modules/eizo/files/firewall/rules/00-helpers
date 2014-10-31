@@ -23,6 +23,7 @@ function dhcp () {
 
     iptables   -A $chain-INPUT -p udp --source-port bootpc --destination-port bootps -j ACCEPT
     ip6tables  -A $chain-INPUT -p icmpv6 --icmpv6-type router-solicitation -j ACCEPT
+    ip46tables -A $chain-INPUT -p udp --destination-port ntp -j ACCEPT
     ip46tables -A $chain-INPUT -p udp --destination-port domain -j ACCEPT
     ip46tables -A $chain-INPUT -p tcp --destination-port domain -j ACCEPT
 }
