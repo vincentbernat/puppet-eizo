@@ -17,7 +17,7 @@ class eizo::firewall::service inherits eizo::firewall {
   }
   ->
   file { '/etc/dhcp/dhclient-exit-hooks.d/firewall':
-    content => "systemctl start firewall || true\n"
+    source => "puppet:///modules/eizo/firewall/dhcp-hook"
   }
 
   exec { "firewall reload":
