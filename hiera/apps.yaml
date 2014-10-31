@@ -146,9 +146,6 @@ nginx::nginx_upstreams:
   'transmission':
     members:
       - "127.0.0.1:%{hiera('eizo::transmission::rpcport')}"
-  'printer':
-    members:
-      - "HL-4150CDN.home:80"
 
 nginx::nginx_vhosts:
   "%{::fqdn}":
@@ -189,17 +186,6 @@ nginx::nginx_locations:
     location: /transmission
     vhost: "%{::fqdn}"
     proxy: http://transmission/transmission
-    proxy_set_header:
-      - 'X-Real-IP $remote_addr'
-      - 'X-Forwarded-For $remote_addr'
-      - 'X-Forwarded-Proto $scheme'
-      - 'X-Scheme $scheme'
-    ssl: true
-    ssl_only: true
-  'printer':
-    location: /printer
-    vhost: "%{::fqdn}"
-    proxy: http://printer
     proxy_set_header:
       - 'X-Real-IP $remote_addr'
       - 'X-Forwarded-For $remote_addr'
