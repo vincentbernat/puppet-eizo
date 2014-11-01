@@ -37,7 +37,7 @@ resolv-file=/etc/resolv.conf.dhclient
 dhcp-range=<%= range[2] %>,<%= range[-2] %>,1h
 synth-domain=home,<%= net %>,internal-
 host-record=<%= @hostname %>.home,<%= range[1] %>
-dhcp-range=::,constructor:<%= iface %>,ra-names,ra-stateless
+dhcp-range=::,constructor:<%= iface %>,ra-names
 <% end -%>
 
 # NTP
