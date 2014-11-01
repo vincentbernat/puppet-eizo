@@ -78,6 +78,10 @@ function public () {
     ip46tables -A $chain-INPUT -p tcp --dport ssh -j ACCEPT
     ip46tables -A $chain-INPUT -p tcp --dport http -j ACCEPT
     ip46tables -A $chain-INPUT -p tcp --dport https -j ACCEPT
+
+    local proftpd
+    proftpd=$(sed -n 's/^Port *//p' /etc/proftpd/proftpd.conf)
+    ip46tables -A $chain-INPUT -p tcp --dport $proftpd -j ACCEPT
 }
 
 function first () {
