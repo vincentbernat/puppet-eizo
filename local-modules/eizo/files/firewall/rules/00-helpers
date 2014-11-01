@@ -27,7 +27,8 @@ function reject () {
 
     # Those are noisy stuff
     ip46tables -A $chain -p tcp -m multiport --dport 135,137,138,139,445 -j DROP
-    ip46tables -A $chain -p udp --sport 5353 --dport 5353 -j DROP
+    ip46tables -A $chain -p udp --sport 5353 --dport 5353 -j DROP   # mDNS
+    ip46tables -A $chain -p udp --sport 57621 --dport 57621 -j DROP # Spotify
     # Handle multicast/broadcast differently
     ip46tables -N $chain-MULTICAST
     ip46tables -A $chain -m addrtype --dst-type BROADCAST -j $chain-MULTICAST
