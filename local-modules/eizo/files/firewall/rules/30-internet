@@ -12,6 +12,9 @@ ip6tables  -A FORWARD -i internet6 -j INTERNET-FORWARD
 icmp INTERNET-INPUT 50
 icmp INTERNET-FORWARD 50
 
+# 6rd
+iptables -A INTERNET-INPUT -p ipv6 -j ACCEPT
+
 # We can access port 80 and 443 on firewall
 ip46tables -A INTERNET-INPUT -p tcp --dport http -j ACCEPT
 ip46tables -A INTERNET-INPUT -p tcp --dport https -j ACCEPT

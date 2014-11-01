@@ -28,8 +28,8 @@ ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-trusted -j ACCEPT
 ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-guest -j DROP
 ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o wlan-guest -j DROP
 
-# Can use IPv6 in IPv4 to the BR
-iptables -A FIREWALL-OUTPUT -p ipv6 -d ${sixrd_br} -j ACCEPT
+# 6rd
+iptables -A FIREWALL-OUTPUT -p ipv6 -j ACCEPT
 
 # Some users have unlimited Internet access, except port 25
 ip46tables -N FIREWALL-OUTPUT-INET
