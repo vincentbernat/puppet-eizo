@@ -8,7 +8,7 @@ for chain in INPUT OUTPUT; do
   ip6tables -A $chain -p icmpv6 --icmpv6-type neighbor-advertisement -m hl --hl-eq 255 -j ACCEPT
 done
 
-main ip tunnel del internet6
+main ip tunnel del internet6 2> /dev/null || true
 main [[ -z $ip[firewall] ]] || {
   # Also, we need to configure 6rd. The following commands are heavily inspired from:
   #  https://github.com/marineam/comcast-6rd/blob/master/dhclient-exit-hooks.d/comcast-6rd-tunnel
