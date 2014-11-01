@@ -36,7 +36,7 @@ done
 
 # Some may access special ports
 for userport in \
-    root:udp/ntp \
+    ntp:udp/ntp \
     root:tcp/http root:tcp/https \
     xbmc:tcp/http xbmc:tcp/https \
     postfix:tcp/submission \
