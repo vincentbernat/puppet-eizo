@@ -3,8 +3,8 @@ class eizo::dnsmasq::config inherits eizo::dnsmasq {
   $dhcp = hiera_hash(hiera("eizo::dnsmasq::dhcp"))
   $unbound_port = 5352
 
-  file { '/etc/unbound/unbound.conf.d/alternative-port.conf.erb':
-    content => template("eizo/dnsmasq/unbound.conf")
+  file { '/etc/unbound/unbound.conf.d/alternative-port.conf':
+    content => template("eizo/dnsmasq/unbound.conf.erb")
   }
   file { '/etc/dnsmasq.conf':
     ensure => present,
