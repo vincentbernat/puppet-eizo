@@ -40,6 +40,7 @@ EOF
   ip tunnel add internet6 mode sit local $ip[firewall] ttl $sixrd_ttl
   ip tunnel 6rd dev internet6 6rd-prefix ${sixrd_prefix}
   ip addr add ${sixrd_delegated}1/64 dev internet6
+  ip link set mtu ${sixrd_mtu} dev internet6
   ip link set internet6 up
   ip -6 route add default via ::${sixrd_br} dev internet6
 
