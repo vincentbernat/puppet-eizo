@@ -14,11 +14,16 @@ for dns in $=ip[dns]; do
     iptables -A FIREWALL-OUTPUT -p tcp -d $dns --destination-port domain -o internet -j ACCEPT
 done
 
-# Can answer to DHCP requests (conntrack woes) and DNS
+# Can answer to DHCP requests and DNS (dunno why the conntrack doesn't catch this)
 for iface in $lans; do
     iptables   -A FIREWALL-OUTPUT -p udp --source-port bootps --destination-port bootpc -o $iface -j ACCEPT
     ip6tables  -A FIREWALL-OUTPUT -p udp --source-port dhcpv6-server --destination-port dhcpv6-client -o $iface -j ACCEPT
     ip46tables -A FIREWALL-OUTPUT -p udp --source-port domain --destination-port domain -o $iface -j ACCEPT
+done
+
+# Can emit router advertisements
+for iface in $lans; do
+    ip6tables -A FIREWALL-OUTPUT -p icmpv6 --icmpv6-type router-advertisement -j ACCEPT
 done
 
 # Can do mdns
