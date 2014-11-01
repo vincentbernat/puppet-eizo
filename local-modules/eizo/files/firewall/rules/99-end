@@ -9,7 +9,12 @@ done
 # Enable RPF. We are using dynamic IP, to avoid to check IP in
 # firewalls, we ensure that the routing table does that work for
 # us. We want to be strict.
-ip46tables -t raw -A PREROUTING -m rpfilter --invert -j DROP
+ip46tables -t raw -N RPFILTER
+ip46tables -t raw -A RPFILTER -m rpfilter -j RETURN
+ip46tables -A RPFILTER -m limit --limit 5/s --limit-burst 5 \
+           -j NFLOG --nflog-group 99 \
+           --nflog-prefix "NF: rpfilter: "
+ip46tables -t raw -A RPFILTER -j DROP
 
 # Enable forwarding
 main sysctl -qw net.ipv4.ip_forward=1
