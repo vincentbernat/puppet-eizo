@@ -8,18 +8,18 @@ for chain in INPUT OUTPUT; do
   ip6tables -A $chain -p icmpv6 --icmpv6-type neighbor-advertisement -m hl --hl-eq 255 -j ACCEPT
 done
 
+# Ideally, all the information should be provided in option-6rd
+# through DHCP. However, this is not the case at Swisscom. So,
+# instead, we need to hardcode some information...
+sixrd_mtu=1480
+sixrd_ttl=64
+sixrd_prefix=2a02:1200::/28     # No way to guess, just have to know it.
+sixrd_br=193.5.29.1             # That's "6rd.swisscom.com"
+
 main ip tunnel del internet6 2> /dev/null || true
 main [[ -z $ip[firewall] ]] || {
   # Also, we need to configure 6rd. The following commands are heavily inspired from:
   #  https://github.com/marineam/comcast-6rd/blob/master/dhclient-exit-hooks.d/comcast-6rd-tunnel
-
-  # Ideally, all the information should be provided in option-6rd
-  # through DHCP. However, this is not the case at Swisscom. So,
-  # instead, we need to hardcode some information...
-  sixrd_mtu=1480
-  sixrd_ttl=64
-  sixrd_prefix=2a02:1200::/28     # No way to guess, just have to know it.
-  sixrd_br=193.5.29.1             # That's "6rd.swisscom.com"
 
   # Let's compute our prefix from our IP. We are not in the same
   # simple case of Comcast because of our /28 prefix (but that's great
