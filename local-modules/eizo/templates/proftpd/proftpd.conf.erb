@@ -35,3 +35,11 @@ DirFakeUser             on ftp
 <Limit WRITE>
   DenyAll
 </Limit>
+
+# Limit bandwidth
+<% if @shaper -%>
+LoadModule mod_shaper.c
+ShaperEngine on
+ShaperTable /run/proftpd/shapertable
+ShaperAll <% @shaper.each do |key,val| %><%= key %> <%= val %><% end %>
+<% end -%>

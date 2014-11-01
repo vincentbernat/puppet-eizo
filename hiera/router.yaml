@@ -40,3 +40,7 @@ eizo::hostapd::extra:
   wmm_enabled: 1
   ieee80211n: 1
   ht_capab: "[HT40-][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40][DSSS_CCK-40][DSSS_CCK-40]"
+
+eizo::proftpd::shaper:
+  downrate: 500
+  uprate: 2500
