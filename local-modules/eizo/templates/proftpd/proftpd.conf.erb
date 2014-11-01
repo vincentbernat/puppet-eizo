@@ -26,6 +26,7 @@ AuthUserFile            /etc/proftpd/users
 SFTPAuthMethods         publickey
 SFTPAuthorizedUserKeys  file:/etc/proftpd/users.keys/%u
 DefaultRoot             ~
+RequireValidShell       off
 
 # Read-only users
 DirFakeMode             0444
