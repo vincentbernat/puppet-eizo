@@ -9,10 +9,6 @@ icmp FIREWALL-OUTPUT 50
 
 # Can emit DHCP requests
 iptables -A FIREWALL-OUTPUT -p udp --source-port bootpc --destination-port bootps -o internet -j ACCEPT
-for dns in $=ip[dns]; do
-    iptables -A FIREWALL-OUTPUT -p udp -d $dns --destination-port domain -o internet -j ACCEPT
-    iptables -A FIREWALL-OUTPUT -p tcp -d $dns --destination-port domain -o internet -j ACCEPT
-done
 
 # Can answer to DHCP requests and DNS (dunno why the conntrack doesn't catch this)
 for iface in $lans; do
@@ -50,7 +46,7 @@ for userport in \
     xbmc:tcp/http xbmc:tcp/https \
     postfix:tcp/submission \
     www-data:udp/domain \
-    dnsmasq:udp/domain dnsmasq:tcp/domain \
+    unbound:udp/domain unbound:tcp/domain \
     flexget:tcp/http flexget:tcp/https; do
 
     ip46tables -A FIREWALL-OUTPUT -o internet \

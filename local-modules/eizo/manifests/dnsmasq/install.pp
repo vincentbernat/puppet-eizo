@@ -1,5 +1,8 @@
 class eizo::dnsmasq::install inherits eizo::dnsmasq {
 
+  package { 'unbound':
+    ensure => present
+  }
   package { 'dnsmasq':
     ensure => present
   }

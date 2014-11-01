@@ -89,9 +89,8 @@ typeset -a lans
             sed -n -e '/lease {/,$d' -e "s/  $1"' \(.*\);/\1/p'
     }
 
-    # Firewall and DNS
+    # Firewall
     ip[firewall]=$(from-dhcp-lease "fixed-address")
-    ip[dns]=$(from-dhcp-lease "option domain-name-servers")
 
     . /etc/firewall/ips
 

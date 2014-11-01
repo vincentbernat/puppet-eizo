@@ -6,11 +6,6 @@ port=53
 # Always require a domain part
 domain-needed
 
-# DNSSEC
-conf-file=/usr/share/dnsmasq-base/trust-anchors.conf
-dnssec
-# dnssec-check-unsigned
-
 # User/group
 user=dnsmasq
 group=nogroup
@@ -25,13 +20,12 @@ domain=home
 # /etc/hosts is not useful
 no-hosts
 
-# Don't use ISP resolver. Swisscom doesn't support DNSSEC...
-# resolv-file=/etc/resolv.conf.dhclient
+# Don't use ISP resolver. Swisscom doesn't support DNSSEC... Use
+# unbound as a recursive dnssec enabled DNS. dnsmasq still stays the
+# canonical DNS server since it knows local hosts. unbound will only
+# handle resolution to Internet.
 no-resolv
-server=2001:4860:4860::8844
-server=2001:4860:4860::8888
-server=8.8.4.4
-server=8.8.8.8
+server=::1#<%= @unbound_port %>
 
 <% require 'ipaddr' -%>
 # DHCP
