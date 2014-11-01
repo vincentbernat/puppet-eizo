@@ -74,7 +74,8 @@ typeset -A ip
 
     # Grab stuff from DHCP lease
     function from-dhcp-lease () {
-        sed -n -e '1,/lease {/d' -e "s/  $1"' \(.*\);/\1/p' /var/lib/dhcp/dhclient.internet.leases
+        tac /var/lib/dhcp/dhclient.internet.leases | \
+            sed -n -e '/lease {/,$d' -e "s/  $1"' \(.*\);/\1/p'
     }
 
     # Firewall and DNS
