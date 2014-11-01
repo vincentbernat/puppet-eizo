@@ -1,12 +1,10 @@
 # Modules
 LoadModule mod_sftp.c
-LoadModule mod_auth_file.c
 
-UseIPv6
+UseIPv6                 on
 
 ServerName              <%= @hostname %>
-ServerTpe               standalone
-DeferWelcome            off
+ServerType              standalone
 
 User                    proftpd
 Group                   nogroup
@@ -19,7 +17,7 @@ TransferLog             /var/log/proftpd/sftp-xferlog
 # Host Keys (same as SSH)
 SFTPHostKey             /etc/ssh/ssh_host_rsa_key
 SFTPHostKey             /etc/ssh/ssh_host_dsa_key
-SFTPHostKey             /etc/ssh_host_ecdsa_key
+SFTPHostKey             /etc/ssh/ssh_host_ecdsa_key
 
 # Auth methods
 AuthOrder               mod_auth_file.c
