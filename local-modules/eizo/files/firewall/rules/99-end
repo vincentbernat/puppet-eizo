@@ -12,7 +12,7 @@ done
 ip46tables -t raw -N RPFILTER
 ip46tables -t raw -A RPFILTER -m rpfilter -j RETURN
 iptables   -t raw -A RPFILTER -s 0.0.0.0 -d 255.255.255.255 -p udp --sport bootpc --dport bootps -j RETURN
-ip46tables -A RPFILTER -m limit --limit 5/s --limit-burst 5 \
+ip46tables -t raw -A RPFILTER -m limit --limit 5/s --limit-burst 5 \
            -j NFLOG --nflog-group 99 \
            --nflog-prefix "NF: rpfilter: "
 ip46tables -t raw -A RPFILTER -j DROP
