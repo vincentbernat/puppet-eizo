@@ -11,7 +11,7 @@ done
 # Ideally, all the information should be provided in option-6rd
 # through DHCP. However, this is not the case at Swisscom. So,
 # instead, we need to hardcode some information...
-sixrd_mtu=1460
+sixrd_mtu=1440                  # Dunno why, it should be 1480
 sixrd_ttl=64
 sixrd_prefix=2a02:1200::/28     # No way to guess, just have to know it.
 sixrd_br=193.5.29.1             # That's "6rd.swisscom.com"
@@ -58,3 +58,9 @@ EOF
     done
   }
 }
+
+# Set TCPMSS. With 6rd, we are more likely to have problems with
+# PMTU. All the more our MTU seems too low?
+ip6tables -t mangle -A POSTROUTING -o internet6 \
+          -p tcp --tcp-flags SYN,RST SYN \
+          -j TCPMSS --set-mss $(( ${sixrd_mtu} - 40))
