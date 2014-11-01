@@ -1,5 +1,27 @@
 # -*- sh -*-
 
+function ip46tables () {
+    iptables "$@"
+
+    # We replace `-o internet` by `-o internet6`. That's a bit
+    # difficult if we want to keep spaces.
+    local -a args
+    local last
+    while (( $# > 0 )); do
+        case "$1,$last" in
+            internet,-o)
+                args=($args internet6)
+                ;;
+            *)
+                args=($args $1)
+                ;;
+        esac
+        last=$1
+        shift
+    done
+    ip6tables $args
+}
+
 function reject () {
     chain=$1 ; shift
 

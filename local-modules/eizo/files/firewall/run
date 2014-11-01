@@ -42,11 +42,6 @@ alias main='/bin/true ||'
     alias main='/bin/false ||'
 }
 
-function ip46tables () {
-    iptables "$@"
-    ip6tables "$@"
-}
-
 # Execute each rule file
 for rule in $(run-parts --list --regex '^[.a-zA-Z0-9_-]+$' ${0%/*}/rules); do
     . $rule
