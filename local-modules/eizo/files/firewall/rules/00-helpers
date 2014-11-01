@@ -30,13 +30,13 @@ function reject () {
     ip46tables -A $chain -p udp --sport 5353 --dport 5353 -j DROP   # mDNS
     ip46tables -A $chain -p udp --sport 57621 --dport 57621 -j DROP # Spotify
     # Handle multicast/broadcast differently
-    ip46tables -N $chain-MULTICAST
-    iptables   -A $chain -m addrtype --dst-type BROADCAST -j $chain-MULTICAST
-    ip46tables -A $chain -m addrtype --dst-type MULTICAST -j $chain-MULTICAST
-    ip46tables -A $chain-MULTICAST -m limit --limit 5/s --limit-burst 5 \
+    ip46tables -N $chain-MC
+    iptables   -A $chain -m addrtype --dst-type BROADCAST -j $chain-MC
+    ip46tables -A $chain -m addrtype --dst-type MULTICAST -j $chain-MC
+    ip46tables -A $chain-MC -m limit --limit 5/s --limit-burst 5 \
         -j NFLOG --nflog-group 10${1:-1} \
-        --nflog-prefix "NF: $chain-reject: "
-    ip46tables -A $chain-MULTICAST -j DROP
+        --nflog-prefix "NF: $chain-reject-mc: "
+    ip46tables -A $chain-MC -j DROP
     # Log the remaining
     ip46tables -A $chain -m limit --limit 5/s --limit-burst 5 \
         -j NFLOG --nflog-group ${1:-1} \
