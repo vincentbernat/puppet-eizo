@@ -72,6 +72,7 @@ function first6 () {
 
 # Build some kind of address book
 typeset -A ip
+typeset -a lans
 () {
 
     # Grab stuff from DHCP lease
@@ -85,5 +86,8 @@ typeset -A ip
     ip[dns]=$(from-dhcp-lease "option domain-name-servers")
 
     . /etc/firewall/ips
+
+    setopt extendedglob
+    lans=(${(M)${(kOn)ip}:#(lan|wlan)*}) # This is sorted, so should be stable
 
 }

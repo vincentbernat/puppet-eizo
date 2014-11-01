@@ -42,4 +42,12 @@ EOF
   ip addr add ${sixrd_delegated}1/64 dev internet6
   ip link set internet6 up
   ip -6 route add default via ::${sixrd_br} dev internet6
+
+  # We need to now assign additional prefixes to each segment
+  local i
+  i=1
+  for iface in $lans; do
+    echo ip -6 addr replace ${sixrd_delegated%0::}${i}::1/64 dev ${iface}
+    i=$(($i + 1))
+  done
 }

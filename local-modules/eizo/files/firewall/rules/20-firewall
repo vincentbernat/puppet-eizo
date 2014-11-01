@@ -15,7 +15,7 @@ for dns in $=ip[dns]; do
 done
 
 # Can answer to DHCP requests (conntrack woes) and DNS
-for iface in wlan-guest lan-guest lan-trusted lan-isolated; do
+for iface in $lans; do
     iptables   -A FIREWALL-OUTPUT -p udp --source-port bootps --destination-port bootpc -o $iface -j ACCEPT
     ip6tables  -A FIREWALL-OUTPUT -p udp --source-port dhcpv6-server --destination-port dhcpv6-client -o $iface -j ACCEPT
     ip46tables -A FIREWALL-OUTPUT -p udp --source-port domain --destination-port domain -o $iface -j ACCEPT
