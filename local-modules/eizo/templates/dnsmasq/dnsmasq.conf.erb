@@ -35,11 +35,13 @@ server=8.8.8.8
 
 <% require 'ipaddr' -%>
 # DHCP
+dhcp-leasefile=/var/lib/dnsmasq/dhcp.leases
+
 <% @dhcp.each do |iface, net|
      range = (IPAddr.new net).to_range.to_a
 -%>
-# <%= iface  %>
-dhcp-range=<%= range[2] %>,<%= range[-2] %>,1h
+# DHCP for <%= iface  %>
+dhcp-range=<%= range[2] %>,<%= range[-2] %>,24h
 synth-domain=home,<%= net %>,internal-
 host-record=<%= @hostname %>.home,<%= range[1] %>
 dhcp-range=::,constructor:<%= iface %>,ra-names
