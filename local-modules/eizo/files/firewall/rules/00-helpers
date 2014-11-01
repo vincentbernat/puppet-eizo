@@ -44,6 +44,7 @@ function dhcp () {
     chain=$1 ; shift
 
     iptables   -A $chain-INPUT -p udp --source-port bootpc --destination-port bootps -j ACCEPT
+    ip6tables  -A $chain-INPUT -p udp --source-port dhcpv6-client --destination-port dhcpv6-server -j ACCEPT
     ip6tables  -A $chain-INPUT -p icmpv6 --icmpv6-type router-solicitation -j ACCEPT
     ip46tables -A $chain-INPUT -p udp --destination-port ntp -j ACCEPT
     ip46tables -A $chain-INPUT -p udp --destination-port domain -j ACCEPT
