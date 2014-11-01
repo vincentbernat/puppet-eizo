@@ -24,5 +24,5 @@ ip46tables -A INTERNET-INPUT -p udp --dport 9098 -j ACCEPT
 ip46tables -A INTERNET-INPUT -p tcp --dport ssh -j ACCEPT
 ip46tables -A INTERNET-FORWARD -p tcp -o lan-trusted -j ACCEPT
 
-reject INTERNET-INPUT
-reject INTERNET-FORWARD
+reject INTERNET-INPUT    2
+reject INTERNET-FORWARD  2

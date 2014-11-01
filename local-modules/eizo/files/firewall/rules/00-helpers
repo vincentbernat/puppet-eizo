@@ -31,7 +31,7 @@ function reject () {
     ip46tables -A $chain -p udp --sport 5353 --dport 5353 -j DROP
     # Log the remaining
     ip46tables -A $chain -m limit --limit 5/s --limit-burst 5 \
-        -j NFLOG --nflog-group 1 \
+        -j NFLOG --nflog-group ${1:-1} \
         --nflog-prefix "NF: $chain-reject: "
     # And reject
     ip46tables -A $chain -p tcp -j REJECT --reject-with tcp-reset
