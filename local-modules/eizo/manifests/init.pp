@@ -18,6 +18,7 @@ class eizo {
   include ::eizo::interfaces
   include ::eizo::dnsmasq
   include ::eizo::hostapd
+  include ::eizo::proftpd
   class { "::eizo::firewall":
     stage => last
   }

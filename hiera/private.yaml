@@ -24,3 +24,30 @@ eizo::nginx::certs:
 
 eizo::hostapd::ssid: "XXXXXXXXXXX"
 eizo::hostapd::wpa_passphrase: "XXXXXXXXXXXXXXXX"
+
+eizo::proftpd::port: 2222
+eizo::proftpd::users:
+  user1:
+    dir: /some/place
+    keys:
+      -
+      |
+        ---- BEGIN SSH2 PUBLIC KEY ----
+        Comment: "Guy 1"
+        AAAAB3NzaC1yc2EAAAABIwAAAIEA0q2ZuYy2a7sExrzkJk/a3/hmjtt3uoZmaDCg0YdRhg
+        ---- END SSH2 PUBLIC KEY ----
+      -
+      |
+        ---- BEGIN SSH2 PUBLIC KEY ----
+        Comment: "Guy 2"
+        AAAAB3NzaC1yc2EAAAADAQABAAABAQDRcOBprAFBmP9/AbYkwohqH1CZMF66YrZUSzRiXY
+        ---- END SSH2 PUBLIC KEY ----
+  user2:
+    dir: /some/otherplace
+    keys:
+      -
+      |
+        ---- BEGIN SSH2 PUBLIC KEY ----
+        Comment: "Guy 1"
+        AAAAB3NzaC1yc2EAAAABIwAAAIEA0q2ZuYy2a7sExrzkJk/a3/hmjtt3uoZmaDCg0YdRhg
+        ---- END SSH2 PUBLIC KEY ----
