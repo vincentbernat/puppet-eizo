@@ -16,6 +16,7 @@ ip46tables -t raw -A RPFILTER -m limit --limit 5/s --limit-burst 5 \
            -j NFLOG --nflog-group 99 \
            --nflog-prefix "NF: rpfilter: "
 ip46tables -t raw -A RPFILTER -j DROP
+ip46tables -t raw -A PREROUTING -j RPFILTER
 
 # Enable forwarding
 main sysctl -qw net.ipv4.ip_forward=1
