@@ -9,8 +9,7 @@ done
 # Enable RPF. We are using dynamic IP, to avoid to check IP in
 # firewalls, we ensure that the routing table does that work for
 # us. We want to be strict.
-main sysctl -qw net.ipv4.conf.all.rp_filter=1               # IPv4
-ip6tables -t raw -A PREROUTING -m rpfilter --invert -j DROP # IPv6
+ip46tables -t raw -A PREROUTING -m rpfilter --invert -j DROP
 
 # Enable forwarding
 main sysctl -qw net.ipv4.ip_forward=1
