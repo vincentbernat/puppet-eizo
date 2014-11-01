@@ -1,4 +1,7 @@
 # -*- mode: sh; -*-
 
-# Simple NAT rule
-iptables -t nat -A POSTROUTING -o internet -j MASQUERADE
+# Default NAT rule
+[[ -z $ip[firewall] ]] || \
+    for iface in $lans; do
+        iptables -t nat -A POSTROUTING -i $iface -o internet -j SNAT --to-source ${ip[firewall]}
+    done
