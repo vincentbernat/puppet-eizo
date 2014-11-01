@@ -46,11 +46,10 @@ ShaperAll <% @shaper.each do |key,val| %><%= key %> <%= val %> <% end %>
 
 # Enable remote control
 ControlsEngine        on
-ControlsACLs          all allow group adm
-ShaperControlsACLs    all allow group adm
+ControlsACLs          all allow user proftpd
+ShaperControlsACLs    all allow user proftpd
 ControlsMaxClients    2
 ControlsLog           /var/log/proftpd/controls.log
 ControlsInterval      5
 ControlsSocket        /run/proftpd.sock
-ControlsSocketOwner   root root
-ControlsSocketACL     allow group adm
+ControlsSocketACL     allow user proftpd
