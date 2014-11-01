@@ -47,7 +47,7 @@ EOF
   local i
   i=1
   for iface in $lans; do
-    echo ip -6 addr replace ${sixrd_delegated%0::}${i}::1/64 dev ${iface}
+    ip -6 addr replace ${sixrd_delegated%0::}${i}::1/64 dev ${iface}
     i=$(($i + 1))
   done
 }
