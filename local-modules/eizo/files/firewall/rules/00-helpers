@@ -48,6 +48,7 @@ function reject () {
     ip46tables -A $chain -j DROP
 }
 
+# DHCP and related
 function dhcp () {
     chain=$1 ; shift
 
@@ -61,6 +62,7 @@ function dhcp () {
     iptables -A $chain-INPUT -p udp --destination-port 5351 -j DROP
 }
 
+# ICMP
 function icmp () {
     chain=$1 ; shift
     limit=${2:-100}
@@ -68,6 +70,14 @@ function icmp () {
     iptables  -A $chain -p icmp --icmp-type echo-request -j DROP
     ip6tables -A $chain -p icmpv6 --icmpv6-type echo-request -m limit --limit ${limit}/s -j ACCEPT
     ip6tables -A $chain -p icmpv6 --icmpv6-type echo-request -j DROP
+}
+
+# Access to public services on eizo
+function public () {
+    chain=$1 ; shift
+    ip46tables -A $chain-INPUT -p tcp --dport ssh -j ACCEPT
+    ip46tables -A $chain-INPUT -p tcp --dport http -j ACCEPT
+    ip46tables -A $chain-INPUT -p tcp --dport https -j ACCEPT
 }
 
 function first () {

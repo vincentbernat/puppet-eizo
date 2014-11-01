@@ -13,6 +13,7 @@ main ip addr replace $(first $ip[lan-trusted]) dev lan-trusted
 icmp LAN-TRUSTED-INPUT   100
 icmp LAN-TRUSTED-FORWARD 1000
 dhcp LAN-TRUSTED
+public LAN-TRUSTED
 
 # Internet access, except port 25
 ip46tables -N LAN-TRUSTED-FORWARD-INET
@@ -21,12 +22,7 @@ ip46tables -A LAN-TRUSTED-FORWARD-INET -p tcp --dport smtp -j RETURN
 ip46tables -A LAN-TRUSTED-FORWARD-INET -j ACCEPT
 
 # Access to SSH
-ip46tables -A LAN-TRUSTED-INPUT -p tcp --dport ssh -j ACCEPT
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-trusted -p tcp --dport ssh -j ACCEPT
-
-# We can access port 80 and 443 on firewall
-ip46tables -A LAN-TRUSTED-INPUT -p tcp --dport http -j ACCEPT
-ip46tables -A LAN-TRUSTED-INPUT -p tcp --dport https -j ACCEPT
 
 # Access to stuff in the isolated network
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-isolated -p tcp --dport printer -j ACCEPT
