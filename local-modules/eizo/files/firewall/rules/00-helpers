@@ -31,7 +31,7 @@ function reject () {
     ip46tables -A $chain -p udp --sport 57621 --dport 57621 -j DROP # Spotify
     # Handle multicast/broadcast differently
     ip46tables -N $chain-MULTICAST
-    ip46tables -A $chain -m addrtype --dst-type BROADCAST -j $chain-MULTICAST
+    iptables   -A $chain -m addrtype --dst-type BROADCAST -j $chain-MULTICAST
     ip46tables -A $chain -m addrtype --dst-type MULTICAST -j $chain-MULTICAST
     ip46tables -A $chain-MULTICAST -m limit --limit 5/s --limit-burst 5 \
         -j NFLOG --nflog-group 10${1:-1} \
