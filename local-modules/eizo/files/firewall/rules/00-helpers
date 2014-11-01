@@ -28,7 +28,7 @@ function reject () {
     # Those are noisy stuff
     ip46tables -A $chain -p tcp -m multiport --dport 135,137,138,139,445 -j DROP
     iptables   -A $chain -m addrtype --dst-type BROADCAST -j DROP
-    ip46tables -A $chain -m addrtype --dst-type MULTICAST -j DROP
+    ip46tables -A $chain -p udp --sport 5353 --dport 5353 -j DROP
     # Log the remaining
     ip46tables -A $chain -m limit --limit 5/s --limit-burst 5 \
         -j NFLOG --nflog-group 1 \
