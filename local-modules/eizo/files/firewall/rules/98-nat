@@ -3,5 +3,5 @@
 # Default NAT rule
 [[ -z $ip[firewall] ]] || \
     for iface in $lans; do
-        iptables -t nat -A POSTROUTING -s \! ${ip[firewall]} -o internet -j SNAT --to-source ${ip[firewall]}
+        iptables -t nat -A POSTROUTING ! -s ${ip[firewall]} -o internet -j SNAT --to-source ${ip[firewall]}
     done
