@@ -25,8 +25,13 @@ domain=home
 # /etc/hosts is not useful
 no-hosts
 
-# Let use an alternative resolv.conf
-resolv-file=/etc/resolv.conf.dhclient
+# Don't use ISP resolver. Swisscom doesn't support DNSSEC...
+# resolv-file=/etc/resolv.conf.dhclient
+no-resolv
+server=2001:4860:4860::8844
+server=2001:4860:4860::8888
+server=8.8.4.4
+server=8.8.8.8
 
 <% require 'ipaddr' -%>
 # DHCP
