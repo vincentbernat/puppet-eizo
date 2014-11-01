@@ -26,6 +26,7 @@ no-hosts
 # handle resolution to Internet.
 no-resolv
 server=::1#<%= @unbound_port %>
+cache-size=0
 
 <% require 'ipaddr' -%>
 # DHCP
