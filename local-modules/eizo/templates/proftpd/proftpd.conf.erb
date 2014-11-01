@@ -41,5 +41,5 @@ DirFakeUser             on ftp
 LoadModule mod_shaper.c
 ShaperEngine on
 ShaperTable /run/proftpd/shapertable
-ShaperAll <% @shaper.each do |key,val| %><%= key %> <%= val %><% end %>
+ShaperAll <% @shaper.each do |key,val| %><%= key %> <%= val %> <% end %>
 <% end -%>
