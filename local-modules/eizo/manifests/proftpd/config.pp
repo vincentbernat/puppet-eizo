@@ -10,7 +10,7 @@ class eizo::proftpd::config inherits eizo::proftpd {
     ensure => directory
   }
   file { '/etc/proftpd/users':
-    content => template("eizo/proftp/users.erb")
+    content => template("eizo/proftpd/users.erb")
   }
   create_resources(
     'eizo::proftpd::user',
