@@ -200,9 +200,9 @@ nginx::nginx_locations:
     ssl: true
     ssl_only: true
   'gs110tp':
-    location: /gs110tp
+    location: /gs110tp/
     vhost: "%{::fqdn}"
-    proxy: http://gs110tp
+    proxy: http://gs110tp/
     proxy_set_header:
       - 'X-Real-IP $remote_addr'
       - 'X-Forwarded-For $remote_addr'
@@ -211,9 +211,9 @@ nginx::nginx_locations:
     ssl: true
     ssl_only: true
   'gs108t':
-    location: /gs108t
+    location: /gs108t/
     vhost: "%{::fqdn}"
-    proxy: http://gs108t
+    proxy: http://gs108t/
     proxy_set_header:
       - 'X-Real-IP $remote_addr'
       - 'X-Forwarded-For $remote_addr'
@@ -222,9 +222,9 @@ nginx::nginx_locations:
     ssl: true
     ssl_only: true
   'hl-4150cdn':
-    location: /hl-4150cdn
+    location: /hl-4150cdn/
     vhost: "%{::fqdn}"
-    proxy: http://hl-4150cdn
+    proxy: http://hl-4150cdn/
     proxy_set_header:
       - 'X-Real-IP $remote_addr'
       - 'X-Forwarded-For $remote_addr'
