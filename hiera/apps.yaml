@@ -146,12 +146,6 @@ nginx::nginx_upstreams:
   'transmission':
     members:
       - "127.0.0.1:%{hiera('eizo::transmission::rpcport')}"
-  'gs110tp':
-    members:
-      - "gs110tp.home"
-  'gs108t':
-    members:
-      - "gs110tp.home"
 
 nginx::nginx_vhosts:
   "%{::fqdn}":
@@ -192,39 +186,6 @@ nginx::nginx_locations:
     location: /transmission
     vhost: "%{::fqdn}"
     proxy: http://transmission/transmission
-    proxy_set_header:
-      - 'X-Real-IP $remote_addr'
-      - 'X-Forwarded-For $remote_addr'
-      - 'X-Forwarded-Proto $scheme'
-      - 'X-Scheme $scheme'
-    ssl: true
-    ssl_only: true
-  'gs110tp':
-    location: /gs110tp/
-    vhost: "%{::fqdn}"
-    proxy: http://gs110tp/
-    proxy_set_header:
-      - 'X-Real-IP $remote_addr'
-      - 'X-Forwarded-For $remote_addr'
-      - 'X-Forwarded-Proto $scheme'
-      - 'X-Scheme $scheme'
-    ssl: true
-    ssl_only: true
-  'gs108t':
-    location: /gs108t/
-    vhost: "%{::fqdn}"
-    proxy: http://gs108t/
-    proxy_set_header:
-      - 'X-Real-IP $remote_addr'
-      - 'X-Forwarded-For $remote_addr'
-      - 'X-Forwarded-Proto $scheme'
-      - 'X-Scheme $scheme'
-    ssl: true
-    ssl_only: true
-  'hl-4150cdn':
-    location: /hl-4150cdn/
-    vhost: "%{::fqdn}"
-    proxy: http://hl-4150cdn/
     proxy_set_header:
       - 'X-Real-IP $remote_addr'
       - 'X-Forwarded-For $remote_addr'
