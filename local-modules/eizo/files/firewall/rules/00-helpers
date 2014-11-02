@@ -1,6 +1,7 @@
 # -*- sh -*-
 
 function ip46tables () {
+    emulate -L zsh
     iptables "$@"
 
     # We replace `-o internet` by `-o internet6`. That's a bit
