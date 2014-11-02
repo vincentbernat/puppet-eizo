@@ -16,7 +16,6 @@ sixrd_ttl=64
 sixrd_prefix=2a02:1200::/28     # No way to guess, just have to know it.
 sixrd_br=193.5.29.1             # That's "6rd.swisscom.com"
 
-main ip tunnel del internet6 2> /dev/null || true
 main [[ -z $ip[firewall] ]] || {
   # Also, we need to configure 6rd. The following commands are heavily inspired from:
   #  https://github.com/marineam/comcast-6rd/blob/master/dhclient-exit-hooks.d/comcast-6rd-tunnel
@@ -37,12 +36,18 @@ EOF
 )
 
   # Let's configure the tunnel
-  ip tunnel add internet6 mode sit local $ip[firewall] ttl $sixrd_ttl
-  ip tunnel 6rd dev internet6 6rd-prefix ${sixrd_prefix}
-  ip addr add ${sixrd_delegated}1/64 dev internet6
+  ip tunnel show internet6 | \
+      grep -q "local ${ip[firewall]}  ttl $sixrd_ttl" || {
+    ip tunnel del internet6 2> /dev/null || true
+    ip tunnel add internet6 mode sit local $ip[firewall] ttl $sixrd_ttl
+  }
+  ip tunnel show internet6 | \
+      grep -q "6rd-prefix ${sixrd_prefix}" || \
+    ip tunnel 6rd dev internet6 6rd-prefix ${sixrd_prefix}
+  ip addr replace ${sixrd_delegated}1/64 dev internet6
   ip link set mtu ${sixrd_mtu} dev internet6
   ip link set internet6 up
-  ip -6 route add default via ::${sixrd_br} dev internet6
+  ip -6 route replace default via ::${sixrd_br} dev internet6
 
   # We need to now assign additional prefixes to each segment. This
   # time, we assume the prefix we have been allocated has at least 4

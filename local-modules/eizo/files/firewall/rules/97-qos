@@ -1,6 +1,6 @@
 # -*- sh -*-
 
-main sysctl -w net.core.default_qdisc=fq_codel
+main sysctl -qw net.core.default_qdisc=fq_codel
 
 for iface in /sys/class/net/*; do
     [[ ${iface##*/} != "lo" ]] || continue
