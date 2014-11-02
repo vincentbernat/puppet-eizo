@@ -33,9 +33,9 @@ eizo::firewall::ips:
 # That's unfortunate, but lookup will done in Puppet
 eizo::dnsmasq::dhcp: "eizo::firewall::ips"
 eizo::dnsmasq::dhcp_hosts:
-  gs110tp: "e4:f4:c6:f1:4c:7a"
-  gs108t: "20:4e:7f:77:87:3f"
-  hl-4150cdn: "01:00:1b:a9:9b:ea:82"
+  gs110tp:    "e4:f4:c6:f1:4c:7a"
+  gs108t:     "20:4e:7f:77:87:3f"
+  hl-4150cdn: "00:1b:a9:9b:ea:82"
 
 eizo::hostapd::interface: wlan-guest
 eizo::hostapd::channel: 11
