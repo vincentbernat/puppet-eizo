@@ -1,13 +1,13 @@
 class eizo::debian(
-  $packages = [],
-  $backports = []
-  ) {
+  $packages = []) {
 
   class { "apt":
     purge_sources_list   => true,
     purge_sources_list_d => true,
     purge_preferences_d  => true
   }
+
+  package { $packages: ensure => installed }
 
   package { "apt-transport-https": ensure => installed }
   package { "aptitude": ensure => installed } ->
