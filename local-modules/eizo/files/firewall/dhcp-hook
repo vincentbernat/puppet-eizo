@@ -1,7 +1,11 @@
 # -*- sh -*-
 
 case reason in
-    BOUND|RENEW|REBIND|REBOOT)
+    BOUND|REBIND|REBOOT)
         systemctl start firewall || true
+        ;;
+    RENEW)
+        [ x"$old_ip_address" = x"$new_ip_address" ] || \
+            systemctl start firewall || true
         ;;
 esac
