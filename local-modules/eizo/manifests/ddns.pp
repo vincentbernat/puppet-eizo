@@ -20,7 +20,7 @@ class eizo::ddns($key, $secret, $domain, $ttl=60) {
 
   cron { "ddns-updater":
     command => "systemctl start ddns-updater",
-    minute => "*/15",
+    minute => "*/9",
     require => File['/etc/systemd/system/ddns-updater.service']
   }
 
