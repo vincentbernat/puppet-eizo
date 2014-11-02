@@ -19,3 +19,4 @@ eizo::debian::packages:
   - ethtool
   - iw
   - firmware-iwlwifi
+  - mtr-tiny
