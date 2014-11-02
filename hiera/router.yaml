@@ -41,5 +41,5 @@ eizo::hostapd::extra:
   ht_capab: "[HT40-][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40][DSSS_CCK-40][DSSS_CCK-40]"
 
 eizo::proftpd::shaper:
-  downrate: 500
-  uprate: 2500
+  downrate: 700
+  uprate: 4000
