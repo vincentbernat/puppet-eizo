@@ -8,5 +8,8 @@ for iface in /sys/class/net/*; do
     [[ $(<$iface/iflink) = $(<$iface/ifindex) ]] || continue
 
     main ip link set txqueuelen 32 dev ${iface##*/}
-    main tc qdisc del dev ${iface##*/} root 2> /dev/null || true
+    # A bit odd, but we just want to apply the default qdisc. We can
+    # only delete the current qdisc if it is not the default.
+    main tc qdisc replace dev ${iface##*/} root fq_codel
+    main tc qdisc del dev ${iface##*/} root
 done
