@@ -10,9 +10,9 @@ eizo::transmission::config:
   alt-speed-up: 10
   alt-speed-enabled: false
   alt-speed-time-enabled: false
-  speed-limit-down: 400
+  speed-limit-down: 1000
   speed-limit-down-enabled: true
-  speed-limit-up: 30
+  speed-limit-up: 100
   speed-limit-up-enabled: true
   encryption: 2
   peer-port: 9098
