@@ -45,7 +45,6 @@ for userport in \
     root:tcp/http root:tcp/https \
     xbmc:tcp/http xbmc:tcp/https \
     postfix:tcp/submission \
-    www-data:udp/domain \
     unbound:udp/domain unbound:tcp/domain \
     flexget:tcp/http flexget:tcp/https; do
 
