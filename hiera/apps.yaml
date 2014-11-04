@@ -138,7 +138,7 @@ eizo::flexget::config:
         include_subs: Yes
 
 # nginx configuration
-nginx::package::package_name: nginx-full
+nginx::package::package_name: nginx-extras
 nginx::package::manage_repo: false
 nginx::service_ensure: running
 
@@ -199,7 +199,14 @@ nginx::nginx_locations:
   'xbmc':
     location: /xbmc/
     vhost: "%{::fqdn}"
-    proxy: http://xbmc/
+    proxy: http://xbmc$new_uri
+    raw_prepend: |
+      set $new_uri '';
+      rewrite_by_lua '
+        local uri = ngx.var.request_uri
+        local new_uri, n, err = ngx.re.sub(uri, "^/xbmc/", "/")
+        ngx.var.new_uri = new_uri
+      ';
     proxy_set_header:
       - 'X-Real-IP $remote_addr'
       - 'X-Forwarded-For $remote_addr'
