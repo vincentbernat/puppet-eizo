@@ -242,12 +242,12 @@ nginx::nginx_locations:
       PATH_INFO: '$fastcgi_path_info'
       SCRIPT_FILENAME: /usr/lib/munin/cgi/munin-cgi-html
   'munin-graph':
-    location: '^~ /cgi-bin/munin-cgi-graph/'
+    location: '^~ /munin-cgi/munin-cgi-graph/'
     vhost: "%{::fqdn}"
     ssl: true
     ssl_only: true
     fastcgi: unix:/run/fcgiwrap.socket
-    fastcgi_split_path: '^(/cgi-bin/munin-cgi-graph)(.*)'
+    fastcgi_split_path: '^(/munin-cgi/munin-cgi-graph)(.*)'
     fastcgi_param:
       PATH_INFO: '$fastcgi_path_info'
       SCRIPT_FILENAME: /usr/lib/munin/cgi/munin-cgi-graph
