@@ -510,16 +510,16 @@ munin::node::plugins:
     target: if_
     ensure: link
   "if_lan-trusted":
-    target: ip_
+    target: if_
     ensure: link
   "if_lan-guest":
-    target: ip_
+    target: if_
     ensure: link
   "if_internet":
-    target: ip_
+    target: if_
     ensure: link
   "if_wlan-guest":
-    target: ip_
+    target: if_
     ensure: link
   "if_err_lan-isolated":
     target: if_err_
