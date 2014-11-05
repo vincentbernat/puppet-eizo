@@ -153,6 +153,7 @@ nginx::nginx_upstreams:
 nginx::nginx_vhosts:
   "localhost":
     listen_ip: 127.0.0.1
+    www_root: /usr/share/nginx/html
   "%{::fqdn}":
     ipv6_enable: true
     listen_options: default
