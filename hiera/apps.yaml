@@ -475,8 +475,10 @@ munin::node::plugins:
     ensure: link
   nginx_request:
     ensure: link
+    config: ['env.url http://127.0.0.1/nginx_status']
   nginx_status:
     ensure: link
+    config: ['env.url http://127.0.0.1/nginx_status']
   sensors_temp:
     target: sensors_
     ensure: link
