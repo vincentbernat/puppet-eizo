@@ -411,40 +411,40 @@ munin::node::plugins:
   nginx_request: {}
   nginx_status: {}
   sensors_temp:
-    link: sensors_
+    target: sensors_
   ping_www.google.com:
-    link: ping_
+    target: ping_
   ping_www.swisscom.ch:
-    link: ping_
+    target: ping_
   ping6_www.google.com:
-    link: ping_
+    target: ping_
   ping6_www.swisscom.ch:
-    link: ping_
+    target: ping_
   smart_WDC_WD30EZRX-00D8PB0_WD-WCC4ND0PV54S:
-    link: smart_
+    target: smart_
   smart_WDC_WD30EZRX-00SPEB0_WD-WCC4E1772592:
-    link: smart_
+    target: smart_
   smart_WDC_WD30EZRX-00SPEB0_WD-WCC4E1903940:
-    link: smart_
+    target: smart_
   smart_ST31500541AS_6XW1D7H3:
-    link: smart_
+    target: smart_
   "if_lan-isolated":
-    link: if_
+    target: if_
   "if_lan-trusted":
-    link: ip_
+    target: ip_
   "if_lan-guest":
-    link: ip_
+    target: ip_
   "if_internet":
-    link: ip_
+    target: ip_
   "if_wlan-guest":
-    link: ip_
+    target: ip_
   "if_err_lan-isolated":
-    link: if_err_
+    target: if_err_
   "if_err_lan-trusted":
-    link: if_err_
+    target: if_err_
   "if_err_lan-guest":
-    link: if_err_
+    target: if_err_
   "if_err_internet":
-    link: if_err_
+    target: if_err_
   "if_err_wlan-guest":
-    link: if_err_
+    target: if_err_
