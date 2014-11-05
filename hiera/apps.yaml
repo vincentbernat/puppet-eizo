@@ -382,6 +382,9 @@ eizo::nginx::certs:
       -----END CERTIFICATE-----
 
 munin::master::collect_nodes: disabled
+munin::master::node_definitions:
+  eizo.luffy.cx:
+    address: 127.0.0.1
 munin::node::allow:
   - 127.0.0.1
 munin::node::plugins:
