@@ -384,7 +384,6 @@ eizo::nginx::certs:
 munin::master::collect_nodes: disabled
 munin::node::allow:
   - 127.0.0.1
-  - ::1
 munin::node::plugins:
   cpu:
     ensure: present
