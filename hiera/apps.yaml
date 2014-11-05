@@ -385,6 +385,7 @@ munin::master::collect_nodes: disabled
 munin::master::node_definitions:
   eizo.luffy.cx:
     address: 127.0.0.1
+    mastername: eizo.luffy.cx
 munin::node::export_node: disabled
 munin::node::allow:
   - 127.0.0.1
