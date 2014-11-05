@@ -506,9 +506,6 @@ munin::node::plugins:
   smart_ST31500541AS_6XW1D7H3:
     target: smart_
     ensure: link
-  "if_lan-isolated":
-    target: if_
-    ensure: link
   "if_lan-trusted":
     target: if_
     ensure: link
@@ -520,9 +517,6 @@ munin::node::plugins:
     ensure: link
   "if_wlan-guest":
     target: if_
-    ensure: link
-  "if_err_lan-isolated":
-    target: if_err_
     ensure: link
   "if_err_lan-trusted":
     target: if_err_
