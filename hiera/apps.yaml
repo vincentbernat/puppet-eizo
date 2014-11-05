@@ -386,109 +386,109 @@ munin::node::allow:
   - 127.0.0.1
 munin::node::plugins:
   cpu:
-    ensure: present
+    ensure: link
   df:
-    ensure: present
+    ensure: link
   df_inode:
-    ensure: present
+    ensure: link
   diskstats:
-    ensure: present
+    ensure: link
   entropy:
-    ensure: present
+    ensure: link
   forks:
-    ensure: present
+    ensure: link
   fw_conntrack:
-    ensure: present
+    ensure: link
   fw_forwarded_local:
-    ensure: present
+    ensure: link
   fw_packets:
-    ensure: present
+    ensure: link
   hddtemp_smartctl:
-    ensure: present
+    ensure: link
   interrupts:
-    ensure: present
+    ensure: link
   irqstats:
-    ensure: present
+    ensure: link
   load:
-    ensure: present
+    ensure: link
   memory:
-    ensure: present
+    ensure: link
   netstat:
-    ensure: present
+    ensure: link
   open_files:
-    ensure: present
+    ensure: link
   open_inodes:
-    ensure: present
+    ensure: link
   postfix_mailqueue:
-    ensure: present
+    ensure: link
   processes:
-    ensure: present
+    ensure: link
   swap:
-    ensure: present
+    ensure: link
   threads:
-    ensure: present
+    ensure: link
   uptime:
-    ensure: present
+    ensure: link
   vmstat:
-    ensure: present
+    ensure: link
   nginx_request:
-    ensure: present
+    ensure: link
   nginx_status:
-    ensure: present
+    ensure: link
   sensors_temp:
     target: sensors_
-    ensure: present
+    ensure: link
   ping_www.google.com:
     target: ping_
-    ensure: present
+    ensure: link
   ping_www.swisscom.ch:
     target: ping_
-    ensure: present
+    ensure: link
   ping6_www.google.com:
     target: ping_
-    ensure: present
+    ensure: link
   ping6_www.swisscom.ch:
     target: ping_
-    ensure: present
+    ensure: link
   smart_WDC_WD30EZRX-00D8PB0_WD-WCC4ND0PV54S:
     target: smart_
-    ensure: present
+    ensure: link
   smart_WDC_WD30EZRX-00SPEB0_WD-WCC4E1772592:
     target: smart_
-    ensure: present
+    ensure: link
   smart_WDC_WD30EZRX-00SPEB0_WD-WCC4E1903940:
     target: smart_
-    ensure: present
+    ensure: link
   smart_ST31500541AS_6XW1D7H3:
     target: smart_
-    ensure: present
+    ensure: link
   "if_lan-isolated":
     target: if_
-    ensure: present
+    ensure: link
   "if_lan-trusted":
     target: ip_
-    ensure: present
+    ensure: link
   "if_lan-guest":
     target: ip_
-    ensure: present
+    ensure: link
   "if_internet":
     target: ip_
-    ensure: present
+    ensure: link
   "if_wlan-guest":
     target: ip_
-    ensure: present
+    ensure: link
   "if_err_lan-isolated":
     target: if_err_
-    ensure: present
+    ensure: link
   "if_err_lan-trusted":
     target: if_err_
-    ensure: present
+    ensure: link
   "if_err_lan-guest":
     target: if_err_
-    ensure: present
+    ensure: link
   "if_err_internet":
     target: if_err_
-    ensure: present
+    ensure: link
   "if_err_wlan-guest":
     target: if_err_
-    ensure: present
+    ensure: link
