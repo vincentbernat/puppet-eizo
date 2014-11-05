@@ -194,6 +194,7 @@ nginx::nginx_locations:
       access_log: off
       allow: 127.0.0.1
       deny: all
+    vhost: localhost
   'transmission':
     location: /transmission
     vhost: "%{::fqdn}"
