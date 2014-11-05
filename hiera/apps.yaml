@@ -485,13 +485,13 @@ munin::node::plugins:
   ping_www.google.com:
     target: ping_
     ensure: link
-  ping_www.swisscom.ch:
+  ping_www.exoscale.ch:
     target: ping_
     ensure: link
   ping6_www.google.com:
     target: ping_
     ensure: link
-  ping6_www.swisscom.ch:
+  ping6_www.exoscale.ch:
     target: ping_
     ensure: link
   smart_WDC_WD30EZRX-00D8PB0_WD-WCC4ND0PV54S:
