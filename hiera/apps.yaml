@@ -216,7 +216,7 @@ nginx::nginx_locations:
     ssl_only: true
   'munin-static':
     location: /munin/static/
-    alias: /etc/munin/static/
+    location_alias: /etc/munin/static/
     vhost: "%{::fqdn}"
     ssl: true
     ssl_only: true
