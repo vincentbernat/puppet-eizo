@@ -151,6 +151,8 @@ nginx::nginx_upstreams:
       - "127.0.0.1:8080"
 
 nginx::nginx_vhosts:
+  "localhost":
+    listen_ip: 127.0.0.1
   "%{::fqdn}":
     ipv6_enable: true
     listen_options: default
@@ -185,6 +187,13 @@ nginx::nginx_vhosts:
       - index.html
 
 nginx::nginx_locations:
+  'status':
+    location: /nginx_status
+    location_cfg_append:
+      stub_status: on
+      access_log: off
+      allow: 127.0.0.1
+      deny: all
   'transmission':
     location: /transmission
     vhost: "%{::fqdn}"
