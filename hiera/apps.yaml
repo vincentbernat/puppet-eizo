@@ -214,6 +214,23 @@ nginx::nginx_locations:
       - 'X-Scheme $scheme'
     ssl: true
     ssl_only: true
+  'munin-static':
+    location: /munin/static/
+    alias: /etc/munin/static/
+  'munin-html':
+    location: /munin/
+    fastcgi: unix:/run/fcgiwrap.socket
+    fastcgi_split_path: '^(/munin)(.*)'
+    fastcgi_param:
+      PATH_INFO: '$fastcgi_path_info'
+      SCRIPT_FILENAME: /usr/lib/munin/cgi/munin-cgi-html
+  'munin-graph':
+    location: '^~ /cgi-bin/munin-cgi-graph/'
+    fastcgi: unix:/run/fcgiwrap.socket
+    fastcgi_split_path: '^(/cgi-bin/munin-cgi-graph)(.*)'
+    fastcgi_param:
+      PATH_INFO: '$fastcgi_path_info'
+      SCRIPT_FILENAME: /usr/lib/munin/cgi/munin-cgi-graph
 
 eizo::nginx::certs:
   "/etc/nginx/ssl/StartCom_Client_Class_1.pem":

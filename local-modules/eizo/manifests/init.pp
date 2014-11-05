@@ -13,8 +13,7 @@ class eizo {
   include ::eizo::transmission
   include ::eizo::flexget
   include ::eizo::nginx
-  include ::munin::master
-  include ::munin::node
+  include ::eizo::munin
 
   # Router stuff
   include ::eizo::interfaces
