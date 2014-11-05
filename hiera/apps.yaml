@@ -217,8 +217,14 @@ nginx::nginx_locations:
   'munin-static':
     location: /munin/static/
     alias: /etc/munin/static/
+    vhost: "%{::fqdn}"
+    ssl: true
+    ssl_only: true
   'munin-html':
     location: /munin/
+    vhost: "%{::fqdn}"
+    ssl: true
+    ssl_only: true
     fastcgi: unix:/run/fcgiwrap.socket
     fastcgi_split_path: '^(/munin)(.*)'
     fastcgi_param:
@@ -226,6 +232,9 @@ nginx::nginx_locations:
       SCRIPT_FILENAME: /usr/lib/munin/cgi/munin-cgi-html
   'munin-graph':
     location: '^~ /cgi-bin/munin-cgi-graph/'
+    vhost: "%{::fqdn}"
+    ssl: true
+    ssl_only: true
     fastcgi: unix:/run/fcgiwrap.socket
     fastcgi_split_path: '^(/cgi-bin/munin-cgi-graph)(.*)'
     fastcgi_param:
