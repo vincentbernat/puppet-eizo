@@ -188,9 +188,9 @@ nginx::nginx_vhosts:
 
 nginx::nginx_locations:
   'status':
+    stub_status: on
     location: /nginx_status
     location_cfg_append:
-      stub_status: on
       access_log: off
       allow: 127.0.0.1
       deny: all
