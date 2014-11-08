@@ -237,22 +237,24 @@ nginx::nginx_locations:
     ssl: true
     ssl_only: true
     www_root: /usr/lib/munin/cgi/munin-cgi-html
-    fastcgi: unix:/run/fcgiwrap.socket
-    fastcgi_split_path: '^/munin()(.*)'
-    fastcgi_params: /etc/nginx/fastcgi.conf
-    fastcgi_param:
-      PATH_INFO: '$fastcgi_path_info'
+    vhost_cfg_append:
+      fastcgi_pass: unix:/run/fcgiwrap.socket
+      fastcgi_split_path_info: '^/munin()(.*)'
+      fastcgi_param:
+        PATH_INFO: '$fastcgi_path_info'
+      include: /etc/nginx/fastcgi.conf
   'munin-graph':
     location: '^~ /munin-cgi/munin-cgi-graph/'
     vhost: "%{::fqdn}"
     ssl: true
     ssl_only: true
     www_root: /usr/lib/munin/cgi/munin-cgi-graph
-    fastcgi: unix:/run/fcgiwrap.socket
-    fastcgi_split_path: '^/munin-cgi/munin-cgi-graph()(.*)'
-    fastcgi_params: /etc/nginx/fastcgi.conf
-    fastcgi_param:
-      PATH_INFO: '$fastcgi_path_info'
+    vhost_cfg_append:
+      fastcgi_pass: unix:/run/fcgiwrap.socket
+      fastcgi_split_path_info: '^/munin-cgi/munin-cgi-graph()(.*)'
+      fastcgi_param:
+        PATH_INFO: '$fastcgi_path_info'
+      include: /etc/nginx/fastcgi.conf
 
 eizo::nginx::certs:
   "/etc/nginx/ssl/StartCom_Client_Class_1.pem":
