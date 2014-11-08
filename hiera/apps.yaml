@@ -237,7 +237,7 @@ nginx::nginx_locations:
     ssl: true
     ssl_only: true
     www_root: /usr/lib/munin/cgi/munin-cgi-html
-    vhost_cfg_append:
+    location_cfg_append:
       fastcgi_pass: unix:/run/fcgiwrap.socket
       fastcgi_split_path_info: '^/munin()(.*)'
       fastcgi_param:
@@ -249,7 +249,7 @@ nginx::nginx_locations:
     ssl: true
     ssl_only: true
     www_root: /usr/lib/munin/cgi/munin-cgi-graph
-    vhost_cfg_append:
+    location_cfg_append:
       fastcgi_pass: unix:/run/fcgiwrap.socket
       fastcgi_split_path_info: '^/munin-cgi/munin-cgi-graph()(.*)'
       fastcgi_param:
