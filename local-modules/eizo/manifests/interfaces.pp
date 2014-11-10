@@ -28,7 +28,7 @@ class eizo::interfaces {
 
   shellvar { 'AVAHI_DAEMON_DETECT_LOCAL':
     ensure => present,
-    target => '/etc/default/avai-daemon',
+    target => '/etc/default/avahi-daemon',
     value  => '0',
   }
 
