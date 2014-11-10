@@ -12,7 +12,7 @@ define eizo::interface::ifup(
   }
 
   if ($path) {
-    udev::rule { "60-ifup-${name}.rules":
+    udev::rule { "90-ifup-${name}.rules":
       content => template("eizo/interfaces/udev.erb")
     }
   }
