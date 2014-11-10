@@ -8,7 +8,7 @@ class eizo::interfaces {
 
   # Enable dhclient for the given set of interfaces
   file { "/etc/network/interfaces":
-    content => "auto lo\niface lo inet loopback\n"
+    content => "auto lo\niface lo inet loopback\nsource-directory interfaces.d\n"
   }
 
   concat { "/etc/dhcp/dhclient.conf":
