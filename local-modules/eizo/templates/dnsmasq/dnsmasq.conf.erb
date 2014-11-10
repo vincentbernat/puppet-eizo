@@ -34,7 +34,8 @@ dhcp-leasefile=/var/lib/dnsmasq/dhcp.leases
 
 <% @dhcp.each do |iface, params|
     if params.key? "static" then
-     range = (IPAddr.new params["static"]).to_range.to_a
+     net = params["static"]
+     range = (IPAddr.new net).to_range.to_a
 -%>
 # DHCP for <%= iface  %>
 dhcp-range=<%= range[2] %>,<%= range[-2] %>,24h
