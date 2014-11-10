@@ -2,36 +2,39 @@ eizo::interfaces:
   internet:
     description: "FTTH Swisscom connection"
     path: "pci-0000:02:00.0"
-  lan-isolated:
-    description: "Isolated LAN network"
-    path: "pci-0000:00:19.0"
-    vlans:
-      lan-trusted:
-        description: "Trusted LAN network"
-        id: 6
-      lan-guest:
-        description: "Guest LAN network"
-        id: 8
-  wlan-guest:
-    description: "Guest WLAN network"
-    path: "pci-0000:03:00.0"
-
-eizo::dhcp:
-  internet:
-    conf:
+    order: 4
+    dhcp:
       timeout: 60
       retry: 1
       select-timeout: 0
       "send vendor-class-identifier": "100008,0001,,pfSense dhclient2.1"
-
-eizo::firewall::ips:
-  lan-isolated: 192.168.119.0/26
-  lan-trusted: 192.168.117.0/26
-  lan-guest: 192.168.118.0/26
-  wlan-guest: 192.168.118.64/26
+  lan-isolated:
+    description: "Isolated LAN network"
+    path: "pci-0000:00:19.0"
+    static: 192.168.119.1/26
+    order: 1
+  lan-trusted:
+    description: "Trusted LAN network"
+    static: 192.168.117.1/26
+    vlan:
+      over: lan-isolated
+      id: 6
+    order: 2
+  lan-guest:
+    description: "Guest LAN network"
+    static: 192.168.118.1/26
+    vlan:
+      over: lan-isolated
+      id: 8
+    order: 2
+  wlan-guest:
+    description: "Guest WLAN network"
+    path: "pci-0000:03:00.0"
+    static: 192.168.118.65/26
+    order: 3
 
 # That's unfortunate, but lookup will done in Puppet
-eizo::dnsmasq::dhcp: "eizo::firewall::ips"
+eizo::dnsmasq::dhcp: "eizo::interfaces"
 eizo::dnsmasq::dhcp_hosts:
   gs110tp:    "e4:f4:c6:f1:4c:7a"
   gs108t:     "20:4e:7f:77:87:3f"

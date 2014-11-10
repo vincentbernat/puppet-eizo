@@ -8,64 +8,21 @@ for chain in INPUT OUTPUT; do
   ip6tables -A $chain -p icmpv6 --icmpv6-type neighbor-advertisement -m hl --hl-eq 255 -j ACCEPT
 done
 
-# Ideally, all the information should be provided in option-6rd
-# through DHCP. However, this is not the case at Swisscom. So,
-# instead, we need to hardcode some information...
-sixrd_mtu=1472                  # Dunno why, it should be 1480
-sixrd_ttl=64
-sixrd_prefix=2a02:1200::/28     # No way to guess, just have to know it.
-sixrd_br=193.5.29.1             # That's "6rd.swisscom.com"
-
-main [[ -z $ip[firewall] ]] || {
-  # Also, we need to configure 6rd. The following commands are heavily inspired from:
-  #  https://github.com/marineam/comcast-6rd/blob/master/dhclient-exit-hooks.d/comcast-6rd-tunnel
-
-  # Let's compute our prefix from our IP. We are not in the same
-  # simple case of Comcast because of our /28 prefix (but that's great
-  # because we can subnet our prefix which will be a /60. We'll use a
-  # bit of Ruby (which doesn't come with a great IP module but that's
-  # OK for what we want to do).
-  sixrd_delegated=$(ruby <<EOF
-require 'ipaddr'
-prefix = IPAddr.new "${sixrd_prefix}", Socket::AF_INET6
-prefixlen = ${sixrd_prefix#*/}
-ipv4 = IPAddr.new "${ip[firewall]}", Socket::AF_INET
-delegated = IPAddr.new (prefix.to_i + (ipv4.to_i << (64 + 32 - prefixlen))), Socket::AF_INET6
-puts delegated
-EOF
-)
-
-  # Let's configure the tunnel
-  ip tunnel show internet6 | \
-      grep -q "local ${ip[firewall]}  ttl $sixrd_ttl" || {
-    ip tunnel del internet6 2> /dev/null || true
-    ip tunnel add internet6 mode sit local $ip[firewall] ttl $sixrd_ttl
-  }
-  ip tunnel show internet6 | \
-      grep -q "6rd-prefix ${sixrd_prefix}" || \
-    ip tunnel 6rd dev internet6 6rd-prefix ${sixrd_prefix}
-  ip addr replace ${sixrd_delegated}1/64 dev internet6
-  ip link set mtu ${sixrd_mtu} dev internet6
-  ip link set internet6 up
-  ip -6 route replace default via ::${sixrd_br} dev internet6
-
-  # We need to now assign additional prefixes to each segment. This
-  # time, we assume the prefix we have been allocated has at least 4
-  # bits for our own networking. So we assume we have "0" as last
-  # digit. Also, we don't handle more than 15 networks.
-  (( ${sixrd_prefix#*/} > 28 )) || {
-    local i
-    i=1
-    for iface in $lans; do
-      ip -6 addr replace ${sixrd_delegated%0::}$(( [##16] $i ))::1/64 dev ${iface}
-      i=$(($i + 1))
-      (( $i < 16 )) || break
-    done
-  }
-}
-
 # Set TCPMSS. With 6rd, we are more likely to have problems with
 # PMTU. All the more our MTU seems too low?
-ip6tables -t mangle -A POSTROUTING -o internet6 \
+main command ip6tables -t mangle -A POSTROUTING -o internet6 \
           -p tcp --tcp-flags SYN,RST SYN \
-          -j TCPMSS --set-mss $(( ${sixrd_mtu} - 40 - 20))
+          -j TCPMSS --set-mss $(( $(</sys/class/net/internet6/mtu) - 40 - 20))
+
+# Setup IPv6 subnets
+main {
+  local i
+  local ip
+  i=1
+  ip=$(facter ipaddress6_internet6)
+  for iface in $lans; do
+    ip -6 addr replace ${ip%0::1}$(( [##16] $i ))::1/64 dev ${iface}
+    i=$(($i + 1))
+    (( $i < 16 )) || break
+  done
+}

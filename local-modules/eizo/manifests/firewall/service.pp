@@ -15,9 +15,12 @@ class eizo::firewall::service inherits eizo::firewall {
   service { 'firewall':
     enable => true
   }
-  ->
-  file { '/etc/dhcp/dhclient-exit-hooks.d/firewall':
-    source => "puppet:///modules/eizo/firewall/dhcp-hook"
+
+  file { '/etc/dhcp/dhclient-exit-hooks.d/zzz-firewall':
+    source => "puppet:///modules/eizo/firewall/dhcp-firewall-hook"
+  }
+  file { '/etc/dhcp/dhclient-exit-hooks.d/000-ipv6':
+    source => "puppet:///modules/eizo/firewall/dhcp-ipv6-hook"
   }
 
   exec { "firewall reload":

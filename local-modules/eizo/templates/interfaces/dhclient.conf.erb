@@ -1,6 +1,6 @@
-# Managed by puppet
 # Configuration for interface <%= @name %>
-
-<% @conf.each do |name, value| -%>
-<%= name %> <%= value.inspect %>;
-<% end -%>
+interface <%= @name %> {
+  <% @conf.each do |name, value| -%>
+  <%= name %> <%= value.inspect %>;
+  <% end -%>
+}

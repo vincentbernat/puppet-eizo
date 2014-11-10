@@ -85,33 +85,10 @@ function public () {
     ip46tables -A $chain-INPUT -p tcp --dport $proftpd -j ACCEPT
 }
 
-function first () {
-    net=$1 ; shift
-    IFS=. read -r m1 m2 m3 m4 <<< ${net%/*}
-    printf "%d.%d.%d.%d/%d\n" $m1 $m2 $m3 $(($m4 + 1)) ${net#*/}
-}
-function first6 () {
-    net=$1 ; shift
-    echo ${net%/*}1${net#*/}
-}
-
-# Build some kind of address book
-typeset -A ip
 typeset -a lans
 () {
-
-    # Grab stuff from DHCP lease
-    function from-dhcp-lease () {
-        tac /var/lib/dhcp/dhclient.internet.leases | \
-            sed -n -e '/lease {/,$d' -e "s/  $1"' \(.*\);/\1/p'
-    }
-
-    # Firewall
-    ip[firewall]=$(from-dhcp-lease "fixed-address")
-
-    . /etc/firewall/ips
-
     setopt extendedglob
-    lans=(${(M)${(kOn)ip}:#(lan|wlan)*}) # This is sorted, so should be stable
-
+    lans=(${~:-/sys/class/net/*(-/)})
+    lans=(${lans##*/})
+    lans=(${(MOn)lans:#(lan-|wlan-)*})
 }

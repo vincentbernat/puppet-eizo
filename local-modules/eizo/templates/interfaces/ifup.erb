@@ -1,0 +1,15 @@
+# Managed by puppet
+
+auto <%= @name %>
+<% if @conf.key? "dhcp" then -%>
+interface <%= @name %> inet dhcp
+<% else -%>
+interface <%= @name %> inet static
+  address <%= @conf["static"].split("/")[0] %>
+  netmask <%= (IPAddr.new (((1 << @conf["static"].split("/")[1].to_i) - 1) << (32 - @conf["static"].split("/")[1].to_i)),
+                          Socket::AF_INET).to_s %>
+<% end -%>
+<% if @conf.key? "vlan" then -%>
+  pre-up    ip link add link <%= @conf["vlan"]["over"] %> name <%= @name %> type vlan id <%= @conf["vlan"]["id"] %>
+  post-down ip link del <%= @name %>
+<% endif -%>

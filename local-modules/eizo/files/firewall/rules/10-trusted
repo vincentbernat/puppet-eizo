@@ -7,9 +7,6 @@ ip46tables -N LAN-TRUSTED-FORWARD
 ip46tables -A INPUT -i lan-trusted    -j LAN-TRUSTED-INPUT
 ip46tables -A FORWARD -i lan-trusted  -j LAN-TRUSTED-FORWARD
 
-# Configure IP addresses
-main ip addr replace $(first $ip[lan-trusted]) dev lan-trusted
-
 icmp LAN-TRUSTED-INPUT   100
 icmp LAN-TRUSTED-FORWARD 1000
 dhcp LAN-TRUSTED

@@ -32,8 +32,9 @@ cache-size=0
 # DHCP
 dhcp-leasefile=/var/lib/dnsmasq/dhcp.leases
 
-<% @dhcp.each do |iface, net|
-     range = (IPAddr.new net).to_range.to_a
+<% @dhcp.each do |iface, params|
+     return unless params.key? "static"
+     range = (IPAddr.new params["static"]).to_range.to_a
 -%>
 # DHCP for <%= iface  %>
 dhcp-range=<%= range[2] %>,<%= range[-2] %>,24h
