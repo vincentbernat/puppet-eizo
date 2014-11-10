@@ -3,4 +3,4 @@
 # Default NAT rule
 main fwip=$(facter ipaddress_internet)
 main [[ -z $fwip ]] || \
-    iptables -t nat -A POSTROUTING ! -s ${fwip} -o internet -j SNAT --to-source ${fwip}
+    command iptables -t nat -A POSTROUTING ! -s ${fwip} -o internet -j SNAT --to-source ${fwip}
