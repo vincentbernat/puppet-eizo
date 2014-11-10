@@ -2,9 +2,9 @@
 
 auto <%= @name %>
 <% if @dhcp then -%>
-interface <%= @name %> inet dhcp
+iface <%= @name %> inet dhcp
 <% else -%>
-interface <%= @name %> inet static
+iface <%= @name %> inet static
   address <%= @static.split("/")[0] %>
   netmask <%= (IPAddr.new (((1 << @static.split("/")[1].to_i) - 1) << (32 - @static.split("/")[1].to_i)),
                           Socket::AF_INET).to_s %>
