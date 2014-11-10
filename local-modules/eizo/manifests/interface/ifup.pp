@@ -18,9 +18,10 @@ define eizo::interface::ifup(
   }
 
   if ($dhcp) {
-    concat::fragment { "dhcp-${name}.conf":
+    concat::fragment { "dhclient.${name}.conf":
       target => "/etc/dhcp/dhclient.conf",
-      content => template("eizo/interfaces/dhclient.conf.erb")
+      content => template("eizo/interfaces/dhclient.conf.erb"),
+      order => '10'
     }
   }
 

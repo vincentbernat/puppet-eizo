@@ -14,6 +14,11 @@ class eizo::interfaces {
   concat { "/etc/dhcp/dhclient.conf":
     ensure => present
   }
+  concat::fragment { "dhclient-header.conf":
+    target => "/etc/dhcp/dhclient.conf",
+    source => "puppet:///modules/eizo/interfaces/dhclient-header.conf",
+    order => '00'
+  }
 
   # Don't use persistant names
   kernel_parameter { "net.ifnames":
