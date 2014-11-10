@@ -2,6 +2,6 @@
 
 # Interface <%= @name %>
 SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", \
-                  ENV{ID_PATH}=="<%= @conf["path"] %>", \
+                  ENV{ID_PATH}=="<%= @path %>", \
                   ATTR{dev_id}=="0x0", ATTR{type}=="1", \
                   NAME="<%= @name %>"

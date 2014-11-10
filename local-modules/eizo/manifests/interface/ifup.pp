@@ -1,4 +1,11 @@
-define eizo::interface::ifup($conf) {
+define eizo::interface::ifup(
+  $description = "",
+  $path = undef,                # for physical interfaces only
+  $order = 99,
+  $dhcp = undef,
+  $static = undef,
+  $vlan = undef,
+  $also) {
 
   file { "/etc/network/interfaces.d/${conf[order]}-${name}":
     content => template("eizo/interfaces/ifup.erb")
