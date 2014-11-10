@@ -7,17 +7,17 @@ define eizo::interface::ifup(
   $vlan = undef,
   $also = {}) {
 
-  file { "/etc/network/interfaces.d/${conf[order]}-${name}":
+  file { "/etc/network/interfaces.d/${order}-${name}":
     content => template("eizo/interfaces/ifup.erb")
   }
 
-  if ($conf[path]) {
+  if ($path) {
     udev::rule { "60-ifup-${name}":
       content => template("eizo/interfaces/udev.erb")
     }
   }
 
-  if ($conf[dhcp]) {
+  if ($dhcp) {
     concat::fragment { "dhcp-${name}.conf":
       target => "/etc/dhcp/dhclient.conf",
       content => template("eizo/interfaces/dhclient.conf.erb")
