@@ -1,6 +1,6 @@
 # -*- mode: sh; -*-
 
 # Default NAT rule
-fwip=$(facter ipaddress_internet)
-[[ -z $fwip ]] || \
+main fwip=$(facter ipaddress_internet)
+main [[ -z $fwip ]] || \
     iptables -t nat -A POSTROUTING ! -s ${fwip} -o internet -j SNAT --to-source ${fwip}
