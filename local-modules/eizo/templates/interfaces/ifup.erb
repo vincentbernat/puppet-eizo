@@ -12,4 +12,9 @@ interface <%= @name %> inet static
 <% if @conf.key? "vlan" then -%>
   pre-up    ip link add link <%= @conf["vlan"]["over"] %> name <%= @name %> type vlan id <%= @conf["vlan"]["id"] %>
   post-down ip link del <%= @name %>
-<% endif -%>
+<% end -%>
+<% if @conf.key? "also" then -%>
+<% @conf["also"].each do |name, value| -%>
+  <%= name %> <%= value %>;
+<% end -%>
+<% end -%>
