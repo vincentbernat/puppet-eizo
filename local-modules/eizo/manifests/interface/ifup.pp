@@ -5,7 +5,7 @@ define eizo::interface::ifup(
   $dhcp = undef,
   $static = undef,
   $vlan = undef,
-  $also) {
+  $also = {}) {
 
   file { "/etc/network/interfaces.d/${conf[order]}-${name}":
     content => template("eizo/interfaces/ifup.erb")

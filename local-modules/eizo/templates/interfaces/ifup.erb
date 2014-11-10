@@ -13,8 +13,6 @@ interface <%= @name %> inet static
   pre-up    ip link add link <%= @vlan["over"] %> name <%= @name %> type vlan id <%= @vlan["id"] %>
   post-down ip link del <%= @name %>
 <% end -%>
-<% if @also then -%>
 <% @also.each do |name, value| -%>
   <%= name %> <%= value %>;
-<% end -%>
 <% end -%>
