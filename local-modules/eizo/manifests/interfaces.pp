@@ -15,4 +15,10 @@ class eizo::interfaces {
     ensure => present
   }
 
+  # Don't use persistant names
+  kernel_parameter { "net.ifnames":
+    provider => "grub2",
+    value => "1"
+  }
+
 }
