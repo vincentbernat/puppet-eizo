@@ -14,7 +14,7 @@ class eizo::ssh {
     require => Package["openssh-server"]
   }
 
-  Ssh_config {
+  Sshd_config {
     notify => Service[ssh]
   }
 
