@@ -130,6 +130,7 @@ eizo::flexget::config:
           - Suits
           - The Flash
           - In the Flesh
+          - The Driver
           - Episodes:
               exact: yes
       set:
