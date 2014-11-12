@@ -15,6 +15,7 @@ eizo::debian::packages:
   - alsa-utils
   - lldpd
   - htop
+  - glances
   - ntp
   - ethtool
   - iw
