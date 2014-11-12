@@ -14,5 +14,5 @@ iface <%= @name %> inet static
   post-down ip link del <%= @name %>
 <% end -%>
 <% @also.each do |name, value| -%>
-  <%= name %> <%= value %>;
+  <%= name %> <%= value %>
 <% end -%>
