@@ -111,6 +111,7 @@ eizo::flexget::config:
         - /srv/media/TV/
 
     search:
+      identified_by: ep
       discover:
         what:
           - emit_series:
