@@ -180,7 +180,7 @@ eizo::flexget::config:
       manual: yes
       find:
         regexp: .*(avi|mkv|mp4)$
-        path: /my/series
+        path: /srv/media/TV
         recursive: yes
       template:
         - tv
