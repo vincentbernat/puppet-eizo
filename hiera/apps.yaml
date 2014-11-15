@@ -113,8 +113,7 @@ eizo::flexget::config:
     search:
       discover:
         what:
-          - emit_series:
-              from_start: yes
+          - emit_series: yes
         from:
           - torrentz: verified
           - piratebay:
