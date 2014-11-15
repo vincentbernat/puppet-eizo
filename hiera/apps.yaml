@@ -45,6 +45,8 @@ eizo::flexget::config:
         smtp_host: localhost
       content_filter:
         reject: '*.rar'
+
+    transmission:
       transmission:
         host: localhost
         port: 9099
@@ -123,6 +125,8 @@ eizo::flexget::config:
   tasks:
 
     movie:
+      template:
+        - transmission
       movie_queue: yes
       discover:
         what:
@@ -149,6 +153,7 @@ eizo::flexget::config:
         - rss: 'http://www.nyaatorrents.org/?page=rss&term=HorribleSubs+mkv'
       template:
         - anime
+        - transmission
 
     tv feed:
       inputs:
@@ -160,12 +165,23 @@ eizo::flexget::config:
         - rss: "http://showrss.info/feeds/all.rss"
       template:
         - tv
+        - transmission
 
     tv search:
       manual: yes
       template:
         - tv
         - search
+        - transmission
+
+    seed series:
+      manual: yes
+      find:
+        regexp: .*(avi|mkv|mp4)$
+        path: /my/series
+        recursive: yes
+      template:
+        - tv
 
 # nginx configuration
 nginx::package::package_name: nginx-extras
