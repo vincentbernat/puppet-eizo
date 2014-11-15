@@ -39,7 +39,7 @@ eizo::flexget::config:
       headers:
         User-Agent: "Mozilla/5.0 (Windows NT 5.1; rv:16.0) Gecko/20100101 Firefox/16.0"
       email:
-        active: True
+        active: true
         from: bernat@luffy.cx
         to: bernat@luffy.cx
         smtp_host: localhost
@@ -55,33 +55,7 @@ eizo::flexget::config:
         min_ratio: 1
       magnets: no
 
-  tasks:
-
-    movie:
-      movie_queue: yes
-      discover:
-        what:
-          - emit_movie_queue: yes
-        from:
-          - kat:
-              category: movies
-              verified: yes
-          - piratebay:
-              category: "highres movies"
-              sort_by: seeds
-          - torrentz: verified
-      set:
-        path: "/srv/transmission/complete/Film"
-        main_file_only: Yes
-        include_subs: Yes
-      quality: 720p+ webdl+
-      content_size:
-        max: 5000
-
     anime:
-      inputs:
-        - rss: 'http://tracker.yibis.com/rss.xml'
-        - rss: 'http://www.nyaatorrents.org/?page=rss&term=HorribleSubs+mkv'
       series:
         720p:
           - Naruto Shippuuden
@@ -93,13 +67,6 @@ eizo::flexget::config:
         - /srv/media/TV/
 
     tv:
-      inputs:
-        - rss: "http://rss.thepiratebay.se/208"
-        - rss: "http://kickass.to/tv/?rss=1"
-        - rss: "http://feeds.feedburner.com/eztv-rss-atom-feeds?format=xml"
-        - rss: 'http://torrentz.eu/feed?q=hdtv+720p'
-        - rss: "http://rss.bt-chat.com/?cat=9"
-        - rss: "http://showrss.info/feeds/all.rss"
       cookies: ~/.flexget/cookies.txt
       series:
         settings:
@@ -137,10 +104,65 @@ eizo::flexget::config:
               exact: yes
       set:
         path: "/srv/transmission/complete/TV/{{ series_name }}"
-        main_file_only: Yes
-        include_subs: Yes
+        main_file_only: yes
+        include_subs: yes
       exist_series:
         - /srv/media/TV/
+
+    search:
+      discover:
+        what:
+          - emit_series:
+              from_start: yes
+        from:
+          - torrentz: verified
+
+  tasks:
+
+    movie:
+      movie_queue: yes
+      discover:
+        what:
+          - emit_movie_queue: yes
+        from:
+          - kat:
+              category: movies
+              verified: yes
+          - piratebay:
+              category: "highres movies"
+              sort_by: seeds
+          - torrentz: verified
+      set:
+        path: "/srv/transmission/complete/Film"
+        main_file_only: yes
+        include_subs: yes
+      quality: 720p+ webdl+
+      content_size:
+        max: 5000
+
+    anime feed:
+      inputs:
+        - rss: 'http://tracker.yibis.com/rss.xml'
+        - rss: 'http://www.nyaatorrents.org/?page=rss&term=HorribleSubs+mkv'
+      template:
+        - anime
+
+    tv feed:
+      inputs:
+        - rss: "http://rss.thepiratebay.se/208"
+        - rss: "http://kickass.to/tv/?rss=1"
+        - rss: "http://feeds.feedburner.com/eztv-rss-atom-feeds?format=xml"
+        - rss: 'http://torrentz.eu/feed?q=hdtv+720p'
+        - rss: "http://rss.bt-chat.com/?cat=9"
+        - rss: "http://showrss.info/feeds/all.rss"
+      template:
+        - tv
+
+    tv search:
+      manual: yes
+      template:
+        - tv
+        - search
 
 # nginx configuration
 nginx::package::package_name: nginx-extras
