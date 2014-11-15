@@ -117,6 +117,9 @@ eizo::flexget::config:
               from_start: yes
         from:
           - torrentz: verified
+          - piratebay:
+              category: tv
+              sort_by: leechers
 
   tasks:
 
