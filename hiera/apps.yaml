@@ -168,6 +168,7 @@ eizo::flexget::config:
         - transmission
 
     tv search:
+      # flexget execute --task "tv search" --discover-now --stop-waiting "Falling Skies"
       manual: yes
       template:
         - tv
@@ -175,6 +176,7 @@ eizo::flexget::config:
         - transmission
 
     seed series:
+      # flexget execute --tasks "seed series" --disable-advancement --learn
       manual: yes
       find:
         regexp: .*(avi|mkv|mp4)$
