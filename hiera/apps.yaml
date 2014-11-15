@@ -63,7 +63,7 @@ eizo::flexget::config:
           - One Piece
       set:
         path: "/srv/transmission/complete/TV/{{ series_name }}"
-      exist_series:
+      exists_series:
         - /srv/media/TV/
 
     tv:
@@ -107,7 +107,7 @@ eizo::flexget::config:
         path: "/srv/transmission/complete/TV/{{ series_name }}"
         main_file_only: yes
         include_subs: yes
-      exist_series:
+      exists_series:
         - /srv/media/TV/
 
     search:
