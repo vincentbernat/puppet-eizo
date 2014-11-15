@@ -89,6 +89,8 @@ eizo::flexget::config:
           - One Piece
       set:
         path: "/srv/transmission/complete/TV/{{ series_name }}"
+      exist_series:
+        - /srv/media/TV/
 
     tv:
       inputs:
@@ -137,6 +139,8 @@ eizo::flexget::config:
         path: "/srv/transmission/complete/TV/{{ series_name }}"
         main_file_only: Yes
         include_subs: Yes
+      exist_series:
+        - /srv/media/TV/
 
 # nginx configuration
 nginx::package::package_name: nginx-extras
