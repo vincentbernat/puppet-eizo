@@ -43,8 +43,6 @@ eizo::flexget::config:
         from: bernat@luffy.cx
         to: bernat@luffy.cx
         smtp_host: localhost
-      content_filter:
-        reject: '*.rar'
 
     transmission:
       transmission:
@@ -56,6 +54,8 @@ eizo::flexget::config:
         finished_for: 2 days
         min_ratio: 1
       magnets: no
+      content_filter:
+        reject: '*.rar'
 
     anime:
       series:
