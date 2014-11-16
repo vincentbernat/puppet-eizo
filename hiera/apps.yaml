@@ -122,6 +122,12 @@ eizo::flexget::config:
               category: tv
               sort_by: leechers
 
+    no-wait:
+      series:
+        settings:
+          normal:
+            timeframe: 0
+
   tasks:
 
     movie:
@@ -168,11 +174,12 @@ eizo::flexget::config:
         - transmission
 
     tv search:
-      # flexget execute --task "tv search" --discover-now --stop-waiting "Falling Skies"
+      # flexget execute --task "tv search" --discover-now
       manual: yes
       template:
         - tv
         - search
+        - no-wait
         - transmission
 
     seed series:
@@ -184,6 +191,7 @@ eizo::flexget::config:
         recursive: yes
       template:
         - tv
+        - no-wait
 
 # nginx configuration
 nginx::package::package_name: nginx-extras
