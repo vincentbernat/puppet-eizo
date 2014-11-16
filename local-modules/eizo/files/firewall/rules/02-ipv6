@@ -10,7 +10,7 @@ done
 
 # Set TCPMSS. With 6rd, we are more likely to have problems with
 # PMTU. All the more our MTU seems too low?
-main command ip6tables -t mangle -A POSTROUTING -o internet6 \
+ip6tables -t mangle -A POSTROUTING -o internet6 \
           -p tcp --tcp-flags SYN,RST SYN \
           -j TCPMSS --clamp-mss-to-pmtu
 
