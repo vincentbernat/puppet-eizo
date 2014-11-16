@@ -60,9 +60,12 @@ eizo::flexget::config:
     anime:
       series:
         720p:
-          - Naruto Shippuuden
-          - Fairy Tail
-          - One Piece
+          - Naruto Shippuuden:
+              from_group: horriblesubs
+          - Fairy Tail:
+              from_group: horriblesubs
+          - One Piece:
+              from_group: horriblesubs
       set:
         path: "/srv/transmission/complete/TV/{{ series_name }}"
 
@@ -156,7 +159,8 @@ eizo::flexget::config:
     anime feed:
       inputs:
         - rss: 'http://tracker.yibis.com/rss.xml'
-        - rss: 'http://www.nyaatorrents.org/?page=rss&term=HorribleSubs+mkv'
+        - rss: 'http://www.nyaatorrents.org/?page=rss&term=720p'
+        - rss: 'https://www.tokyotosho.info/rss.php?filter=1&zwnj=0&entries=450'
       template:
         - no-redownload
         - anime
