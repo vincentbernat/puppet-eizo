@@ -186,7 +186,7 @@ eizo::flexget::config:
         - transmission
 
     seed series:
-      # flexget execute --tasks "seed series" --disable-advancement --learn
+      # flexget execute --tasks "seed series" --disable-tracking --learn
       manual: yes
       find:
         regexp: .*(avi|mkv|mp4)$
