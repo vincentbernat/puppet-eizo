@@ -12,7 +12,7 @@ done
 # PMTU. All the more our MTU seems too low?
 main command ip6tables -t mangle -A POSTROUTING -o internet6 \
           -p tcp --tcp-flags SYN,RST SYN \
-          -j TCPMSS --set-mss $(( $(</sys/class/net/internet6/mtu) - 40 - 20))
+          -j TCPMSS --clamp-mss-to-pmtu
 
 # Setup IPv6 subnets
 main {
