@@ -126,7 +126,7 @@ eizo::flexget::config:
       series:
         settings:
           normal:
-            timeframe: 0
+            timeframe: 0 second
 
   tasks:
 
@@ -177,9 +177,9 @@ eizo::flexget::config:
       # flexget execute --task "tv search" --discover-now
       manual: yes
       template:
+        - no-wait
         - tv
         - search
-        - no-wait
         - transmission
 
     seed series:
@@ -190,8 +190,8 @@ eizo::flexget::config:
         path: /srv/media/TV
         recursive: yes
       template:
-        - tv
         - no-wait
+        - tv
 
 # nginx configuration
 nginx::package::package_name: nginx-extras
