@@ -15,9 +15,12 @@ done
 
 # We stole CeroWRT stuff for QoS
 main (
-    export IFACE=internet
     export UPLINK=2302
     export DOWNLINK=14698
     export INSMOD=modprobe
+
+    export IFACE=internet
+    ./qos/simple.qos
+    export IFACE=internet6
     ./qos/simple.qos
 )
