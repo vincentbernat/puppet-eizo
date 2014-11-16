@@ -1,6 +1,7 @@
 # -*- sh -*-
 
 main sysctl -qw net.core.default_qdisc=fq_codel
+
 for iface in /sys/class/net/*; do
     [[ ${iface##*/} != "lo" ]] || continue
     [[ $(<$iface/tx_queue_len) != 0 ]] || continue
@@ -12,12 +13,3 @@ for iface in /sys/class/net/*; do
     main tc qdisc replace dev ${iface##*/} root fq_codel
     main tc qdisc del dev ${iface##*/} root
 done
-
-# We stole CeroWRT stuff for QoS
-main (
-    export IFACE=internet
-    export UPLINK=2302
-    export DOWNLINK=14698
-    export INSMOD=modprobe
-    ./qos/simple.qos
-)

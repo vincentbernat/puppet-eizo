@@ -23,7 +23,6 @@
 # Usage: ./run [ -n | --dry-run ] [ -t | --trace ]
 
 set -e
-cd ${0%/*}
 
 zparseopts -D n=dryrun -dry-run=dryrun t=trace -trace=trace f=iptables
 
