@@ -169,12 +169,11 @@ eizo::flexget::config:
 
     tv feed:
       inputs:
-        - rss: "http://rss.thepiratebay.se/208"
-        - rss: "http://kickass.to/tv/?rss=1"
+        - rss: "http://showrss.info/feeds/all.rss"
         - rss: "http://feeds.feedburner.com/eztv-rss-atom-feeds?format=xml"
         - rss: 'http://torrentz.eu/feed?q=hdtv+720p'
-        - rss: "http://rss.bt-chat.com/?cat=9"
-        - rss: "http://showrss.info/feeds/all.rss"
+        - rss: "http://kickass.to/usearch/category%3Atv%20verified%3A1/?rss=1"
+        - rss: "http://rss.bt-chat.com/?cat=9&group=230"
       template:
         - no-redownload
         - tv
