@@ -104,6 +104,7 @@ eizo::flexget::config:
           - In the Flesh
           - The Driver
           - Falling Skies
+          - American Dad
           - Episodes:
               exact: yes
       set:
