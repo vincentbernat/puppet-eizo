@@ -76,7 +76,7 @@ eizo::flexget::config:
           normal:
             timeframe: 12 hours
             target: 720p hdtv+ dd5.1|ac3|dts
-            quality: 720p
+            quality: "720p hdtv+ !aac"
             propers: 4 days
         normal:
           - Modern Family
