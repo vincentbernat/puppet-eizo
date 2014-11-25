@@ -19,17 +19,17 @@ done
 # that.
 
 ip46tables -t mangle -N QOS_MARK_internet
-ip46tables -t mangle -A QOS_MARK_internet -j MARK --set-mark 0x2/0xf
-ip46tables -t mangle -A QOS_MARK_internet -m dscp --dscp-class CS1 -j MARK --set-mark 0x3/0xf
-ip46tables -t mangle -A QOS_MARK_internet -m dscp --dscp-class CS6 -j MARK --set-mark 0x1/0xf
-ip46tables -t mangle -A QOS_MARK_internet -m dscp --dscp-class EF -j MARK --set-mark 0x1/0xf
-ip46tables -t mangle -A QOS_MARK_internet -m dscp --dscp-class AF42 -j MARK --set-mark 0x1/0xf
-ip46tables -t mangle -A QOS_MARK_internet -m tos  --tos Minimize-Delay -j MARK --set-mark 0x1/0xf
+ip46tables -t mangle -A QOS_MARK_internet -j MARK --set-mark 0x2/0xff
+ip46tables -t mangle -A QOS_MARK_internet -m dscp --dscp-class CS1 -j MARK --set-mark 0x3/0xff
+ip46tables -t mangle -A QOS_MARK_internet -m dscp --dscp-class CS6 -j MARK --set-mark 0x1/0xff
+ip46tables -t mangle -A QOS_MARK_internet -m dscp --dscp-class EF -j MARK --set-mark 0x1/0xff
+ip46tables -t mangle -A QOS_MARK_internet -m dscp --dscp-class AF42 -j MARK --set-mark 0x1/0xff
+ip46tables -t mangle -A QOS_MARK_internet -m tos  --tos Minimize-Delay -j MARK --set-mark 0x1/0xff
 
 # Clear DSCP for incoming packets
 ip46tables -t mangle -A PREROUTING -i internet -m dscp ! --dscp 0x00 -j DSCP --set-dscp-class BE
 ip46tables -t mangle -A OUTPUT -p udp -m multiport --ports ntp,domain -j DSCP --set-dscp-class AF42
-ip46tables -t mangle -A POSTROUTING -o internet -m mark --mark 0x00/0xf -g QOS_MARK_internet
+ip46tables -t mangle -A POSTROUTING -o internet -m mark --mark 0x00/0xff -g QOS_MARK_internet
 
 main {
     cat <<EOF | xargs -n1 modprobe
