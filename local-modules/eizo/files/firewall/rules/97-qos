@@ -94,6 +94,11 @@ main {
 main {
     quantum=$(($(</sys/class/net/internet/mtu) * 4))
 
+    ip link set up dev ifb4inet 2> /dev/null || {
+        ip link add name ifb4inet type ifb
+        ip link set up dev ifb4inet
+    }
+
     tc qdisc del dev internet handle ffff: ingress
     tc qdisc add dev internet handle ffff: ingress
     tc qdisc del dev ifb4inet root 2> /dev/null
