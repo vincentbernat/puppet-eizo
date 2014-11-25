@@ -43,8 +43,8 @@ EOF
 }
 
 # Bandwidth in kbit/s
-uplink=$((80 * 90))
-downlink=$((400 * 90))
+uplink=7950
+downlink=41000
 
 # egress filtering
 main {
