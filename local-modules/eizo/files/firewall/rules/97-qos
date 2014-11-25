@@ -97,6 +97,8 @@ main {
     ip link set up dev ifb4inet 2> /dev/null || {
         ip link add name ifb4inet type ifb
         ip link set up dev ifb4inet
+        ip link del ifb0 2> /dev/null || true
+        ip link del ifb1 2> /dev/null || true
     }
 
     tc qdisc del dev internet handle ffff: ingress
