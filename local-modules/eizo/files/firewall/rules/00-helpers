@@ -10,7 +10,7 @@ function ip46tables () {
     local last
     while (( $# > 0 )); do
         case "$1,$last" in
-            internet,-o)
+            internet,-o|internet,-i)
                 args=($args internet6)
                 ;;
             *)
