@@ -14,6 +14,12 @@ class eizo::ssh {
     require => Package["openssh-server"]
   }
 
+  sshd_config { "UseDNS":
+    ensure => present,
+    value => "no",
+    require => Package["openssh-server"]
+  }
+
   Sshd_config {
     notify => Service[ssh]
   }
