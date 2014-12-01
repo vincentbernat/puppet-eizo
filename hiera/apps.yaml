@@ -133,29 +133,6 @@ eizo::flexget::config:
 
   tasks:
 
-    movie:
-      template:
-        - transmission
-      movie_queue: yes
-      discover:
-        what:
-          - emit_movie_queue: yes
-        from:
-          - kat:
-              category: movies
-              verified: yes
-          - piratebay:
-              category: "highres movies"
-              sort_by: seeds
-          - torrentz: verified
-      set:
-        path: "/srv/transmission/complete/Film"
-        main_file_only: yes
-        include_subs: yes
-      quality: 720p+ webdl+
-      content_size:
-        max: 5000
-
     anime feed:
       inputs:
         - rss: 'http://tracker.yibis.com/rss.xml'
