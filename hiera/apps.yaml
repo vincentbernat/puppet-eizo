@@ -54,8 +54,13 @@ eizo::flexget::config:
         finished_for: 2 days
         min_ratio: 1
       magnets: no
+
+    blacklist:
       content_filter:
         reject: '*.rar'
+      regexp:
+        reject:
+          - micromkv
 
     anime:
       series:
@@ -142,6 +147,7 @@ eizo::flexget::config:
         - rss: "http://rss.thepiratebay.se/208"
       template:
         - no-redownload
+        - blacklist
         - anime
         - transmission
 
@@ -154,6 +160,7 @@ eizo::flexget::config:
         - rss: "http://rss.bt-chat.com/?cat=9&group=230"
       template:
         - no-redownload
+        - blacklist
         - tv
         - transmission
 
@@ -163,6 +170,7 @@ eizo::flexget::config:
       template:
         - no-redownload
         - no-wait
+        - blacklist
         - tv
         - search
         - transmission
