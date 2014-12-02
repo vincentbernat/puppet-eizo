@@ -104,6 +104,7 @@ eizo::flexget::config:
           - In the Flesh
           - The Driver
           - Falling Skies
+          - Downton Abbey
           - Episodes:
               exact: yes
       set:
