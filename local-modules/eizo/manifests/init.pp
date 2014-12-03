@@ -8,6 +8,7 @@ class eizo {
   include ::eizo::postfix
   include ::eizo::ddns
   include ::eizo::ssh
+  include ::eizo::system
 
   # Applications
   include ::eizo::xbmc
