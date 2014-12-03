@@ -14,7 +14,7 @@ eizo::interfaces:
     static: 192.168.119.1/26
     order: 1
     also:
-      offload-tso: off
+      offload-tso: "off"
   lan-trusted:
     description: "Trusted LAN network"
     static: 192.168.117.1/26
