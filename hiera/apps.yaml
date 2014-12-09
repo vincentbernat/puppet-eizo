@@ -43,6 +43,7 @@ eizo::flexget::config:
         from: bernat@luffy.cx
         to: bernat@luffy.cx
         smtp_host: localhost
+      verify_ssl_certificates: no
 
     transmission:
       transmission:
