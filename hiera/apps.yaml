@@ -145,7 +145,6 @@ eizo::flexget::config:
         - rss: 'http://tracker.yibis.com/rss.xml'
         - rss: 'http://www.nyaatorrents.org/?page=rss&term=720p'
         - rss: 'https://www.tokyotosho.info/rss.php?filter=1&zwnj=0&entries=450'
-        - rss: "http://rss.thepiratebay.se/208"
       template:
         - no-redownload
         - blacklist
