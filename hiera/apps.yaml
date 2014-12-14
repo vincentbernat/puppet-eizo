@@ -125,9 +125,6 @@ eizo::flexget::config:
           - emit_series: yes
         from:
           - torrentz: verified
-          - piratebay:
-              category: tv
-              sort_by: leechers
 
     no-redownload:
       exists_series:
