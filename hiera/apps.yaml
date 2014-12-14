@@ -111,6 +111,7 @@ eizo::flexget::config:
           - The Driver
           - Falling Skies
           - Downton Abbey
+          - Brooklyn Nine-Nine
           - Episodes:
               exact: yes
       set:
