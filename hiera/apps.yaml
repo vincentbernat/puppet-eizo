@@ -185,8 +185,8 @@ eizo::flexget::config:
         - tv
 
 # nginx configuration
-nginx::package::package_name: nginx-extras
-nginx::package::manage_repo: false
+nginx::package_name: nginx-extras
+nginx::manage_repo: false
 nginx::service_ensure: running
 
 nginx::nginx_upstreams:
