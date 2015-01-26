@@ -111,6 +111,7 @@ eizo::flexget::config:
           - Falling Skies
           - Downton Abbey
           - Brooklyn Nine-Nine
+          - The 100
           - Episodes:
               exact: yes
       set:
