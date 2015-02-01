@@ -1,13 +1,4 @@
 eizo::interfaces:
-  internet:
-    description: "FTTH Swisscom connection"
-    path: "pci-0000:02:00.0"
-    order: 4
-    dhcp:
-      timeout: 60
-      retry: 1
-      select-timeout: 0
-      "send vendor-class-identifier": "100008,0001,,pfSense dhclient2.1"
   lan-isolated:
     description: "Isolated LAN network"
     path: "pci-0000:00:19.0"
@@ -15,6 +6,17 @@ eizo::interfaces:
     order: 1
     also:
       offload-tso: "off"
+  internet:
+    description: "FTTH Swisscom connection"
+    vlan:
+      over: lan-isolated
+      id: 10
+    order: 4
+    dhcp:
+      timeout: 60
+      retry: 1
+      select-timeout: 0
+      "send vendor-class-identifier": "100008,0001,,pfSense dhclient2.1"
   lan-trusted:
     description: "Trusted LAN network"
     static: 192.168.117.1/26
