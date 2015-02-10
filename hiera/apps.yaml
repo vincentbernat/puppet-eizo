@@ -112,6 +112,7 @@ eizo::flexget::config:
           - Downton Abbey
           - Brooklyn Nine-Nine
           - The 100
+          - Better Call Saul
           - Episodes:
               exact: yes
       set:
