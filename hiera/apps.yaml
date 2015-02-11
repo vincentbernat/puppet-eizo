@@ -86,11 +86,9 @@ eizo::flexget::config:
             propers: 4 days
         normal:
           - Modern Family
-          - Breaking Bad
           - The Big Bang Theory
           - Two and a Half Men
           - The Walking Dead
-          - Boardwalk Empire
           - Justified
           - Orange is the New Black
           - Game Of Thrones
