@@ -563,6 +563,9 @@ munin::node::plugins:
   "if_lan-guest":
     target: if_
     ensure: link
+  "if_lan-games":
+    target: if_
+    ensure: link
   "if_internet":
     target: if_
     ensure: link
@@ -573,6 +576,9 @@ munin::node::plugins:
     target: if_err_
     ensure: link
   "if_err_lan-guest":
+    target: if_err_
+    ensure: link
+  "if_err_lan-games":
     target: if_err_
     ensure: link
   "if_err_internet":

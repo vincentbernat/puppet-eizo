@@ -31,6 +31,13 @@ eizo::interfaces:
       over: lan-isolated
       id: 8
     order: 2
+  lan-games:
+    description: "Games LAN network"
+    static: 192.168.118.129/26
+    vlan:
+      over: lan-isolated
+      id: 9
+    order: 2
   wlan-guest:
     description: "Guest WLAN network"
     path: "pci-0000:03:00.0"
