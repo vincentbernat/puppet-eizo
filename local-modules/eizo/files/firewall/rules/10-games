@@ -10,6 +10,7 @@ ip46tables -A FORWARD -i lan-games  -j LAN-GAMES-FORWARD
 icmp LAN-GAMES-INPUT   10
 icmp LAN-GAMES-FORWARD 100
 dhcp LAN-GAMES
+upnp LAN-GAMES
 public LAN-GAMES
 
 # Internet access, except port 25

@@ -30,6 +30,9 @@ function reject () {
     ip46tables -A $chain -p tcp -m multiport --dport 135,137,138,139,445 -j DROP
     ip46tables -A $chain -p udp --sport 5353 --dport 5353 -j DROP   # mDNS
     ip46tables -A $chain -p udp --sport 57621 --dport 57621 -j DROP # Spotify
+    ip46tables -A $chain -p udp --dport 1900 -j DROP # UPnP
+    ip46tables -A $chain -p udp --dport 5350 -j DROP # NAT-PMP
+    ip46tables -A $chain -p udp --dport 5351 -j DROP # NAT-PMP
     # Handle multicast/broadcast differently
     ip46tables -N $chain-MC
     iptables   -A $chain -m addrtype --dst-type BROADCAST -j $chain-MC
@@ -59,7 +62,12 @@ function dhcp () {
     ip46tables -A $chain-INPUT -p udp --destination-port ntp -j ACCEPT
     ip46tables -A $chain-INPUT -p udp --destination-port domain -j ACCEPT
     ip46tables -A $chain-INPUT -p tcp --destination-port domain -j ACCEPT
-    # UPnP and NAT-PMP
+}
+
+# UPnP and NAT-PMP
+function upnp () {
+    chain=$1 ; shift
+
     ip46tables -A $chain-INPUT -p udp --destination-port 1900 -j ACCEPT
     ip46tables -A $chain-INPUT -p udp --destination-port 5351 -j ACCEPT
     ip46tables -A $chain-INPUT -p udp --destination-port 5350 -j ACCEPT
