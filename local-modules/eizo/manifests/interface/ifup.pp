@@ -5,6 +5,7 @@ define eizo::interface::ifup(
   $dhcp = undef,
   $static = undef,
   $vlan = undef,
+  $upnp = undef,
   $also = {}) {
 
   file { "/etc/network/interfaces.d/${order}-${name}":

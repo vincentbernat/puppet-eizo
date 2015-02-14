@@ -38,6 +38,7 @@ eizo::interfaces:
       over: lan-isolated
       id: 9
     order: 2
+    upnp: true
   wlan-guest:
     description: "Guest WLAN network"
     path: "pci-0000:03:00.0"

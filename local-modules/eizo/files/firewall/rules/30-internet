@@ -20,6 +20,18 @@ iptables -A INTERNET-INPUT -p ipv6 -j ACCEPT
 ip46tables -A INTERNET-INPUT -p tcp --dport 9098 -j ACCEPT
 ip46tables -A INTERNET-INPUT -p udp --dport 9098 -j ACCEPT
 
+# UPnP stuff. Only for "lan-games"
+iptables   -t nat    -N MINIUPNPD
+iptables   -t nat    -N MINIUPNPD-PCP-PEER
+ip46tables -t mangle -N MINIUPNPD
+ip46tables -t filter -N MINIUPNPD
+iptables   -t nat    -A PREROUTING -i internet -j MINIUPNPD
+iptables   -t nat    -A POSTROUTING -o internet -j MINIUPNPD-PCP-PEER
+ip46tables -t mangle -A PREROUTING -i internet -j MINIUPNPD
+ip46tables -t filter -A INTERNET-FORWARD -i internet -o lan-games -j MINIUPNPD
+# Signal change to miniupnpd
+main pkill -USR1 miniupnpd || true
+
 # SSH acces
 ip46tables -A INTERNET-FORWARD -p tcp -o lan-trusted -j ACCEPT
 
