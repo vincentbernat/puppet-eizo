@@ -12,9 +12,6 @@ icmp LAN-GAMES-FORWARD 100
 dhcp LAN-GAMES
 public LAN-GAMES
 
-# UPnP
-ip46tables -A LAN-GAMES-INPUT -p udp -d 239.255.255.250 --dport 1900 -j ACCEPT
-
 # Internet access, except port 25
 ip46tables -N LAN-GAMES-FORWARD-INET
 ip46tables -A LAN-GAMES-FORWARD -o internet -j LAN-GAMES-FORWARD-INET

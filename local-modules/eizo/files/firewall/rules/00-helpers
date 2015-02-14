@@ -62,6 +62,7 @@ function dhcp () {
     # UPnP and NAT-PMP
     ip46tables -A $chain-INPUT -p udp --destination-port 1900 -j ACCEPT
     ip46tables -A $chain-INPUT -p udp --destination-port 5351 -j ACCEPT
+    ip46tables -A $chain-INPUT -p udp --destination-port 5350 -j ACCEPT
 }
 
 # ICMP
