@@ -3,7 +3,7 @@
 ext_ifname=internet
 listening_ip=<%=
 @interfaces.select { |ifname, params| params["upnp"] }
-           .map { |ifname, params| params["static"].split("/")[0] }
+           .map { |ifname, params| ifname }
            .join(" ")
 %>
 
