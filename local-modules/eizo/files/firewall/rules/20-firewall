@@ -31,6 +31,10 @@ ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o wlan-guest -j DROP
 # Can do UPnP on lan-games
 iptables  -A FIREWALL-OUTPUT -p udp --dport 1900 -d 239.255.255.250 -o lan-games -j ACCEPT
 ip6tables -A FIREWALL-OUTPUT -p udp --dport 1900 -d ff02::c -o lan-games -j ACCEPT
+iptables  -A FIREWALL-OUTPUT -p udp --dport 5350 -d 224.0.0.1 -o lan-games -j ACCEPT
+iptables  -A FIREWALL-OUTPUT -p udp --dport 5351 -d 224.0.0.1 -o lan-games -j ACCEPT
+ip6tables -A FIREWALL-OUTPUT -p udp --dport 5350 -d ff02::1 -o lan-games -j ACCEPT
+ip6tables -A FIREWALL-OUTPUT -p udp --dport 5351 -d ff02::1 -o lan-games -j ACCEPT
 
 # 6rd
 iptables -A FIREWALL-OUTPUT -p ipv6 -j ACCEPT
