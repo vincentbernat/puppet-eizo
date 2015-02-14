@@ -4,7 +4,7 @@ After = network.target
 
 [Service]
 ExecStartPre = /etc/miniupnpd/iptables_flush.sh
-ExecStart = /usr/bin/miniupnpd -f /etc/miniupnpd/miniupnpd.conf -d
+ExecStart = /usr/sbin/miniupnpd -f /etc/miniupnpd/miniupnpd.conf -d
 ExecStopPost = /etc/miniupnpd/iptables_flush.sh
 PIDFile = /run/miniupnpd.pid
 Restart = on-failure
