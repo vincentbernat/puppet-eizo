@@ -22,9 +22,6 @@ eizo::nginx::certs:
       -----BEGIN CERTIFICATE-----
       -----END CERTIFICATE-----
 
-eizo::hostapd::ssid: "XXXXXXXXXXX"
-eizo::hostapd::wpa_passphrase: "XXXXXXXXXXXXXXXX"
-
 eizo::proftpd::port: 2222
 eizo::proftpd::users:
   user1:

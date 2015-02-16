@@ -5,9 +5,7 @@
 ip46tables -N LAN-GUEST-INPUT
 ip46tables -N LAN-GUEST-FORWARD
 ip46tables -A INPUT -i lan-guest    -j LAN-GUEST-INPUT
-ip46tables -A INPUT -i wlan-guest   -j LAN-GUEST-INPUT
 ip46tables -A FORWARD -i lan-guest  -j LAN-GUEST-FORWARD
-ip46tables -A FORWARD -i wlan-guest -j LAN-GUEST-FORWARD
 
 icmp LAN-GUEST-INPUT   10
 icmp LAN-GUEST-FORWARD 100

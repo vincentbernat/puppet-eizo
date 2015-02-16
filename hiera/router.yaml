@@ -39,11 +39,6 @@ eizo::interfaces:
       id: 9
     order: 2
     upnp: true
-  wlan-guest:
-    description: "Guest WLAN network"
-    path: "pci-0000:03:00.0"
-    static: 192.168.118.65/26
-    order: 3
 
 # That's unfortunate, but lookup will done in Puppet
 eizo::dnsmasq::dhcp: "eizo::interfaces"
@@ -51,13 +46,6 @@ eizo::dnsmasq::dhcp_hosts:
   gs110tp:    "e4:f4:c6:f1:4c:7a"
   gs108t:     "20:4e:7f:77:87:3f"
   hl-4150cdn: "00:1b:a9:9b:ea:82"
-
-eizo::hostapd::interface: wlan-guest
-eizo::hostapd::channel: 11
-eizo::hostapd::extra:
-  wmm_enabled: 1
-  ieee80211n: 1
-  ht_capab: "[HT40-][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40][DSSS_CCK-40][DSSS_CCK-40]"
 
 eizo::proftpd::shaper:
   downrate: 700

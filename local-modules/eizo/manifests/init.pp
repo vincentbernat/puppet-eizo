@@ -20,7 +20,6 @@ class eizo {
   # Router stuff
   include ::eizo::interfaces
   include ::eizo::dnsmasq
-  include ::eizo::hostapd
   include ::eizo::proftpd
   include ::eizo::miniupnpd
   class { "::eizo::firewall":

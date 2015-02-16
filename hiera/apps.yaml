@@ -569,9 +569,6 @@ munin::node::plugins:
   "if_internet":
     target: if_
     ensure: link
-  "if_wlan-guest":
-    target: if_
-    ensure: link
   "if_err_lan-trusted":
     target: if_err_
     ensure: link
@@ -582,8 +579,5 @@ munin::node::plugins:
     target: if_err_
     ensure: link
   "if_err_internet":
-    target: if_err_
-    ensure: link
-  "if_err_wlan-guest":
     target: if_err_
     ensure: link
