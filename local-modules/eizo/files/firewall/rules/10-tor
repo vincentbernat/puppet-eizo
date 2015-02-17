@@ -17,5 +17,5 @@ ip46tables -A LAN-TOR-INPUT -p udp --dport 9041 -j ACCEPT
 ip46tables -t nat -A PREROUTING -i lan-tor -p udp --dport 53 -j REDIRECT --to-ports 9041
 ip46tables -t nat -A PREROUTING -i lan-tor -p tcp --syn -j REDIRECT --to-ports 9040
 
-reject LAN-TOR-INPUT
-reject LAN-TOR-FORWARD
+reject LAN-TOR-INPUT 3
+reject LAN-TOR-FORWARD 3
