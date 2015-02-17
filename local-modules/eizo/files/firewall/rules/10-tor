@@ -1,0 +1,24 @@
+# -*- sh -*-
+
+# Rules when the Tor LAN is the source.
+
+ip46tables -N LAN-TOR-INPUT
+ip46tables -N LAN-TOR-FORWARD
+ip46tables -A INPUT -i lan-tor    -j LAN-TOR-INPUT
+ip46tables -A FORWARD -i lan-tor  -j LAN-TOR-FORWARD
+
+icmp LAN-TOR-INPUT   10
+icmp LAN-TOR-FORWARD 100
+dhcp LAN-TOR
+
+# Internet access, through Tor
+ip46tables -N LAN-TOR-FORWARD-INET
+ip46tables -A LAN-TOR-FORWARD -o internet -j LAN-TOR-FORWARD-INET
+ip46tables -A LAN-TOR-FORWARD-INET -p tcp --dport 9040 -j ACCEPT
+ip46tables -A LAN-TOR-FORWARD-INET -p udp --dport 9041 -j ACCEPT
+ip46tables -A LAN-TOR-FORWARD-INET -j DROP
+ip46tables -t nat -A PREROUTING -i lan-tor -p udp --dport 53 -j REDIRECT --to-ports 9041
+ip46tables -t nat -A PREROUTING -i lan-tor -p tcp --syn -j REDIRECT --to-ports 9040
+
+reject LAN-TOR-INPUT
+reject LAN-TOR-FORWARD

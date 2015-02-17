@@ -56,6 +56,7 @@ for userport in \
     xbmc:tcp/http xbmc:tcp/https \
     postfix:tcp/submission \
     www-data:tcp/http \
+    debian-tor:tcp/http debian-tor:tcp/https \
     unbound:udp/domain unbound:tcp/domain \
     flexget:tcp/http flexget:tcp/https; do
 
