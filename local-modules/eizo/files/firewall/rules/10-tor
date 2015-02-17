@@ -7,8 +7,6 @@ ip46tables -N LAN-TOR-FORWARD
 ip46tables -A INPUT -i lan-tor    -j LAN-TOR-INPUT
 ip46tables -A FORWARD -i lan-tor  -j LAN-TOR-FORWARD
 
-icmp LAN-TOR-INPUT   10
-icmp LAN-TOR-FORWARD 100
 dhcp LAN-TOR
 
 # Internet access, through Tor
