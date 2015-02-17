@@ -33,7 +33,6 @@ function reject () {
     ip46tables -A $chain -p udp --dport 1900 -j DROP # UPnP
     ip46tables -A $chain -p udp --dport 5350 -j DROP # NAT-PMP
     ip46tables -A $chain -p udp --dport 5351 -j DROP # NAT-PMP
-    ip46tables -A $chain -m owner --uid-owner debian-tor -j DROP # Tor
     # Handle multicast/broadcast differently
     ip46tables -N $chain-MC
     iptables   -A $chain -m addrtype --dst-type BROADCAST -j $chain-MC
