@@ -73,7 +73,7 @@ eizo::flexget::config:
           - One Piece:
               from_group: horriblesubs
       set:
-        path: "/srv/transmission/incomplete/TV/{{ series_name }}"
+        path: "/srv/transmission/complete/TV/{{ series_name }}"
 
     tv:
       cookies: ~/.flexget/cookies.txt
@@ -114,7 +114,7 @@ eizo::flexget::config:
           - Episodes:
               exact: yes
       set:
-        path: "/srv/transmission/incomplete/TV/{{ series_name }}"
+        path: "/srv/transmission/complete/TV/{{ series_name }}"
         main_file_only: yes
         include_subs: yes
 
