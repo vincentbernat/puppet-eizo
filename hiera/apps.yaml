@@ -111,6 +111,7 @@ eizo::flexget::config:
           - Brooklyn Nine-Nine
           - The 100
           - Better Call Saul
+          - The Last Man on Earth
           - Episodes:
               exact: yes
       set:
