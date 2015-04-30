@@ -125,7 +125,9 @@ eizo::flexget::config:
         what:
           - emit_series: yes
         from:
-          - torrentz: verified
+          - torrentz:
+              reputation: verified
+              extra_terms: 720p
           - kat:
               category: tv
               verified: yes
