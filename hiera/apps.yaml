@@ -112,6 +112,7 @@ eizo::flexget::config:
           - The 100
           - Better Call Saul
           - The Last Man on Earth
+          - Bloodline
           - Episodes:
               exact: yes
       set:
