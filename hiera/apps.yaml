@@ -126,6 +126,9 @@ eizo::flexget::config:
           - emit_series: yes
         from:
           - torrentz: verified
+          - kat:
+              category: tv
+              verified: yes
 
     no-redownload:
       exists_series:
