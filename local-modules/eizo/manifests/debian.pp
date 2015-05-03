@@ -26,7 +26,7 @@ class eizo::debian(
   }
 
   apt::source { "jessie":
-    location          => 'http://http.debian.net/debian/',
+    location          => 'http://httpredir.debian.org/debian/',
     release           => 'jessie',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
