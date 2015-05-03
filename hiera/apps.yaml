@@ -113,6 +113,7 @@ eizo::flexget::config:
           - Better Call Saul
           - The Last Man on Earth
           - Bloodline
+          - 12 Monkeys
           - Episodes:
               exact: yes
       set:
