@@ -32,5 +32,11 @@ class eizo::debian(
     required_packages => 'debian-keyring debian-archive-keyring',
     include_src       => false
   }
+  apt::source { "jessie-security":
+    location          => 'http://security.debian.org/',
+    release           => 'jessie/updates',
+    repos             => 'main contrib non-free',
+    include_src       => false
+  }
 
 }
