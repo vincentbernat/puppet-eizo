@@ -114,6 +114,7 @@ eizo::flexget::config:
           - The Last Man on Earth
           - Bloodline
           - 12 Monkeys
+          - Wayward Pines
           - Episodes:
               exact: yes
       set:
