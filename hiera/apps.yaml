@@ -1,6 +1,6 @@
-# XBMC configuration
-eizo::xbmc::home: /srv/xbmc
-eizo::xbmc::screen: 'card0-HDMI-A-3'
+# Kodi configuration
+eizo::kodi::home: /srv/xbmc
+eizo::kodi::screen: 'card0-HDMI-A-3'
 
 # Transmission configuration
 eizo::transmission::rpcport: 9099
@@ -201,7 +201,7 @@ nginx::nginx_upstreams:
   'transmission':
     members:
       - "127.0.0.1:%{hiera('eizo::transmission::rpcport')}"
-  'xbmc':
+  'kodi':
     members:
       - "127.0.0.1:8080"
 
@@ -262,15 +262,15 @@ nginx::nginx_locations:
       - 'X-Scheme $scheme'
     ssl: true
     ssl_only: true
-  'xbmc':
-    location: /xbmc/
+  'kodi':
+    location: /kodi/
     vhost: "%{::fqdn}"
-    proxy: http://xbmc$new_uri
+    proxy: http://kodi$new_uri
     raw_prepend: |
       set $new_uri '';
       rewrite_by_lua '
         local uri = ngx.var.request_uri
-        local new_uri, n, err = ngx.re.sub(uri, "^/xbmc/", "/")
+        local new_uri, n, err = ngx.re.sub(uri, "^/kodi/", "/")
         ngx.var.new_uri = new_uri
       ';
     proxy_set_header:

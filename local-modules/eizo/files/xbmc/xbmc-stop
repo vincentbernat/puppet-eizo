@@ -1,4 +1,0 @@
-#!/bin/sh
-
-sudo -u xbmc \
-    /usr/bin/xbmc-send --action="XBMC.Quit"
