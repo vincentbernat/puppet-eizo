@@ -11,7 +11,7 @@ class eizo {
   include ::eizo::system
 
   # Applications
-  include ::eizo::kodi
+  include ::eizo::xbmc
   include ::eizo::transmission
   include ::eizo::flexget
   include ::eizo::nginx

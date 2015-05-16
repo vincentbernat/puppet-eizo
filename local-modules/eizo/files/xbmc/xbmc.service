@@ -1,5 +1,5 @@
 [Unit]
-Description = Kodi Media Center
+Description = XBMC Media Center
 After = remote-fs.target
 After = syslog.target
  
@@ -7,8 +7,8 @@ After = syslog.target
 Type = simple
 Restart = always
 RestartSec = 15
-ExecStart = /usr/local/bin/kodi-start
-ExecStop = /usr/local/bin/kodi-stop
+ExecStart = /usr/local/bin/xbmc-start
+ExecStop = /usr/local/bin/xbmc-stop
 TTYPath = /dev/tty9
 StandardInput = tty
 StandardOutput = journal

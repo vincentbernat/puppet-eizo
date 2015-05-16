@@ -1,10 +1,7 @@
-class eizo::kodi::install inherits eizo::kodi {
+class eizo::xbmc::install inherits eizo::xbmc {
 
-  package { ['kodi', 'kodi-eventclients-kodi-send']:
-    ensure => present
-  }
   package { ['xbmc', 'xbmc-eventclients-xbmc-send']:
-    ensure => absent
+    ensure => present
   }
 
   group { 'xbmc':
@@ -16,16 +13,11 @@ class eizo::kodi::install inherits eizo::kodi {
     ensure => present,
     gid => 'xbmc',
     groups => [ 'audio', 'video', 'nas' ],
-    comment => 'XBMC/Kodi user',
+    comment => 'XBMC user',
     home => $home,
     system => true,
     password => '*',
     require => Group['nas']
-  }
-  ->
-  file { "${home}/.kodi":
-    ensure => link,
-    target => "${home}"
   }
   ->
   file { "${home}/.xbmc":
@@ -33,16 +25,13 @@ class eizo::kodi::install inherits eizo::kodi {
     target => "${home}"
   }
 
-  file { "/usr/local/bin/kodi-start":
-    content => template("eizo/kodi/kodi-start.erb"),
+  file { "/usr/local/bin/xbmc-start":
+    content => template("eizo/xbmc/xbmc-start.erb"),
     mode => "a+x"
   }
-  file { "/usr/local/bin/kodi-stop":
-    source => "puppet:///modules/eizo/kodi/kodi-stop",
+  file { "/usr/local/bin/xbmc-stop":
+    source => "puppet:///modules/eizo/xbmc/xbmc-stop",
     mode => "a+x"
-  }
-  file { ["/usr/local/bin/xbmc-start", "/usr/local/bin/xbmc-stop"]:
-    ensure => absent
   }
 
   # Also install X stuff. We use `ensure_resource` because we don't
