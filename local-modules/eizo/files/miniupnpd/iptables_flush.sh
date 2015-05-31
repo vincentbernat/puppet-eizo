@@ -10,3 +10,5 @@ IP6TABLES=/sbin/ip6tables
 
 $IP6TABLES -t filter -F MINIUPNPD
 $IP6TABLES -t mangle -F MINIUPNPD
+
+:
