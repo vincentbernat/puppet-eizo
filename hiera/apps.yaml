@@ -4,7 +4,7 @@ eizo::kodi::screen: 'card0-HDMI-A-3'
 
 # Transmission configuration
 eizo::transmission::rpcport: 9099
-eizo::transmission::download: /srv/transmission
+eizo::transmission::download: /srv/media/transmission
 eizo::transmission::config:
   alt-speed-down: 200
   alt-speed-up: 10
@@ -73,7 +73,7 @@ eizo::flexget::config:
           - One Piece:
               from_group: horriblesubs
       set:
-        path: "/srv/transmission/complete/TV/{{ series_name }}"
+        path: "/srv/media/transmission/complete/TV/{{ series_name }}"
 
     tv:
       cookies: ~/.flexget/cookies.txt
@@ -118,7 +118,7 @@ eizo::flexget::config:
           - Episodes:
               exact: yes
       set:
-        path: "/srv/transmission/complete/TV/{{ series_name }}"
+        path: "/srv/media/transmission/complete/TV/{{ series_name }}"
         main_file_only: yes
         include_subs: yes
 
