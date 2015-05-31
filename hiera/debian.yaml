@@ -20,3 +20,4 @@ eizo::debian::packages:
   - ethtool
   - mtr-tiny
   - vlan
+  - tcpdump
