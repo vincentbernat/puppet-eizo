@@ -18,7 +18,5 @@ eizo::debian::packages:
   - glances
   - ntp
   - ethtool
-  - iw
-  - firmware-iwlwifi
   - mtr-tiny
   - vlan
