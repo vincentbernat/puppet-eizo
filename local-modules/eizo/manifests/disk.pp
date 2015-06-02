@@ -35,4 +35,11 @@ $ q 1
     ensure => present
   }
 
+  # Schedule fstrim through cron
+  cron { fstrim:
+    command => "/sbin/fstrim -a",
+    user => "root",
+    hour => 3
+  }
+
 }
