@@ -39,7 +39,8 @@ $ q 1
   cron { fstrim:
     command => "/sbin/fstrim -a",
     user => "root",
-    hour => 3
+    hour => 3,
+    minute => 7
   }
 
 }
