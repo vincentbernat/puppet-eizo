@@ -115,6 +115,7 @@ eizo::flexget::config:
           - Bloodline
           - 12 Monkeys
           - Wayward Pines
+          - The Fall
           - Episodes:
               exact: yes
       set:
