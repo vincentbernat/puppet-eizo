@@ -6,7 +6,7 @@ class eizo::kodi::config inherits eizo::kodi {
     user => 'xbmc',
     hour => 3,
     minute => 4,
-    day => '*/3'
+    monthday => '*/3'
   }
 
 }
