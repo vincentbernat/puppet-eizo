@@ -60,5 +60,5 @@ eizo::tor::transport: 9040
 eizo::tor::dnsport: 9041
 
 eizo::proftpd::shaper:
-  downrate: 700
-  uprate: 4000
+  downrate: 7000
+  uprate: 7000

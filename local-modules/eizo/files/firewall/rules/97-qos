@@ -43,8 +43,8 @@ EOF
 }
 
 # Bandwidth in kbit/s
-uplink=9950
-downlink=49950
+uplink=99000
+downlink=99000
 
 # egress filtering
 main {

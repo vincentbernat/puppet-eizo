@@ -7,12 +7,12 @@ eizo::transmission::rpcport: 9099
 eizo::transmission::download: /srv/media/transmission
 eizo::transmission::config:
   alt-speed-down: 200
-  alt-speed-up: 10
+  alt-speed-up: 200
   alt-speed-enabled: false
   alt-speed-time-enabled: false
   speed-limit-down: 1000
   speed-limit-down-enabled: true
-  speed-limit-up: 100
+  speed-limit-up: 1000
   speed-limit-up-enabled: true
   encryption: 2
   peer-port: 9098
@@ -21,7 +21,7 @@ eizo::transmission::config:
   download-queue-enabled: true
   download-queue-size: 5
   umask: 2
-  ratio-limit: 1
+  ratio-limit: 2
   ratio-limit-enabled: true
   rpc-whitelist:
     - "127.0.0.1"
@@ -53,7 +53,7 @@ eizo::flexget::config:
         host: localhost
         port: 9099
         finished_for: 2 days
-        min_ratio: 1
+        min_ratio: 2
       magnets: no
 
     blacklist:
