@@ -21,3 +21,4 @@ eizo::debian::packages:
   - mtr-tiny
   - vlan
   - tcpdump
+  - mmv
