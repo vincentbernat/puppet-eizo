@@ -62,6 +62,7 @@ eizo::flexget::config:
       regexp:
         reject:
           - micromkv
+          - español
 
     anime:
       series:
