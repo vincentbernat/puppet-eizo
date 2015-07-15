@@ -9,4 +9,9 @@ class eizo::kodi::config inherits eizo::kodi {
     monthday => '*/3'
   }
 
+  # Install our own advanced settings
+  file { "${home}/userdata/advancedsettings.xml":
+    source => "puppet:///modules/eizo/kodi/advancedsettings.xml"
+  }
+
 }
