@@ -10,6 +10,7 @@
     <regexp>[\\/]\[[^\]]+\] [\w ]+ ()(\d{2,4}) - \d{3}p</regexp><!-- [AnimeRG] Dragon Ball Super 001 - 720p [Phr0stY].mkv -->
     <regexp>[\\/]\[[^\]]+\] [\w ]+ - ()(\d{2,4}) \[\d{3}p\]</regexp><!-- [HorribleSubs] Naruto Shippuuden - 334 [720p].mkv -->
     <regexp>[\\/]\[[^\]]+\]_[\w_]+_()(\d{2,4})_\[\d{3}p\]</regexp><!-- [yibis]_One_Piece_664_[720p][7DEB285D].mkv -->
+    <regexp>[\\/][\w ]+ - ()(\d{2,4}) - [^\[]+ \[[^\]]+\]\[[^\]]+\]\.</regexp><!-- Dragon Ball Super - 002 - To the Promised Resort! Vegeta's Family Vacation [DragonTeam][92F62CBA].mkv -->
     <regexp>[\\/]Ep\. ()(\d{2,4}) - </regexp><!-- Ep. 21 - The Avatar State-[720p].mkv -->
   </tvshowmatching>
 </advancedsettings>
