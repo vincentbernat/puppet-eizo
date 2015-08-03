@@ -7,7 +7,9 @@ class eizo::proftpd::config inherits eizo::proftpd {
 
   # Users
   file { '/etc/proftpd/users.keys':
-    ensure => directory
+    ensure => directory,
+    recurse => true,
+    purge => true
   }
   file { '/etc/proftpd/users':
     content => template("eizo/proftpd/users.erb"),
