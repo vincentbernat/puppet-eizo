@@ -130,7 +130,8 @@ eizo::flexget::config:
     search:
       discover:
         what:
-          - emit_series: yes
+          - mock:
+              - title: $show
         from:
           - torrentz:
               reputation: verified
@@ -175,7 +176,7 @@ eizo::flexget::config:
         - transmission
 
     tv search:
-      # flexget execute --task "tv search" --discover-now
+      # flexget execute --task "tv search" --discover-now --cli-config "show=Mr. Robot"
       manual: yes
       template:
         - no-redownload
