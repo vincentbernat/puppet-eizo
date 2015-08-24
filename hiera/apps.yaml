@@ -117,7 +117,9 @@ eizo::flexget::config:
           - 12 Monkeys
           - Wayward Pines
           - The Fall
-          - Mr Robot
+          - Mr. Robot:
+              alternate_name:
+                - Mr Robot
           - Episodes:
               exact: yes
       set:
