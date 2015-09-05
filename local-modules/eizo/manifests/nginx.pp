@@ -12,4 +12,17 @@ class eizo::nginx {
     hiera_hash("eizo::nginx::certs", {}),
     {})
 
+  create_resources(
+    crl,
+    hiera_hash("eizo::nginx::crls", {}),
+    {})
+
+  define crl($path=$title, $url) {
+    cron { "update-crl-${path}":
+      minute => 3,
+      hour => 4,
+      user => root,
+      command => "t=$(mktemp -p $(dirname ${path})) && curl -s -o \$t ${url} && mv \$t ${path}"
+    }
+  }
 }
