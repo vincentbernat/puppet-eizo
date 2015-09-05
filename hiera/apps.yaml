@@ -232,11 +232,11 @@ nginx::nginx_vhosts:
       Strict-Transport-Security: '"max-age=31536000; includeSubdomains"'
     vhost_cfg_append:
       ssl_verify_client: 'on'
-      ssl_verify_depth: 2
+      ssl_verify_depth: 1
       ssl_client_certificate: "/etc/nginx/ssl/debsso.pem"
       ssl_crl: "/etc/nginx/ssl/debsso.crl"
     raw_append: |
-      if ($ssl_client_s_dn != "/CN=bernat@debian.org/O=Debian SSO client certificate") {
+      if ($ssl_client_s_dn != "/O=Debian SSO client certificate/CN=bernat@debian.org") {
           return 403;
       }
       
