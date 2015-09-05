@@ -25,8 +25,8 @@ class eizo::nginx {
       command => "t=$(mktemp -p $(dirname ${path})) && curl -s -o \$t ${url} && mv \$t ${path}"
     }
     exec { "retrieve-${path}":
-      path => "/bin:/usr/bin",
-      command => "t=$(mktemp -p $(dirname ${path})) && curl -s -o \$t ${url} && mv \$t ${path}",
+      path => ["/bin", "/usr/bin"],
+      command => "sh -c 't=$(mktemp -p $(dirname ${path})) && curl -s -o \$t ${url} && mv \$t ${path}'",
       creates => "${path}"
     }
   }
