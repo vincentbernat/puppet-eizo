@@ -10,12 +10,12 @@ class eizo::nginx {
   create_resources(
     file,
     hiera_hash("eizo::nginx::certs", {}),
-    {})
+    { notify => Service[nginx] })
 
   create_resources(
     crl,
     hiera_hash("eizo::nginx::crls", {}),
-    {})
+    { notify => Service[nginx] })
 
   define crl($path=$title, $url) {
     cron { "update-crl-${path}":
