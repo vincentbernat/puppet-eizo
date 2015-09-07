@@ -22,3 +22,4 @@ eizo::debian::packages:
   - vlan
   - tcpdump
   - mmv
+  - unattended-upgrades
