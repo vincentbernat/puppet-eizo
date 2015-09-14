@@ -88,15 +88,12 @@ eizo::flexget::config:
         normal:
           - Modern Family
           - The Big Bang Theory
-          - Two and a Half Men
           - The Walking Dead
-          - Justified
           - Orange is the New Black
           - Game Of Thrones
           - Homeland
           - Person of Interest
           - House of Cards
-          - Parks and Recreation
           - True Detective
           - Banshee
           - Broadchurch
@@ -107,7 +104,6 @@ eizo::flexget::config:
           - The Flash
           - In the Flesh
           - The Driver
-          - Falling Skies
           - Downton Abbey
           - Brooklyn Nine-Nine
           - The 100
