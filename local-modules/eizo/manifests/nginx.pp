@@ -22,7 +22,7 @@ class eizo::nginx {
       minute => 3,
       hour => 4,
       user => root,
-      command => "t=$(mktemp -p $(dirname ${path})) && curl -s -o \$t ${url} && chmod 644 \$t && mv \$t ${path}"
+      command => "t=$(mktemp -p $(dirname ${path})) && curl -s -o \$t ${url} && chmod 644 \$t && mv \$t ${path} && nginx -s reload"
     }
     exec { "retrieve-${path}":
       path => ["/bin", "/usr/bin"],
