@@ -44,6 +44,10 @@ eizo::flexget::config:
         to: bernat@luffy.cx
         smtp_host: localhost
       verify_ssl_certificates: no
+      retry_failed:
+        retry_time: 20 minutes
+        retry_time_multiplier: 1.5
+        max_retries: 5
 
     transmission:
       transmission:
