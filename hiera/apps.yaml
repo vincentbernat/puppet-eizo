@@ -37,7 +37,13 @@ eizo::flexget::config:
 
     global:
       headers:
-        User-Agent: "Mozilla/5.0 (Windows NT 5.1; rv:16.0) Gecko/20100101 Firefox/16.0"
+        User-Agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
+        Referer: "http://torcache.net/"
+        Accept-Encoding: "deflate, gzip"
+      urlrewrite:
+        sitename:
+          regexp: 'http:\/\/torcache\.net\/torrent\/(?P<id>.*)\.torrent\?title=(?P<title>.*)'
+          format: 'http://torcache.net/torrent/\g<id>.torrent'
       email:
         active: true
         from: bernat@luffy.cx
