@@ -38,12 +38,12 @@ eizo::flexget::config:
     global:
       headers:
         User-Agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36"
-        Referer: "http://torcache.net/"
-        Accept-Encoding: "deflate, gzip"
+      disable:
+        - torrent_cache
       urlrewrite:
-        sitename:
-          regexp: 'http:\/\/torcache\.net\/torrent\/(?P<id>.*)\.torrent\?title=(?P<title>.*)'
-          format: 'http://torcache.net/torrent/\g<id>.torrent'
+        torcache:
+          regexp: 'https?:\/\/torcache\.net\/torrent\/(?P<id>.*)\.torrent(?:\?.*)'
+          format: 'magnet:?xt=urn:btih:\g<id>'
       email:
         active: true
         from: bernat@luffy.cx
