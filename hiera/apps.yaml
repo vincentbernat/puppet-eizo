@@ -64,11 +64,9 @@ eizo::flexget::config:
         port: 9099
         finished_for: 2 days
         min_ratio: 2
-      magnets: no
+      magnets: yes
 
     blacklist:
-      content_filter:
-        reject: '*.rar'
       regexp:
         reject:
           - micromkv
@@ -174,8 +172,14 @@ eizo::flexget::config:
         - rss: "http://showrss.info/feeds/all.rss"
         - rss: "http://feeds.feedburner.com/eztv-rss-atom-feeds?format=xml"
         - rss: 'http://torrentz.eu/feed?q=720p'
-        - rss: "http://kickass.to/usearch/category%3Atv%20verified%3A1/?rss=1"
-        - rss: "http://kickass.to/usearch/category%3Atv%20verified%3A1%20720p/?rss=1"
+        - rss: 
+            url: "http://kickass.to/usearch/category%3Atv%20verified%3A1/?rss=1"
+            other_fields: ['torrent:magnetURI']  
+            link: 'torrent:magnetURI'
+        - rss:
+            url: "http://kickass.to/usearch/category%3Atv%20verified%3A1%20720p/?rss=1"
+            other_fields: ['torrent:magnetURI']  
+            link: 'torrent:magnetURI'
       template:
         - no-redownload
         - blacklist
