@@ -42,7 +42,7 @@ eizo::flexget::config:
         - torrent_cache
       urlrewrite:
         torcache:
-          regexp: 'https?:\/\/torcache\.net\/torrent\/(?P<id>.*)\.torrent(?:\?.*)'
+          regexp: 'https?:\/\/torcache\.net\/torrent\/(?P<id>.*)\.torrent(?:\?.*)?'
           format: 'magnet:?xt=urn:btih:\g<id>'
       email:
         active: true
