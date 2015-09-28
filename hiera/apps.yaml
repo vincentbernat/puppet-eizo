@@ -129,8 +129,6 @@ eizo::flexget::config:
               exact: yes
       set:
         path: "/srv/media/transmission/complete/TV/{{ series_name }}"
-        main_file_only: yes
-        include_subs: yes
 
     search:
       discover:
