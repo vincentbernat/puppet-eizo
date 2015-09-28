@@ -169,7 +169,9 @@ eizo::flexget::config:
 
     tv feed:
       inputs:
-        - rss: "http://showrss.info/feeds/all.rss"
+        - rss: 
+            url: "http://showrss.info/feeds/all.rss"
+            title: "showrss:rawtitle"
         - rss: 'http://torrentz.eu/feed?q=720p'
         - rss: 
             url: "http://kickass.to/usearch/category%3Atv%20verified%3A1/?rss=1"
