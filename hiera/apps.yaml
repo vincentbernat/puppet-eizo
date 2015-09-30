@@ -62,7 +62,7 @@ eizo::flexget::config:
       clean_transmission:
         host: localhost
         port: 9099
-        finished_for: 2 days
+        finished_for: 15 days
         min_ratio: 2
       magnets: yes
 
