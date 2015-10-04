@@ -21,8 +21,6 @@ eizo::transmission::config:
   download-queue-enabled: true
   download-queue-size: 5
   umask: 2
-  ratio-limit: 2
-  ratio-limit-enabled: true
   rpc-whitelist:
     - "127.0.0.1"
   rpc-whitelist-enabled: true
