@@ -445,6 +445,7 @@ munin::master::node_definitions:
 munin::node::export_node: disabled
 munin::node::allow:
   - 127.0.0.1
+munin::node::purge_configs: true
 munin::node::plugins:
   cpu:
     ensure: link
