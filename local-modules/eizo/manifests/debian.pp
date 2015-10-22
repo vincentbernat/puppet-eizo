@@ -38,5 +38,12 @@ class eizo::debian(
     repos             => 'main contrib non-free',
     include_src       => false
   }
+  apt::source { "jessie-backports":
+    location          => 'http://http.debian.net/debian/',
+    release           => 'jessie-backports',
+    repos             => 'main contrib non-free',
+    required_packages => 'debian-keyring debian-archive-keyring',
+    include_src       => false
+  }
 
 }
