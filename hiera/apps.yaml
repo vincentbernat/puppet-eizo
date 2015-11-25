@@ -247,13 +247,9 @@ nginx::nginx_vhosts:
     add_header:
       Strict-Transport-Security: '"max-age=31536000; includeSubdomains"'
     vhost_cfg_append:
-      ssl_verify_client: 'on'
+      ssl_verify_client: 'optional'
       ssl_verify_depth: 2
       ssl_client_certificate: "/etc/nginx/ssl/StartCom_Client_Class_1.pem"
-    raw_append: |
-      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
-          return 403;
-      }
       
     spdy: "on"
     rewrite_to_https: true
@@ -283,11 +279,18 @@ nginx::nginx_locations:
       - 'X-Scheme $scheme'
     ssl: true
     ssl_only: true
+    raw_prepend: |
+      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+          return 403;
+      }
   'kodi':
     location: /kodi/
     vhost: "%{::fqdn}"
     proxy: http://kodi$new_uri
     raw_prepend: |
+      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+          return 403;
+      }
       set $new_uri '';
       rewrite_by_lua '
         local uri = ngx.var.request_uri
@@ -307,6 +310,10 @@ nginx::nginx_locations:
     vhost: "%{::fqdn}"
     ssl: true
     ssl_only: true
+    raw_prepend: |
+      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+          return 403;
+      }
   'smokeping-cgi':
     location: /smokeping/
     vhost: "%{::fqdn}"
@@ -319,12 +326,20 @@ nginx::nginx_locations:
       fastcgi_param:
         PATH_INFO: '$fastcgi_path_info'
       include: /etc/nginx/fastcgi.conf
+    raw_prepend: |
+      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+          return 403;
+      }
   'munin-static':
     location: /munin/static/
     location_alias: /etc/munin/static/
     vhost: "%{::fqdn}"
     ssl: true
     ssl_only: true
+    raw_prepend: |
+      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+          return 403;
+      }
   'munin-html':
     location: /munin/
     vhost: "%{::fqdn}"
@@ -337,6 +352,10 @@ nginx::nginx_locations:
       fastcgi_param:
         PATH_INFO: '$fastcgi_path_info'
       include: /etc/nginx/fastcgi.conf
+    raw_prepend: |
+      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+          return 403;
+      }
   'munin-graph':
     location: '^~ /munin-cgi/munin-cgi-graph/'
     vhost: "%{::fqdn}"
@@ -349,6 +368,10 @@ nginx::nginx_locations:
       fastcgi_param:
         PATH_INFO: '$fastcgi_path_info'
       include: /etc/nginx/fastcgi.conf
+    raw_prepend: |
+      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+          return 403;
+      }
 
 eizo::nginx::certs:
   "/etc/nginx/ssl/StartCom_Client_Class_1.pem":
