@@ -221,9 +221,9 @@ nginx::nginx_upstreams:
 nginx::config::http_cfg_append:
   map:
     - |
-       $ssl_client_s_dn $ssl_client_s_dn_cn {
+       $ssl_client_s_dn $ssl_client_s_dn_email {
            default "unknown";
-           ~/CN=(?<CN>[^/]+) $CN;
+           ~/emailAddress=(?<email>[^/]+) $email;
          }
          include /dev/null
 nginx::nginx_vhosts:
@@ -280,7 +280,7 @@ nginx::nginx_locations:
     ssl: true
     ssl_only: true
     raw_prepend: |
-      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+      if ($ssl_client_s_dn_email != "bernat@luffy.cx") {
           return 403;
       }
   'kodi':
@@ -288,7 +288,7 @@ nginx::nginx_locations:
     vhost: "%{::fqdn}"
     proxy: http://kodi$new_uri
     raw_prepend: |
-      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+      if ($ssl_client_s_dn_email != "bernat@luffy.cx") {
           return 403;
       }
       set $new_uri '';
@@ -311,7 +311,7 @@ nginx::nginx_locations:
     ssl: true
     ssl_only: true
     raw_prepend: |
-      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+      if ($ssl_client_s_dn_email != "bernat@luffy.cx") {
           return 403;
       }
   'smokeping-cgi':
@@ -327,7 +327,7 @@ nginx::nginx_locations:
         PATH_INFO: '$fastcgi_path_info'
       include: /etc/nginx/fastcgi.conf
     raw_prepend: |
-      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+      if ($ssl_client_s_dn_email != "bernat@luffy.cx") {
           return 403;
       }
   'munin-static':
@@ -337,7 +337,7 @@ nginx::nginx_locations:
     ssl: true
     ssl_only: true
     raw_prepend: |
-      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+      if ($ssl_client_s_dn_email != "bernat@luffy.cx") {
           return 403;
       }
   'munin-html':
@@ -353,7 +353,7 @@ nginx::nginx_locations:
         PATH_INFO: '$fastcgi_path_info'
       include: /etc/nginx/fastcgi.conf
     raw_prepend: |
-      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+      if ($ssl_client_s_dn_email != "bernat@luffy.cx") {
           return 403;
       }
   'munin-graph':
@@ -369,7 +369,7 @@ nginx::nginx_locations:
         PATH_INFO: '$fastcgi_path_info'
       include: /etc/nginx/fastcgi.conf
     raw_prepend: |
-      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+      if ($ssl_client_s_dn_email != "bernat@luffy.cx") {
           return 403;
       }
 
