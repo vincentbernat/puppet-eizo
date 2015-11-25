@@ -733,11 +733,6 @@ smokeping::targets:
     probe: Curl
     options:
       urlformat: 'http://%host%/'
-  swisscom-ipv4:
-    hierarchy_level: 2
-    hierarchy_parent: internet
-    menu: swisscom.ch IPv4
-    host: swisscom.ch
   swisscom-curl:
     hierarchy_level: 2
     hierarchy_parent: internet
