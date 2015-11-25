@@ -294,6 +294,24 @@ nginx::nginx_locations:
       - 'X-Scheme $scheme'
     ssl: true
     ssl_only: true
+  'smokeping-images':
+    location: /smokeping/images/
+    location_alias: /var/cache/smokeping/images/
+    vhost: "%{::fqdn}"
+    ssl: true
+    ssl_only: true
+  'smokeping-cgi':
+    location: /smokeping/
+    vhost: "%{::fqdn}"
+    ssl: true
+    ssl_only: true
+    www_root: /usr/lib/cgi-bin/smokeping.cgi
+    location_cfg_append:
+      fastcgi_pass: unix:/run/fcgiwrap.socket
+      fastcgi_split_path_info: '^/smokeping()(.*)'
+      fastcgi_param:
+        PATH_INFO: '$fastcgi_path_info'
+      include: /etc/nginx/fastcgi.conf
   'munin-static':
     location: /munin/static/
     location_alias: /etc/munin/static/
@@ -578,3 +596,87 @@ munin::node::plugins:
   "if_err_internet":
     target: if_err_
     ensure: link
+
+smokeping::mode: standalone
+smokeping::probes:
+  - name: FPing
+    binary: /usr/bin/fping
+  - name: FPing6
+    binary: /usr/bin/fping6
+  - name: Curl
+    binary: /usr/bin/curl
+    forks: 5
+smokeping::targets:
+  internet:
+    menu: Internet
+    pagetitle: Internet
+  facebook-ipv4:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: facebook.com IPv4
+    host: facebook.com
+  facebook-ipv6:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: facebook.com IPv6
+    host: facebook.com
+    probe: FPing6
+  facebook-curl:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: facebook.com HTTP
+    host: facebook.com
+    probe: Curl
+    options:
+      urlformat: 'http://%host%/'
+  google-ch-ipv4:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: google.ch IPv4
+    host: google.ch
+  google-ch-ipv6:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: google.ch IPv6
+    host: google.ch
+    probe: FPing6
+  google-ch-curl:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: google.ch HTTP
+    host: google.ch
+    probe: Curl
+    options:
+      urlformat: 'http://%host%/'
+  swisscom-ipv4:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: swisscom.ch IPv4
+    host: swisscom.ch
+  swisscom-curl:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: swisscom.ch HTTP
+    host: swisscom.ch
+    probe: Curl
+    options:
+      urlformat: 'http://%host%/'
+  wikipedia-ipv4:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: wikipedia.com IPv4
+    host: wikipedia.com
+  wikipedia-ipv6:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: wikipedia.com IPv6
+    host: wikipedia.com
+    probe: FPing6
+  wikipedia-curl:
+    hierarchy_level: 2
+    hierarchy_parent: internet
+    menu: wikipedia.com HTTP
+    host: wikipedia.com
+    probe: Curl
+    options:
+      urlformat: 'http://%host%/'
