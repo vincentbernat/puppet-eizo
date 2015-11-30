@@ -120,6 +120,9 @@ eizo::flexget::config:
           - Wayward Pines
           - The Fall
           - The Blacklist
+          - Jessica Jones:
+              alternate_name:
+                - "Marvel's Jessica Jones"
           - Mr. Robot:
               alternate_name:
                 - Mr Robot
