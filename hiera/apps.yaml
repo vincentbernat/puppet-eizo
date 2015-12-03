@@ -289,15 +289,20 @@ nginx::nginx_locations:
   'kodi':
     location: /kodi/
     vhost: "%{::fqdn}"
-    proxy: http://kodi/addons/webinterface.default$new_uri
+    proxy: http://kodi$new_uri
     raw_prepend: |
       if ($ssl_client_s_dn_email != "bernat@luffy.cx") {
           return 403;
       }
       set $new_uri '';
       rewrite_by_lua '
-        local uri = ngx.var.request_uri
-        local new_uri, n, err = ngx.re.sub(uri, "^/kodi/", "/")
+        local new_uri = ngx.var.request_uri
+        local m, n, err
+        new_uri, n, err = ngx.re.sub(new_uri, "^/kodi/", "/")
+        m = ngx.re.match(new_uri, "^/jsonrpc")
+        if not m then
+          new_uri, n, err = ngx.re.sub(new_uri, "^/", "/addons/webinterface.default/")
+        end
         ngx.var.new_uri = new_uri
       ';
     proxy_set_header:
