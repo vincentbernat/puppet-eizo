@@ -299,7 +299,7 @@ nginx::nginx_locations:
         local new_uri = ngx.var.request_uri
         local m, n, err
         new_uri, n, err = ngx.re.sub(new_uri, "^/kodi/", "/")
-        m = ngx.re.match(new_uri, "^/jsonrpc")
+        m = ngx.re.match(new_uri, "^/(jsonrpc|image/image)")
         if not m then
           new_uri, n, err = ngx.re.sub(new_uri, "^/", "/addons/webinterface.default/")
         end
