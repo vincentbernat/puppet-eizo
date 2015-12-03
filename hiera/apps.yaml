@@ -289,7 +289,7 @@ nginx::nginx_locations:
   'kodi':
     location: /kodi/
     vhost: "%{::fqdn}"
-    proxy: http://kodi$new_uri
+    proxy: http://kodi/addons/webinterface.default$new_uri
     raw_prepend: |
       if ($ssl_client_s_dn_email != "bernat@luffy.cx") {
           return 403;
