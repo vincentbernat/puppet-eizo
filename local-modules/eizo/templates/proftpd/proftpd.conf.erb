@@ -36,18 +36,9 @@ DirFakeUser             on ftp
   DenyAll
 </Limit>
 
-# Limit bandwidth
-<% if @shaper -%>
-LoadModule mod_shaper.c
-ShaperEngine on
-ShaperTable /run/proftpd/shapertable
-ShaperAll <% @shaper.each do |key,val| %><%= key %> <%= val %> <% end %>
-<% end -%>
-
 # Enable remote control
 ControlsEngine        on
 ControlsACLs          all allow user proftpd
-ShaperControlsACLs    all allow user proftpd
 ControlsMaxClients    2
 ControlsLog           /var/log/proftpd/controls.log
 ControlsInterval      5

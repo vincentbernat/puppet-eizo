@@ -1,4 +1,4 @@
-class eizo::proftpd($port, $users, $shaper = undef) {
+class eizo::proftpd($port, $users) {
 
   class { '::eizo::proftpd::install': } ->
   class { '::eizo::proftpd::config':  } ~>

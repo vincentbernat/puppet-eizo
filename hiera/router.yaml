@@ -58,7 +58,3 @@ eizo::dnsmasq::dhcp_hosts:
 eizo::tor::bind: 192.168.118.65
 eizo::tor::transport: 9040
 eizo::tor::dnsport: 9041
-
-eizo::proftpd::shaper:
-  downrate: 7000
-  uprate: 7000
