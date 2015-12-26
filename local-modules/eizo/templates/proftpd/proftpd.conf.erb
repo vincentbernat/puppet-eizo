@@ -25,6 +25,7 @@ AuthOrder               mod_auth_file.c
 AuthUserFile            /etc/proftpd/users
 SFTPAuthMethods         publickey
 SFTPAuthorizedUserKeys  file:/etc/proftpd/users.keys/%u
+SFTPRekey               none
 DefaultRoot             ~
 RequireValidShell       off
 
