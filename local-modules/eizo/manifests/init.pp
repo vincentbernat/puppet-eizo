@@ -12,6 +12,7 @@ class eizo {
 
   # Applications
   include ::eizo::kodi
+  include ::eizo::ambiled
   include ::eizo::transmission
   include ::eizo::flexget
   include ::eizo::nginx
