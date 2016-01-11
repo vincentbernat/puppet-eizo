@@ -46,7 +46,7 @@
 		"smoothing" :
 		{
 			"type"            : "linear",
-			"time_ms"         : 500,
+			"time_ms"         : 200,
 			"updateFrequency" : 12.0000
 		}
 	},
