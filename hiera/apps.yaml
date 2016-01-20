@@ -252,10 +252,11 @@ nginx::nginx_vhosts:
       Strict-Transport-Security: '"max-age=31536000; includeSubdomains"'
     vhost_cfg_append:
       ssl_verify_client: 'on'
-      ssl_verify_depth: 2
-      ssl_client_certificate: "/etc/nginx/ssl/StartCom_Client_Class_1.pem"
+      ssl_verify_depth: 1
+      ssl_client_certificate: "/etc/nginx/ssl/debsso.pem"
+      ssl_crl: "/etc/nginx/ssl/debsso.crl"
     raw_append: |
-      if ($ssl_client_s_dn_cn != "bernat@luffy.cx") {
+      if ($ssl_client_s_dn_cn != "bernat@debian.org") {
           return 403;
       }
       
@@ -359,7 +360,34 @@ nginx::nginx_locations:
         PATH_INFO: '$fastcgi_path_info'
       include: /etc/nginx/fastcgi.conf
 
+eizo::nginx::crls:
+  "/etc/nginx/ssl/debsso.crl":
+    url: "https://sso.debian.org/spkac/ca.crl"
 eizo::nginx::certs:
+  "/etc/nginx/ssl/debsso.pem":
+    content: |
+      -----BEGIN CERTIFICATE-----
+      MIIDlzCCAn+gAwIBAgIBATANBgkqhkiG9w0BAQsFADBEMRowGAYDVQQDExFTU08g
+      Q0EgMjAxNS0wOC0yMTEmMCQGA1UEChMdRGViaWFuIFNTTyBjbGllbnQgY2VydGlm
+      aWNhdGUwIhgPMjAxNTA4MjEyMDQzMzVaGA85OTk5MTIzMTIzNTk1OVowRDEaMBgG
+      A1UEAxMRU1NPIENBIDIwMTUtMDgtMjExJjAkBgNVBAoTHURlYmlhbiBTU08gY2xp
+      ZW50IGNlcnRpZmljYXRlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+      1SUMNiEVMlycwDPlJhgJ099VorLDTW556XvbWSw8l7cnygs8V9bN83f6W2P8x328
+      dz+U1OxEZ/PnS+/zMwco03XQggXcNN+UjHwUu9WP5koNsPFH6HRbvUy5oBDfbdVN
+      EzBE2gXE4WYFoj45U9rSU6qLEnT4QKxJ/CbTeMGvLKzuXdCv6W+UxUfbh186kSqM
+      tfDtY3aQ+L6MuPA1a+bumUh9EGVZrrIMbjgm1xrQohQBJC75X10dnicUliGZ+7C0
+      h7pUQlIY+/IxREQ46xBY1CNYeZNMEI9ErMbiFiShsc3mP3aLxTAQ4KzHCDtIuzwD
+      ElH8aMPxIQOUyL/FLx8ZTQIDAQABo4GPMIGMMA8GA1UdEwEB/wQFMAMBAf8wEwYD
+      VR0lBAwwCgYIKwYBBQUHAwkwDwYDVR0PAQH/BAUDAwcGADAdBgNVHQ4EFgQU0OJ+
+      JoHgzarLNF+2eiay11GCk44wNAYDVR0fBC0wKzApoCegJYYjaHR0cHM6Ly9zc28u
+      ZGViaWFuLm9yZy9zcGthYy9jYS5jcmwwDQYJKoZIhvcNAQELBQADggEBAKynxkRr
+      7w85LHYzH5q9xVHXX6+K6r1mA3b+OAopNMJZTCTn7v9UVDncp26wOeHOUEvawWaQ
+      21HBd70CiFH0XGDow0/K68ite/0RHxq1WAuggBc678d/0yDkoWdFHAf9n5Agzf4J
+      rXov++XmBXYHRXiHunuSLnM3i8HToejZMCC7P9nqpPo0tK7O22calbZn20Pdve6k
+      KrKxwwjxpuNxezr6uYGuNTLJOZtyjF09FuAebSlHvX6VYPl7FnMUDcS6QerEyocL
+      Bv7pbsNWehIfvfjqPJQwqznieieZGL6s1zB8/XWQw37C0i28LqJ8DTvEjgmF44RP
+      6JhTYDnI06pKfQY=
+      -----END CERTIFICATE-----
   "/etc/nginx/ssl/StartCom_Client_Class_1.pem":
     content: |
       -----BEGIN CERTIFICATE-----
