@@ -256,7 +256,7 @@ nginx::nginx_vhosts:
       ssl_client_certificate: "/etc/nginx/ssl/debsso.pem"
       ssl_crl: "/etc/nginx/ssl/debsso.crl"
     raw_append: |
-      if ($ssl_client_s_dn_cn != "bernat@debian.org") {
+      if ($ssl_client_s_dn_email != "bernat@debian.org") {
           return 403;
       }
       
