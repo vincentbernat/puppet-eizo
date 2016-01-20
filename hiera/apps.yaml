@@ -225,9 +225,9 @@ nginx::nginx_upstreams:
 nginx::config::http_cfg_append:
   map:
     - |
-       $ssl_client_s_dn $ssl_client_s_dn_email {
+       $ssl_client_s_dn $ssl_client_s_dn_cn {
            default "unknown";
-           ~/emailAddress=(?<email>[^/]+) $email;
+           ~/CN=(?<CN>[^/]+) $CN;
          }
          include /dev/null
 nginx::nginx_vhosts:
@@ -256,7 +256,7 @@ nginx::nginx_vhosts:
       ssl_client_certificate: "/etc/nginx/ssl/debsso.pem"
       ssl_crl: "/etc/nginx/ssl/debsso.crl"
     raw_append: |
-      if ($ssl_client_s_dn_email != "bernat@debian.org") {
+      if ($ssl_client_s_dn_cn != "bernat@debian.org") {
           return 403;
       }
       
