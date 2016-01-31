@@ -30,6 +30,8 @@ eizo::transmission::config:
 
 # Flexget configuration
 eizo::flexget::home: /srv/flexget
+eizo::flexget::move_from: /srv/media/transmission/complete/TV
+eizo::flexget::move_to: /srv/media/TV
 eizo::flexget::config:
   templates:
 

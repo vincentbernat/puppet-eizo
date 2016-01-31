@@ -29,6 +29,11 @@ class eizo::flexget::install inherits eizo::flexget {
     virtualenv => "${home}/venv"
   }
 
+  file { '/usr/local/bin/flexget-cron':
+    content => template('eizo/flexget/cron.erb'),
+    mode    => '0755'
+  }
+
   ensure_resource(
     package, [ 'virtualenv' ],
     { ensure => present })
