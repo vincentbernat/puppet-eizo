@@ -15,7 +15,8 @@ case $1 in
     move)
         cd $from
         for f in **/*.{mkv,srt,avi,mp4}(N); do
-            mv $f $to/${f%%/*}/.
+            target=$to/${f%%/*}
+            [[ ! -d $target ]] || mv $f $target/.
         done
         ;;
 esac
