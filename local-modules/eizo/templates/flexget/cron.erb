@@ -6,6 +6,8 @@ to="<%= @move_to %>"
 
 # Simple wrappers around flexget that could run in a crontab.
 
+setopt extendedglob
+
 case $1 in
     run)
         (${flexget} --cron execute 3>&1 1>&2 2>&3 | \
@@ -14,7 +16,7 @@ case $1 in
         ;;
     move)
         cd $from
-        for f in **/*.{mkv,srt,avi,mp4}(N); do
+        for f in **/*.{mkv,srt,avi,mp4}~*Sample*(N); do
             target=$to/${f%%/*}
             [[ ! -d $target ]] || mv $f $target/.
         done
