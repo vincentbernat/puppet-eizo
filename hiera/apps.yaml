@@ -164,6 +164,7 @@ eizo::flexget::config:
       inputs:
         - rss: 'http://www.nyaa.se/?page=rss&term=720p'
         - rss: 'https://www.tokyotosho.info/rss.php?filter=1&zwnj=0&entries=450'
+        - rss: 'http://www.shanaproject.com/feeds/site/'
       template:
         - no-redownload
         - blacklist
