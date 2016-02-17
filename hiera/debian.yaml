@@ -1,26 +1,26 @@
 # Debian packages
 eizo::debian::packages:
-  - zsh
-  - mg
-  - vim-tiny
-  - git
-  - lm-sensors
-  - smartmontools
-  - usbutils
-  - lshw
-  - pciutils
-  - parted
-  - avahi-daemon
-  - i965-va-driver
   - alsa-utils
-  - lldpd
-  - htop
-  - glances
-  - ntp
+  - avahi-daemon
   - ethtool
-  - mtr-tiny
-  - vlan
-  - tcpdump
+  - git
+  - glances
+  - htop
+  - i965-va-driver
+  - lldpd
+  - lm-sensors
+  - lshw
+  - mg
   - mmv
-  - unattended-upgrades
+  - mtr-tiny
   - needrestart
+  - ntp
+  - parted
+  - pciutils
+  - smartmontools
+  - tcpdump
+  - unattended-upgrades
+  - usbutils
+  - vim-tiny
+  - vlan
+  - zsh
