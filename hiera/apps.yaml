@@ -204,7 +204,7 @@ eizo::flexget::config:
     seed series:
       # flexget execute --tasks "seed series" --disable-tracking --learn
       manual: yes
-      find:
+      filesystem:
         regexp: .*(avi|mkv|mp4)$
         path: /srv/media/TV
         recursive: yes
