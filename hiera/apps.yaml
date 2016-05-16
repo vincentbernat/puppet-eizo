@@ -161,9 +161,9 @@ eizo::flexget::config:
 
     anime feed:
       inputs:
-        - rss: 'http://www.nyaa.se/?page=rss&term=720p'
+        - rss: 'https://www.nyaa.se/?page=rss&term=720p'
         - rss: 'https://www.tokyotosho.info/rss.php?filter=1&zwnj=0&entries=450'
-        - rss: 'http://www.shanaproject.com/feeds/site/'
+        - rss: 'https://www.shanaproject.com/feeds/site/'
       template:
         - no-redownload
         - blacklist
@@ -173,15 +173,15 @@ eizo::flexget::config:
     tv feed:
       inputs:
         - rss: 
-            url: "http://showrss.info/feeds/all.rss"
+            url: "https://showrss.info/feeds/all.rss"
             title: "showrss:rawtitle"
-        - rss: 'http://torrentz.eu/feed_verified?q=720p'
+        - rss: 'https://torrentz.eu/feed_verified?q=720p'
         - rss: 
-            url: "http://kickass.to/usearch/category%3Atv%20verified%3A1/?rss=1"
+            url: "https://kickass.to/usearch/category%3Atv%20verified%3A1/?rss=1"
             other_fields: ['torrent:magnetURI']  
             link: 'torrent:magnetURI'
         - rss:
-            url: "http://kickass.to/usearch/category%3Atv%20verified%3A1%20720p/?rss=1"
+            url: "https://kickass.to/usearch/category%3Atv%20verified%3A1%20720p/?rss=1"
             other_fields: ['torrent:magnetURI']  
             link: 'torrent:magnetURI'
       template:
