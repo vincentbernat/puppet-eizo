@@ -175,7 +175,7 @@ eizo::flexget::config:
         - rss: 
             url: "http://showrss.info/feeds/all.rss"
             title: "showrss:rawtitle"
-        - rss: 'http://torrentz.eu/feed?q=720p'
+        - rss: 'http://torrentz.eu/feed_verified?q=720p'
         - rss: 
             url: "http://kickass.to/usearch/category%3Atv%20verified%3A1/?rss=1"
             other_fields: ['torrent:magnetURI']  
