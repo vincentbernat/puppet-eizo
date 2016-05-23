@@ -99,7 +99,8 @@ eizo::flexget::config:
           - The Walking Dead
           - Fear The Walking Dead
           - Orange is the New Black
-          - Game of Thrones
+          - Game of Thrones:
+              from_group: AVS
           - Homeland
           - Person of Interest
           - House of Cards:
