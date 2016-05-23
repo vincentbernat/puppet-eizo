@@ -71,6 +71,7 @@ eizo::flexget::config:
         reject:
           - micromkv
           - español
+          - SeeHD
 
     anime:
       series:
