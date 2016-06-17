@@ -99,7 +99,8 @@ eizo::flexget::config:
           - The Big Bang Theory
           - The Walking Dead
           - Fear The Walking Dead
-          - Orange is the New Black
+          - Orange is the New Black:
+              from_group: FLEET
           - Game of Thrones:
               from_group: AVS
           - Homeland
