@@ -180,14 +180,6 @@ eizo::flexget::config:
             url: "https://showrss.info/feeds/all.rss"
             title: "showrss:rawtitle"
         - rss: 'https://torrentz.eu/feed_verified?q=720p'
-        - rss: 
-            url: "https://kickass.to/usearch/category%3Atv%20verified%3A1/?rss=1"
-            other_fields: ['torrent:magnetURI']  
-            link: 'torrent:magnetURI'
-        - rss:
-            url: "https://kickass.to/usearch/category%3Atv%20verified%3A1%20720p/?rss=1"
-            other_fields: ['torrent:magnetURI']  
-            link: 'torrent:magnetURI'
       template:
         - no-redownload
         - blacklist
