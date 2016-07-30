@@ -149,9 +149,6 @@ eizo::flexget::config:
           - torrentz:
               reputation: verified
               extra_terms: 720p
-          - kat:
-              category: tv
-              verified: yes
 
     no-redownload:
       exists_series:
