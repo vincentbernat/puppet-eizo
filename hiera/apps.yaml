@@ -140,6 +140,8 @@ eizo::flexget::config:
       set:
         path: "/srv/media/transmission/complete/TV/{{ series_name }}"
 
+    # Search with:
+    # flexget execute --tasks "tv search" --discover-now --cli-config "show=halt and catch fire 720p killers"
     search:
       discover:
         what:
@@ -147,7 +149,7 @@ eizo::flexget::config:
               - title: $show
         from:
           - torrentz:
-              reputation: verified
+              reputation: good
               extra_terms: 720p
 
     no-redownload:
