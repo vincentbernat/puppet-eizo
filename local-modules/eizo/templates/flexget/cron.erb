@@ -16,7 +16,7 @@ case $1 in
         ;;
     move)
         cd $from
-        for f in **/*.{mkv,avi,mp4}(NL+100M) **/*.srt(N); do
+        for f in **/*.{mkv,avi,mp4}(NLM+100) **/*.srt(N); do
             target=$to/${f%%/*}
             [[ ! -d $target ]] || mv $f $target/.
         done
