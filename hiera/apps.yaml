@@ -185,9 +185,9 @@ eizo::flexget::config:
         - rss: 
             url: "https://showrss.info/feeds/all.rss"
             title: "showrss:rawtitle"
-        - rss: 'https://torrentz.eu/feed_verified?q=720p'
         - rss: 'https://rarbg.com/rssdd.php?category=41'
         - rss: 'http://extratorrent.cc/rss.xml?cid=8&type=last'
+        - rss: 'https://www.limetorrents.cc/rss/20/'
       template:
         - no-redownload
         - blacklist
