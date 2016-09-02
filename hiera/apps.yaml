@@ -123,7 +123,8 @@ eizo::flexget::config:
           - 12 Monkeys
           - Wayward Pines
           - The Blacklist
-          - Narcos
+          - Narcos:
+              from_group: SKGTV
           - Master of None
           - Preacher
           - The X-Files
