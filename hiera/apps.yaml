@@ -126,7 +126,9 @@ eizo::flexget::config:
           - Wayward Pines
           - The Blacklist
           - Narcos:
-              from_group: SKGTV
+              from_group: 
+                - SKGTV
+                - rmteam
           - Master of None
           - Preacher
           - The X-Files
