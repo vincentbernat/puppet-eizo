@@ -126,7 +126,7 @@ eizo::flexget::config:
           - Narcos:
               from_group: 
                 - SKGTV
-                - rmteam
+                - DEFLATE
           - Master of None
           - Preacher
           - The X-Files
