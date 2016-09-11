@@ -61,7 +61,8 @@ class eizo::nginx::acme {
     ensure => directory
   }
   file { ['/var/lib/acme', '/var/lib/acme/conf', '/var/lib/acme/desired']:
-    owner => acmetool,
+    ensure  => directory,
+    owner   => acmetool,
     require => User[acmetool]
   }
   file { '/var/lib/acme/conf/target':
