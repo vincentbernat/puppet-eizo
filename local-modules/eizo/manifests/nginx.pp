@@ -87,7 +87,7 @@ class eizo::nginx::acme {
 
   create_resources(
     certificate,
-    hiera_hash("eizo::nginx::acmetool::certificates", {}),
+    hiera_hash("nginx::acmetool::certificates", {}),
     { notify => Exec[acmetool-reconcile] })
 
   define certificate($domains=[$title]) {
