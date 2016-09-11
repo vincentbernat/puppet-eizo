@@ -74,16 +74,33 @@ class eizo::nginx::acme {
 
   exec { "acmetool-reconcile":
     path        => ["/bin", "/usr/bin"],
-    command     => "acmetool reconcile",
+    command     => "acmetool --batch reconcile",
     user        => acmetool,
     refreshonly => true,
     require     => [
       User[acmetool],
       File['/etc/default/acme-reload'],
       File['/var/lib/acme/conf/target'],
+      File['/etc/sudoers.d/acmetool'],
     ]
   }
 
+  file { "/etc/sudoers.d/acmetool":
+    content => "acmetool ALL=(root) NOPASSWD: /etc/acme/hooks/"
+  }
+
+  cron { "acmetool-reconcile":
+    minute  => 41,
+    hour    => 17,
+    command => "/usr/bin/acmetool --batch reconcile",
+    user    => acmetool,
+    require     => [
+      User[acmetool],
+      File['/etc/default/acme-reload'],
+      File['/var/lib/acme/conf/target'],
+      File['/etc/sudoers.d/acmetool'],
+    ]
+  }
 
   create_resources(
     certificate,
