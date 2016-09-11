@@ -1,7 +1,7 @@
 class eizo::nginx {
 
   include ::nginx
-  include ::eizo::nginx::acmetool
+  include ::eizo::nginx::acme
 
   file { "/etc/nginx/ssl":
     ensure => directory,
