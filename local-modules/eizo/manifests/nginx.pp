@@ -72,7 +72,7 @@ class eizo::nginx::acme {
     content => "SERVICES=nginx"
   }
 
-  exec { "acme-reconcile":
+  exec { "acmetool-reconcile":
     path        => ["/bin", "/usr/bin"],
     command     => "acmetool reconcile",
     user        => acmetool,
