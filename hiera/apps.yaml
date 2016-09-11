@@ -268,11 +268,11 @@ nginx::nginx_vhosts:
       ssl_crl: "/etc/nginx/ssl/debsso.crl"
     raw_append: |
       if ($ssl_client_s_dn_cn != "bernat@debian.org") {
-          rewrite ^/.well-known/ $uri break;
+          rewrite ^/.well-known/ $uri last;
           return 403;
       }
       if ($ssl_protocol = "") {
-          rewrite ^/.well-known/ $uri break;
+          rewrite ^/.well-known/ $uri last;
           return 301 https://$host$request_uri;
       }
       
