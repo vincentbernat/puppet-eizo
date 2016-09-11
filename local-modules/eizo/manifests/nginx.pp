@@ -1,6 +1,7 @@
 class eizo::nginx {
 
   include ::nginx
+  include ::eizo::nginx::acmetool
 
   file { "/etc/nginx/ssl":
     ensure => directory,
@@ -28,6 +29,71 @@ class eizo::nginx {
       path => ["/bin", "/usr/bin"],
       command => "sh -c 't=$(mktemp -p $(dirname ${path})) && curl -s -o \$t ${url} && chmod 644 \$t && mv \$t ${path}'",
       creates => "${path}"
+    }
+  }
+}
+
+class eizo::nginx::acme {
+
+  # TODO: install acmetool
+  # TODO: run "sudo -u acmetool acmetool quickstart"
+  # TODO: setup hooks
+  # package { acmetool:
+  #   ensure => installed
+  # }
+
+  user { acmetool:
+    ensure  => present,
+    comment => "User for Let's encrypt",
+    system  => true,
+    gid     => daemon,
+    home    => '/var/empty'
+  }
+  ->
+  file { '/var/run/acme/acme-challenge/':
+    ensure => directory,
+    owner  => acmetool,
+    group  => root,
+    mode   => '0755'
+  }
+
+  file { '/var/run/acme':
+    ensure => directory
+  }
+  file { ['/var/lib/acme', '/var/lib/acme/conf', '/var/lib/acme/desired']:
+    owner => acmetool,
+    require => User[acmetool]
+  }
+  file { '/var/lib/acme/conf/target':
+    source => "puppet:///modules/eizo/nginx/acme.conf"
+  }
+  file { '/etc/default/acme-reload':
+    content => "SERVICES=nginx"
+  }
+
+  exec { "acme-reconcile":
+    path        => ["/bin", "/usr/bin"],
+    command     => "acmetool reconcile",
+    user        => acmetool,
+    refreshonly => true,
+    require     => [
+      User[acmetool],
+      File['/etc/default/acme-reload'],
+      File['/var/lib/acme/conf/target'],
+    ]
+  }
+
+
+  create_resources(
+    certificate,
+    hiera_hash("eizo::nginx::acmetool::certificates", {}),
+    { notify => Exec[acmetool-reconcile] })
+
+  define certificate($domains=[$title]) {
+    file { "/var/lib/acme/desired/${title}":
+      owner   => acmetool,
+      require => User[acmetool],
+      content => template("eizo/nginx/acme-cert.erb")
     }
   }
 }
