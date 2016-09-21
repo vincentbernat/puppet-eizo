@@ -17,7 +17,6 @@ class eizo {
   include ::eizo::flexget
   include ::eizo::nginx
   include ::eizo::munin
-  include ::smokeping
 
   # Router stuff
   include ::eizo::interfaces

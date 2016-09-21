@@ -11,9 +11,6 @@ mod "stankevich/python",        "~> 1.7.12"
 mod "jfryman/nginx",            "~> 0.2.1"
 mod "ssm/munin",                "~> 0.0.10"
 mod "domcleal/augeasproviders", "~> 1.2.0"
-mod "tobru/smokeping",
-    :git => "git://github.com/vincentbernat/puppet-smokeping.git",
-    :ref => "feature/hiera-targets"
 
 # Local Variables:
 # mode: Ruby
