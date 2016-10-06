@@ -123,6 +123,7 @@ eizo::flexget::config:
           - 12 Monkeys
           - Wayward Pines
           - The Blacklist
+          - Westworld
           - Narcos:
               from_group: 
                 - SKGTV
