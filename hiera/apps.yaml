@@ -368,7 +368,7 @@ nginx::nginx_locations:
 
 eizo::nginx::crls:
   "/etc/nginx/ssl/debsso.crl":
-    url: "https://sso.debian.org/spkac/ca.crl"
+    url: "https://sso.debian.org/ca/ca.crl"
 eizo::nginx::certs:
   "/etc/nginx/ssl/debsso.pem":
     content: |
