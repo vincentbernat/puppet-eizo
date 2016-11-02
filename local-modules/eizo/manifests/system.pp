@@ -19,4 +19,8 @@ class eizo::system {
   }
   package { "acl": ensure => installed }
 
+  package { "sudo": ensure => installed }
+  ->
+  file { "/etc/sudoers.d/nopasswd": content => template("eizo/system/sudo-nopasswd") }
+
 }

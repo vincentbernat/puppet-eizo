@@ -1,0 +1,2 @@
+%sudo  ALL=(ALL:ALL) NOPASSWD: /usr/bin/apt update, /usr/bin/apt full-upgrade, /usr/bin/apt autoremove
+%sudo  ALL=(ALL:ALL) NOPASSWD: /bin/systemctl start *, /bin/systemctl restart *, /bin/systemctl stop *, /bin/systemctl status *
