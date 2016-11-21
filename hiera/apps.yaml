@@ -73,6 +73,7 @@ eizo::flexget::config:
           - español
           - SeeHD
           - '\[state\]'
+          - '[Dd]ual.[Aa]udio'
 
     anime:
       series:
