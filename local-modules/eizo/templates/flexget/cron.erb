@@ -20,7 +20,7 @@ case $1 in
             target=$to/${f%%/*}
             [[ ! -d $target ]] || mv $f $target/.
         done
-        rm **/{*.{txt,nfo,jpg},RARBG.com.mp4}(N)
+        rm **/{*.{txt,nfo,jpg},RARBG{.com,}.mp4}(N)
         for d in **/*(N/^F); do
             rmdir $d
         done
