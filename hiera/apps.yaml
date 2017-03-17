@@ -106,11 +106,9 @@ eizo::flexget::config:
           - Game of Thrones:
               from_group: AVS
           - Homeland
-          - Person of Interest
           - House of Cards:
               from_group: deflate
           - True Detective
-          - Banshee
           - Broadchurch
           - Silicon Valley
           - Sherlock
