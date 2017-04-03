@@ -190,8 +190,8 @@ eizo::flexget::config:
     tv feed:
       inputs:
         - rss: 
-            url: "https://showrss.info/feeds/all.rss"
-            title: "showrss:rawtitle"
+            url: "http://showrss.info/other/all.rss"
+            title: "tv:raw_title"
         - rss: 'https://rarbg.com/rssdd.php?category=41'
         - rss: 'http://extratorrent.cc/rss.xml?cid=8&type=last'
         - rss: 'https://www.limetorrents.cc/rss/20/'
