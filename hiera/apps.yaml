@@ -78,8 +78,6 @@ eizo::flexget::config:
     anime:
       series:
         720p:
-          - Naruto Shippuuden:
-              from_group: horriblesubs
           - Fairy Tail:
               from_group: horriblesubs
           - One Piece:
