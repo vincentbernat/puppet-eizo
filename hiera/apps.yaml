@@ -176,7 +176,7 @@ eizo::flexget::config:
 
     anime feed:
       inputs:
-        - rss: 'https://www.nyaa.se/?page=rss&term=720p'
+        - rss: 'https://www.nyaa.si/?page=rss&term=720p'
         - rss: 'https://www.tokyotosho.info/rss.php?filter=1&zwnj=0&entries=450'
         - rss: 'https://www.shanaproject.com/feeds/site/'
       template:
