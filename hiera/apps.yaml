@@ -191,7 +191,6 @@ eizo::flexget::config:
             url: "https://showrss.info/other/all.rss"
             title: "tv:raw_title"
         - rss: 'https://rarbg.com/rssdd.php?category=41'
-        - rss: 'http://extratorrent.cc/rss.xml?cid=8&type=last'
         - rss: 'https://www.limetorrents.cc/rss/20/'
       template:
         - no-redownload
