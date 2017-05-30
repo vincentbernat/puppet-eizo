@@ -195,7 +195,6 @@ eizo::flexget::config:
         - rss: 'https://rarbg.com/rssdd.php?category=41'
         - rss: 'https://www.limetorrents.cc/rss/20/'
         - rss: 'https://www.torrentdownloads.me/rss.xml?cid=8&type=last'
-        - rss: 'https://worldwidetorrents.eu/rss.php?cat=41'
         - rss: 'https://yourbittorrent.com/television/rss.xml'
         - rss: 'https://www.skytorrents.in/rss/all/ad/1/hdtv'
       template:
