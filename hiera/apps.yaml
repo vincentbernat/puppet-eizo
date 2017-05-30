@@ -105,7 +105,8 @@ eizo::flexget::config:
               from_group: AVS
           - Homeland
           - House of Cards:
-              from_group: deflate
+                - deflate
+                - MOROSE
           - True Detective
           - Broadchurch
           - Silicon Valley
