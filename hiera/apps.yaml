@@ -99,15 +99,10 @@ eizo::flexget::config:
           - The Big Bang Theory
           - The Walking Dead
           - Fear The Walking Dead
-          - Orange Is the New Black:
-              from_group: FLEET
-          - Game of Thrones:
-              from_group: AVS
+          - Orange Is the New Black
+          - Game of Thrones
           - Homeland
-          - House of Cards:
-              from_group:
-                - deflate
-                - MOROSE
+          - House of Cards
           - True Detective
           - Broadchurch
           - Silicon Valley
@@ -123,10 +118,7 @@ eizo::flexget::config:
           - Wayward Pines
           - The Blacklist
           - Westworld
-          - Narcos:
-              from_group: 
-                - SKGTV
-                - DEFLATE
+          - Narcos
           - Master of None
           - Preacher
           - The X-Files
