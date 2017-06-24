@@ -8,6 +8,8 @@ class eizo::ambiled::install inherits eizo::ambiled {
   # Install this plugin for XBMC:
   #  wget https://github.com/poljvd/script.service.hyperion/archive/master.zip
 
+  package { 'python-protobuf': ensure => installed}
+
   group { 'ambiled':
     ensure => present,
     system => true
