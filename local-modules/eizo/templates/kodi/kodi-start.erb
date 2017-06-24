@@ -16,5 +16,7 @@ for i in $(seq 1 3); do
 done
 <% end -%>
 
+tty=$(tty)
+tty=${tty#/dev/tty}
 export AE_SINK=ALSA
-/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -nolisten tcp vt9
+/usr/bin/xinit /usr/bin/kodi-standalone -- :0 -nolisten tcp vt$tty
