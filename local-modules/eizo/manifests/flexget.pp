@@ -8,6 +8,6 @@ class eizo::flexget(
   class { '::eizo::flexget::install': } ->
   class { '::eizo::flexget::config':  } ~>
   class { '::eizo::flexget::service': } ->
-  Class [ '::eizo::flexget' ]
+  Class[ '::eizo::flexget' ]
 
 }

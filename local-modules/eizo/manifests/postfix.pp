@@ -8,6 +8,6 @@ class eizo::postfix(
   class { '::eizo::postfix::install': } ->
   class { '::eizo::postfix::config':  } ~>
   class { '::eizo::postfix::service': } ->
-  Class [ '::eizo::postfix' ]
+  Class[ '::eizo::postfix' ]
 
 }

@@ -7,6 +7,6 @@ class eizo::transmission(
   class { '::eizo::transmission::install': } ->
   class { '::eizo::transmission::config':  } ~>
   class { '::eizo::transmission::service': } ->
-  Class [ '::eizo::transmission' ]
+  Class[ '::eizo::transmission' ]
 
 }

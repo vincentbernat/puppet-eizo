@@ -8,6 +8,6 @@ class eizo::firewall($ips = {}) {
   class { '::eizo::firewall::install': } ->
   class { '::eizo::firewall::config':  } ~>
   class { '::eizo::firewall::service': } ->
-  Class [ '::eizo::firewall' ]
+  Class[ '::eizo::firewall' ]
 
 }
