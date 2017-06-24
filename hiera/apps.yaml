@@ -228,7 +228,7 @@ nginx::nginx_upstreams:
     members:
       - "127.0.0.1:8080"
 
-nginx::config::http_cfg_append:
+nginx::http_cfg_append:
   map:
     - |
        $ssl_client_s_dn $ssl_client_s_dn_cn {
