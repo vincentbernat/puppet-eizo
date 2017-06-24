@@ -2,9 +2,11 @@ class eizo::debian(
   $packages = []) {
 
   class { "apt":
-    purge_sources_list   => true,
-    purge_sources_list_d => true,
-    purge_preferences_d  => true
+    purge => {
+      sources.list   => true,
+      sources.list.d => true,
+      preferences.d  => true
+    }
   }
 
   package { $packages: ensure => installed }
@@ -30,20 +32,17 @@ class eizo::debian(
     release           => 'stretch',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
-    include_src       => false
   }
   apt::source { "stretch-security":
-    location          => 'http://security.debian.org/',
-    release           => 'stretch/updates',
-    repos             => 'main contrib non-free',
-    include_src       => false
+    location => 'http://security.debian.org/',
+    release  => 'stretch/updates',
+    repos    => 'main contrib non-free',
   }
   apt::source { "stretch-backports":
     location          => 'http://http.debian.net/debian/',
     release           => 'stretch-backports',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
-    include_src       => false
   }
 
 }
