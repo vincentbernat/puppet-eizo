@@ -103,8 +103,7 @@ main {
         ip link del ifb1 2> /dev/null || true
     }
 
-    tc qdisc replace dev internet root fq_codel
-    tc qdisc del dev internet handle ffff: ingress
+    tc qdisc del dev internet handle ffff: ingress 2> /dev/null || true
     tc qdisc add dev internet handle ffff: ingress
     tc qdisc del dev ifb4inet root 2> /dev/null || true
 
