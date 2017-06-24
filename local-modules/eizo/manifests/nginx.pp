@@ -102,17 +102,18 @@ class eizo::nginx::acme {
     ]
   }
 
-  define certificate($domains=[$title]) {
-    file { "/var/lib/acme/desired/${title}":
-      owner   => acmetool,
-      require => User[acmetool],
-      content => template("eizo/nginx/acme-cert.erb")
-    }
-  }
-
   create_resources(
-    certificate,
+    eizo::nginx::acme::certificate,
     hiera_hash("nginx::acmetool::certificates", {}),
     { notify => Exec[acmetool-reconcile] })
 
 }
+
+define eizo::nginx::acme::certificate($domains=[$title]) {
+  file { "/var/lib/acme/desired/${title}":
+    owner   => acmetool,
+    require => User[acmetool],
+    content => template("eizo/nginx/acme-cert.erb")
+  }
+}
+
