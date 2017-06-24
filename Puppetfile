@@ -4,7 +4,7 @@ forge "https://forgeapi.puppetlabs.com"
 # version. From time to time, it is possible to check for new versions
 # with `librarian-puppet outdated` command.
 
-mod "puppetlabs/stdlib",        "~> 4.3.2"
+mod "puppetlabs/stdlib",        "~> 4.17.1"
 mod "puppetlabs/apt",           "~> 4.1.0"
 mod "jhoblitt/udev",            "~> 1.2.0"
 mod "stankevich/python",        "~> 1.7.12"
