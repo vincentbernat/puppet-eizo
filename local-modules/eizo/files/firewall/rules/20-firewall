@@ -59,6 +59,7 @@ for userport in \
     acmetool:tcp/https \
     debian-tor:tcp/http debian-tor:tcp/https \
     unbound:udp/domain unbound:tcp/domain \
+    _apt:tcp/http _apt:tcp/https \
     flexget:tcp/http flexget:tcp/https; do
 
     ip46tables -A FIREWALL-OUTPUT -o internet \
