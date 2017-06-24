@@ -2,7 +2,7 @@
 Description=Kodi Media Center
 After=remote-fs.target
 After=syslog.target
-Conflicts=getty@tty6.service
+Conflicts=getty@tty1.service
  
 [Service]
 Type=idle
@@ -13,7 +13,7 @@ Group=xbmc
 PAMName=login
 ExecStart=/usr/local/bin/kodi-start
 ExecStop=/usr/local/bin/kodi-stop
-TTYPath=/dev/tty6
+TTYPath=/dev/tty1
 StandardInput=tty
 StandardOutput=journal
 
