@@ -252,7 +252,7 @@ nginx::nginx_servers:
     ssl_stapling: true
     ssl_stapling_verify: true
     ssl_trusted_cert: "/var/lib/acme/live/%{::fqdn}/chain"
-    ssl_verify_client: true
+    ssl_verify_client: 'on'
     ssl_client_cert: "/etc/nginx/ssl/debsso.pem"
     ssl_crl: "/etc/nginx/ssl/debsso.crl"
     resolver:
