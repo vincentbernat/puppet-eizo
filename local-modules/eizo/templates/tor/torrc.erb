@@ -1,8 +1,6 @@
 VirtualAddrNetworkIPv4 10.192.0.0/10
 AutomapHostsOnResolve 1
-TransPort <%= @transport %>
-TransListenAddress <%= @bind %>
-DNSPort <%= @dnsport %>
-DNSListenAddress <%= @bind %>
+TransPort <%= @bind %>:<%= @transport %>
+DNSPort <%= @bind %>:<%= @dnsport %>
 SOCKSPort 0
 BandwidthRate <%= @bandwidth %>
