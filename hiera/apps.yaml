@@ -243,7 +243,7 @@ nginx::nginx_servers:
   "%{::fqdn}":
     ipv6_enable: true
     listen_options: default
-    http2: true
+    http2: "on"
     ssl: true
     ssl_cert: "/var/lib/acme/live/%{::fqdn}/fullchain"
     ssl_key: "/var/lib/acme/live/%{::fqdn}/privkey"
