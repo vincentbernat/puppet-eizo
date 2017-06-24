@@ -102,11 +102,6 @@ class eizo::nginx::acme {
     ]
   }
 
-  create_resources(
-    certificate,
-    hiera_hash("nginx::acmetool::certificates", {}),
-    { notify => Exec[acmetool-reconcile] })
-
   define certificate($domains=[$title]) {
     file { "/var/lib/acme/desired/${title}":
       owner   => acmetool,
@@ -114,4 +109,10 @@ class eizo::nginx::acme {
       content => template("eizo/nginx/acme-cert.erb")
     }
   }
+
+  create_resources(
+    certificate,
+    hiera_hash("nginx::acmetool::certificates", {}),
+    { notify => Exec[acmetool-reconcile] })
+
 }
