@@ -305,29 +305,6 @@ nginx::nginx_locations:
       - 'X-Scheme $scheme'
     ssl: true
     ssl_only: true
-  'kodi':
-    location: /kodi/
-    vhost: "%{::fqdn}"
-    proxy: http://kodi$new_uri
-    raw_prepend: |
-      set $new_uri '';
-      rewrite_by_lua '
-        local new_uri = ngx.var.request_uri
-        local m, n, err
-        new_uri, n, err = ngx.re.sub(new_uri, "^/kodi/", "/")
-        m = ngx.re.match(new_uri, "^/(jsonrpc|image/image)")
-        if not m then
-          new_uri, n, err = ngx.re.sub(new_uri, "^/", "/addons/webinterface.default/")
-        end
-        ngx.var.new_uri = new_uri
-      ';
-    proxy_set_header:
-      - 'X-Real-IP $remote_addr'
-      - 'X-Forwarded-For $remote_addr'
-      - 'X-Forwarded-Proto $scheme'
-      - 'X-Scheme $scheme'
-    ssl: true
-    ssl_only: true
   'munin-static':
     location: /munin/static/
     location_alias: /etc/munin/static/
