@@ -1,7 +1,7 @@
 <keymap>
  <global>
   <keyboard>
-    <r mod="ctrl,shift">XBMC.ActivateWindow(MusicLibrary)</r>
+    <r mod="ctrl,shift">XBMC.ActivateWindow(Music,Root)</r>
     <g mod="ctrl,shift">XBMC.ActivateWindow(Videos,TvShowTitles)</g>
     <y mod="ctrl,shift">XBMC.ActivateWindow(Videos,MovieTitles)</y>
     <b mod="ctrl,shift">XBMC.ActivateWindow(Weather)</b>
