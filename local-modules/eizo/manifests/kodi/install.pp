@@ -38,6 +38,10 @@ class eizo::kodi::install inherits eizo::kodi {
     ensure => link,
     target => "${home}"
   }
+  file { "${home}/.profile":
+    ensure => link,
+    target => "/usr/local/bin/kodi-start"
+  }
 
   file { "/usr/local/bin/kodi-start":
     content => template("eizo/kodi/kodi-start.erb"),

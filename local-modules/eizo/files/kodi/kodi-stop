@@ -1,3 +1,4 @@
 #!/bin/sh
 
-/usr/bin/kodi-send --action="Quit"
+sudo -u xbmc \
+    /usr/bin/kodi-send --action="Quit"

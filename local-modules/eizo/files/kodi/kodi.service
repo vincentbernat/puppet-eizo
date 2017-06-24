@@ -1,20 +1,21 @@
 [Unit]
-Description = Kodi Media Center
-After = remote-fs.target
-After = syslog.target
+Description=Kodi Media Center
+After=systemd-user-sessions.service
+After=rc-local.service
  
 [Service]
-Type = simple
-Restart = always
-RestartSec = 15
-User = xbmc
-Group = xbmc
-PAMName = login
-ExecStart = /usr/local/bin/kodi-start
-ExecStop = /usr/local/bin/kodi-stop
-TTYPath = /dev/tty9
-StandardInput = tty
-StandardOutput = journal
+Type=idle
+Restart=always
+RestartSec=15
+ExecStart=-/sbin/agetty -a xbmc tty9 $TERM
+ExecStop=/usr/local/bin/kodi-stop
+UtmpIdentifier=tty9
+TTYPath=/dev/tty9
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+StandardInput=tty
+StandardOutput=journal
 
 [Install]
-WantedBy = multi-user.target
+WantedBy=multi-user.target
