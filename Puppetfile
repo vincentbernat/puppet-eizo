@@ -5,7 +5,7 @@ forge "https://forgeapi.puppetlabs.com"
 # with `librarian-puppet outdated` command.
 
 mod "puppetlabs/stdlib",        "~> 4.3.2"
-mod "puppetlabs/apt",           "~> 1.8.0"
+mod "puppetlabs/apt",           "~> 4.1.0"
 mod "jhoblitt/udev",            "~> 1.2.0"
 mod "stankevich/python",        "~> 1.7.12"
 mod "puppet/nginx",             "~> 0.6.0"
