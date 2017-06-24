@@ -16,6 +16,5 @@ for i in $(seq 1 3); do
 done
 <% end -%>
 
-exec sudo -u xbmc env \
-    AE_SINK=ALSA \
-    /usr/bin/xinit /usr/bin/kodi-standalone -- :0
+export AE_SINK=ALSA
+/usr/bin/xinit /usr/bin/kodi-standalone -- :0
