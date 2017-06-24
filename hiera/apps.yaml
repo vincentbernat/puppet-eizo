@@ -269,7 +269,6 @@ nginx::nginx_servers:
           return 403;
       }
     
-    rewrite_to_https: false
     access_log: "/var/log/nginx/%{::hostname}_access.log"
     error_log: "/var/log/nginx/%{::hostname}_error.log"
     www_root: /usr/share/nginx/html
