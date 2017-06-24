@@ -21,5 +21,9 @@ class eizo::kodi::config inherits eizo::kodi {
   file { "${home}/userdata/advancedsettings.xml":
     source => "puppet:///modules/eizo/kodi/advancedsettings.xml"
   }
+  # And keymaps
+  file { "${home}/userdata/keymaps/flirc.xml":
+    source => "puppet:///modules/eizo/kodi/flirc.xml"
+  }
 
 }

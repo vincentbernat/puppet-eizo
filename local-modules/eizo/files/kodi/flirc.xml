@@ -1,0 +1,55 @@
+<keymap>
+ <global>
+  <keyboard>
+    <r mod="ctrl,shift">XBMC.ActivateWindow(MusicLibrary)</r>
+    <g mod="ctrl,shift">XBMC.ActivateWindow(Videos,TvShowTitles)</g>
+    <y mod="ctrl,shift">XBMC.ActivateWindow(Videos,MovieTitles)</y>
+    <b mod="ctrl,shift">XBMC.ActivateWindow(Weather)</b>
+    <two>JumpSMS2</two>
+    <three>JumpSMS3</three>
+    <four>JumpSMS4</four>
+    <five>JumpSMS5</five>
+    <six>JumpSMS6</six>
+    <seven>JumpSMS7</seven>
+    <eight>JumpSMS8</eight>
+    <nine>JumpSMS9</nine>
+  </keyboard>
+ </global>
+ <VirtualKeyboard>
+   <keyboard>
+     <two>Number2</two>
+     <three>Number3</three>
+     <four>Number4</four>
+     <five>Number5</five>
+     <six>Number6</six>
+     <seven>Number7</seven>
+     <eight>Number8</eight>
+     <nine>Number9</nine>
+   </keyboard>
+ </VirtualKeyboard>
+ <NumericInput>
+   <keyboard>
+     <two>Number2</two>
+     <three>Number3</three>
+     <four>Number4</four>
+     <five>Number5</five>
+     <six>Number6</six>
+     <seven>Number7</seven>
+     <eight>Number8</eight>
+     <nine>Number9</nine>
+   </keyboard>
+ </NumericInput>
+ <FullscreenVideo>
+  <keyboard>
+   <f5>SubtitleDelayMinus</f5>
+   <f6>SubtitleDelayPlus</f6>
+   <c>OSD</c>
+   <t>ActivateWindow(SubtitleSearch)</t>
+  </keyboard>
+ </FullscreenVideo>
+ <MyVideoLibrary>
+  <keyboard>
+   <one>SendClick(25,14)</one>
+  </keyboard>
+ </MyVideoLibrary>
+</keymap>
