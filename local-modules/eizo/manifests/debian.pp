@@ -25,22 +25,22 @@ class eizo::debian(
     source => "puppet:///modules/eizo/debian/apt/99translations"
   }
 
-  apt::source { "jessie":
+  apt::source { "stretch":
     location          => 'http://httpredir.debian.org/debian/',
-    release           => 'jessie',
+    release           => 'stretch',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
     include_src       => false
   }
-  apt::source { "jessie-security":
+  apt::source { "stretch-security":
     location          => 'http://security.debian.org/',
-    release           => 'jessie/updates',
+    release           => 'stretch/updates',
     repos             => 'main contrib non-free',
     include_src       => false
   }
-  apt::source { "jessie-backports":
+  apt::source { "stretch-backports":
     location          => 'http://http.debian.net/debian/',
-    release           => 'jessie-backports',
+    release           => 'stretch-backports',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
     include_src       => false
