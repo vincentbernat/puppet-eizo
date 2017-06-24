@@ -103,9 +103,10 @@ main {
         ip link del ifb1 2> /dev/null || true
     }
 
+    tc qdisc replace dev internet root fq_codel
     tc qdisc del dev internet handle ffff: ingress
     tc qdisc add dev internet handle ffff: ingress
-    tc qdisc del dev ifb4inet root 2> /dev/null
+    tc qdisc del dev ifb4inet root 2> /dev/null || true
 
     tc qdisc add dev ifb4inet root handle 1: htb default 10
     tc class add dev ifb4inet parent 1: classid 1:1   htb quantum $quantum rate ${downlink}kbit ceil ${downlink}kbit
