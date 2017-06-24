@@ -236,31 +236,29 @@ nginx::config::http_cfg_append:
            ~/CN=(?<CN>[^/]+) $CN;
          }
          include /dev/null
-nginx::nginx_vhosts:
+nginx::nginx_servers:
   "localhost":
     listen_ip: 127.0.0.1
     www_root: /usr/share/nginx/html
   "%{::fqdn}":
     ipv6_enable: true
     listen_options: default
+    http2: true
     ssl: true
     ssl_cert: "/var/lib/acme/live/%{::fqdn}/fullchain"
     ssl_key: "/var/lib/acme/live/%{::fqdn}/privkey"
-    ssl_port: 443
     ssl_protocols: "TLSv1.1 TLSv1.2"
     ssl_ciphers: "EECDH+CHACHA20:EECDH+AESGCM:!SHA"
     ssl_stapling: true
     ssl_stapling_verify: true
     ssl_trusted_cert: "/var/lib/acme/live/%{::fqdn}/chain"
+    ssl_verify_client: true
+    ssl_client_cert: "/etc/nginx/ssl/debsso.pem"
+    ssl_crl: "/etc/nginx/ssl/debsso.crl"
     resolver:
       - 127.0.0.1
     add_header:
       Strict-Transport-Security: '"max-age=31536000; includeSubdomains"'
-    vhost_cfg_append:
-      ssl_verify_client: 'on'
-      ssl_verify_depth: 1
-      ssl_client_certificate: "/etc/nginx/ssl/debsso.pem"
-      ssl_crl: "/etc/nginx/ssl/debsso.crl"
     raw_append: |
       if ($ssl_protocol = "") {
           rewrite ^/.well-known/ $uri last;
@@ -270,7 +268,7 @@ nginx::nginx_vhosts:
           rewrite ^/.well-known/ $uri last;
           return 403;
       }
-      
+    
     rewrite_to_https: false
     access_log: "/var/log/nginx/%{::hostname}_access.log"
     error_log: "/var/log/nginx/%{::hostname}_error.log"
@@ -278,14 +276,14 @@ nginx::nginx_vhosts:
     index_files:
       - index.html
 
-nginx::acmetool::certificates:
+eizo::nginx::acmetool::certificates:
   "%{::fqdn}": {}
 
 nginx::nginx_locations:
   'acme-challenge':
     location: /.well-known/acme-challenge/
     location_alias: /var/run/acme/acme-challenge/
-    vhost: "%{::fqdn}"
+    server: "%{::fqdn}"
   'status':
     stub_status: on
     location: /nginx_status
@@ -293,10 +291,10 @@ nginx::nginx_locations:
       access_log: off
       allow: 127.0.0.1
       deny: all
-    vhost: localhost
+    server: localhost
   'transmission':
     location: /transmission
-    vhost: "%{::fqdn}"
+    server: "%{::fqdn}"
     proxy: http://transmission/transmission
     proxy_set_header:
       - 'X-Real-IP $remote_addr'
@@ -308,12 +306,12 @@ nginx::nginx_locations:
   'munin-static':
     location: /munin/static/
     location_alias: /etc/munin/static/
-    vhost: "%{::fqdn}"
+    server: "%{::fqdn}"
     ssl: true
     ssl_only: true
   'munin-html':
     location: /munin/
-    vhost: "%{::fqdn}"
+    server: "%{::fqdn}"
     ssl: true
     ssl_only: true
     www_root: /usr/lib/munin/cgi/munin-cgi-html
@@ -325,7 +323,7 @@ nginx::nginx_locations:
       include: /etc/nginx/fastcgi.conf
   'munin-graph':
     location: '^~ /munin-cgi/munin-cgi-graph/'
-    vhost: "%{::fqdn}"
+    server: "%{::fqdn}"
     ssl: true
     ssl_only: true
     www_root: /usr/lib/munin/cgi/munin-cgi-graph

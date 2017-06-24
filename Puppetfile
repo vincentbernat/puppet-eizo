@@ -8,7 +8,7 @@ mod "puppetlabs/stdlib",        "~> 4.3.2"
 mod "puppetlabs/apt",           "~> 1.8.0"
 mod "jhoblitt/udev",            "~> 1.2.0"
 mod "stankevich/python",        "~> 1.7.12"
-mod "jfryman/nginx",            "~> 0.2.7"
+mod "puppet/nginx",             "~> 0.6.0"
 mod "ssm/munin",                "~> 0.0.10"
 mod "domcleal/augeasproviders", "~> 1.2.0"
 
