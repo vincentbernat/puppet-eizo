@@ -56,6 +56,7 @@ main {
     ceil=$(($uplink - 128))
     quantum=$(</sys/class/net/internet/mtu)
 
+    tc qdisc replace dev internet root fq_codel
     tc qdisc del dev internet root 2> /dev/null
     tc qdisc add dev internet root handle 1: htb default 12
 
