@@ -49,7 +49,7 @@
  </FullscreenVideo>
  <MyVideoLibrary>
   <keyboard>
-   <one>SendClick(25,14)</one>
+   <one>SendClick(25,10)</one>
   </keyboard>
  </MyVideoLibrary>
 </keymap>
