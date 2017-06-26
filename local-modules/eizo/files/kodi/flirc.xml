@@ -47,9 +47,9 @@
    <t>ActivateWindow(SubtitleSearch)</t>
   </keyboard>
  </FullscreenVideo>
- <MyVideoLibrary>
+ <Videos>
   <keyboard>
    <one>SendClick(25,10)</one>
   </keyboard>
- </MyVideoLibrary>
+ </Videos>
 </keymap>
