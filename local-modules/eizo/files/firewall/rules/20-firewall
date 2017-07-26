@@ -27,6 +27,9 @@ ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-trusted -j ACCEPT
 # But not on others
 ip46tables -A FIREWALL-OUTPUT -p udp --dport mdns -o lan-guest -j DROP
 
+# Can do WoL
+ip46tables -A FIREWALL-OUTPUT -p udp --dport discard -o lan-trusted -j ACCEPT
+
 # Can do UPnP on lan-games
 iptables  -A FIREWALL-OUTPUT -p udp --dport 1900 -d 239.255.255.250 -o lan-games -j ACCEPT
 ip6tables -A FIREWALL-OUTPUT -p udp --dport 1900 -d ff02::c -o lan-games -j ACCEPT
