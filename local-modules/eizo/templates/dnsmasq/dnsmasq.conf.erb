@@ -30,6 +30,7 @@ cache-size=0
 
 <% require 'ipaddr' -%>
 # DHCP
+dhcp-authoritative
 dhcp-leasefile=/var/lib/dnsmasq/dhcp.leases
 
 <% @dhcp.each do |iface, params|
