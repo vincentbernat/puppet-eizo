@@ -44,11 +44,13 @@ eizo::flexget::config:
         torcache:
           regexp: 'https?://torcache\.net/torrent/(?P<id>.*)\.torrent(?:\?.*)?'
           format: 'magnet:?xt=urn:btih:\g<id>'
-      email:
-        active: true
-        from: bernat@luffy.cx
-        to: bernat@luffy.cx
-        smtp_host: localhost
+      notify:
+        task:
+          via:
+            - email:
+                from: bernat@luffy.cx
+                to: bernat@luffy.cx
+                smtp_host: localhost
       verify_ssl_certificates: no
       retry_failed:
         retry_time: 20 minutes

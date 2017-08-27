@@ -3,7 +3,7 @@ class eizo::flexget(
   $config,
   $move_from,
   $move_to,
-  $version="1.2.521") {
+  $version="2.10.82") {
 
   class { '::eizo::flexget::install': } ->
   class { '::eizo::flexget::config':  } ~>
