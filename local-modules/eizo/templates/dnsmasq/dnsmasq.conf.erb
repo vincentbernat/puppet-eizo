@@ -55,3 +55,6 @@ dhcp-host=<%= mac %>,<%= name %>
 cname=ntp.home,<%= @hostname %>.home
 dhcp-option=option:ntp-server,0.0.0.0
 dhcp-option=option6:ntp-server,[fe80::]
+
+# DNS (workaround odd bug with link-local addresses)
+dhcp-option=option6:dns-server,[::]
