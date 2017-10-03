@@ -14,7 +14,7 @@ iptables -A FIREWALL-OUTPUT -p udp --source-port bootpc --destination-port bootp
 for iface in $lans; do
     iptables   -A FIREWALL-OUTPUT -p udp --source-port bootps --destination-port bootpc -o $iface -j ACCEPT
     ip6tables  -A FIREWALL-OUTPUT -p udp --source-port dhcpv6-server --destination-port dhcpv6-client -o $iface -j ACCEPT
-    ip46tables -A FIREWALL-OUTPUT -p udp --source-port domain --destination-port domain -o $iface -j ACCEPT
+    ip46tables -A FIREWALL-OUTPUT -p udp --source-port domain -o $iface -j ACCEPT
 done
 
 # Can emit router advertisements
