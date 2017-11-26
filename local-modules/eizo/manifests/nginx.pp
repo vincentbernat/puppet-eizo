@@ -37,71 +37,37 @@ define eizo::nginx::crl($path=$title, $url) {
 
 class eizo::nginx::acme {
 
-  # TODO: install acmetool
-  # TODO: run "sudo -u acmetool acmetool quickstart"
-  # TODO: setup hooks
-  # package { acmetool:
-  #   ensure => installed
-  # }
-
-  user { acmetool:
-    ensure  => present,
-    comment => "User for Let's encrypt",
-    system  => true,
-    gid     => daemon,
-    home    => '/var/empty'
+  package { acmetool:
+    ensure => installed
   }
-  ->
-  file { '/var/run/acme/acme-challenge/':
-    ensure => directory,
-    owner  => acmetool,
-    group  => root,
-    mode   => '0755'
-  }
-
-  file { '/var/run/acme':
-    ensure => directory
-  }
-  file { ['/var/lib/acme', '/var/lib/acme/conf', '/var/lib/acme/desired']:
+  -> file { ['/var/lib/acme', '/var/lib/acme/conf']:
     ensure  => directory,
-    owner   => acmetool,
-    require => User[acmetool]
   }
-  file { '/var/lib/acme/conf/target':
+  -> file { '/var/lib/acme/conf/target':
     source => "puppet:///modules/eizo/nginx/acme.conf"
   }
-  file { '/etc/default/acme-reload':
+  -> file { '/etc/default/acme-reload':
     content => "SERVICES=nginx"
+  }
+  -> service { 'acmetool.timer':
+    ensure => running,
+    enable => true
   }
 
   exec { "acmetool-reconcile":
     path        => ["/bin", "/usr/bin"],
-    command     => "acmetool --batch reconcile",
-    user        => acmetool,
+    command     => "systemctl start acmetool.service",
     refreshonly => true,
     require     => [
-      User[acmetool],
-      File['/etc/default/acme-reload'],
-      File['/var/lib/acme/conf/target'],
-      File['/etc/sudoers.d/acmetool'],
+      Package[acmetool],
     ]
-  }
-
-  file { "/etc/sudoers.d/acmetool":
-    content => "acmetool ALL=(root) NOPASSWD: /etc/acme/hooks/"
   }
 
   cron { "acmetool-reconcile":
-    minute  => 41,
-    hour    => 17,
-    command => "/usr/bin/acmetool --batch reconcile",
-    user    => acmetool,
-    require     => [
-      User[acmetool],
-      File['/etc/default/acme-reload'],
-      File['/var/lib/acme/conf/target'],
-      File['/etc/sudoers.d/acmetool'],
-    ]
+    ensure => absent
+  }
+  user { acmetool:
+    ensure  => absent,
   }
 
   create_resources(
@@ -113,8 +79,6 @@ class eizo::nginx::acme {
 
 define eizo::nginx::acme::certificate($domains=[$title]) {
   file { "/var/lib/acme/desired/${title}":
-    owner   => acmetool,
-    require => User[acmetool],
     content => template("eizo/nginx/acme-cert.erb")
   }
 }
