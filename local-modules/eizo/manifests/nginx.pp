@@ -50,8 +50,9 @@ class eizo::nginx::acme {
     content => "SERVICES=nginx"
   }
   -> service { 'acmetool.timer':
-    ensure => running,
-    enable => true
+    provider => systemd,
+    ensure   => running,
+    enable   => true
   }
 
   exec { "acmetool-reconcile":
