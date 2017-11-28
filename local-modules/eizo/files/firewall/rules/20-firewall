@@ -59,7 +59,6 @@ for userport in \
     xbmc:tcp/http xbmc:tcp/https \
     postfix:tcp/submission \
     www-data:tcp/http \
-    acmetool:tcp/https \
     debian-tor:tcp/http debian-tor:tcp/https \
     unbound:udp/domain unbound:tcp/domain \
     _apt:tcp/http _apt:tcp/https \
