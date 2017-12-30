@@ -20,7 +20,7 @@ case $1 in
             target=$to/${f%%/*}
             [[ ! -d $target ]] || mv $f $target/.
         done
-        for f in **/{*.{txt,nfo,jpg},[Ss]ample.{mkv,mp4},RARBG{.com,}.mp4}(N); do
+        for f in **/{*.{txt,nfo,jpg},[Ss]ample{.-}*{mkv,mp4},RARBG{.com,}.mp4}(N); do
             rm $f
         done
         for d in **/*(N/^F); do
