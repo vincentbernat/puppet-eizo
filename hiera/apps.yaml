@@ -22,7 +22,7 @@ eizo::transmission::config:
   download-queue-size: 5
   umask: 2
   rpc-host-whitelist:
-    - "127.0.0.1"
+    - "transmission44785124.luffy.cx"
   rpc-whitelist:
     - "127.0.0.1"
   rpc-whitelist-enabled: true
@@ -307,6 +307,7 @@ nginx::nginx_locations:
       - 'X-Forwarded-For $remote_addr'
       - 'X-Forwarded-Proto $scheme'
       - 'X-Scheme $scheme'
+      - 'Host transmission44785124.luffy.cx'
     ssl: true
     ssl_only: true
   'munin-static':
