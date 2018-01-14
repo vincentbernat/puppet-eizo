@@ -21,6 +21,8 @@ eizo::transmission::config:
   download-queue-enabled: true
   download-queue-size: 5
   umask: 2
+  rpc-host-whitelist:
+    - "127.0.0.1"
   rpc-whitelist:
     - "127.0.0.1"
   rpc-whitelist-enabled: true
@@ -59,10 +61,10 @@ eizo::flexget::config:
 
     transmission:
       transmission:
-        host: localhost
+        host: 127.0.0.1
         port: 9099
       clean_transmission:
-        host: localhost
+        host: 127.0.0.1
         port: 9099
         finished_for: 180 days
         min_ratio: 2
