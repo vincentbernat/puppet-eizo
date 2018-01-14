@@ -90,7 +90,6 @@ eizo::flexget::config:
         path: "/srv/media/transmission/complete/TV/{{ series_name }}"
 
     tv:
-      cookies: ~/.flexget/cookies.txt
       series:
         settings:
           normal:
