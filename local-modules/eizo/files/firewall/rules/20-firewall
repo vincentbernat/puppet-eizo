@@ -71,7 +71,7 @@ for userport in \
 done
 
 # Multicast for IPTV
-iptables -A FIREWALL-OUTPUT -o internet -p udp -d 224.0.0.22/32 -j ACCEPT
+iptables -A FIREWALL-OUTPUT -o internet -p igmp -d 224.0.0.22/32 -j ACCEPT
 
 # Drop Tor traffic not targetted at the right ports
 ip46tables -A FIREWALL-OUTPUT -m owner --uid-owner debian-tor -j DROP
