@@ -193,7 +193,7 @@ eizo::flexget::config:
             title: "tv:raw_title"
         - rss: 'https://rarbg.com/rssdd.php?category=41'
         - rss: 'https://yourbittorrent.com/television/rss.xml'
-        - rss: 'https://www.skytorrents.in/rss/all/ad/1/hdtv'
+        - rss: 'https://www.skytorrents.lol/rss/all/ad/1/hdtv'
       template:
         - no-redownload
         - blacklist
