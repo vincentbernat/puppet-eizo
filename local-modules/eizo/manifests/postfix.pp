@@ -1,7 +1,6 @@
 class eizo::postfix(
-  $relay = "smtp.${::domain}",
-  $cert = undef,
-  $key = undef,
+  $relay,
+  $relayauth,
   $origin = "${::domain}"
   ) {
 

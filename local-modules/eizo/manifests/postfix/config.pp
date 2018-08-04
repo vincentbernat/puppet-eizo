@@ -4,26 +4,18 @@ class eizo::postfix::config inherits eizo::postfix {
     content => template("eizo/postfix/main.cf.erb"),
   }
 
-  if ($key != undef) {
-    file { "/etc/ssl/private/postfix.key":
-      mode => "0600",
-      content => "${key}",
-    }
-  }
-  else {
-    warning('no key present for postfix')
-  }
-  if ($cert != undef) {
-    file { "/etc/ssl/postfix.pem":
-      content => "${cert}",
-    }
-  }
-  else {
-    warning('no certificate present for postfix')
-  }
-
   file { "/etc/mailname":
     content => template("eizo/postfix/mailname.erb"),
+  }
+
+  file { "/etc/postfix/sasl_passwd":
+    content => "# Managed by Puppet.\n[${relay}]:587 ${relayauth}\n",
+    mode    => "0640",
+  }
+  ~>
+  exec { "postmap":
+    command     => "/usr/sbin/postmap /etc/postfix/sasl_passwd",
+    refreshonly => true
   }
 
 }

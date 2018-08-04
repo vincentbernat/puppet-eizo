@@ -1,9 +1,5 @@
-eizo::postfix::cert: |
-  -----BEGIN CERTIFICATE-----
-  -----END CERTIFICATE-----
-eizo::postfix::key: |
-  -----BEGIN RSA PRIVATE KEY-----
-  -----END RSA PRIVATE KEY-----
+eizo::postfix::relay: smtp.example.com
+eizo::postfix::relayauth: "user:password"
 
 eizo::ddns::key: XXXXXXXXXXXXXXXXXXXX
 eizo::ddns::secret: XX/XXXXXXXXXXXXXXX/XXXXXXXXXX
