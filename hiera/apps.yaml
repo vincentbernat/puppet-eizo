@@ -81,6 +81,7 @@ eizo::flexget::config:
           - bamboozle
           - '\[state\]'
           - '[Dd]ual.[Aa]udio'
+          - '\[MOVCR\]'
 
     anime:
       series:
