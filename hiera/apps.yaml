@@ -198,7 +198,6 @@ eizo::flexget::config:
             title: "tv:raw_title"
         - rss: 'https://rarbg.com/rssdd.php?category=41'
         - rss: 'https://yourbittorrent.com/television/rss.xml'
-        - rss: 'http://www.btsone.cc/rss.php'
         - rss: 'https://www.limetorrents.cc/rss/20/'
       template:
         - no-redownload
