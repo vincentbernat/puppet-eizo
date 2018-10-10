@@ -82,6 +82,7 @@ eizo::flexget::config:
           - '\[state\]'
           - '[Dd]ual.[Aa]udio'
           - '\[MOVCR\]'
+          - VOSTFR
 
     anime:
       series:
