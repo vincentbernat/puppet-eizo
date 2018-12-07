@@ -17,7 +17,8 @@ class eizo::flexget::install inherits eizo::flexget {
   python::virtualenv { "${home}/venv":
     require => Package['virtualenv'],
     before => [ Python::Pip['flexget'],
-                Python::Pip['transmissionrpc'] ]
+                Python::Pip['transmissionrpc'],
+                Python::Pip['cfscrape'] ]
   }
 
   python::pip { 'flexget':
@@ -25,7 +26,9 @@ class eizo::flexget::install inherits eizo::flexget {
     virtualenv => "${home}/venv"
   }
   python::pip { 'transmissionrpc':
-    pkgname => "transmissionrpc",
+    virtualenv => "${home}/venv"
+  }
+  python::pip { 'cfscrape':
     virtualenv => "${home}/venv"
   }
 
