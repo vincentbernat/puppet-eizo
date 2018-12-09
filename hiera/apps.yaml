@@ -112,7 +112,6 @@ eizo::flexget::config:
           - Orange Is the New Black
           - Game of Thrones
           - Homeland
-          - House of Cards
           - True Detective
           - Broadchurch
           - Silicon Valley
@@ -123,18 +122,14 @@ eizo::flexget::config:
           - The 100
           - Better Call Saul
           - The Last Man on Earth
-          - 12 Monkeys
-          - Wayward Pines
           - The Blacklist
           - Black Mirror
           - Westworld
-          - Narcos
           - Mindhunter
           - Master of None
           - Preacher
           - The X-Files
           - Stranger Things
-          - Halt and Catch Fire
           - Riverdale
           - Z Nation
           - The Expanse
@@ -148,8 +143,6 @@ eizo::flexget::config:
           - Mr. Robot:
               alternate_name:
                 - Mr Robot
-          - Episodes:
-              exact: yes
       set:
         path: "/srv/media/transmission/complete/TV/{{ series_name }}"
 
