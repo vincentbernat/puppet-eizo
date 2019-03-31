@@ -63,6 +63,7 @@ function dhcp () {
     ip46tables -A $chain-INPUT -p udp --destination-port ntp -j ACCEPT
     ip46tables -A $chain-INPUT -p udp --destination-port domain -j ACCEPT
     ip46tables -A $chain-INPUT -p tcp --destination-port domain -j ACCEPT
+    ip46tables -A $chain-INPUT -p tcp --destination-port 853 -j ACCEPT
 }
 
 # UPnP and NAT-PMP
