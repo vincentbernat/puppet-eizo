@@ -136,6 +136,8 @@ eizo::flexget::config:
           - What We Do in the Shadows
           - DARK:
               exact: yes
+              alternate_name:
+                - Dark
           - Angie Tribeca
           - "It's Always Sunny in Philadelphia"
           - Jessica Jones:
