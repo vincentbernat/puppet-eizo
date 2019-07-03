@@ -134,7 +134,6 @@ eizo::flexget::config:
           - The Expanse
           - The Crown
           - What We Do in the Shadows
-          - Santa Clarita Diet
           - DARK:
               exact: yes
               alternate_name:
