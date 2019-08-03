@@ -23,4 +23,5 @@ class eizo::system {
   ->
   file { "/etc/sudoers.d/nopasswd": content => template("eizo/system/sudo-nopasswd") }
 
+  package { 'fwupd': ensure => installed }
 }
