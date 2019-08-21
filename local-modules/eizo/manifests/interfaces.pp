@@ -10,6 +10,11 @@ class eizo::interfaces {
   file { "/etc/network/interfaces":
     content => "auto lo\niface lo inet loopback\nsource-directory interfaces.d\n"
   }
+  file { '/etc/network/interfaces.d':
+    ensure  => directory,
+    recurse => true,
+    purge   => true
+  }
 
   concat { "/etc/dhcp/dhclient.conf":
     ensure => present
