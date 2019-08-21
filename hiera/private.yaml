@@ -44,3 +44,5 @@ eizo::proftpd::users:
         Comment: "Guy 1"
         AAAAB3NzaC1yc2EAAAABIwAAAIEA0q2ZuYy2a7sExrzkJk/a3/hmjtt3uoZmaDCg0YdRhg
         ---- END SSH2 PUBLIC KEY ----
+
+eizo::router::authentication: "00:00:00:00:00:00:00:00:00:00:00:66:74:69:xx:xx:xx:xx:xx:xx:xx:xx"

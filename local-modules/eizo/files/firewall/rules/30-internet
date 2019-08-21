@@ -5,9 +5,7 @@
 ip46tables -N INTERNET-INPUT
 ip46tables -N INTERNET-FORWARD
 ip46tables -A INPUT -i internet -j INTERNET-INPUT
-ip6tables  -A INPUT -i internet6 -j INTERNET-INPUT
 ip46tables -A FORWARD -i internet -j INTERNET-FORWARD
-ip6tables  -A FORWARD -i internet6 -j INTERNET-FORWARD
 
 icmp INTERNET-INPUT 50
 icmp INTERNET-FORWARD 50

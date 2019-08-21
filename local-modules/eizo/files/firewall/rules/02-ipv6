@@ -11,22 +11,4 @@ done
 # Drop any traffic from Teredo (shouldn't be used anymore)
 ip6tables -t raw -A PREROUTING -s 2001::/32 -j DROP
 
-# Set TCPMSS. With 6rd, we are more likely to have problems with
-# PMTU. All the more our MTU seems too low?
-ip6tables -t mangle -A POSTROUTING -o internet6 \
-          -p tcp --tcp-flags SYN,RST SYN \
-          -j TCPMSS --clamp-mss-to-pmtu
-
-# Setup IPv6 subnets
-main {
-  local i
-  local ip
-  i=1
-  ip=$(facter ipaddress6_internet6)
-  for iface in $lans; do
-    ip -6 addr flush scope global dev ${iface}
-    ip -6 addr replace ${ip%0::1}$(( [##16] $i ))::1/64 dev ${iface}
-    i=$(($i + 1))
-    (( $i < 16 )) || break
-  done
-}
+# TODO: setup IPv6 subnets

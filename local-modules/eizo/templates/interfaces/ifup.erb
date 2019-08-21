@@ -10,7 +10,7 @@ iface <%= @name %> inet static
                           Socket::AF_INET).to_s %>
 <% end -%>
 <% if @vlan then -%>
-  pre-up    ip link add link <%= @vlan["over"] %> name <%= @name %> type vlan id <%= @vlan["id"] %>
+  pre-up    ip link add link <%= @vlan["over"] %> name <%= @name %> type vlan id <%= @vlan["id"] %> egress-qos-map 0:0 6:6 7:7
   post-down ip link del <%= @name %>
 <% end -%>
 <% @also.each do |name, value| -%>

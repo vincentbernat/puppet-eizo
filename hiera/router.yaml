@@ -7,16 +7,18 @@ eizo::interfaces:
     also:
       offload-tso: "off"
   internet:
-    description: "FTTH Swisscom connection"
+    description: "FTTH Orange connection"
     vlan:
       over: lan-isolated
-      id: 10
+      id: 832
     order: 4
     dhcp:
       timeout: 60
       retry: 1
       select-timeout: 0
-      "send vendor-class-identifier": "100008,0001,,pfSense dhclient2.1"
+      "send vendor-class-identifier": "sagem"
+      "send user-class": "+FSVDSL_livebox.Internet.softathome.Livebox4"
+      "send rfc3118-authentication": "%{hiera('eizo::router::authentication')}"
   lan-trusted:
     description: "Trusted LAN network"
     static: 192.168.117.1/26
