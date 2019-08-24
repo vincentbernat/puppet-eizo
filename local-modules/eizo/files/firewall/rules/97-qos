@@ -19,7 +19,7 @@ done
 # copied as 802.1p priority.
 main tc filter add dev internet parent 0: prio 1 protocol ip u32 \
      match ip protocol 17 \
-     macth ip dport 67 \
+     match ip dport 67 \
      skbedit priority 0:6
 # ARP
 main tc filter add dev internet parent 0: prio 1 protocol 0x806 u32 \
@@ -37,7 +37,7 @@ main tc filter add dev internet parent 0: prio 1 protocol ip u32 \
 # Same for IPv6
 main tc filter add dev internet parent 0: prio 1 protocol ip6 u32 \
      match ip6 protocol 17 \
-     macth ip6 dport 547 \
+     match ip6 dport 547 \
      skbedit priority 0:6
 # ICMP
 main tc filter add dev internet parent 0: prio 1 protocol ip6 u32 \
