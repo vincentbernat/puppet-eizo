@@ -19,6 +19,7 @@ eizo::interfaces:
       "send vendor-class-identifier": '"sagem"'
       "send user-class": '"+FSVDSL_livebox.Internet.softathome.Livebox4"'
       "send rfc3118-authentication": "%{hiera('eizo::router::authentication')}"
+      "pre-up": "/etc/firewall/run || true"
   lan-trusted:
     description: "Trusted LAN network"
     static: 192.168.117.1/26
