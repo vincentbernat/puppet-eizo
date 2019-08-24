@@ -486,9 +486,6 @@ munin::node::plugins:
   "if_lan-games":
     target: if_
     ensure: link
-  "if_lan-tor":
-    target: if_
-    ensure: link
   "if_internet":
     target: if_
     ensure: link
@@ -499,9 +496,6 @@ munin::node::plugins:
     target: if_err_
     ensure: link
   "if_err_lan-games":
-    target: if_err_
-    ensure: link
-  "if_err_lan-tor":
     target: if_err_
     ensure: link
   "if_err_internet":

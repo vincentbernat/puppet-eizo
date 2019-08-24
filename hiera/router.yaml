@@ -51,7 +51,3 @@ eizo::dnsmasq::dhcp_hosts:
   gs108t:     "20:4e:7f:77:87:3f"
   hl-4150cdn: "00:1b:a9:9b:ea:82"
   zyxel:      "10:7b:ef:d3:ec:fb"
-
-eizo::tor::bind: 192.168.118.65
-eizo::tor::transport: 9040
-eizo::tor::dnsport: 9041
