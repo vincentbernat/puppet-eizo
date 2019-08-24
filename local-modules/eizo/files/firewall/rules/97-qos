@@ -46,6 +46,6 @@ main tc filter add dev internet parent 1: prio 5 u32 \
      match ip6 dport 547 ffff \
      action skbedit priority 0:6
 # ICMP
-main tc filter add dev internet parent 1: prio 6 protocol ip6 u32 \
+main tc filter add dev internet parent 1: prio 6 protocol ipv6 u32 \
      match ip6 protocol 58 ff \
      action skbedit priority 0:6
