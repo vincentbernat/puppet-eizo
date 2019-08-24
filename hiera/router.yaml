@@ -26,13 +26,6 @@ eizo::interfaces:
       over: lan-isolated
       id: 6
     order: 2
-  lan-tor:
-    description: "ToR LAN network"
-    static: 192.168.118.65/26
-    vlan:
-      over: lan-isolated
-      id: 7
-    order: 2
   lan-guest:
     description: "Guest LAN network"
     static: 192.168.118.1/26

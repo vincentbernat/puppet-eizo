@@ -1,8 +1,8 @@
 class eizo::tor::service inherits eizo::tor {
 
   service { 'tor':
-    ensure  => running,
-    enable  => true,
+    ensure  => stopped,
+    enable  => false,
     restart => 'systemctl reload tor'
   }
 
