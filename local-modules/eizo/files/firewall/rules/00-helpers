@@ -3,7 +3,7 @@
 function ip46tables () {
     emulate -L zsh +x
     iptables "$@"
-    ip6tables $args
+    ip6tables "$@"
 }
 
 function reject () {
