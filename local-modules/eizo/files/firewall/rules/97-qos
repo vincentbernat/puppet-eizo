@@ -21,43 +21,8 @@ done
 # We need a qdisc to set filters
 main tc qdisc replace dev internet root handle 1: prio
 
-# Unfortunately, on Linux, when sending on
-# PF_PACKET/SOCK_RAW/ETH_P_ALL socket, we cannot filter using tc
-# unless the following patch is applied:
-#
-# commit 18bed89107a400af0d672ec85a270f1545db2569
-# Author: Yoshiki Komachi <komachi.yoshiki@lab.ntt.co.jp>
-# Date:   Mon Mar 18 14:39:52 2019 +0900
-#
-#     af_packet: fix the tx skb protocol in raw sockets with ETH_P_ALL
-#
-#     I am using "protocol ip" filters in TC to manipulate TC flower
-#     classifiers, which are only available with "protocol ip". However,
-#     I faced an issue that packets sent via raw sockets with ETH_P_ALL
-#     did not match the ip filters even if they did satisfy the condition
-#     (e.g., DHCP offer from dhcpd).
-#
-#     I have determined that the behavior was caused by an unexpected
-#     value stored in skb->protocol, namely, ETH_P_ALL instead of ETH_P_IP,
-#     when packets were sent via raw sockets with ETH_P_ALL set.
-#
-#     IMHO, storing ETH_P_ALL in skb->protocol is not appropriate for
-#     packets sent via raw sockets because ETH_P_ALL is not a real ether
-#     type used on wire, but a virtual one.
-#
-#     This patch fixes the tx protocol selection in cases of transmission
-#     via raw sockets created with ETH_P_ALL so that it asks the driver to
-#     extract protocol from the Ethernet header.
-#
-#     Fixes: 75c65772c3 ("net/packet: Ask driver for protocol if not provided by user")
-#     Signed-off-by: Yoshiki Komachi <komachi.yoshiki@lab.ntt.co.jp>
-#     Acked-by: Willem de Bruijn <willemb@google.com>
-#     Signed-off-by: David S. Miller <davem@davemloft.net>
-#
-# This patch is in 5.1.
-
 # DHCP
-main tc filter add dev internet parent 1: prio 1 protocol ip u32 \
+main tc filter add dev internet parent 1: prio 1 u32 \
      match ip protocol 17 ff \
      match ip dport 67 ffff \
      action skbedit priority 0:6
@@ -75,7 +40,7 @@ main tc filter add dev internet parent 1: prio 1 protocol ip u32 \
      action skbedit priority 0:6
 
 # Same for IPv6
-main tc filter add dev internet parent 1: prio 1 protocol ip6 u32 \
+main tc filter add dev internet parent 1: prio 1 u32 \
      match ip6 protocol 17 ff \
      match ip6 dport 547 ffff \
      action skbedit priority 0:6
