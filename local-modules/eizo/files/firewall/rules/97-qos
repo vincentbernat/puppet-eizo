@@ -27,24 +27,24 @@ main tc filter add dev internet parent 1: prio 1 u32 \
      match ip dport 67 ffff \
      action skbedit priority 0:6
 # ARP
-main tc filter add dev internet parent 1: prio 1 protocol 0x806 u32 \
+main tc filter add dev internet parent 1: prio 2 protocol 0x806 u32 \
      match u32 0 0 \
      action skbedit priority 0:6
 # IGMP
-main tc filter add dev internet parent 1: prio 1 protocol ip u32 \
+main tc filter add dev internet parent 1: prio 3 protocol ip u32 \
      match ip protocol 2 ff \
      action skbedit priority 0:6
 # ICMP
-main tc filter add dev internet parent 1: prio 1 protocol ip u32 \
+main tc filter add dev internet parent 1: prio 4 protocol ip u32 \
      match ip protocol 1 ff \
      action skbedit priority 0:6
 
 # Same for IPv6
-main tc filter add dev internet parent 1: prio 1 u32 \
+main tc filter add dev internet parent 1: prio 5 u32 \
      match ip6 protocol 17 ff \
      match ip6 dport 547 ffff \
      action skbedit priority 0:6
 # ICMP
-main tc filter add dev internet parent 1: prio 1 protocol ip6 u32 \
+main tc filter add dev internet parent 1: prio 6 protocol ip6 u32 \
      match ip6 protocol 58 ff \
      action skbedit priority 0:6
