@@ -16,8 +16,8 @@ eizo::interfaces:
       timeout: 60
       retry: 1
       select-timeout: 0
-      "send vendor-class-identifier": "sagem"
-      "send user-class": "+FSVDSL_livebox.Internet.softathome.Livebox4"
+      "send vendor-class-identifier": '"sagem"'
+      "send user-class": '"+FSVDSL_livebox.Internet.softathome.Livebox4"'
       "send rfc3118-authentication": "%{hiera('eizo::router::authentication')}"
   lan-trusted:
     description: "Trusted LAN network"

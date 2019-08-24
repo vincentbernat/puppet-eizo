@@ -1,7 +1,7 @@
 # Configuration for interface <%= @name %>
 interface "<%= @name %>" {
 <% @dhcp.each do |name, value| -%>
-  <%= name %> <%= value.inspect %>;
+  <%= name %> <%= value %>;
 <% end -%>
 }
 
