@@ -7,8 +7,8 @@ class eizo::ambiled::service inherits eizo::ambiled {
   }
   ->
   service { 'ambiled':
-    enable => true,
-    ensure => running
+    enable => false,
+    ensure => stopped
   }
 
 }
