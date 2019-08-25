@@ -20,7 +20,7 @@ eizo::interfaces:
       "send user-class": '"+FSVDSL_livebox.Internet.softathome.Livebox4"'
       "send rfc3118-authentication": "%{hiera('eizo::router::authentication')}"
     also:
-      "pre-up": "/etc/firewall/run || true"
+      "pre-up": "/etc/firewall/run"
   lan-trusted:
     description: "Trusted LAN network"
     static: 192.168.117.1/26

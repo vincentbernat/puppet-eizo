@@ -22,7 +22,7 @@ done
 main tc qdisc replace dev internet root handle 1: prio
 main tc filter del dev internet
 
-# DHCP
+# DHCP (raw sockets, do not specify "protocol ip")
 main tc filter add dev internet parent 1: prio 1 u32 \
      match ip protocol 17 ff \
      match ip dport 67 ffff \
@@ -40,12 +40,12 @@ main tc filter add dev internet parent 1: prio 4 protocol ip u32 \
      match ip protocol 1 ff \
      action skbedit priority 0:6
 
-# Same for IPv6
-main tc filter add dev internet parent 1: prio 5 u32 \
+# DHCPv6
+main tc filter add dev internet parent 1: prio 5 protocol ipv6 u32 \
      match ip6 protocol 17 ff \
      match ip6 dport 547 ffff \
      action skbedit priority 0:6
-# ICMP
+# ICMPv6
 main tc filter add dev internet parent 1: prio 6 protocol ipv6 u32 \
      match ip6 protocol 58 ff \
      action skbedit priority 0:6
