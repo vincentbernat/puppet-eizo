@@ -1,6 +1,4 @@
 # -*- mode: sh; -*-
 
 # Default NAT rule
-main fwip=$(facter ipaddress_internet)
-main [[ -z $fwip ]] || \
-    command iptables -t nat -A POSTROUTING ! -s ${fwip} -o internet -j SNAT --to-source ${fwip}
+iptables -t nat -A POSTROUTING -o internet -j MASQUERADE
