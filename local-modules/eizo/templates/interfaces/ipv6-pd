@@ -19,14 +19,14 @@ IA_PD_OFFSET=0
 
 fn_calc_ip6addr() {
   [ -z "$1" ] && return
+  [ -z "$2" ] && return
   local addr
-  IA_PD_OFFSET=$((IA_PD_OFFSET + 1))
   addr=$(sipcalc --v6split=64 "$1" \
       | grep '^Network' \
-      | awk "(NR == $IA_PD_OFFSET)"' { print $3 }' \
+      | awk "(NR == $2)"' { print $3 }' \
       | sed 's/:0000$/:/')1/64
   if [ "$IA_PD_DEBUG" = "yes" ]; then
-      logger -t "dhcpv6-pd" -p daemon.debug "Debug: From prefix $1, computed address $addr (offset $IA_PD_OFFSET)."
+      logger -t "dhcpv6-pd" -p daemon.debug "Debug: From prefix $1, computed address $addr (offset $2)."
   fi
   echo "$addr"
 }
@@ -48,7 +48,8 @@ fn_remove_prefix() {
 fn_assign_prefix() {
   [ -z "$1" ] && return
   local new_ia_pd_addr
-  new_ia_pd_addr="$(fn_calc_ip6addr "$1")"
+  IA_PD_OFFSET=$((IA_PD_OFFSET + 1))
+  new_ia_pd_addr="$(fn_calc_ip6addr "$1" $IA_PD_OFFSET)"
   if [ -z "$new_ia_pd_addr" ]; then
       logger -t "dhcpv6-pd" -p daemon.err "Error: Failed to calculate address for interface $IA_PD_IFACE and prefix $1"
       return
@@ -61,7 +62,6 @@ fn_assign_prefix() {
           logger -t "dhcpv6-pd" -p daemon.err "Error: Failed to add new address $new_ia_pd_addr to interface $IA_PD_IFACE."
           return
       fi
-      fn_restart_services
   elif [ "$IA_PD_DEBUG" = "yes" ]; then
       logger -t "dhcpv6-pd" -p daemon.debug "Debug: Address $new_ia_pd_addr already assigned to interface $IA_PD_IFACE."
   fi
