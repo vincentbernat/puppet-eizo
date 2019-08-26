@@ -16,11 +16,6 @@ class eizo::firewall::service inherits eizo::firewall {
     enable => true
   }
 
-  file { ['/etc/dhcp/dhclient-exit-hooks.d/000-ipv6',
-          '/etc/dhcp/dhclient-exit-hooks.d/zzz-firewall']:
-    ensure => absent
-  }
-
   exec { "firewall reload":
     path => [ "/sbin", "/bin" ],
     command => "systemctl start firewall",
