@@ -10,6 +10,7 @@ icmp FIREWALL-OUTPUT 50
 # Can emit DHCP requests
 iptables -A FIREWALL-OUTPUT -p udp --source-port bootpc --destination-port bootps -o internet -j ACCEPT
 ip6tables -A FIREWALL-OUTPUT -p udp --source-port dhcpv6-client --destination-port dhcpv6-server -o internet -j ACCEPT
+ip6tables -A FIREWALL-OUTPUT -p icmpv6 --icmpv6-type router-solicitation -o internet -j ACCEPT
 
 # Can answer to DHCP requests and DNS (dunno why the conntrack doesn't catch this)
 for iface in $lans; do

@@ -21,4 +21,5 @@ ip46tables -t raw -A PREROUTING -j RPFILTER
 
 # Enable forwarding
 main sysctl -qw net.ipv4.ip_forward=1
+main sysctl -qw net.ipv6.conf.internet.accept_ra=2
 main sysctl -qw net.ipv6.conf.all.forwarding=1
