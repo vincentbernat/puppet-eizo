@@ -11,9 +11,6 @@ icmp INTERNET-INPUT 50
 icmp INTERNET-FORWARD 50
 public INTERNET
 
-# 6rd
-iptables -A INTERNET-INPUT -p ipv6 -j ACCEPT
-
 # We can access port 9098 for transmission
 ip46tables -A INTERNET-INPUT -p tcp --dport 9098 -j ACCEPT
 ip46tables -A INTERNET-INPUT -p udp --dport 9098 -j ACCEPT

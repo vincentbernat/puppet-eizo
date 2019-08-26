@@ -42,9 +42,6 @@ ip6tables -A FIREWALL-OUTPUT -p udp --dport 5351 -d ff02::1 -o lan-games -j ACCE
 ip46tables -A FIREWALL-OUTPUT -p udp --sport 5350 -o lan-games -j ACCEPT
 ip46tables -A FIREWALL-OUTPUT -p udp --sport 5351 -o lan-games -j ACCEPT
 
-# 6rd
-iptables -A FIREWALL-OUTPUT -p ipv6 -j ACCEPT
-
 # Some users have unlimited Internet access, except port 25
 ip46tables -N FIREWALL-OUTPUT-INET
 ip46tables -A FIREWALL-OUTPUT-INET -p tcp --dport smtp -j RETURN
