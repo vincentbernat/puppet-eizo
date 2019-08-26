@@ -32,6 +32,7 @@ ip46tables -A INTERNET-FORWARD -p tcp -o lan-trusted -j ACCEPT
 
 # DCHPv6 (not ESTABLISHED)
 ip6tables -A INTERNET-INPUT -p udp --destination-port dhcpv6-client --source-port dhcpv6-server -j ACCEPT
+ip6tables -A INTERNET-INPUT -p udp --destination-port dhcpv6-client --source-port dhcpv6-server -j ACCEPT
 
 reject INTERNET-INPUT    2
 reject INTERNET-FORWARD  2
