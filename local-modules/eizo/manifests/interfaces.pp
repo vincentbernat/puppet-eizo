@@ -26,6 +26,10 @@ class eizo::interfaces {
     order => '00'
   }
 
+  file { '/etc/dibbler/script.sh':
+    source => "puppet:///modules/eizo/interfaces/dibbler.sh",
+    mode   => '0755'
+  }
   concat { '/etc/dibbler/client.conf':
     ensure => present,
     notify => Service['dibbler-client']
