@@ -18,7 +18,7 @@ iface <%= @name %> inet static
 <% end -%>
 
 <% if @dhcp then -%>
-iface <%= @name %> inet6 dhcp
+iface <%= @name %> inet6 auto
   accept_ra 2
   autoconf 1
   request_prefix 1
