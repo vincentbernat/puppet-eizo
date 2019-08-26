@@ -21,9 +21,10 @@ eizo::interfaces:
       "send rfc3118-authentication": "%{hiera('eizo::router::authentication')}"
     dhcpv6:
       options:
-        16: "hex 00:00:04:0e:00:05:73:61:67:65:6d"         # vendor-class
-        15: "hex 00:2b:46:53:56:44:53:4c:5f:6c:69:76:65:62:6f:78:2e:49:6e:74:65:72:6e:65:74:2e:73:6f:66:74:61:74:68:6f:6d:65:2e:6c:69:76:65:62:6f:78:34" #  user-class
-        11: "hex %{hiera('eizo::router::authentication')}" # auth
+        - 16: "hex 00:00:04:0e:00:05:73:61:67:65:6d"         # vendor-class
+        - 15: "hex 00:2b:46:53:56:44:53:4c:5f:6c:69:76:65:62:6f:78:2e:49:6e:74:65:72:6e:65:74:2e:73:6f:66:74:61:74:68:6f:6d:65:2e:6c:69:76:65:62:6f:78:34" #  user-class
+        - 11: "hex %{hiera('eizo::router::authentication')}" # auth
+        - 11: "hex %{hiera('eizo::router::authentication')}" # auth
     also:
       "pre-up": "/etc/firewall/run"
   lan-trusted:
