@@ -39,7 +39,7 @@ class eizo::interfaces {
     target  => '/etc/dibbler/client.conf',
     order   => '01',
     content => inline_template(@(END)
-      downlink-prefix-ifaces "<%= @interfaces.select { |name, options| options['v6'] }.keys.sort.join ',' %>"
+      downlink-prefix-ifaces <%= @interfaces.select { |name, options| options['v6'] }.keys.sort.map {|x| x.inspect}.join ',' %>
       | END
     )
   }
