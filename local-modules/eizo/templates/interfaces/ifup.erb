@@ -11,7 +11,9 @@ iface <%= @name %> inet static
 <% end -%>
 <% if @vlan then -%>
   pre-up    ip link add link <%= @vlan["over"] %> name <%= @name %> type vlan id <%= @vlan["id"] %> egress-qos-map 0:0 6:6 7:7
+<% unless @dhcp then -%>
   post-down ip link del <%= @name %>
+<% end -%>
 <% end -%>
 <% @also.each do |name, value| -%>
   <%= name %> <%= value %>
@@ -23,4 +25,5 @@ iface <%= @name %> inet6 auto
   autoconf 1
   dhcp 1
   request_prefix 1
+  post-down ip link del <%= @name %>
 <% end -%>

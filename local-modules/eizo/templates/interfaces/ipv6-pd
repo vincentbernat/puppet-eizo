@@ -25,6 +25,9 @@ fn_calc_ip6addr() {
       | grep '^Network' \
       | awk "(NR == $IA_PD_OFFSET)"' { print $3 }' \
       | sed 's/:0000$/:/')1/64
+  if [ "$IA_PD_DEBUG" = "yes" ]; then
+      logger -t "dhcpv6-pd" -p daemon.debug "Debug: From prefix $1, computed address $addr (offset $IA_PD_OFFSET)."
+  fi
   echo "$addr"
 }
 
