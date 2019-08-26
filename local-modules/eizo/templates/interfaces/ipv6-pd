@@ -1,0 +1,85 @@
+# -*- sh -*-
+# This script assigns a delegated IPv6 prefix obtained via DHCPv6
+# other interfaces. Adapted (simplified) from
+# https://wiki.debian.org/IPv6PrefixDelegation.
+
+# CONFIGURATION OPTIONS
+
+# Define the interfaces to which a delegated prefix will be assigned
+# This must not be the same interface on which the prefix is learned!
+IA_PD_IFACES="<%= @interfaces.select { |name, options| options['v6'] }.keys.sort.join ' ' %>"
+
+# Set to yes to make logging more verbose
+IA_PD_DEBUG="yes"
+
+# Starting offset
+IA_PD_OFFSET=0
+
+# END OF CONFIGURATION OPTIONS
+
+fn_calc_ip6addr() {
+  [ -z "$1" ] && return
+  local addr
+  IA_PD_OFFSET=$((IA_PD_OFFSET + 1))
+  addr=$(sipcalc --v6split=64 "$1" \
+      | grep '^Network' \
+      | awk "(NR == $IA_PD_OFFSET)"' { print $3 }' \
+      | sed 's/:0000$/:'$(printf "%04x" $IA_PD_OFFSET))/64
+  echo "$addr"
+}
+
+fn_remove_prefix() {
+  [ -z "$1" ] && return
+  [ "$IA_PD_DEBUG" = "yes" ] && logger -t "dhcpv6-pd" -p daemon.debug "Debug: Old prefix $1 expired."
+  if [ "$(ip -6 addr show dev "$IA_PD_IFACE" scope global | wc -l)" -gt 0 ]; then
+      logger -t "dhcpv6-pd" -p daemon.info "Info: Flushing global IPv6 addresses from interface $IA_PD_IFACE."
+      if ! ip -6 addr flush dev "$IA_PD_IFACE" scope global ; then
+          logger -t "dhcpv6-pd" -p daemon.err "Error: Failed to flush global IPv6 addresses from interface $IA_PD_IFACE."
+          return
+      fi
+  elif [ "$IA_PD_DEBUG" = "yes" ]; then
+      logger -t "dhcpv6-pd" -p daemon.debug "Debug: No global IPv6 addresses assigned to interface $IA_PD_IFACE."
+  fi
+}
+
+fn_assign_prefix() {
+  [ -z "$1" ] && return
+  local new_ia_pd_addr
+  new_ia_pd_addr="$(fn_calc_ip6addr "$1")"
+  if [ -z "$new_ia_pd_addr" ]; then
+      logger -t "dhcpv6-pd" -p daemon.err "Error: Failed to calculate address for interface $IA_PD_IFACE and prefix $1"
+      return
+  fi
+  [ "$IA_PD_DEBUG" = "yes" ] && logger -t "dhcpv6-pd" -p daemon.debug "Debug: Received new prefix $1."
+  # dhclient may return an old_ip6_prefix even after a reboot, so manually check if the address is already assigned to the interface
+  if [ "$(ip -6 addr show dev "$IA_PD_IFACE" | grep -c "$new_ia_pd_addr")" -lt 1 ]; then
+      logger -t "dhcpv6-pd" -p daemon.info "Info: Adding new address $new_ia_pd_addr to interface $IA_PD_IFACE."
+      if ! ip -6 addr add "$new_ia_pd_addr" dev "$IA_PD_IFACE" ; then
+          logger -t "dhcpv6-pd" -p daemon.err "Error: Failed to add new address $new_ia_pd_addr to interface $IA_PD_IFACE."
+          return
+      fi
+      fn_restart_services
+  elif [ "$IA_PD_DEBUG" = "yes" ]; then
+      logger -t "dhcpv6-pd" -p daemon.debug "Debug: Address $new_ia_pd_addr already assigned to interface $IA_PD_IFACE."
+  fi
+}
+
+# Only execute on specific occasions
+case $reason in
+  BOUND6|EXPIRE6|REBIND6|REBOOT6|RENEW6)
+    # Only execute if either an old or a new prefix is defined
+    if [ -n "$old_ip6_prefix" ] || [ -n "$new_ip6_prefix" ]; then
+        for IA_PD_IFACE in IA_PD_IFACES; do
+            # Check if interface is defined and exits
+            if [ -z "$IA_PD_IFACE" ] || [ ! -e "/sys/class/net/${IA_PD_IFACE}" ]; then
+                logger -t "dhcpv6-pd" -p daemon.err "Error: Interface ${IA_PD_IFACE:-<undefined>} not found. Cannot assign delegated prefix!"
+            else
+              # Remove old prefix if it differs from new prefix
+              [ -n "$old_ip6_prefix" ] && [ "$old_ip6_prefix" != "$new_ip6_prefix" ] && fn_remove_prefix "$old_ip6_prefix"
+              # Assign new prefix
+              [ -n "$new_ip6_prefix" ] && fn_assign_prefix "$new_ip6_prefix"
+            fi
+        done
+    fi
+    ;;
+esac

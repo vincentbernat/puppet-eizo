@@ -17,39 +17,17 @@ class eizo::interfaces {
     purge   => true
   }
 
-  concat { "/etc/dhcp/dhclient.conf":
+  package { 'sipcalc': ensure => installed }
+  -> file { '/etc/dhcp/dhclient-exit-hooks.d/000-ipv6-pd':
+    content => template('eizo/interfaces/ipv6-pd')
+  }
+  -> concat { "/etc/dhcp/dhclient.conf":
     ensure => present
   }
   concat::fragment { "dhclient-header.conf":
     target => "/etc/dhcp/dhclient.conf",
     source => "puppet:///modules/eizo/interfaces/dhclient-header.conf",
     order => '00'
-  }
-
-  file { '/etc/dibbler/script.sh':
-    source => "puppet:///modules/eizo/interfaces/dibbler.sh",
-    mode   => '0755'
-  }
-  concat { '/etc/dibbler/client.conf':
-    ensure => present,
-    notify => Service['dibbler-client']
-  }
-  concat::fragment { 'dibbler-header.conf':
-    target => '/etc/dibbler/client.conf',
-    source => 'puppet:///modules/eizo/interfaces/dibbler-header.conf',
-    order  => '00'
-  }
-  concat::fragment { 'dibbler-downlink.conf':
-    target  => '/etc/dibbler/client.conf',
-    order   => '01',
-    content => inline_template(@(END)
-      downlink-prefix-ifaces <%= @interfaces.select { |name, options| options['v6'] }.keys.sort.map {|x| x.inspect}.join ',' %>
-      | END
-    )
-  }
-  service { 'dibbler-client':
-    ensure    => running,
-    enable    => true
   }
 
   # Don't use persistant names

@@ -16,3 +16,10 @@ iface <%= @name %> inet static
 <% @also.each do |name, value| -%>
   <%= name %> <%= value %>
 <% end -%>
+
+<% if @dhcp then -%>
+iface <%= @name %> inet6 dhcp
+  accept_ra 2
+  autoconf 1
+  request_prefix 1
+<% end -%>

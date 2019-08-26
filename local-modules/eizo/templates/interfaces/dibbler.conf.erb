@@ -1,9 +1,0 @@
-# Configuration for interface <%= @name %>
-iface "<%= @name %>" {
-  pd
-<% @dhcpv6['options'].each do |option|
-    option.each do | index, value | -%>
-  option <%= index %> <%= value %>
-<%  end
-   end -%>
-}
