@@ -26,4 +26,5 @@ iface <%= @name %> inet6 auto
   dhcp 1
   request_prefix 1
   post-down ip link del <%= @name %>
+  post-down ip -6 addr flush scope global
 <% end -%>
