@@ -27,7 +27,8 @@ class eizo::interfaces {
   }
 
   concat { '/etc/dibbler/client.conf':
-    ensure => present
+    ensure => present,
+    notify => Service['dibbler']
   }
   concat::fragment { 'dibbler-header.conf':
     target => '/etc/dibbler/client.conf',
@@ -44,9 +45,7 @@ class eizo::interfaces {
   }
   service { 'dibbler':
     ensure    => running,
-    enable    => true,
-    require   => File['/etc/dibbler/client.conf'],
-    subscribe => File['/etc/dibbler/client.conf']
+    enable    => true
   }
 
   # Don't use persistant names
