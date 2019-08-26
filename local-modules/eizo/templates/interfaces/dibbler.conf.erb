@@ -1,5 +1,5 @@
 # Configuration for interface <%= @name %>
-interface "<%= @name %>" {
+iface "<%= @name %>" {
   pd
 <% @dhcpv6['options'].each do |index, value| -%>
   option <%= index %> <%= value %>
