@@ -30,6 +30,8 @@ class eizo::interfaces {
     order => '00'
   }
 
+  package { "rdnssd": ensure => purged }
+
   # Don't use persistant names
   kernel_parameter { "net.ifnames":
     provider => "grub2",
