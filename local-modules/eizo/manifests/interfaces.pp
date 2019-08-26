@@ -1,9 +1,10 @@
 # Configure /etc/network/interfaces
 class eizo::interfaces {
 
+  $interfaces = hiera_hash('eizo::interfaces')
   create_resources(
     'eizo::interface::ifup',
-    hiera_hash('eizo::interfaces'),
+    $interfaces,
     {})
 
   # Enable dhclient for the given set of interfaces
@@ -23,6 +24,23 @@ class eizo::interfaces {
     target => "/etc/dhcp/dhclient.conf",
     source => "puppet:///modules/eizo/interfaces/dhclient-header.conf",
     order => '00'
+  }
+
+  concat { '/etc/dibbler/client.conf':
+    ensure => present
+  }
+  concat::fragment { 'dibbler-header.conf':
+    target => '/etc/dibbler/client.conf',
+    source => 'puppet:///modules/eizo/interfaces/dibbler-header.conf',
+    order  => '00'
+  }
+  concat::fragment { 'dibbler-downlink.conf':
+    target  => '/etc/dibbler/client.conf',
+    order   => '01',
+    content => inline_template(@(END)
+      downlink-prefix-ifaces "<%= @interfaces.select { |name, options| options['v6'] }.keys.sort.join ',' %>"
+      | END
+    )
   }
 
   # Don't use persistant names

@@ -3,9 +3,11 @@ define eizo::interface::ifup(
   $path = undef,                # for physical interfaces only
   $order = 99,
   $dhcp = undef,
+  $dhcpv6 = undef,
   $static = undef,
   $vlan = undef,
   $upnp = undef,
+  $v6 = false,                  # get an IPv6 prefix
   $also = {}) {
 
   file { "/etc/network/interfaces.d/${order}-${name}":
@@ -25,5 +27,11 @@ define eizo::interface::ifup(
       order => '10'
     }
   }
-
+  if ($dhcpv6) {
+    concat::fragment { "dibbler.${name}.conf":
+      target => "/etc/dibbler/client.conf",
+      content => template("eizo/interfaces/dibbler.conf.erb"),
+      order => '10'
+    }
+  }
 }

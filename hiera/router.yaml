@@ -19,6 +19,11 @@ eizo::interfaces:
       "send vendor-class-identifier": '"sagem"'
       "send user-class": '"+FSVDSL_livebox.Internet.softathome.Livebox4"'
       "send rfc3118-authentication": "%{hiera('eizo::router::authentication')}"
+    dhcpv6:
+      options:
+        16: "hex 00:00:04:0e:00:05:73:61:67:65:6d"         # vendor-class
+        15: "hex 00:2b:46:53:56:44:53:4c:5f:6c:69:76:65:62:6f:78:2e:49:6e:74:65:72:6e:65:74:2e:73:6f:66:74:61:74:68:6f:6d:65:2e:6c:69:76:65:62:6f:78:34" #  user-class
+        11: "hex %{hiera('eizo::router::authentication')}" # auth
     also:
       "pre-up": "/etc/firewall/run"
   lan-trusted:
@@ -28,6 +33,7 @@ eizo::interfaces:
       over: lan-isolated
       id: 6
     order: 2
+    v6: true
   lan-guest:
     description: "Guest LAN network"
     static: 192.168.118.1/26
@@ -35,6 +41,7 @@ eizo::interfaces:
       over: lan-isolated
       id: 8
     order: 2
+    v6: true
   lan-games:
     description: "Games LAN network"
     static: 192.168.118.129/26
@@ -43,6 +50,7 @@ eizo::interfaces:
       id: 9
     order: 2
     upnp: true
+    v6: true
 
 # That's unfortunate, but lookup will done in Puppet
 eizo::dnsmasq::dhcp: "eizo::interfaces"
