@@ -3,9 +3,4 @@ interface "<%= @name %>" {
 <% @dhcp.each do |name, value| -%>
   <%= name %> <%= value %>;
 <% end -%>
-
-  # IPv4
-  request subnet-mask, routers, domain-name-servers, domain-name, broadcast-address,
-        dhcp-lease-time, dhcp-renewal-time, dhcp-rebinding-time,
-        rfc3118-authentication;
 }
