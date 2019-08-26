@@ -24,7 +24,7 @@ fn_calc_ip6addr() {
   addr=$(sipcalc --v6split=64 "$1" \
       | grep '^Network' \
       | awk "(NR == $IA_PD_OFFSET)"' { print $3 }' \
-      | sed 's/:0000$/:'$(printf "%04x" $IA_PD_OFFSET))/64
+      | sed 's/:0000$/:/')1/64
   echo "$addr"
 }
 
@@ -69,7 +69,7 @@ case $reason in
   BOUND6|EXPIRE6|REBIND6|REBOOT6|RENEW6)
     # Only execute if either an old or a new prefix is defined
     if [ -n "$old_ip6_prefix" ] || [ -n "$new_ip6_prefix" ]; then
-        for IA_PD_IFACE in IA_PD_IFACES; do
+        for IA_PD_IFACE in $IA_PD_IFACES; do
             # Check if interface is defined and exits
             if [ -z "$IA_PD_IFACE" ] || [ ! -e "/sys/class/net/${IA_PD_IFACE}" ]; then
                 logger -t "dhcpv6-pd" -p daemon.err "Error: Interface ${IA_PD_IFACE:-<undefined>} not found. Cannot assign delegated prefix!"
