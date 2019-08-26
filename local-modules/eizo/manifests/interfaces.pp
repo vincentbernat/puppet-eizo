@@ -42,6 +42,12 @@ class eizo::interfaces {
       | END
     )
   }
+  service { 'dibbler':
+    ensure    => running,
+    enable    => true,
+    require   => File['/etc/dibbler/client.conf'],
+    subscribe => File['/etc/dibbler/client.conf']
+  }
 
   # Don't use persistant names
   kernel_parameter { "net.ifnames":

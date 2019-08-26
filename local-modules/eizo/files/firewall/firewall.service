@@ -1,5 +1,6 @@
 [Unit]
 Description = Setup networking and firewall
+Before = dibbler.service
 
 [Service]
 Type = oneshot
