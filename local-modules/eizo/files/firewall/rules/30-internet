@@ -33,9 +33,5 @@ main pkill -USR1 miniupnpd || true
 # SSH acces
 ip46tables -A INTERNET-FORWARD -p tcp -o lan-trusted -j ACCEPT
 
-# IPTV
-iptables -A INTERNET-INPUT -p igmp -i internet -d 224.0.0.1/32 -j ACCEPT
-iptables -A INTERNET-INPUT -p udp -i internet -d 239.186.0.0/16 --dport 10000 -j ACCEPT
-
 reject INTERNET-INPUT    2
 reject INTERNET-FORWARD  2
