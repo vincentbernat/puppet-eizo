@@ -28,7 +28,7 @@ class eizo::interfaces {
 
   concat { '/etc/dibbler/client.conf':
     ensure => present,
-    notify => Service['dibbler']
+    notify => Service['dibbler-client']
   }
   concat::fragment { 'dibbler-header.conf':
     target => '/etc/dibbler/client.conf',
@@ -43,7 +43,7 @@ class eizo::interfaces {
       | END
     )
   }
-  service { 'dibbler':
+  service { 'dibbler-client':
     ensure    => running,
     enable    => true
   }
