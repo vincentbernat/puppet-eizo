@@ -25,6 +25,7 @@ iface <%= @name %> inet6 auto
   autoconf 1
   dhcp 1
   request_prefix 1
+  post-down pkill -F /run/dhclient6.$IFACE.pid dhclient || true
   post-down ip link del <%= @name %>
 <% @interfaces.select { |name, options| options['v6'] }.keys.sort.each do |iface| -%>
   post-down ip -6 addr flush scope global dev <%= iface %> || true
