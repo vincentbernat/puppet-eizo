@@ -26,5 +26,7 @@ iface <%= @name %> inet6 auto
   dhcp 1
   request_prefix 1
   post-down ip link del <%= @name %>
-  post-down ip -6 addr flush scope global
+<% @interfaces.select { |name, options| options['v6'] }.keys.sort.each do |iface| -%>
+  post-down ip -6 addr flush scope global dev <%= iface %> || true
+<% end -%>
 <% end -%>
