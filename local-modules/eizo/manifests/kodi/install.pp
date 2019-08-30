@@ -1,9 +1,7 @@
 class eizo::kodi::install inherits eizo::kodi {
 
   apt::pin { 'kodi from backports':
-    priority   => 500,
-    originator => 'Debian Backports',
-    packages   => 'kodi'
+    ensure => absent
   }
   ->
   package { ['kodi', 'kodi-eventclients-kodi-send']:
