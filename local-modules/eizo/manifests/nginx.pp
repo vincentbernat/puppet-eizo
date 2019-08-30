@@ -64,13 +64,6 @@ class eizo::nginx::acme {
     ]
   }
 
-  cron { "acmetool-reconcile":
-    ensure => absent
-  }
-  user { acmetool:
-    ensure  => absent,
-  }
-
   create_resources(
     eizo::nginx::acme::certificate,
     hiera_hash("eizo::nginx::acmetool::certificates", {}),
