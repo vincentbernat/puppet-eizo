@@ -1,9 +1,5 @@
 class eizo::kodi::install inherits eizo::kodi {
 
-  apt::pin { 'kodi from backports':
-    ensure => absent
-  }
-  ->
   package { ['kodi', 'kodi-eventclients-kodi-send']:
     ensure => present
   }
