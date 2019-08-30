@@ -3,9 +3,6 @@ class eizo::kodi::install inherits eizo::kodi {
   package { ['kodi', 'kodi-eventclients-kodi-send']:
     ensure => present
   }
-  package { ['xbmc', 'xbmc-eventclients-xbmc-send']:
-    ensure => absent
-  }
 
   group { 'xbmc':
     ensure => present,
@@ -40,9 +37,6 @@ class eizo::kodi::install inherits eizo::kodi {
   file { "/usr/local/bin/kodi-stop":
     source => "puppet:///modules/eizo/kodi/kodi-stop",
     mode => "a+x"
-  }
-  file { ["/usr/local/bin/xbmc-start", "/usr/local/bin/xbmc-stop"]:
-    ensure => absent
   }
 
   # Also install X stuff. We use `ensure_resource` because we don't
