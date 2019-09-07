@@ -26,13 +26,6 @@ eizo::interfaces:
       "also request dhcp6.auth, dhcp6.vendorclass, dhcp6.userclass": ""
     also:
       "pre-up": "/etc/firewall/run"
-  tv:
-    description: "TV Orange"
-    static: 192.168.255.254/24
-    vlan:
-      over: lan-isolated
-      id: 840
-    order: 4
   lan-trusted:
     description: "Trusted LAN network"
     static: 192.168.117.1/26
