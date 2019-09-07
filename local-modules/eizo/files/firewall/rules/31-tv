@@ -1,0 +1,10 @@
+# -*- sh -*-
+
+ip46tables -N TV-INPUT
+ip46tables -A INPUT -i tv -j TV-INPUT
+
+iptables -A TV-INPUT -p igmp -d 224.0.0.1/32 -j ACCEPT
+iptables -A TV-INPUT -p udp -d 239.192.2.0/24 --dport 8208 -j ACCEPT
+iptables -A TV-INPUT -p udp -d 232.0.1.0/24 --dport 8200 -j ACCEPT
+
+reject TV-INPUT    2

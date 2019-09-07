@@ -69,4 +69,7 @@ for userport in \
         -j ACCEPT
 done
 
+# Multicast for IPTV
+iptables -A FIREWALL-OUTPUT -o tv -p igmp -d 224.0.0.22/32 -j ACCEPT
+
 reject FIREWALL-OUTPUT
