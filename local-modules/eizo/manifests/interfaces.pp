@@ -31,6 +31,7 @@ class eizo::interfaces {
   }
 
   package { "rdnssd": ensure => purged }
+  package { 'ndisc6': ensure => installed }
 
   # Don't use persistant names
   kernel_parameter { "net.ifnames":
