@@ -19,10 +19,9 @@ domain=home
 # /etc/hosts is not useful
 no-hosts
 
-# Don't use ISP resolver. Swisscom doesn't support DNSSEC... Use
-# unbound as a recursive dnssec enabled DNS. dnsmasq still stays the
-# canonical DNS server since it knows local hosts. unbound will only
-# handle resolution to Internet.
+# Don't use ISP resolver. Use unbound as a recursive dnssec enabled
+# DNS. dnsmasq still stays the canonical DNS server since it knows
+# local hosts. unbound will only handle resolution to Internet.
 no-resolv
 server=::1#<%= @unbound_port %>
 cache-size=0
