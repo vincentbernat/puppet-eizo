@@ -26,6 +26,9 @@ no-resolv
 server=::1#<%= @unbound_port %>
 cache-size=0
 
+# Don't let Firefox switch to DoH
+server=/use-application-dns.net/
+
 <% require 'ipaddr' -%>
 # DHCP
 dhcp-authoritative
