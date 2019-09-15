@@ -3,6 +3,9 @@ class eizo::postfix::config inherits eizo::postfix {
   file { "/etc/postfix/main.cf":
     content => template("eizo/postfix/main.cf.erb"),
   }
+  file { "/etc/postfix/master.cf":
+    source => "/usr/share/postfix/master.cf.dist",
+  }
 
   file { "/etc/mailname":
     content => template("eizo/postfix/mailname.erb"),
