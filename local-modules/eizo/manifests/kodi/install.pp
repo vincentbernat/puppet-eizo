@@ -33,7 +33,7 @@ class eizo::kodi::install inherits eizo::kodi {
   # want to have ownership.
   ensure_resource(
     package,
-    [ 'xserver-xorg', 'xinit', 'x11-xserver-utils', 'xfwm4', 'lightdm' ],
+    [ 'xserver-xorg', 'xinit', 'x11-xserver-utils', 'lightdm' ],
     { ensure => present })
 
 }
