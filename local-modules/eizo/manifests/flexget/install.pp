@@ -28,7 +28,7 @@ class eizo::flexget::install inherits eizo::flexget {
   python::pip { 'transmissionrpc':
     virtualenv => "${home}/venv"
   }
-  package { 'nodejs-legacy': ensure => installed }
+  package { 'nodejs': ensure => installed }
   ->
   python::pip { 'cfscrape':
     virtualenv => "${home}/venv"
