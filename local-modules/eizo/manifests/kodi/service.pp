@@ -1,12 +1,9 @@
 class eizo::kodi::service inherits eizo::kodi {
 
   file { '/etc/systemd/system/kodi.service':
-    ensure => present,
-    source => "puppet:///modules/eizo/kodi/kodi.service",
-    notify => Exec["reload systemd"]
+    ensure => absent,
   }
-  ->
-  service { 'kodi':
+  service { 'lightdm':
     enable => true,
     ensure => running
   }

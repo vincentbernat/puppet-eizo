@@ -1,3 +1,0 @@
-#!/bin/sh
-
-/usr/bin/kodi-send --action="Quit"

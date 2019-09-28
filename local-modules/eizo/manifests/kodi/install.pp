@@ -20,30 +20,20 @@ class eizo::kodi::install inherits eizo::kodi {
     require => Group['nas']
   }
   ->
-  file { "${home}/.kodi":
-    ensure => link,
-    target => "${home}"
-  }
-  ->
-  file { "${home}/.xbmc":
+  file { ["${home}/.kodi", "${home}/.xbmc"]:
     ensure => link,
     target => "${home}"
   }
 
-  file { "/usr/local/bin/kodi-start":
-    content => template("eizo/kodi/kodi-start.erb"),
-    mode => "a+x"
-  }
-  file { "/usr/local/bin/kodi-stop":
-    source => "puppet:///modules/eizo/kodi/kodi-stop",
-    mode => "a+x"
+  file { ["/usr/local/bin/kodi-start", "/usr/local/bin/kodi-stop"]:
+    ensure => absent
   }
 
   # Also install X stuff. We use `ensure_resource` because we don't
   # want to have ownership.
   ensure_resource(
     package,
-    [ 'xserver-xorg', 'xinit', 'x11-xserver-utils' ],
+    [ 'xserver-xorg', 'xinit', 'x11-xserver-utils', 'xfwm4', 'lightdm' ],
     { ensure => present })
 
 }
