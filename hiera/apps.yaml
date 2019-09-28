@@ -236,7 +236,7 @@ nginx::http_cfg_append:
     - |
        $ssl_client_s_dn $ssl_client_s_dn_cn {
            default "unknown";
-           ~/CN=(?<CN>[^/]+) $CN;
+           ~(/|^)CN=(?<CN>[^/]+) $CN;
          }
          include /dev/null
 nginx::nginx_servers:
