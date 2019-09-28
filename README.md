@@ -7,7 +7,7 @@ Configuring "eizo" with puppet
 It is quite unlikely to do anything right for you. This configuration
 doesn't pretend to apply to any other host than *eizo*.
 
-This requires [Debian Stretch][] and the following packages to be
+This requires [Debian Buster][] and the following packages to be
 installed:
 
  - `puppet`
@@ -24,4 +24,4 @@ To run, use:
     librarian-puppet install
     ./run
 
-[Debian Stretch]: https://www.debian.org/releases/stretch/
+[Debian Buster]: https://www.debian.org/releases/buster/

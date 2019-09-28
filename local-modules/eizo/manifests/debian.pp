@@ -27,20 +27,20 @@ class eizo::debian(
     source => "puppet:///modules/eizo/debian/apt/99translations"
   }
 
-  apt::source { "stretch":
+  apt::source { "buster":
     location          => 'http://httpredir.debian.org/debian/',
-    release           => 'stretch',
+    release           => 'buster',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
   }
-  apt::source { "stretch-security":
+  apt::source { "buster-security":
     location => 'http://security.debian.org/',
-    release  => 'stretch/updates',
+    release  => 'buster/updates',
     repos    => 'main contrib non-free',
   }
-  apt::source { "stretch-backports":
+  apt::source { "buster-backports":
     location          => 'http://http.debian.net/debian/',
-    release           => 'stretch-backports',
+    release           => 'buster-backports',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
   }
