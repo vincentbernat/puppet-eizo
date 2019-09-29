@@ -26,8 +26,10 @@ eizo::interfaces:
       "also request dhcp6.auth, dhcp6.vendorclass, dhcp6.userclass": ""
     also:
       "pre-up": "/etc/firewall/run"
-      "post-up": "/lib/ifupdown/wait-for-ll6.sh"
-      "post-up": "dhclient -6 -P -nw -pf /run/dhclient6.$IFACE.pid -lf /var/lib/dhcp/dhclient6.$IFACE.leases -I -df /var/lib/dhcp/dhclient.$IFACE.leases -D LL $IFACE"
+      # For IPv6, we do stuff manually as Orange only provide the
+      # default route through RA but we don't want it if we don't have
+      # PD
+      "post-up": "/lib/ifupdown/wait-for-ll6.sh && dhclient -6 -P -nw -pf /run/dhclient6.$IFACE.pid -lf /var/lib/dhcp/dhclient6.$IFACE.leases -I -df /var/lib/dhcp/dhclient.$IFACE.leases -D LL $IFACE"
       "post-down": "dhclient -6 -v -r -pf /run/dhclient6.$IFACE.pid dhclient -lf /var/lib/dhcp/dhclient6.$IFACE.leases -I -df /var/lib/dhclient.$IFACE.leases $IFACE || true"
   lan-trusted:
     description: "Trusted LAN network"
