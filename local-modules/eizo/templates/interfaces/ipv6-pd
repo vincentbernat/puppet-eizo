@@ -71,7 +71,7 @@ case $reason in
         sysctl -qw net.ipv6.conf.internet.accept_ra=0
         ip -6 route del default || true
         ;;
-      ,*)
+      *)
         logger -t "dhcpv6-pd" -p daemon.info "request default route"
         sysctl -qw net.ipv6.conf.internet.accept_ra=2
         rdisc6 internet || \
