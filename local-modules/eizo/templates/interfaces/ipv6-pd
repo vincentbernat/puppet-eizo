@@ -51,6 +51,7 @@ assign_prefix() {
 
 case $reason in
   BOUND6|EXPIRE6|REBIND6|REBOOT6|RENEW6)
+    logger -t "dhcpv6-pd" -p daemon.debug "DHCPv6 PD $reason"
     if [ -n "$old_ip6_prefix" ] || [ -n "$new_ip6_prefix" ]; then
         for IA_PD_IFACE in $IA_PD_IFACES; do
             # Check if interface is defined and exits
