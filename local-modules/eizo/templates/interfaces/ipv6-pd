@@ -10,7 +10,7 @@ IA_PD_IFACES="<%= @interfaces.select { |name, options| options['v6'] }.keys.sort
 # Starting offset
 IA_PD_OFFSET=0
 
-fn_calc_ip6addr() {
+calc_ip6addr() {
   local base="$1"
   local offset="$2"
   local addr
@@ -22,18 +22,18 @@ fn_calc_ip6addr() {
   echo "$addr"
 }
 
-fn_remove_prefix() {
+remove_prefix() {
   local prefix="$1"
   logger -t "dhcpv6-pd" -p daemon.debug "old prefix $prefix expired, flushing $IA_PD_IFACE"
   ip -6 addr flush dev "$IA_PD_IFACE" scope global || \
       logger -t "dhcpv6-pd" -p daemon.err "failed to flush global IPv6 addresses from interface $IA_PD_IFACE"
 }
 
-fn_assign_prefix() {
+assign_prefix() {
   local prefix="$1"
   local new_ia_pd_addr
   IA_PD_OFFSET=$((IA_PD_OFFSET + 1))
-  new_ia_pd_addr="$(fn_calc_ip6addr "$prefix" $IA_PD_OFFSET)"
+  new_ia_pd_addr="$(calc_ip6addr "$prefix" $IA_PD_OFFSET)"
   [ -n "$new_ia_pd_addr" ] || \
       logger -t "dhcpv6-pd" -p daemon.err "failed to calculate address for interface $IA_PD_IFACE and prefix $prefix"
   # dhclient may return an old_ip6_prefix even after a reboot, so
@@ -57,8 +57,8 @@ case $reason in
             if [ -z "$IA_PD_IFACE" ] || [ ! -e "/sys/class/net/${IA_PD_IFACE}" ]; then
                 logger -t "dhcpv6-pd" -p daemon.err "interface ${IA_PD_IFACE:-<undefined>} not found"
             else
-              [ -n "$old_ip6_prefix" ] && [ "$old_ip6_prefix" != "$new_ip6_prefix" ] && fn_remove_prefix "$old_ip6_prefix"
-              [ -n "$new_ip6_prefix" ] && fn_assign_prefix "$new_ip6_prefix"
+              [ -n "$old_ip6_prefix" ] && [ "$old_ip6_prefix" != "$new_ip6_prefix" ] && remove_prefix "$old_ip6_prefix"
+              [ -n "$new_ip6_prefix" ] && assign_prefix "$new_ip6_prefix"
             fi
         done
     fi
