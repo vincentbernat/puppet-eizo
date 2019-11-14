@@ -16,7 +16,7 @@ calc_ip6addr() {
   local addr
   addr=$(sipcalc --v6split=64 --split-verbose "$base" \
       | grep '^Compressed' \
-      | awk "(NR == $offset)"' { print $3 }')1/64
+      | awk "(NR == $offset)"' { print $NF }')1/64
   logger -t "dhcpv6-pd" -p daemon.debug "from prefix $base, computed address $addr (offset $offset)"
   echo "$addr"
 }
