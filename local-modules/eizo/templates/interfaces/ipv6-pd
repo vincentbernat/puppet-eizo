@@ -4,10 +4,10 @@
 # other interfaces. It also requests a default route. It is tailored
 # for the use with Orange France ISP.
 
-# Define the interfaces to which a delegated prefix will be assigned
-IA_PD_IFACES="<%= @interfaces.select { |name, options| options['v6'] }.keys.sort.join ' ' %>"
+f9decf2261050cc034f4fe23a95f20b1a812() {
+  # Define the interfaces to which a delegated prefix will be assigned
+  local IA_PD_IFACES="<%= @interfaces.select { |name, options| options['v6'] }.keys.sort.join ' ' %>"
 
-run() {
   local reason
   local offset=0
   local iface
@@ -69,5 +69,5 @@ run() {
   esac
 }
 
-run
+f9decf2261050cc034f4fe23a95f20b1a812
 :
