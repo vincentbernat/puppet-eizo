@@ -1,84 +1,73 @@
 # -*- sh -*-
 
-# This script assigns a delegated IPv6 prefix obtained via DHCPv6
-# other interfaces. Adapted from
-# https://wiki.debian.org/IPv6PrefixDelegation.
+# This script splits a delegated IPv6 prefix obtained via DHCPv6 to
+# other interfaces. It also requests a default route. It is tailored
+# for the use with Orange France ISP.
 
 # Define the interfaces to which a delegated prefix will be assigned
 IA_PD_IFACES="<%= @interfaces.select { |name, options| options['v6'] }.keys.sort.join ' ' %>"
 
-# Starting offset
-IA_PD_OFFSET=0
+run() {
+  local reason
+  local offset=0
+  local iface
+  local address
 
-calc_ip6addr() {
-  local base="$1"
-  local offset="$2"
-  local addr
-  addr=$(sipcalc --v6split=64 --split-verbose "$base" \
-      | grep '^Compressed' \
-      | awk "(NR == $offset)"' { print $NF }')1/64
-  logger -t "dhcpv6-pd" -p daemon.debug "from prefix $base, computed address $addr (offset $offset)"
-  echo "$addr"
+  case $reason in
+    BOUND6|EXPIRE6|REBIND6|REBOOT6|RENEW6)
+      logger -t "dhcpv6-pd" -p daemon.debug "DHCPv6 PD $reason"
+      if [ -n "$old_ip6_prefix" ] || [ -n "$new_ip6_prefix" ]; then
+          offset=0
+          for iface in $IA_PD_IFACES; do
+              # If old prefix differs from new one, flush it.
+              [ -n "$old_ip6_prefix" ] && [ "$old_ip6_prefix" != "$new_ip6_prefix" ] && {
+                logger -t "dhcpv6-pd" -p daemon.debug \
+                       "old prefix $old_ip6_prefix expired, flushing $iface"
+                ip -6 addr flush dev "$iface" scope global || \
+                    logger -t "dhcpv6-pd" -p daemon.err \
+                           "failed to flush global IPv6 addresses from interface $iface"
+              }
+
+              # If new prefix, assign it.
+              [ -n "$new_ip6_prefix" ] && {
+                offset=$((offset + 1))
+                address=$(sipcalc --v6split=64 --split-verbose "$new_ip6_prefix" \
+                              | grep '^Compressed' \
+                              | awk "(NR == $offset)"' { print $NF }')1/64
+                logger -t "dhcpv6-pd" -p daemon.debug \
+                       "from prefix $new_ip6_prefix, computed address $address (offset $offset)"
+                if ! ip -6 addr show dev "$iface" | grep -qwF "$address"; then
+                    logger -t "dhcpv6-pd" -p daemon.info \
+                           "adding new address $address to interface $iface"
+                    ip -6 addr add "$address" dev "$address" || \
+                        logger -t "dhcpv6-pd" -p daemon.err \
+                               "failed to add new address $addrfess to interface $iface"
+                else
+                  logger -t "dhcpv6-pd" -p daemon.debug \
+                         "address $address already assigned to interface $iface"
+                fi
+              }
+          done
+      fi
+
+      # Handle default route
+      case $old_ip6_prefix,$new_ip6_prefix in
+        ,) : ;;
+        *,)
+          logger -t "dhcpv6-pd" -p daemon.info "remove default route"
+          sysctl -qw net/ipv6/conf/$interface/accept_ra=0
+          ip -6 route del default proto ra || true
+          ;;
+        *)
+          logger -t "dhcpv6-pd" -p daemon.info "request default route"
+          sysctl -qw net/ipv6/conf/$interface/accept_ra=2
+          rdisc6 $interface || \
+              logger -t "dhcpv6-pd" -p daemon.err "cannot request default route"
+          ;;
+      esac
+      ;;
+  esac
 }
 
-remove_prefix() {
-  local prefix="$1"
-  logger -t "dhcpv6-pd" -p daemon.debug "old prefix $prefix expired, flushing $IA_PD_IFACE"
-  ip -6 addr flush dev "$IA_PD_IFACE" scope global || \
-      logger -t "dhcpv6-pd" -p daemon.err "failed to flush global IPv6 addresses from interface $IA_PD_IFACE"
-}
-
-assign_prefix() {
-  local prefix="$1"
-  local new_ia_pd_addr
-  IA_PD_OFFSET=$((IA_PD_OFFSET + 1))
-  new_ia_pd_addr="$(calc_ip6addr "$prefix" $IA_PD_OFFSET)"
-  [ -n "$new_ia_pd_addr" ] || \
-      logger -t "dhcpv6-pd" -p daemon.err "failed to calculate address for interface $IA_PD_IFACE and prefix $prefix"
-  # dhclient may return an old_ip6_prefix even after a reboot, so
-  # manually check if the address is already assigned to the interface
-  if ! ip -6 addr show dev "$IA_PD_IFACE" | grep -qF "$new_ia_pd_addr"; then
-      logger -t "dhcpv6-pd" -p daemon.info "adding new address $new_ia_pd_addr to interface $IA_PD_IFACE"
-      ip -6 addr add "$new_ia_pd_addr" dev "$IA_PD_IFACE" || {
-        logger -t "dhcpv6-pd" -p daemon.err "failed to add new address $new_ia_pd_addr to interface $IA_PD_IFACE"
-        return
-      }
-  else
-      logger -t "dhcpv6-pd" -p daemon.debug "address $new_ia_pd_addr already assigned to interface $IA_PD_IFACE"
-  fi
-}
-
-case $reason in
-  BOUND6|EXPIRE6|REBIND6|REBOOT6|RENEW6)
-    logger -t "dhcpv6-pd" -p daemon.debug "DHCPv6 PD $reason"
-    if [ -n "$old_ip6_prefix" ] || [ -n "$new_ip6_prefix" ]; then
-        for IA_PD_IFACE in $IA_PD_IFACES; do
-            # Check if interface is defined and exits
-            if [ -z "$IA_PD_IFACE" ] || [ ! -e "/sys/class/net/${IA_PD_IFACE}" ]; then
-                logger -t "dhcpv6-pd" -p daemon.err "interface ${IA_PD_IFACE:-<undefined>} not found"
-            else
-              [ -n "$old_ip6_prefix" ] && [ "$old_ip6_prefix" != "$new_ip6_prefix" ] && remove_prefix "$old_ip6_prefix"
-              [ -n "$new_ip6_prefix" ] && assign_prefix "$new_ip6_prefix"
-            fi
-        done
-    fi
-
-    # Site-specific: also handle default route
-    case $old_ip6_prefix,$new_ip6_prefix in
-      ,) : ;;
-      *,)
-        logger -t "dhcpv6-pd" -p daemon.info "remove default route"
-        sysctl -qw net.ipv6.conf.internet.accept_ra=0
-        ip -6 route del default || true
-        ;;
-      *)
-        logger -t "dhcpv6-pd" -p daemon.info "request default route"
-        sysctl -qw net.ipv6.conf.internet.accept_ra=2
-        rdisc6 internet || \
-            logger -t "dhcpv6-pd" -p daemon.err "cannot request default route"
-        ;;
-    esac
-    ;;
-esac
-
+run
 :
