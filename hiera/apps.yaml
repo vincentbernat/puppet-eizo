@@ -127,6 +127,7 @@ eizo::flexget::config:
           - The Expanse
           - The Crown
           - What We Do in the Shadows
+          - The Man in the High Castle
           - DARK:
               exact: yes
               alternate_name:
