@@ -39,9 +39,9 @@ f9decf2261050cc034f4fe23a95f20b1a812() {
                 if ! ip -6 addr show dev "$iface" | grep -qwF "$address"; then
                     logger -t "dhcpv6-pd" -p daemon.info \
                            "adding new address $address to interface $iface"
-                    ip -6 addr add "$address" dev "$address" || \
+                    ip -6 addr add "$address" dev "$iface" || \
                         logger -t "dhcpv6-pd" -p daemon.err \
-                               "failed to add new address $addrfess to interface $iface"
+                               "failed to add new address $address to interface $iface"
                 else
                   logger -t "dhcpv6-pd" -p daemon.debug \
                          "address $address already assigned to interface $iface"
