@@ -1,15 +1,15 @@
 eizo::interfaces:
   lan-isolated:
     description: "Isolated LAN network"
-    path: "pci-0000:00:19.0"
+    vlan:
+      over: eno1
+      id: 1
     static: 192.168.119.1/26
     order: 1
-    also:
-      offload-tso: "off"
   internet:
     description: "FTTH Orange connection"
     vlan:
-      over: lan-isolated
+      over: eno1
       id: 832
     order: 4
     dhcp:
@@ -35,7 +35,7 @@ eizo::interfaces:
     description: "Trusted LAN network"
     static: 192.168.117.1/26
     vlan:
-      over: lan-isolated
+      over: eno1
       id: 6
     order: 2
     v6: true
@@ -43,7 +43,7 @@ eizo::interfaces:
     description: "Guest LAN network"
     static: 192.168.118.1/26
     vlan:
-      over: lan-isolated
+      over: eno1
       id: 8
     order: 2
     v6: true
@@ -51,7 +51,7 @@ eizo::interfaces:
     description: "Games LAN network"
     static: 192.168.118.129/26
     vlan:
-      over: lan-isolated
+      over: eno1
       id: 9
     order: 2
     upnp: true
