@@ -1,6 +1,6 @@
 eizo::interfaces:
   eno1:
-    order: 0
+    order: 1
     also:
       offload-tso: off
   lan-isolated:
@@ -9,7 +9,7 @@ eizo::interfaces:
       over: eno1
       id: 1
     static: 192.168.119.1/26
-    order: 1
+    order: 2
   internet:
     description: "FTTH Orange connection"
     vlan:
