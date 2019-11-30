@@ -1,4 +1,8 @@
 eizo::interfaces:
+  eno1:
+    order: 0
+    also:
+      offload-tso: off
   lan-isolated:
     description: "Isolated LAN network"
     vlan:
