@@ -4,7 +4,7 @@
 # other interfaces. It also requests a default route. It is tailored
 # for the use with Orange France ISP.
 
-f9decf2261050cc034f4fe23a95f20b1a812() {
+handle_ipv6_pd() {
   # Define the interfaces to which a delegated prefix will be assigned
   local IA_PD_IFACES="<%= @interfaces.select { |name, options| options['v6'] }.keys.sort.join ' ' %>"
 
@@ -69,5 +69,6 @@ f9decf2261050cc034f4fe23a95f20b1a812() {
   esac
 }
 
-f9decf2261050cc034f4fe23a95f20b1a812
+handle_ipv6_pd
+unset handle_ipv6_pd
 :
