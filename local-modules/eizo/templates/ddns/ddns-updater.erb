@@ -1,5 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
+# Copyright (c) 2014 Vincent Bernat <vincent@bernat.im>
+#
 # Permission to use, copy, modify, and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
 # copyright notice and this permission notice appear in all copies.
@@ -90,7 +92,6 @@ import logging
 import logging.handlers
 import argparse
 import platform
-import string
 import errno
 from boto import route53
 
@@ -109,8 +110,9 @@ logger = logging.getLogger("ddns-updater")
 
 class ColorizingStreamHandler(logging.StreamHandler):
     """Provide a nicer logging output to error output with colors."""
-    colors = 'black red green yellow blue magenta cyan white'.split(" ")
-    color_map = dict([(x, colors.index(x)) for x in colors])
+    color_map = {c: i
+                 for i, c in enumerate('black red green yellow '
+                                       'blue magenta cyan white'.split(" "))}
     level_map = {
         logging.DEBUG:    (None,  'blue',   " DBG"),
         logging.INFO:     (None,  'green',  "INFO"),
@@ -144,6 +146,7 @@ class ColorizingStreamHandler(logging.StreamHandler):
                                                 level, self.reset)) or level,
             line) for line in message.split('\n')])
 
+
 def erb(str):
     """Use the provided string or `None` if it is an ERB template.
 
@@ -172,7 +175,8 @@ def parse():
                    nargs='?',
                    const="daemon",
                    default="daemon",
-                   help="log to syslog using FACILITY, default FACILITY is daemon")
+                   help=("log to syslog using FACILITY, "
+                         "default FACILITY is daemon"))
     g.add_argument("--no-syslog", action="store_true",
                    help="disable syslog logging")
 
@@ -186,7 +190,8 @@ def parse():
 
     g = parser.add_argument_group("Dynamic DNS")
     g.add_argument("--domain", "-D", help="Registration domain",
-                   default=erb("<%= @domain %>") or socket.getfqdn()[len(platform.node()):])
+                   default=(erb("<%= @domain %>") or
+                            socket.getfqdn()[len(platform.node()):]))
     g.add_argument("--hostname", "-H",
                    default=erb("<%= @hostname %>") or platform.node(),
                    help="Hostname to register")
@@ -213,7 +218,7 @@ def setup_logging(debug, silent, syslog_facility, syslog):
     # To syslog
     if enable_syslog:
         facility = getattr(logging.handlers.SysLogHandler,
-                           "LOG_{0}".format(string.upper(syslog_facility)))
+                           "LOG_{0}".format(syslog_facility.upper()))
         sh = logging.handlers.SysLogHandler(address=str("/dev/log"),
                                             facility=facility)
         sh.setFormatter(logging.Formatter(
@@ -293,8 +298,8 @@ if __name__ == "__main__":
 
         logger.debug("Connect to Route53")
         conn = route53.connection.Route53Connection(
-            aws_access_key_id = options.aws_access_key_id,
-            aws_secret_access_key = options.aws_secret_access_key)
+            aws_access_key_id=options.aws_access_key_id,
+            aws_secret_access_key=options.aws_secret_access_key)
         logger.debug("Retrieving zone for domain {domain}".format(
             domain=options.domain))
         zone = conn.get_zone("{domain}.".format(domain=options.domain))
@@ -321,3 +326,4 @@ if __name__ == "__main__":
                     zone.add_record(rr, name, ip[rr], options.ttl)
     except Exception as e:
         logging.exception(e)
+        sys.exit(1)
