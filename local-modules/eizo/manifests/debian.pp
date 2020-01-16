@@ -28,18 +28,18 @@ class eizo::debian(
   }
 
   apt::source { "buster":
-    location          => 'http://httpredir.debian.org/debian/',
+    location          => 'http://deb.debian.org/debian',
     release           => 'buster',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
   }
   apt::source { "buster-security":
-    location => 'http://security.debian.org/',
+    location => 'http://deb.debian.org/debian-security',
     release  => 'buster/updates',
     repos    => 'main contrib non-free',
   }
   apt::source { "buster-backports":
-    location          => 'http://http.debian.net/debian/',
+    location          => 'http://deb.debian.org/debian',
     release           => 'buster-backports',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
