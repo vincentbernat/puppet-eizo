@@ -2,7 +2,7 @@ eizo::interfaces:
   eno1:
     order: 1
     also:
-      offload-tso: off
+      offload-tso: "off"
   lan-isolated:
     description: "Isolated LAN network"
     vlan:
