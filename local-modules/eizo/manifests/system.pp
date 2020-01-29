@@ -4,10 +4,8 @@ class eizo::system {
     source => "puppet:///modules/eizo/system/logind.conf"
   }
 
-  # Log with systemd-journald only. Cron with systemd-cron only.
-  package { "systemd-cron": ensure => installed }
-  ->
-  package { ["rsyslog", "syslog-ng", "cron"]:
+  # Log with systemd-journald only
+  package { ["rsyslog", "syslog-ng"]:
     ensure => absent
   }
   file { "/var/log/journal":
