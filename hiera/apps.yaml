@@ -47,6 +47,9 @@ eizo::flexget::config:
         torcache:
           regexp: 'https?://torcache\.net/torrent/(?P<id>.*)\.torrent(?:\?.*)?'
           format: 'magnet:?xt=urn:btih:\g<id>'
+        itorrents:
+          regexp: 'https?://itorrents.org/torrent/(?P<id>.*)\.torrent(?:\?.*)?'
+          format: 'magnet:?xt=urn:btih:\g<id>'
       notify:
         task:
           via:
