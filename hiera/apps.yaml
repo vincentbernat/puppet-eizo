@@ -288,7 +288,7 @@ eizo::nginx::acmetool::certificates:
 nginx::nginx_locations:
   'acme-challenge':
     location: /.well-known/acme-challenge/
-    location_alias: /var/run/acme/acme-challenge/
+    location_alias: /run/acme/acme-challenge/
     server: "%{::fqdn}"
   'status':
     stub_status: on
