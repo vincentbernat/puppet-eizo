@@ -106,32 +106,31 @@ eizo::flexget::config:
             quality: "720p webrip|hdtv|webdl|bluray h264 !aac"
             propers: 4 days
         normal:
-          - Modern Family
-          - Young Sheldon
-          - The Walking Dead
-          - Fear The Walking Dead
-          - Homeland
-          - True Detective
-          - Broadchurch
-          - Castle Rock
-          - Gotham
-          - Brooklyn Nine-Nine
-          - The 100
-          - Impulse
-          - The Boys
           - Better Call Saul
-          - The Blacklist
           - Black Mirror
-          - Westworld
-          - Mindhunter
+          - Broadchurch
+          - Brooklyn Nine-Nine
+          - Castle Rock
+          - Fear The Walking Dead
+          - Gotham
+          - Impulse
           - Master of None
-          - Stranger Things
+          - Mindhunter
           - Riverdale
-          - The Expanse
+          - Stranger Things
+          - The 100
+          - The Blacklist
+          - The Boys
           - The Crown
-          - The Mandalorian
-          - What We Do in the Shadows
+          - The Expanse
           - The Man in the High Castle
+          - The Mandalorian
+          - The Walking Dead
+          - Titans
+          - True Detective
+          - Westworld
+          - What We Do in the Shadows
+          - Young Sheldon
           - DARK:
               exact: yes
               alternate_name:
@@ -140,9 +139,6 @@ eizo::flexget::config:
           - Jessica Jones:
               alternate_name:
                 - "Marvel's Jessica Jones"
-          - Mr. Robot:
-              alternate_name:
-                - Mr Robot
       set:
         path: "/srv/media/transmission/complete/TV/{{ series_name }}"
 
