@@ -13,4 +13,8 @@ class eizo::firewall::config inherits eizo::firewall {
     mode => "go="
   }
 
+  file { '/etc/modprobe.d/no-sip-alg.conf':
+    content => "blacklist nf_nat_sip"
+  }
+
 }
