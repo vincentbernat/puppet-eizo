@@ -130,6 +130,8 @@ eizo::flexget::config:
           - Westworld
           - What We Do in the Shadows
           - Young Sheldon
+          - Warrior:
+              exact: yes
           - DARK:
               exact: yes
               alternate_name:
