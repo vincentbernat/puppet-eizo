@@ -39,11 +39,19 @@ class eizo::interfaces {
     value => "1"
   }
 
+  # Avahi
   shellvar { 'AVAHI_DAEMON_DETECT_LOCAL':
     ensure => present,
     target => '/etc/default/avahi-daemon',
     value  => '0',
+    notify => Service['avahi-daemon']
   }
-
+  file { '/etc/avahi/avahi-daemon.conf':
+    source => "puppet:///modules/eizo/interfaces/avahi-daemon.conf"
+  } ~>
+  service { 'avahi-daemon':
+    enable => true,
+    ensure => running
+  }
 
 }
