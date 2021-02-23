@@ -98,34 +98,24 @@ eizo::flexget::config:
     tv:
       series:
         settings:
-          720p:
+          normal:
             timeframe: 12 hours
-            target: 720p hdtv+ h264+ dd5.1|ac3|dts
-            quality: "720p webrip|hdtv|webdl|bluray h264+ !aac"
+            target: 720p hdtv+ h264 dd5.1|ac3|dts
+            quality: "720p webrip|hdtv|webdl|bluray h264 !aac"
             propers: 4 days
-          1080p:
-            timeframe: 24 hours
-            target: 1080p webrip|hdtv|webdl h265|10bit dd5.1+
-            quality:
-              - "720p webrip|hdtv|webdl|bluray h264+ !aac"
-              - "1080p webrip|hdtv|webdl h265+ dd5.1+"
-            propers: 4 days
-        720p:
-          - Brooklyn Nine-Nine
-          - "It's Always Sunny in Philadelphia"
-          - Master of None
-          - Riverdale
-          - What We Do in the Shadows
-          - Young Sheldon
-        1080p:
+        normal:
           - Better Call Saul
           - Black Mirror
           - Broadchurch
+          - Brooklyn Nine-Nine
           - Castle Rock
           - Fear The Walking Dead
+          - "It's Always Sunny in Philadelphia"
+          - Master of None
           - Mindhunter
-          - Space Force
+          - Riverdale
           - Stranger Things
+          - Space Force
           - The Blacklist
           - The Boys
           - The Crown
@@ -137,6 +127,8 @@ eizo::flexget::config:
           - Titans
           - True Detective
           - Westworld
+          - What We Do in the Shadows
+          - Young Sheldon
           - Warrior:
               exact: yes
           - DARK:
