@@ -122,7 +122,8 @@ eizo::flexget::config:
           - The Expanse
           - The Man in the High Castle
           - The Mandalorian
-          - The Walking Dead
+          - The Walking Dead:
+              from_group: xlf
           - Titans
           - True Detective
           - Westworld
