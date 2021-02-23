@@ -90,8 +90,6 @@ eizo::flexget::config:
     anime:
       series:
         720p:
-          - Fairy Tail:
-              from_group: horriblesubs
           - One Piece:
               from_group: horriblesubs
       set:
