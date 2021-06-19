@@ -220,18 +220,6 @@ nginx::package_name: nginx-extras
 nginx::manage_repo: false
 nginx::service_ensure: running
 
-nginx::nginx_upstreams:
-  'transmission':
-    members:
-      "127.0.0.1:%{hiera('eizo::transmission::rpcport')}":
-        server: 127.0.0.1
-        port: "%{hiera('eizo::transmission::rpcport')}"
-  'kodi':
-    members:
-      "127.0.0.1:8080":
-        server: 127.0.0.1
-        port: 8080
-
 nginx::http_cfg_append:
   map:
     - |
