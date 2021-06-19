@@ -39,8 +39,4 @@ class eizo::flexget::install inherits eizo::flexget {
     mode    => '0755'
   }
 
-  ensure_resource(
-    package, [ 'virtualenv' ],
-    { ensure => present })
-
 }
