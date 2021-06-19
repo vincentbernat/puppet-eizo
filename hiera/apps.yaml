@@ -69,11 +69,6 @@ eizo::flexget::config:
       transmission:
         host: 127.0.0.1
         port: 9099
-      clean_transmission:
-        host: 127.0.0.1
-        port: 9099
-        finished_for: 180 days
-        min_ratio: 2
       magnets: yes
 
     blacklist:
