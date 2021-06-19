@@ -31,7 +31,6 @@ class eizo::debian(
     location          => 'http://deb.debian.org/debian',
     release           => 'bullseye',
     repos             => 'main contrib non-free',
-    required_packages => 'debian-keyring debian-archive-keyring',
   }
   apt::source { "bullseye-security":
     location => 'http://deb.debian.org/debian-security',
@@ -42,7 +41,6 @@ class eizo::debian(
     location          => 'http://deb.debian.org/debian',
     release           => 'bullseye-backports',
     repos             => 'main contrib non-free',
-    required_packages => 'debian-keyring debian-archive-keyring',
   }
 
 }
