@@ -14,15 +14,15 @@ class eizo::flexget::install inherits eizo::flexget {
     password => '*'
   }
   ->
-  python::virtualenv { "${home}/venv":
-    require => Package['virtualenv'],
+  python::pyvenv { "${home}/venv":
     before => [ Python::Pip['flexget'],
                 Python::Pip['transmissionrpc'],
                 Python::Pip['cfscrape'] ]
   }
 
   python::pip { 'flexget':
-    pkgname => "FlexGet==${version}",
+    pkgname => "FlexGet",
+    ensure => "${version}",
     virtualenv => "${home}/venv"
   }
   python::pip { 'transmissionrpc':
