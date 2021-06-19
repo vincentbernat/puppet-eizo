@@ -1,10 +1,10 @@
 <keymap>
  <global>
   <keyboard>
-    <r mod="ctrl,shift">XBMC.ActivateWindow(Music,Root)</r>
-    <g mod="ctrl,shift">XBMC.ActivateWindow(Videos,TvShowTitles)</g>
-    <y mod="ctrl,shift">XBMC.ActivateWindow(Videos,MovieTitles)</y>
-    <b mod="ctrl,shift">XBMC.ActivateWindow(Settings)</b>
+    <r mod="ctrl,shift">ActivateWindow(Music,Root)</r>
+    <g mod="ctrl,shift">ActivateWindow(Videos,TvShowTitles)</g>
+    <y mod="ctrl,shift">ActivateWindow(Videos,MovieTitles)</y>
+    <b mod="ctrl,shift">ActivateWindow(Settings)</b>
     <two>JumpSMS2</two>
     <three>JumpSMS3</three>
     <four>JumpSMS4</four>
