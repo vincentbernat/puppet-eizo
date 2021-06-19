@@ -25,11 +25,6 @@ $ q 1
 ' /etc/fstab"
   }
 
-  # Set scheduler
-  udev::rule { "60-schedulers.rules":
-    source => 'puppet:///modules/eizo/disk/schedulers.rules',
-  }
-
   # RAID/LVM
   package { [ "lvm2", "mdadm" ]:
     ensure => present

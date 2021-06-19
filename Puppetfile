@@ -6,7 +6,6 @@ forge "https://forgeapi.puppetlabs.com"
 
 mod "puppetlabs/stdlib",        "~> 4.25.1"
 mod "puppetlabs/apt",           "~> 6.3.0"
-mod "jhoblitt/udev",            "~> 2.3.0"
 mod "puppet/python",            "~> 4.1.1"
 mod "puppet/nginx",             "~> 1.1.0"
 mod "ssm/munin",                "~> 0.3.0"
