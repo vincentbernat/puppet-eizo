@@ -1,7 +1,6 @@
 class eizo::flexget::install inherits eizo::flexget {
 
   class { 'python':
-    pip     => false,
     version => '3',
   }
 
