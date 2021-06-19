@@ -39,7 +39,7 @@ class eizo::flexget::install inherits eizo::flexget {
   }
   package { 'nodejs': ensure => installed }
   ->
-  python::pip { 'cfscrape':
+  python::pip { ['cfscrape', 'cloudscraper']:
     virtualenv => "${home}/venv"
   }
 
