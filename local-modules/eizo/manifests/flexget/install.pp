@@ -1,5 +1,9 @@
 class eizo::flexget::install inherits eizo::flexget {
 
+  package { 'python3-venv':
+    ensure => present
+  }
+  ->
   class { 'python':
     version => '3',
     pip     => absent
