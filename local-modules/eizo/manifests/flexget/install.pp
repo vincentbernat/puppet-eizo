@@ -24,22 +24,16 @@ class eizo::flexget::install inherits eizo::flexget {
   }
   ->
   python::pyvenv { "${home}/venv":
-    before => [ Python::Pip['flexget'],
-                Python::Pip['transmissionrpc'],
-                Python::Pip['cfscrape'] ]
   }
 
   python::pip { 'flexget':
-    pkgname => "FlexGet",
-    ensure => "${version}",
-    virtualenv => "${home}/venv"
-  }
-  python::pip { 'transmissionrpc':
+    pkgname    => "FlexGet",
+    ensure     => "${version}",
     virtualenv => "${home}/venv"
   }
   package { 'nodejs': ensure => installed }
   ->
-  python::pip { ['cfscrape', 'cloudscraper']:
+  python::pip { ['transmission-rpc', 'cfscrape', 'cloudscraper']:
     virtualenv => "${home}/venv"
   }
 
