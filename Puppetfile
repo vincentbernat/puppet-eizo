@@ -9,7 +9,7 @@ mod "jhoblitt/udev",            "~> 2.3.0"
 mod "puppet/python",            "~> 4.1.1"
 mod "puppet/nginx",             "~> 1.1.0"
 mod "ssm/munin",                "~> 0.3.0"
-mod "domcleal/augeasproviders", "~> 1.2.0"
+mod "herculesteam/augeasproviders", "~> 2.4.1"
 
 # Local Variables:
 # mode: Ruby
