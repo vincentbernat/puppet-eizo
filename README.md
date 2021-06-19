@@ -24,4 +24,4 @@ To run, use:
     librarian-puppet install
     ./run
 
-[Debian Buster]: https://www.debian.org/releases/buster/
+[Debian Bullseye]: https://www.debian.org/releases/bullseye/

@@ -27,20 +27,20 @@ class eizo::debian(
     source => "puppet:///modules/eizo/debian/apt/99translations"
   }
 
-  apt::source { "buster":
+  apt::source { "bullseye":
     location          => 'http://deb.debian.org/debian',
-    release           => 'buster',
+    release           => 'bullseye',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
   }
-  apt::source { "buster-security":
+  apt::source { "bullseye-security":
     location => 'http://deb.debian.org/debian-security',
-    release  => 'buster/updates',
+    release  => 'bullseye-security',
     repos    => 'main contrib non-free',
   }
-  apt::source { "buster-backports":
+  apt::source { "bullseye-backports":
     location          => 'http://deb.debian.org/debian',
-    release           => 'buster-backports',
+    release           => 'bullseye-backports',
     repos             => 'main contrib non-free',
     required_packages => 'debian-keyring debian-archive-keyring',
   }
