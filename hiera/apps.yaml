@@ -88,7 +88,7 @@ eizo::flexget::config:
       series:
         720p:
           - One Piece:
-              from_group: horriblesubs
+              from_group: subsplease
       set:
         path: "/srv/media/transmission/complete/TV/{{ series_name }}"
 
