@@ -21,12 +21,13 @@ ip46tables -A LAN-TRUSTED-FORWARD-INET -j ACCEPT
 # Access to SSH
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-trusted -p tcp --dport ssh -j ACCEPT
 
-# Access to stuff in the isolated network
+# Access to stuff in the isolated network and guest network
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-isolated -p tcp --dport printer -j ACCEPT
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-isolated -p tcp --dport ipp -j ACCEPT
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-isolated -p tcp --dport http -j ACCEPT
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-isolated -p tcp --dport https -j ACCEPT
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-isolated -p tcp --dport ssh -j ACCEPT
+ip46tables -A LAN-TRUSTED-FORWARD -o lan-guest -p tcp --dport ssh -j ACCEPT
 
 # Access to each other
 ip46tables -A LAN-TRUSTED-FORWARD -o lan-trusted -j ACCEPT
