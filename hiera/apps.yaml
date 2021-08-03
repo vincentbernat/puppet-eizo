@@ -215,8 +215,6 @@ eizo::flexget::config:
 nginx::package_name: nginx-extras
 nginx::manage_repo: false
 nginx::service_ensure: running
-nginx::client_body_temp_path: null
-nginx::proxy_temp_path: null
 
 nginx::http_cfg_append:
   map:
