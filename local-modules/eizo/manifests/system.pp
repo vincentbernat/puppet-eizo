@@ -21,6 +21,20 @@ class eizo::system {
 
   package { "sudo": ensure => installed }
   ->
+  file { '/etc/environment':
+    content => @(ENV/L)
+      # Managed by Puppet
+      LESSSECURE=1
+      | ENV
+  }
+  ->
+  file_line { 'make sudo read /etc/environment':
+    require => Package[sudo],
+    line    => 'session required pam_env.so',
+    path    => '/etc/pam.d/sudo',
+    after   => "#%PAM-1.0"
+  }
+  ->
   file { "/etc/sudoers.d/nopasswd": content => template("eizo/system/sudo-nopasswd") }
 
   package { 'fwupd': ensure => installed }
