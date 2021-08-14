@@ -2,6 +2,7 @@
 eizo::debian::packages:
   - alsa-utils
   - avahi-daemon
+  - debian-security-support
   - ethtool
   - git
   - glances
