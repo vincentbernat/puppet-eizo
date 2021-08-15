@@ -14,7 +14,7 @@ group=nogroup
 except-interface=internet
 
 # Default domain
-domain=home
+domain=home.arpa
 
 # /etc/hosts is not useful
 no-hosts
@@ -41,8 +41,8 @@ dhcp-leasefile=/var/lib/dnsmasq/dhcp.leases
 -%>
 # DHCP for <%= iface  %>
 dhcp-range=<%= range[2] %>,<%= range[-2] %>,24h
-# synth-domain=home,<%= net %>,internal-
-host-record=<%= @hostname %>.home,<%= range[1] %>
+# synth-domain=home.arpa,<%= net %>,internal-
+host-record=<%= @hostname %>.home.arpa,<%= range[1] %>
 dhcp-range=::,constructor:<%= iface %>,ra-names
 <%  end
    end -%>
@@ -53,7 +53,7 @@ dhcp-host=<%= mac %>,<%= name %>
 <% end -%>
 
 # NTP
-cname=ntp.home,<%= @hostname %>.home
+cname=ntp.home.arpa,<%= @hostname %>.home.arpa
 dhcp-option=option:ntp-server,0.0.0.0
 dhcp-option=option6:ntp-server,[fe80::]
 
