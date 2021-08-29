@@ -47,7 +47,7 @@ dhcp-range=::,constructor:<%= iface %>,ra-names
 dhcp-option=tag:<%= iface %>,option:classless-static-route<% @dhcp.each do |oiface, oparams|
   if oiface != iface and oparams.key? "static" then
     net = IPAddr.new oparams["static"]
--%>,<%= net.to_s %>/<%= net.prefix %>,0.0.0.0<% end end %>
+-%>,<%= net.to_s %>/<%= net.prefix %>,<%= params["static"].split("/")[0] %><% end end %>
 <%  end
    end %>
 
