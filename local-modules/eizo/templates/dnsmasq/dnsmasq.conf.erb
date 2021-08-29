@@ -40,10 +40,14 @@ dhcp-leasefile=/var/lib/dnsmasq/dhcp.leases
      range = (IPAddr.new net).to_range.to_a
 -%>
 # DHCP for <%= iface  %>
-dhcp-range=<%= range[2] %>,<%= range[-2] %>,24h
+dhcp-range=set:<%= iface %>,<%= range[2] %>,<%= range[-2] %>,24h
 synth-domain=home.arpa,<%= net %>,<%= iface %>-*
 host-record=<%= @hostname %>.home.arpa,<%= range[1] %>
 dhcp-range=::,constructor:<%= iface %>,ra-names
+dhcp-option=tag:<%= iface %>,option:classless-static-route<% @dhcp.each do |oiface, oparams|
+  if oiface != iface and oparams.key? "static" then
+    net = IPAddr.new oparams["static"]
+-%>,<%= net.to_s %>/<%= net.prefix %>,0.0.0.0<% end end -%>
 <%  end
    end -%>
 
@@ -59,3 +63,5 @@ dhcp-option=option6:ntp-server,[fe80::]
 
 # DNS (workaround odd bug with link-local addresses)
 dhcp-option=option6:dns-server,[::]
+
+# Routes
