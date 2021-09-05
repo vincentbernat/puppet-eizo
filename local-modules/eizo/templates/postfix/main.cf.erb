@@ -15,11 +15,12 @@ mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = loopback-only
 
-relayhost = [<%= @relay %>]:587
+relayhost = [<%= @relay %>]:465
 smtp_use_tls = yes
 smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
 smtp_tls_CApath = /etc/ssl/certs
 smtp_tls_security_level = secure
+smtp_tls_wrappermode = yes
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 smtp_sasl_auth_enable = yes
 smtp_sasl_security_options = noanonymous

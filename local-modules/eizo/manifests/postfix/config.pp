@@ -12,7 +12,7 @@ class eizo::postfix::config inherits eizo::postfix {
   }
 
   file { "/etc/postfix/sasl_passwd":
-    content => "# Managed by Puppet.\n[${relay}]:587 ${relayauth}\n",
+    content => "# Managed by Puppet.\n[${relay}]:465 ${relayauth}\n",
     mode    => "0640",
   }
   ~>
