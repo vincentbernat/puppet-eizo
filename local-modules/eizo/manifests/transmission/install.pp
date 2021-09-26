@@ -15,10 +15,7 @@ class eizo::transmission::install inherits eizo::transmission {
   }
   ->
   file { "${download}/watch":
-    ensure => directory,
-    mode => "g=rx,o=rwxt",
-    owner => "debian-transmission",
-    group => "debian-transmission"
+    ensure => absent
   }
 
 }
