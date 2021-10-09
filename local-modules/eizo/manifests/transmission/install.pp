@@ -13,9 +13,5 @@ class eizo::transmission::install inherits eizo::transmission {
     group => "nas",
     mode => "g=rwxs"
   }
-  ->
-  file { "${download}/watch":
-    ensure => absent
-  }
 
 }
