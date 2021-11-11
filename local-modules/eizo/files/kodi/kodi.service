@@ -1,0 +1,21 @@
+[Unit]
+Description=Kodi media center
+After=graphical.target systemd-user-sessions.service
+
+[Service]
+Type=simple
+User=xbmc
+WorkingDirectory=~
+PAMName=login
+TTYPath=/dev/tty8
+UtmpIdentifier=tty8
+UtmpMode=user
+StandardInput=tty
+UnsetEnvironment=TERM
+ExecStartPre=/bin/chvt 8
+StandardOutput=journal
+ExecStart=/usr/bin/startx /usr/bin/kodi-standalone -- vt8 -keeptty -verbose 3 -logfile /dev/null
+Environment=XDG_SESSION_TYPE=x11
+
+[Install]
+WantedBy=graphical.target

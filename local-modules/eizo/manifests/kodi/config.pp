@@ -25,9 +25,4 @@ class eizo::kodi::config inherits eizo::kodi {
   file { "${home}/userdata/keymaps/flirc.xml":
     source => "puppet:///modules/eizo/kodi/flirc.xml"
   }
-
-  # Autostart is done by lightdm
-  file { "/etc/lightdm/lightdm.conf":
-    source => "puppet:///modules/eizo/kodi/lightdm.conf"
-  }
 }
