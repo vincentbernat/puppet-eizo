@@ -28,17 +28,17 @@ class eizo::debian(
   }
 
   apt::source { "bullseye":
-    location          => 'http://deb.debian.org/debian',
+    location          => 'http://ftp.fr.debian.org/debian',
     release           => 'bullseye',
     repos             => 'main contrib non-free',
   }
   apt::source { "bullseye-security":
-    location => 'http://deb.debian.org/debian-security',
+    location => 'http://ftp.fr.debian.org/debian-security',
     release  => 'bullseye-security',
     repos    => 'main contrib non-free',
   }
   apt::source { "bullseye-backports":
-    location          => 'http://deb.debian.org/debian',
+    location          => 'http://ftp.fr.debian.org/debian',
     release           => 'bullseye-backports',
     repos             => 'main contrib non-free',
   }
