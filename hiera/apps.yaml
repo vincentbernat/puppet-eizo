@@ -14,6 +14,7 @@ eizo::transmission::config:
   speed-limit-down-enabled: true
   speed-limit-up: 2000
   speed-limit-up-enabled: true
+  global-seedratio: 3.0
   encryption: 2
   peer-port: 9098
   peer-limit-global: 240
