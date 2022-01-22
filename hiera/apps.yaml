@@ -43,7 +43,7 @@ eizo::flexget::config:
     global:
       headers:
         User-Agent: "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0"
-      cfscraper: yes
+      cfscraper: true
       disable:
         - torrent_cache
       urlrewrite:
@@ -60,7 +60,7 @@ eizo::flexget::config:
                 from: bernat@luffy.cx
                 to: bernat@luffy.cx
                 smtp_host: localhost
-      verify_ssl_certificates: no
+      verify_ssl_certificates: false
       retry_failed:
         retry_time: 20 minutes
         retry_time_multiplier: 1.5
@@ -70,7 +70,7 @@ eizo::flexget::config:
       transmission:
         host: 127.0.0.1
         port: 9099
-      magnets: yes
+      magnets: true
 
     blacklist:
       regexp:
@@ -109,7 +109,7 @@ eizo::flexget::config:
           - Fear The Walking Dead
           - For All Mankind
           - Foundation
-          - "It's Always Sunny in Philadelphia"
+          - It's Always Sunny in Philadelphia
           - Master of None
           - Mindhunter
           - Only Murders in the Building
@@ -122,6 +122,7 @@ eizo::flexget::config:
           - The Crown
           - The Expanse
           - The Flight Attendant
+          - The Hand's Maid Tale
           - The Man in the High Castle
           - The Mandalorian
           - The Walking Dead
@@ -131,9 +132,9 @@ eizo::flexget::config:
           - What We Do in the Shadows
           - Young Sheldon
           - Warrior:
-              exact: yes
+              exact: true
           - DARK:
-              exact: yes
+              exact: true
               alternate_name:
                 - Dark
       set:
@@ -195,7 +196,7 @@ eizo::flexget::config:
 
     tv search:
       # flexget execute --task "tv search" --discover-now --cli-config "show=Mr. Robot"
-      manual: yes
+      manual: true
       template:
         - no-redownload
         - no-wait
@@ -206,11 +207,11 @@ eizo::flexget::config:
 
     seed series:
       # flexget execute --tasks "seed series" --disable-tracking --learn
-      manual: yes
+      manual: true
       filesystem:
         regexp: .*(avi|mkv|mp4)$
         path: /srv/media/TV
-        recursive: yes
+        recursive: true
       template:
         - no-wait
         - tv
