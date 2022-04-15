@@ -2,6 +2,9 @@
 eizo::kodi::home: /srv/xbmc
 eizo::kodi::screen: 'card0-HDMI-A-3'
 
+# MySQL
+eizo::mysql::root: /srv/system/mysql
+
 # Transmission configuration
 eizo::transmission::rpcport: 9099
 eizo::transmission::download: /srv/media/transmission

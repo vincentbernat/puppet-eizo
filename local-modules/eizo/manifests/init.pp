@@ -11,6 +11,7 @@ class eizo {
   include ::eizo::system
 
   # Applications
+  include ::eizo::mysql
   include ::eizo::kodi
   include ::eizo::transmission
   include ::eizo::flexget

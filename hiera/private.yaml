@@ -5,6 +5,8 @@ eizo::ddns::key: XXXXXXXXXXXXXXXXXXXX
 eizo::ddns::secret: XX/XXXXXXXXXXXXXXX/XXXXXXXXXX
 eizo::ddns::domain: example.com
 
+eizo::mysql::root_password: somethingreallystrong
+
 eizo::nginx::certs:
   "/etc/nginx/ssl/%{::hostname}.key":
     mode: "0600"
