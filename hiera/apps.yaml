@@ -11,7 +11,7 @@ mysql::server::db:
   kodi:
     user: kodi
     password: "%{hiera('secret::kodi_mysql_password')}"
-    host: 127.0.0.1
+    host: localhost
     grant:
       - ALL
 
