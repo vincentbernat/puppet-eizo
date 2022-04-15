@@ -5,7 +5,8 @@ eizo::ddns::key: XXXXXXXXXXXXXXXXXXXX
 eizo::ddns::secret: XX/XXXXXXXXXXXXXXX/XXXXXXXXXX
 eizo::ddns::domain: example.com
 
-eizo::mysql::root_password: somethingreallystrong
+::mysql::server::root_password: somethingreallystrong
+kodi_mysql_password: somethingstrong
 
 eizo::nginx::certs:
   "/etc/nginx/ssl/%{::hostname}.key":
