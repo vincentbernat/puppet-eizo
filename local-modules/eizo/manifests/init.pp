@@ -12,6 +12,7 @@ class eizo {
 
   # Applications
   include ::mysql::server
+  create_resources(mysql::db, hiera('mysql::server::db', {}))
   include ::eizo::kodi
   include ::eizo::transmission
   include ::eizo::flexget
