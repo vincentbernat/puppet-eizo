@@ -9,10 +9,11 @@ class eizo {
   include ::eizo::ddns
   include ::eizo::ssh
   include ::eizo::system
-
-  # Applications
+  include ::eizo::samba
   include ::mysql::server
   create_resources(mysql::db, hiera('mysql::server::db', {}))
+
+  # Applications
   include ::eizo::kodi
   include ::eizo::transmission
   include ::eizo::flexget

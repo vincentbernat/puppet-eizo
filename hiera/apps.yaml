@@ -15,6 +15,17 @@ mysql::server::db:
     grant:
       - ALL
 
+# Samba
+eizo::samba::shares:
+  media:
+    config:
+      comment: Media files
+      path: /srv/media
+      browseable: "yes"
+      writable: "yes"
+      force group: nas
+      valid users: xbmc
+
 # Transmission configuration
 eizo::transmission::rpcport: 9099
 eizo::transmission::download: /srv/media/transmission
