@@ -1,9 +1,9 @@
-define eizo::samba::share($password) {
+define eizo::samba::user($password) {
   exec { "smbpasswd-${name}":
     user    => 'root',
     group   => 'root',
     path    => ['/bin','/usr/bin'],
-    unless  => "printf ${pass} | iconv -f ASCII -t UTF-16LE | openssl md4 | awk '{print \"pdbedit -wL ${name} | grep -qi \"\$2}' | sh",
-    command => "echo -ne \"${pass}\\n${pass}\\n\" | pdbedit -ta ${name}",
+    unless  => "pdbedit -w -v -L ${name} |awk -F ' *: *' '(\$1 == \"NT hash\") {print \$2}' | grep -qFix $(printf \"${password}\" | iconv -f ASCII -t UTF-16LE | openssl md4 | awk '{print \$NF}')",
+    command => "printf '%s\n%s\n' \"${password}\" \"${password}\" | smbpasswd -s -a ${name}",
   }
 }

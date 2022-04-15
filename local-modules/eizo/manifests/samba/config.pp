@@ -17,7 +17,7 @@ class eizo::samba::config inherits eizo::samba {
 
   $users = hiera_hash('eizo::samba::users')
   create_resources(
-    'eizo::samba::users',
+    'eizo::samba::user',
     $users,
     {})
 
