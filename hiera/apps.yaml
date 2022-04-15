@@ -17,10 +17,26 @@ mysql::server::db:
 
 # Samba
 eizo::samba::shares:
-  media:
+  movies:
     config:
-      comment: Media files
-      path: /srv/media
+      comment: Movies
+      path: /srv/media/Film
+      browseable: "yes"
+      writable: "yes"
+      force group: nas
+      valid users: xbmc
+  tv:
+    config:
+      comment: TV series
+      path: /srv/media/TV
+      browseable: "yes"
+      writable: "yes"
+      force group: nas
+      valid users: xbmc
+  music:
+    config:
+      comment: Music
+      path: /srv/media/Music
       browseable: "yes"
       writable: "yes"
       force group: nas
