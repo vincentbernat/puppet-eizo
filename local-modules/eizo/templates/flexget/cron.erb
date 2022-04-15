@@ -15,10 +15,14 @@ case $1 in
         :
         ;;
     move)
+        new=0
         cd $from
         for f in **/*.{mkv,avi,mp4}(NLM+100) **/*.srt(N); do
             target=$to/${f%%/*}
-            [[ ! -d $target ]] || mv $f $target/.
+            [[ ! -d $target ]] || {
+                mv $f $target/.
+                new=1
+            }
         done
         for f in **/{*.{txt,nfo,jpg,exe,png},[Ss]ample{.-}*{mkv,mp4},RARBG{.com,}.mp4}(N); do
             rm $f
@@ -26,5 +30,6 @@ case $1 in
         for d in **/*(N/^F); do
             rmdir $d
         done
+        (( $new )) && /usr/bin/kodi-send --action="UpdateLibrary(video)" > /dev/null
         ;;
 esac

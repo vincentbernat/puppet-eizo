@@ -11,7 +11,6 @@ class eizo {
   include ::eizo::system
   include ::eizo::samba
   include ::mysql::server
-  create_resources(mysql::db, hiera('mysql::server::db', {}))
 
   # Applications
   include ::eizo::kodi
