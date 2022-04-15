@@ -8,10 +8,17 @@ class eizo::samba::config inherits eizo::samba {
     source => "puppet:///modules/eizo/samba/smb.conf",
     order => '00'
   }
+
   $shares = hiera_hash('eizo::samba::shares')
   create_resources(
     'eizo::samba::share',
     $shares,
+    {})
+
+  $users = hiera_hash('eizo::samba::users')
+  create_resources(
+    'eizo::samba::users',
+    $users,
     {})
 
 }
