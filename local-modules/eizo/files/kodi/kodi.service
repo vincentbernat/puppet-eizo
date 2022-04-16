@@ -15,6 +15,7 @@ UnsetEnvironment=TERM
 ExecStartPre=/bin/chvt 8
 StandardOutput=journal
 ExecStart=/usr/bin/startx /usr/bin/kodi-standalone -- vt8 -keeptty -verbose 3 -logfile /dev/null
+ExecStop=/usr/bin/kodi-send --action=Quit
 Environment=XDG_SESSION_TYPE=x11
 
 [Install]
