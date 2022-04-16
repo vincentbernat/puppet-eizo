@@ -12,9 +12,6 @@ icmp LAN-GUEST-FORWARD 100
 dhcp LAN-GUEST
 public LAN-GUEST
 
-# Access to SSH to trusted lan
-ip46tables -A LAN-GUEST-FORWARD -o lan-trusted -p tcp --dport ssh -j ACCEPT
-
 # Internet access, except port 25
 ip46tables -N LAN-GUEST-FORWARD-INET
 ip46tables -A LAN-GUEST-FORWARD -o internet -j LAN-GUEST-FORWARD-INET
