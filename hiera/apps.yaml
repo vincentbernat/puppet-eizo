@@ -7,7 +7,7 @@ mysql::server::remove_default_accounts: true
 mysql::server::override_options:
   mysqld:
     datadir: /srv/system/mysql
-    bind-address: 127.0.0.1,192.168.118.193,192.168.117.1
+    bind-address: 0.0.0.0
 
 # Samba
 eizo::samba::shares:
