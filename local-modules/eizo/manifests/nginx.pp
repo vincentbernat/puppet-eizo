@@ -10,12 +10,12 @@ class eizo::nginx {
 
   create_resources(
     file,
-    hiera_hash("eizo::nginx::certs", {}),
+    lookup("eizo::nginx::certs", {merge=>hash}),
     { notify => Service[nginx] })
 
   create_resources(
     eizo::nginx::crl,
-    hiera_hash("eizo::nginx::crls", {}),
+    lookup("eizo::nginx::crls", {merge=>hash}),
     { notify => Service[nginx] })
 
 }
@@ -66,7 +66,7 @@ class eizo::nginx::acme {
 
   create_resources(
     eizo::nginx::acme::certificate,
-    hiera_hash("eizo::nginx::acmetool::certificates", {}),
+    lookup("eizo::nginx::acmetool::certificates", {merge=>hash}),
     { notify => Exec[acmetool-reconcile] })
 
 }

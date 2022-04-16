@@ -1,7 +1,7 @@
 # Configure /etc/network/interfaces
 class eizo::interfaces {
 
-  $interfaces = hiera_hash('eizo::interfaces')
+  $interfaces = lookup('eizo::interfaces', {merge=>hash})
   create_resources(
     'eizo::interface::ifup',
     $interfaces,

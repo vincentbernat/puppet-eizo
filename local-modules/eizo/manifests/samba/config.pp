@@ -9,13 +9,13 @@ class eizo::samba::config inherits eizo::samba {
     order => '00'
   }
 
-  $shares = hiera_hash('eizo::samba::shares')
+  $shares = lookup('eizo::samba::shares', {merge=>hash})
   create_resources(
     'eizo::samba::share',
     $shares,
     {})
 
-  $users = hiera_hash('eizo::samba::users')
+  $users = lookup('eizo::samba::users', {merge=>hash})
   create_resources(
     'eizo::samba::user',
     $users,

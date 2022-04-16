@@ -1,6 +1,6 @@
 class eizo::miniupnpd::config inherits eizo::miniupnpd {
 
-  $interfaces = hiera_hash('eizo::interfaces')
+  $interfaces = lookup('eizo::interfaces', {merge=>hash})
 
   file { '/etc/miniupnpd/miniupnpd.conf':
     content => template('eizo/miniupnpd/miniupnpd.conf.erb')
