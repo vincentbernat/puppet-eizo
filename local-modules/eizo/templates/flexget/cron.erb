@@ -24,7 +24,7 @@ case $1 in
                 new=1
             }
         done
-        for f in **/{*.{txt,nfo,jpg,exe,png},[Ss]ample{.-}*{mkv,mp4},RARBG{.com,}.mp4}(N); do
+        for f in **/{*.{txt,nfo,jpg,exe,png},[Ss]ample[.-]*{mkv,mp4},*[.-][Ss]ample.{mkv,mp4},RARBG{.com,}.mp4}(N); do
             rm $f
         done
         for d in **/*(N/^F); do
