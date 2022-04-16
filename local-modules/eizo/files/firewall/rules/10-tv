@@ -1,0 +1,26 @@
+# -*- sh -*-
+
+# Rules when the TV LAN is the source.
+
+ip46tables -N LAN-TV-INPUT
+ip46tables -N LAN-TV-FORWARD
+ip46tables -A INPUT -i lan-tv    -j LAN-TV-INPUT
+ip46tables -A FORWARD -i lan-tv  -j LAN-TV-FORWARD
+
+icmp LAN-TV-INPUT   10
+icmp LAN-TV-FORWARD 100
+dhcp LAN-TV
+public LAN-TV
+
+# Internet access port 80 and 443, except port 25
+ip46tables -N LAN-TV-FORWARD-INET
+ip46tables -A LAN-TV-FORWARD -o internet -j LAN-TV-FORWARD-INET
+ip46tables -A LAN-TV-FORWARD-INET -p tcp -m multiport --dport 80,443 -j ACCEPT
+ip46tables -A LAN-TV-FORWARD-INET -p udp --dport 443 -j ACCEPT
+
+# mysql and samba
+ip46tables -A LAN-TV-INPUT -p tcp --dport 3306 -j ACCEPT
+ip46tables -A LAN-TV-INPUT -p tcp --dport 445 -j ACCEPT
+
+reject LAN-TV-INPUT
+reject LAN-TV-FORWARD

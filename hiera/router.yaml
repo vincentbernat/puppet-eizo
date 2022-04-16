@@ -60,6 +60,14 @@ eizo::interfaces:
     order: 2
     upnp: true
     v6: true
+  lan-tv:
+    description: "TV LAN network"
+    static: 192.168.118.193/26
+    vlan:
+      over: eno1
+      id: 10
+    order: 2
+    v6: true
 
 # That's unfortunate, but lookup will done in Puppet
 eizo::dnsmasq::dhcp: "eizo::interfaces"

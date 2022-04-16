@@ -7,6 +7,7 @@ mysql::server::remove_default_accounts: true
 mysql::server::override_options:
   mysqld:
     datadir: /srv/system/mysql
+    bind-address: 127.0.0.1,192.168.118.193,192.168.117.1
 
 # Samba
 eizo::samba::shares:
@@ -509,6 +510,9 @@ munin::node::plugins:
   "if_lan-games":
     target: if_
     ensure: link
+  "if_lan-tv":
+    target: if_
+    ensure: link
   "if_internet":
     target: if_
     ensure: link
@@ -519,6 +523,9 @@ munin::node::plugins:
     target: if_err_
     ensure: link
   "if_err_lan-games":
+    target: if_err_
+    ensure: link
+  "if_err_lan-tv":
     target: if_err_
     ensure: link
   "if_err_internet":
