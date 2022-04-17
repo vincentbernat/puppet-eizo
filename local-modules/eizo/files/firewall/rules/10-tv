@@ -20,7 +20,7 @@ ip46tables -A LAN-TV-FORWARD-INET -p udp --dport 443 -j ACCEPT
 
 # mysql and nfs
 ip46tables -A LAN-TV-INPUT -p tcp --dport mysql -j ACCEPT
-ip46tables -A LAN-TV-INPUT -p tcp --dport nfs -j ACCEPT
+ip46tables -A LAN-TV-INPUT -p tcp -m multiport --dport nfs,sunrpc,17865 -j ACCEPT
 
 reject LAN-TV-INPUT
 reject LAN-TV-FORWARD
