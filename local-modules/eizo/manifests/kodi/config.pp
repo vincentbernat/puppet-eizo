@@ -10,7 +10,7 @@ class eizo::kodi::config inherits eizo::kodi {
   cron { kodi-update-library:
     command => '/usr/bin/kodi-send --action="UpdateLibrary(video)" > /dev/null',
     user => 'xbmc',
-    hour => */6,
+    hour => "*/6",
     minute => 5
   }
 
