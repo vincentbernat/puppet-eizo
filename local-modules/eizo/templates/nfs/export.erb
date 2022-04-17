@@ -1,0 +1,4 @@
+/nfs/<%= @name %>
+<%- hosts.each |host| do -%>
+<%= host %>(rw,all_squash,no_subtree_check,insecure,anonuid=<%= uid %>,anongid=<%= gid %>) 
+<%- end %>

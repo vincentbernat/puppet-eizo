@@ -9,7 +9,7 @@ class eizo {
   include ::eizo::ddns
   include ::eizo::ssh
   include ::eizo::system
-  include ::eizo::samba
+  include ::eizo::nfs
   include ::mysql::server
 
   # Applications

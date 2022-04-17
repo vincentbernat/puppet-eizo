@@ -9,32 +9,29 @@ mysql::server::override_options:
     datadir: /srv/system/mysql
     bind-address: 0.0.0.0
 
-# Samba
-eizo::samba::shares:
+# NFS
+eizo::nfs::exports:
   movies:
-    config:
-      comment: Movies
-      path: /srv/media/Film
-      browseable: "yes"
-      writable: "yes"
-      force group: nas
-      valid users: xbmc
+    path: /srv/media/Film
+    uid: 998
+    gid: 997
+    hosts:
+      - eizo.home.arpa
+      - kodi.home.arpa
   tv:
-    config:
-      comment: TV series
-      path: /srv/media/TV
-      browseable: "yes"
-      writable: "yes"
-      force group: nas
-      valid users: xbmc
+    path: /srv/media/TV
+    uid: 998
+    gid: 997
+    hosts:
+      - eizo.home.arpa
+      - kodi.home.arpa
   music:
-    config:
-      comment: Music
-      path: /srv/media/Music
-      browseable: "yes"
-      writable: "yes"
-      force group: nas
-      valid users: xbmc
+    path: /srv/media/Music
+    uid: 998
+    gid: 997
+    hosts:
+      - eizo.home.arpa
+      - kodi.home.arpa
 
 # Transmission configuration
 eizo::transmission::rpcport: 9099

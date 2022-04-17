@@ -18,9 +18,9 @@ ip46tables -A LAN-TV-FORWARD -o internet -j LAN-TV-FORWARD-INET
 ip46tables -A LAN-TV-FORWARD-INET -p tcp -m multiport --dport 80,443 -j ACCEPT
 ip46tables -A LAN-TV-FORWARD-INET -p udp --dport 443 -j ACCEPT
 
-# mysql and samba
-ip46tables -A LAN-TV-INPUT -p tcp --dport 3306 -j ACCEPT
-ip46tables -A LAN-TV-INPUT -p tcp --dport 445 -j ACCEPT
+# mysql and nfs
+ip46tables -A LAN-TV-INPUT -p tcp --dport mysql -j ACCEPT
+ip46tables -A LAN-TV-INPUT -p tcp --dport nfs -j ACCEPT
 
 reject LAN-TV-INPUT
 reject LAN-TV-FORWARD

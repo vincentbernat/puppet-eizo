@@ -36,9 +36,5 @@ ip46tables -A LAN-TRUSTED-FORWARD -o lan-trusted -j ACCEPT
 # mdns
 ip46tables -A LAN-TRUSTED-INPUT -p udp --dport mdns -j ACCEPT
 
-# mysql and samba
-ip46tables -A LAN-TRUSTED-INPUT -p tcp --dport 3306 -j ACCEPT
-ip46tables -A LAN-TRUSTED-INPUT -p tcp --dport 445 -j ACCEPT
-
 reject LAN-TRUSTED-INPUT
 reject LAN-TRUSTED-FORWARD
