@@ -7,6 +7,12 @@ class eizo::kodi::config inherits eizo::kodi {
     hour => 3,
     minute => 45
   }
+  cron { kodi-update-library:
+    command => '/usr/bin/kodi-send --action="UpdateLibrary(video)" > /dev/null',
+    user => 'xbmc',
+    hour => */6,
+    minute => 5
+  }
 
   # And keymaps
   file { "${home}/userdata/keymaps/flirc.xml":
