@@ -18,7 +18,7 @@ class eizo::nfs {
   }
   $exports = lookup('eizo::nfs::exports', {merge=>hash})
   create_resources(
-    'eizo::nfs::exports',
+    'eizo::nfs::export',
     $exports,
     {})
 }
