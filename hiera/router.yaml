@@ -75,4 +75,3 @@ eizo::dnsmasq::dhcp_hosts:
   gs110tp:    "e4:f4:c6:f1:4c:7a"
   gs108t:     "20:4e:7f:77:87:3f"
   hl-4150cdn: "00:1b:a9:9b:ea:82"
-  zyxel:      "10:7b:ef:d3:ec:fb"
