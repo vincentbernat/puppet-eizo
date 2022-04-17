@@ -6,7 +6,12 @@ define eizo::nfs::export($path, $uid, $gid, $hosts) {
     notify => Exec[nfs-exportfs]
   }
   file { "/nfs/${name}":
-    ensure => "link",
-    target => $path
+    ensure => "directory"
+  } ->
+  mount { "/nfs/${name}":
+    ensure => "mounted",
+    device => $path,
+    fstype => "none",
+    options => "rw,bind"
   }
 }
