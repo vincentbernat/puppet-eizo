@@ -8,12 +8,14 @@ define eizo::nfs::export($path, $uid, $gid, $hosts) {
   file { "/nfs/${name}":
     ensure => "directory",
     owner => $uid,
-    group => $gid
+    group => $gid,
+    notify => Exec[nfs-exportfs]
   } ->
   mount { "/nfs/${name}":
     ensure => "mounted",
     device => $path,
     fstype => "none",
-    options => "rw,bind"
+    options => "rw,bind",
+    notify => Exec[nfs-exportfs]
   }
 }
