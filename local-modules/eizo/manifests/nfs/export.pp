@@ -6,7 +6,9 @@ define eizo::nfs::export($path, $uid, $gid, $hosts) {
     notify => Exec[nfs-exportfs]
   }
   file { "/nfs/${name}":
-    ensure => "directory"
+    ensure => "directory",
+    owner => $uid,
+    group => $gid
   } ->
   mount { "/nfs/${name}":
     ensure => "mounted",
