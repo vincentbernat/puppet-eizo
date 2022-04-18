@@ -1,21 +1,18 @@
 define eizo::nfs::export($path, $uid, $gid, $hosts) {
   concat::fragment { "nfs-exports-${name}":
-    target => "/etc/exports",
+    target  => "/etc/exports",
     content => template("eizo/nfs/export.erb"),
-    order => '10',
-    notify => Exec[nfs-exportfs]
+    order   => '10'
   }
   file { "/nfs/${name}":
     ensure => "directory",
-    owner => $uid,
-    group => $gid,
-    notify => Exec[nfs-exportfs]
+    owner  => $uid,
+    group  => $gid
   } ->
   mount { "/nfs/${name}":
-    ensure => "mounted",
-    device => $path,
-    fstype => "none",
-    options => "rw,bind",
-    notify => Exec[nfs-exportfs]
+    ensure  => "mounted",
+    device  => $path,
+    fstype  => "none",
+    options => "rw,bind"
   }
 }
