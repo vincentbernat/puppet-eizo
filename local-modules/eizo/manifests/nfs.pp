@@ -1,9 +1,6 @@
 class eizo::nfs {
   file { "/nfs":
     ensure => directory,
-    # This seems quite dangerous, let's not try
-    #recurse => true,
-    #purge => true
   }
 
   concat { "/etc/exports":
