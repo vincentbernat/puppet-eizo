@@ -66,7 +66,7 @@ eizo::transmission::config:
 eizo::flexget::home: /srv/flexget
 eizo::flexget::move_from: /srv/media/transmission/complete/TV
 eizo::flexget::move_to: /srv/media/TV
-eizo::flexget::version: "3.1.130"
+eizo::flexget::version: "3.3.8"
 python::params::pip_package: python3-pip
 eizo::flexget::config:
   templates:
