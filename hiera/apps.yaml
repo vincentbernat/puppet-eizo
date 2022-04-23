@@ -129,12 +129,8 @@ eizo::flexget::config:
         settings:
           normal:
             timeframe: 12 hours
-            target:
-              - 720p webdl+ h264 dd5.1+
-              - 1080p webdl+ h265 dd5.1+
-            quality:
-              - 720p hdtv+ h264
-              - 1080p webdl+ h265
+            target: 720p webdl+ h264 dd5.1+
+            quality: 720p hdtv+ h264
             propers: 4 days
         normal:
           - Better Call Saul
