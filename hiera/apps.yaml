@@ -134,14 +134,10 @@ eizo::flexget::config:
             propers: 4 days
         normal:
           - Better Call Saul
-          - Black Mirror
-          - Broadchurch
-          - Castle Rock
           - Fear The Walking Dead
           - For All Mankind
           - Foundation
           - It's Always Sunny in Philadelphia
-          - Master of None
           - Mindhunter
           - Only Murders in the Building
           - Raised by Wolves
@@ -153,7 +149,6 @@ eizo::flexget::config:
           - The Expanse
           - The Flight Attendant
           - The Handmaid's Tale
-          - The Man in the High Castle
           - The Mandalorian
           - The Walking Dead
           - Titans
@@ -164,10 +159,6 @@ eizo::flexget::config:
           - Young Sheldon
           - Warrior:
               exact: true
-          - DARK:
-              exact: true
-              alternate_name:
-                - Dark
       set:
         path: "/srv/media/transmission/complete/TV/{{ series_name }}"
 
