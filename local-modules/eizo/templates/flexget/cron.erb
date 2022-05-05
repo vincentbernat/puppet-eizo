@@ -30,6 +30,6 @@ case $1 in
         for d in **/*(N/^F); do
             rmdir $d
         done
-        (( $new )) && /usr/bin/kodi-send --action="UpdateLibrary(video)" > /dev/null
+        (( $new )) && /usr/bin/kodi-send --host=kodi --action="UpdateLibrary(video)" > /dev/null
         ;;
 esac

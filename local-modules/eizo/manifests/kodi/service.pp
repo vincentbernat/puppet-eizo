@@ -7,8 +7,8 @@ class eizo::kodi::service inherits eizo::kodi {
   }
   ->
   service { 'kodi':
-    enable => true,
-    ensure => running
+    enable => false,
+    ensure => stopped
   }
 
   # And regular cleanup of video library
@@ -19,13 +19,13 @@ class eizo::kodi::service inherits eizo::kodi {
     weekday => 1
   }
   cron { kodi-clean-library:
-    command => '/usr/bin/kodi-send --action="CleanLibrary(video,silent=true)" > /dev/null',
+    command => '/usr/bin/kodi-send --host=kodi --action="CleanLibrary(video,silent=true)" > /dev/null',
     user => 'xbmc',
     hour => 3,
     minute => 45
   }
   cron { kodi-update-library:
-    command => '/usr/bin/kodi-send --action="UpdateLibrary(video)" > /dev/null',
+    command => '/usr/bin/kodi-send --host=kodi --action="UpdateLibrary(video)" > /dev/null',
     user => 'xbmc',
     hour => "*/6",
     minute => 5

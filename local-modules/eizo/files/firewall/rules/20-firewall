@@ -44,6 +44,11 @@ ip6tables -A FIREWALL-OUTPUT -p udp --dport 5351 -d ff02::1 -o lan-games -j ACCE
 ip46tables -A FIREWALL-OUTPUT -p udp --sport 5350 -o lan-games -j ACCEPT
 ip46tables -A FIREWALL-OUTPUT -p udp --sport 5351 -o lan-games -j ACCEPT
 
+# Can interact with Kodi on TV lan
+for user in xbmc bernat; do
+    ip46tables -A FIREWALL-OUTPUT -p tcp --dport 9090 -o lan-tv -m owner --uid-owner $user -j ACCEPT
+done
+
 # Some users have unlimited Internet access, except port 25
 ip46tables -N FIREWALL-OUTPUT-INET
 ip46tables -A FIREWALL-OUTPUT-INET -p tcp --dport smtp -j RETURN
