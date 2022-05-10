@@ -129,7 +129,7 @@ eizo::flexget::config:
         settings:
           normal:
             timeframe: 12 hours
-            target: 1080p webdl+ h265 dd5.1+
+            target: 1080p h265
             quality: 720p hdtv+ h264|h265
             propers: 4 days
         normal:
