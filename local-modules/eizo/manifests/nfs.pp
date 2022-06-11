@@ -27,5 +27,10 @@ class eizo::nfs {
   service { "nfs-kernel-server":
     ensure  => running,
     restart => "systemctl reload ${name}"
+  } ->
+  cron { nfsexport:
+    command => "/usr/sbin/exportfs -r",
+    user => "root",
+    minute => "*/10"
   }
 }
