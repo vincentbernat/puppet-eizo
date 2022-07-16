@@ -37,5 +37,16 @@ class eizo::system {
   ->
   file { "/etc/sudoers.d/nopasswd": content => template("eizo/system/sudo-nopasswd") }
 
+  package { 'sysfsutils': ensure => installed }
+  ->
+  file { '/etc/sysfs.d/disable-smt.conf':
+    content => @(BODY/L)
+      # Managed by Puppet
+      devices/system/cpu/smt/control = off
+      | BODY
+  }
+  ~>
+  service { 'sysfsutils': }
+
   package { 'fwupd': ensure => installed }
 }
