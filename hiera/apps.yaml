@@ -157,6 +157,9 @@ eizo::flexget::config:
           - For All Mankind
           - House of the Dragon
           - Raised by Wolves
+          - "Star Wars: Andor":
+              alternate_name:
+                - Andor
           - Stranger Things
           - The Boys
           - The Crown
