@@ -18,14 +18,6 @@ class eizo::nginx {
     lookup("eizo::nginx::crls", {merge=>hash}),
     { notify => Service[nginx] })
 
-  systemd::dropin_file { 'runtimedirectory.conf':
-    unit    => 'nginx.service',
-    content => @(EOT),
-      # Managed by Puppet
-      [Service]
-      RuntimeDirectory=nginx
-      | EOT
-  }
 }
 
 define eizo::nginx::crl($path=$title, $url) {
