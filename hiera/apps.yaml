@@ -162,10 +162,8 @@ eizo::flexget::config:
           - Stranger Things
           - The Boys
           - The Crown
-          - The Expanse
           - The Last of Us
           - The Mandalorian
-          - Westworld
           - Warrior:
               exact: true
       set:
