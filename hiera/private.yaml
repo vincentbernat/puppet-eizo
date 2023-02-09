@@ -48,4 +48,6 @@ eizo::proftpd::users:
         AAAAB3NzaC1yc2EAAAABIwAAAIEA0q2ZuYy2a7sExrzkJk/a3/hmjtt3uoZmaDCg0YdRhg
         ---- END SSH2 PUBLIC KEY ----
 
+# See https://jsfiddle.net/kgersen/3mnsc6wy/
 eizo::router::authentication: "00:00:00:00:00:00:00:00:00:00:00:66:74:69:xx:xx:xx:xx:xx:xx:xx:xx"
+eizo::router::livebox_mac: "00:11:22:33:44:55"

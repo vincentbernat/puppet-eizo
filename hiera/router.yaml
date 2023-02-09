@@ -23,11 +23,13 @@ eizo::interfaces:
       "send vendor-class-identifier": '"sagem"'
       "send user-class": '"+FSVDSL_livebox.Internet.softathome.Livebox4"'
       "send rfc3118-authentication": "%{lookup('eizo::router::authentication')}"
+      "send dhcp-client-identifier": "01:%{lookup('eizo::router::livebox_mac')}"
       "send dhcp6.vendorclass": "00:00:04:0e:00:05:73:61:67:65:6d"
       "send dhcp6.userclass": "00:2b:46:53:56:44:53:4c:5f:6c:69:76:65:62:6f:78:2e:49:6e:74:65:72:6e:65:74:2e:73:6f:66:74:61:74:68:6f:6d:65:2e:6c:69:76:65:62:6f:78:34"
       "send dhcp6.auth": "%{lookup('eizo::router::authentication')}"
-      "request subnet-mask, routers, domain-name-servers, domain-name, broadcast-address, dhcp-lease-time, dhcp-renewal-time, dhcp-rebinding-time, rfc3118-authentication": ""
-      "also request dhcp6.auth, dhcp6.vendorclass, dhcp6.userclass": ""
+      "send dhcp6.client-id": "00:03:00:01:%{lookup('eizo::router::livebox_mac')}"
+      "request subnet-mask, routers, domain-name-servers, domain-name, broadcast-address, dhcp-lease-time, dhcp-renewal-time, dhcp-rebinding-time, rfc3118-authentication, vivso": ""
+      "also request dhcp6.auth, dhcp6.vendor-opts": ""
     also:
       "pre-up": "/etc/firewall/run"
       # For IPv6, we do stuff manually as Orange only provides the
