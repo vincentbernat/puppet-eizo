@@ -1,6 +1,6 @@
 class eizo::kodi::install inherits eizo::kodi {
 
-  package { ['kodi', 'kodi-eventclients-kodi-send']:
+  package { ['kodi-eventclients-kodi-send']:
     ensure => present
   }
   package { 'lightdm': ensure => absent }
@@ -25,12 +25,4 @@ class eizo::kodi::install inherits eizo::kodi {
     ensure => link,
     target => "${home}"
   }
-
-  # Also install X stuff. We use `ensure_resource` because we don't
-  # want to have ownership.
-  ensure_resource(
-    package,
-    [ 'xserver-xorg', 'xinit', 'x11-xserver-utils' ],
-    { ensure => present })
-
 }
