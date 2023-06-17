@@ -30,6 +30,9 @@ eizo::interfaces:
       "send dhcp6.client-id": "00:03:00:01:%{lookup('eizo::router::livebox_mac')}"
       "request subnet-mask, routers, domain-name-servers, domain-name, broadcast-address, dhcp-lease-time, dhcp-renewal-time, dhcp-rebinding-time, rfc3118-authentication, vivso": ""
       "also request dhcp6.auth, dhcp6.vendor-opts": ""
+      "supersede dhcp-rebinding-time 86400": ""
+      "supersede dhcp-renewal-time 86400": ""
+      "supersede dhcp-lease-time 90000": ""
     also:
       "pre-up": "/etc/firewall/run"
       # For IPv6, we do stuff manually as Orange only provides the
