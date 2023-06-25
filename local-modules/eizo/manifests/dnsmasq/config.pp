@@ -13,7 +13,7 @@ class eizo::dnsmasq::config inherits eizo::dnsmasq {
   }
 
   file { '/etc/dhcp/dhclient-enter-hooks.d/dnsmasq-resolvconf':
-    source => "puppet:///modules/eizo/dnsmasq/dnsmasq-resolvconf"
+    ensure => absent
   }
 
   file { '/etc/resolv.conf':
