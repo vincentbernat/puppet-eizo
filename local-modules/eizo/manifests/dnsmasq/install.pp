@@ -1,8 +1,11 @@
 class eizo::dnsmasq::install inherits eizo::dnsmasq {
 
-  package { 'unbound': ensure => present}
-  package { 'resolvconf': ensure => purged }
-  package { 'dnsmasq': ensure => present}
+  package { 'unbound':
+    ensure => present
+  }
+  package { 'dnsmasq':
+    ensure => present
+  }
   ->
   file { '/var/lib/dnsmasq':
     ensure => "directory",
