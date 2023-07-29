@@ -4,6 +4,7 @@ eizo::debian::packages:
   - avahi-daemon
   - debian-security-support
   - ethtool
+  - fzf
   - git
   - glances
   - htop
