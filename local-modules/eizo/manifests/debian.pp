@@ -33,7 +33,7 @@ class eizo::debian(
     repos             => 'main contrib non-free',
   }
   apt::source { "bullseye-security":
-    location => 'http://ftp.fr.debian.org/debian-security',
+    location => 'http://security.debian.org/debian-security',
     release  => 'bullseye-security',
     repos    => 'main contrib non-free',
   }
