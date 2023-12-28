@@ -160,6 +160,7 @@ eizo::flexget::config:
               alternate_name:
                 - Andor
           - Stranger Things
+          - Slow Horses
           - The Boys
           - The Crown
           - The Last of Us
@@ -218,6 +219,7 @@ eizo::flexget::config:
         - rss: 'https://rarbg.com/rssdd.php?category=41'
         - rss: 'https://yourbittorrent.com/television/rss.xml'
         - rss: 'https://www.limetorrents.pro/rss/20/'
+        - rss: 'https://eztv1.xyz/ezrss.xml'
       template:
         - no-redownload
         - blacklist
