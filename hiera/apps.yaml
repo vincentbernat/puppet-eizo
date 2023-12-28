@@ -216,7 +216,6 @@ eizo::flexget::config:
         - rss: 
             url: "https://showrss.info/other/all.rss"
             title: "tv:raw_title"
-        - rss: 'https://rarbg.com/rssdd.php?category=41'
         - rss: 'https://yourbittorrent.com/television/rss.xml'
         - rss: 'https://www.limetorrents.pro/rss/20/'
         - rss: 'https://eztv1.xyz/ezrss.xml'
