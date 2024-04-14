@@ -41,9 +41,9 @@ eizo::transmission::config:
   alt-speed-up: 200
   alt-speed-enabled: false
   alt-speed-time-enabled: false
-  speed-limit-down: 10000
+  speed-limit-down: 30000
   speed-limit-down-enabled: true
-  speed-limit-up: 2000
+  speed-limit-up: 6000
   speed-limit-up-enabled: true
   global-seedratio: 3.0
   encryption: 2
