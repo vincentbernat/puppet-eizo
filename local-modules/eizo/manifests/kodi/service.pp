@@ -1,16 +1,4 @@
 class eizo::kodi::service inherits eizo::kodi {
-
-  file { '/etc/systemd/system/kodi.service':
-    ensure => present,
-    source => "puppet:///modules/eizo/kodi/kodi.service",
-    notify => Exec["reload systemd"]
-  }
-  ->
-  service { 'kodi':
-    enable => false,
-    ensure => stopped
-  }
-
   # And regular cleanup of video library
   cron { kodi-backup:
     command => 'mysqldump --all-databases | gzip -c > /srv/media/data/mysqldump-$(date -I).gz',
