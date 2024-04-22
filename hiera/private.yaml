@@ -6,7 +6,6 @@ eizo::ddns::secret: XX/XXXXXXXXXXXXXXX/XXXXXXXXXX
 eizo::ddns::domain: example.com
 
 mysql::server::root_password: somethingreallystrong
-secret::kodi_mysql_password: somethingstrong
 
 eizo::nginx::certs:
   "/etc/nginx/ssl/%{::hostname}.key":
