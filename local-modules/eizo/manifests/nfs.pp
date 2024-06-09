@@ -28,7 +28,7 @@ class eizo::nfs {
     ensure  => running,
     restart => "systemctl reload ${name}"
   } ->
-  cron { nfsexport:
+  cron::job { nfsexport:
     command => "/usr/sbin/exportfs -r",
     user => "root",
     minute => "*/10"

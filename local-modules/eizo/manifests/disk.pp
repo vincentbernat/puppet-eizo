@@ -31,7 +31,7 @@ $ q 1
   }
 
   # Schedule fstrim through cron
-  cron { fstrim:
+  cron::job { fstrim:
     command => "/sbin/fstrim -a",
     user => "root",
     hour => 3,
