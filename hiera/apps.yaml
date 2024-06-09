@@ -7,6 +7,9 @@ mysql::server::override_options:
   mysqld:
     datadir: /srv/system/mysql
     bind-address: 0.0.0.0
+    ssl-ca: ~
+    ssl-cert: ~
+    ssl-key: ~
 
 # NFS
 eizo::nfs::exports:
