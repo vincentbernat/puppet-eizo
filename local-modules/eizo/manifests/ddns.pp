@@ -18,7 +18,7 @@ class eizo::ddns($key, $secret, $domain, $ttl=60) {
     source => "puppet:///modules/eizo/ddns/dhcp-hook"
   }
 
-  cron::job { "ddns-updater":
+  cron { "ddns-updater":
     command => "systemctl start ddns-updater",
     minute => "*/9",
     require => File['/etc/systemd/system/ddns-updater.service']

@@ -21,7 +21,7 @@ class eizo::nginx {
 }
 
 define eizo::nginx::crl($path=$title, $url) {
-  cron::job { "update-crl-${path}":
+  cron { "update-crl-${path}":
     minute => 3,
     hour => 4,
     user => root,
