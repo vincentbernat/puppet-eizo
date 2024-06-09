@@ -27,19 +27,19 @@ class eizo::debian(
     source => "puppet:///modules/eizo/debian/apt/99translations"
   }
 
-  apt::source { "bullseye":
+  apt::source { "bookworm":
     location          => 'http://ftp.fr.debian.org/debian',
-    release           => 'bullseye',
+    release           => 'bookworm',
     repos             => 'main contrib non-free',
   }
-  apt::source { "bullseye-security":
+  apt::source { "bookworm-security":
     location => 'http://security.debian.org/debian-security',
-    release  => 'bullseye-security',
+    release  => 'bookworm-security',
     repos    => 'main contrib non-free',
   }
-  apt::source { "bullseye-backports":
+  apt::source { "bookworm-backports":
     location          => 'http://ftp.fr.debian.org/debian',
-    release           => 'bullseye-backports',
+    release           => 'bookworm-backports',
     repos             => 'main contrib non-free',
   }
 

@@ -7,7 +7,7 @@ Configuring "eizo" with puppet
 It is quite unlikely to do anything right for you. This configuration
 doesn't pretend to apply to any other host than *eizo*.
 
-This requires [Debian Bullseye][] and the following packages to be
+This requires [Debian Bookworm][] and the following packages to be
 installed:
 
  - `puppet`
@@ -24,4 +24,4 @@ To run, use:
     librarian-puppet install
     ./run
 
-[Debian Bullseye]: https://www.debian.org/releases/bullseye/
+[Debian Bookworm]: https://www.debian.org/releases/bookworm/
