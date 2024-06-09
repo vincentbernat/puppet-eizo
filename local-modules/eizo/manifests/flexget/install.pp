@@ -26,16 +26,17 @@ class eizo::flexget::install inherits eizo::flexget {
   python::pyvenv { "${home}/venv":
   }
 
-  python::pip { 'flexget':
-    pkgname    => "FlexGet",
-    ensure     => "${version}",
-    virtualenv => "${home}/venv"
-  }
-  package { 'nodejs': ensure => installed }
-  ->
-  python::pip { ['transmission-rpc', 'cfscrape', 'cloudscraper']:
-    virtualenv => "${home}/venv"
-  }
+  # TODO: make it work again
+  # python::pip { 'flexget':
+  #   pkgname    => "FlexGet",
+  #   ensure     => "${version}",
+  #   virtualenv => "${home}/venv"
+  # }
+  # package { 'nodejs': ensure => installed }
+  # ->
+  # python::pip { ['transmission-rpc', 'cfscrape', 'cloudscraper']:
+  #   virtualenv => "${home}/venv"
+  # }
 
   file { '/usr/local/bin/flexget-cron':
     content => template('eizo/flexget/cron.erb'),
