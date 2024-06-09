@@ -7,7 +7,7 @@ Configuring "eizo" with puppet
 It is quite unlikely to do anything right for you. This configuration
 doesn't pretend to apply to any other host than *eizo*.
 
-This requires [Debian Buster][] and the following packages to be
+This requires [Debian Bullseye][] and the following packages to be
 installed:
 
  - `puppet`
