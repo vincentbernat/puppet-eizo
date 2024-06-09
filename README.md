@@ -25,3 +25,21 @@ To run, use:
     ./run
 
 [Debian Bookworm]: https://www.debian.org/releases/bookworm/
+
+Before a major change:
+
+```
+lvcreate --size 20G --snapshot --name root-snap /dev/eizo-vg/root
+```
+
+Then, later, either discard the snapshot:
+
+```
+lvremove /dev/eizo-vg/root-snap
+```
+
+Or restore it:
+
+```
+lvconvert --merge /dev/eizo-vg/root-snap
+```
