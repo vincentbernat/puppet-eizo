@@ -4,7 +4,6 @@ define eizo::interface::ifup(
   $dhcp = undef,
   $static = undef,
   $vlan = undef,
-  $upnp = undef,
   $v6 = false,                  # get an IPv6 prefix from PD
   $also = {}) {
 
