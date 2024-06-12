@@ -25,7 +25,7 @@ define eizo::nginx::crl($path=$title, $url) {
     minute => 3,
     hour => 4,
     user => root,
-    command => "t=$(mktemp -p $(dirname ${path})) && curl -sf -o \$t ${url} && chmod 644 \$t && mv \$t ${path} && /usr/sbin/nginx -s reload"
+    command => "t=$(mktemp -p $(dirname ${path})) && curl -sf -o \$t ${url} && chmod 644 \$t && mv \$t ${path} && /usr/sbin/kill -HUP $(cat /run/nginx.pid)"
   }
   exec { "retrieve-${path}":
     path => ["/bin", "/usr/bin"],
