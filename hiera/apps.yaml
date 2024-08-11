@@ -140,36 +140,27 @@ eizo::flexget::config:
             quality: 1080p hdtv+ h264|h265
             propers: 4 days
         720p:
-          - Fear The Walking Dead
           - Foundation
           - It's Always Sunny in Philadelphia
-          - Mindhunter
           - Only Murders in the Building
           - Severance
-          - Space Force
           - "Star Trek: Strange New Worlds"
-          - The Flight Attendant
           - The Handmaid's Tale
-          - The Walking Dead
           - What We Do in the Shadows
         1080p:
           - 3 Body Problem
           - Blue Eye Samurai
           - For All Mankind
           - House of the Dragon
-          - Raised by Wolves
           - "Star Wars: Andor":
               alternate_name:
                 - Andor
           - Stranger Things
           - Slow Horses
           - The Boys
-          - The Crown
           - The Last of Us
           - The Mandalorian
           - The White Lotus
-          - Warrior:
-              exact: true
       set:
         path: "/srv/media/transmission/complete/TV/{{ series_name }}"
 
