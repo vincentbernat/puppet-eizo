@@ -140,7 +140,6 @@ eizo::flexget::config:
             quality: 1080p hdtv+ h264|h265
             propers: 4 days
         720p:
-          - Foundation
           - It's Always Sunny in Philadelphia
           - Only Murders in the Building
           - Severance
