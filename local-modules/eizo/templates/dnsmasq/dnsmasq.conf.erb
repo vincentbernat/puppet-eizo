@@ -36,7 +36,7 @@ dhcp-leasefile=/var/lib/dnsmasq/dhcp.leases
 
 <% @dhcp.each do |iface, params|
     if params.key? "static" then
-     net = params["static"]
+     net = params["static"]["inet"]
      range = (IPAddr.new net).to_range.to_a
 -%>
 # DHCP for <%= iface  %>
@@ -46,8 +46,8 @@ host-record=<%= @hostname %>.home.arpa,<%= range[1] %>
 dhcp-range=::,constructor:<%= iface %>,ra-names
 dhcp-option=tag:<%= iface %>,option:classless-static-route<% @dhcp.each do |oiface, oparams|
   if oiface != iface and oparams.key? "static" then
-    net = IPAddr.new oparams["static"]
--%>,<%= net.to_s %>/<%= net.prefix %>,<%= params["static"].split("/")[0] %><% end end %>
+    net = IPAddr.new oparams["static"]["inet"]
+-%>,<%= net.to_s %>/<%= net.prefix %>,<%= params["static"]["inet"].split("/")[0] %><% end end %>
 <%  end
    end %>
 

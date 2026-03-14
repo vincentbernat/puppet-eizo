@@ -13,10 +13,6 @@ class eizo::ddns($key, $secret, $domain, $ttl=60) {
     source => "puppet:///modules/eizo/ddns/ddns-updater.service",
     notify => Exec["reload systemd"]
   }
-  ->
-  file { '/etc/dhcp/dhclient-exit-hooks.d/zzz-ddns-updater':
-    source => "puppet:///modules/eizo/ddns/dhcp-hook"
-  }
 
   cron { "ddns-updater":
     command => "systemctl start ddns-updater",
