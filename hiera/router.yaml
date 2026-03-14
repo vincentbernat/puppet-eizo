@@ -1,8 +1,6 @@
 eizo::interfaces:
   eno1:
     order: 1
-    also:
-      offload-tso: "off"
   lan-isolated:
     description: "Isolated LAN network"
     vlan:
@@ -23,8 +21,6 @@ eizo::interfaces:
     gateway:
       inet: 82.65.183.254
       inet6: fe80::3a07:16ff:fe1d:9460
-    also:
-      pre-up: "/etc/firewall/run"
   lan-trusted:
     description: "Trusted LAN network"
     static:

@@ -1,0 +1,28 @@
+# Managed by puppet
+<% unless @description.to_s.empty? -%>
+# <%= @description %>
+<% end -%>
+
+[Match]
+Name=<%= @name %>
+
+[Network]
+<% if @static.is_a?(Hash) -%>
+<% @static.each do |_family, address| -%>
+Address=<%= address %>
+<% end -%>
+<% end -%>
+<% unless @vlan.is_a?(Hash) -%>
+<% @interfaces.each do |iface_name, iface| -%>
+<% if iface.is_a?(Hash) && iface["vlan"].is_a?(Hash) && iface["vlan"]["over"] == @name -%>
+VLAN=<%= iface_name %>
+<% end -%>
+<% end -%>
+<% end -%>
+<% if @gateway.is_a?(Hash) -%>
+<% @gateway.each do |_family, gw| -%>
+
+[Route]
+Gateway=<%= gw %>
+<% end -%>
+<% end -%>

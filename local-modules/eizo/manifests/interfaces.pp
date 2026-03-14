@@ -1,19 +1,24 @@
-# Configure /etc/network/interfaces
+# Configure network with systemd-networkd
 class eizo::interfaces {
 
   $interfaces = lookup('eizo::interfaces', {merge=>hash})
   create_resources(
-    'eizo::interface::ifup',
+    'eizo::interface::networkd',
     $interfaces,
     {})
 
-  file { "/etc/network/interfaces":
-    content => "auto lo\niface lo inet loopback\nsource-directory interfaces.d\n"
-  }
-  file { '/etc/network/interfaces.d':
+  file { '/etc/systemd/network':
     ensure  => directory,
     recurse => true,
     purge   => true
+  }
+
+  service { 'networking':
+    enable => false,
+  }
+  service { 'systemd-networkd':
+    enable => true,
+    ensure => running
   }
 
   # Don't use persistant names
