@@ -7,7 +7,10 @@ class eizo::interfaces {
     $interfaces,
     {})
 
-  file { '/etc/systemd/network':
+  file { "/etc/network/interfaces":
+    content => "auto lo\niface lo inet loopback\nsource-directory interfaces.d\n"
+  }
+  file { ['/etc/systemd/network', '/etc/network/interfaces.d']:
     ensure  => directory,
     recurse => true,
     purge   => true
