@@ -35,7 +35,7 @@ dhcp-authoritative
 dhcp-leasefile=/var/lib/dnsmasq/dhcp.leases
 
 <% @dhcp.each do |iface, params|
-    if params.key? "static" then
+    if params.key? "static" and iface != "internet" then
      net = params["static"]["inet"]
      range = (IPAddr.new net).to_range.to_a
 -%>
@@ -45,7 +45,7 @@ synth-domain=home.arpa,<%= net %>,<%= iface %>-*
 host-record=<%= @hostname %>.home.arpa,<%= range[1] %>
 dhcp-range=::,constructor:<%= iface %>,ra-names
 dhcp-option=tag:<%= iface %>,option:classless-static-route<% @dhcp.each do |oiface, oparams|
-  if oiface != iface and oparams.key? "static" then
+  if oiface != iface and oparams.key? "static" and oiface != "internet" then
     net = IPAddr.new oparams["static"]["inet"]
 -%>,<%= net.to_s %>/<%= net.prefix %>,<%= params["static"]["inet"].split("/")[0] %><% end end %>
 <%  end
