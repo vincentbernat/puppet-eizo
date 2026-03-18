@@ -3,7 +3,8 @@ define eizo::interface::networkd(
   $order = 99,
   $static = undef,
   $gateway = undef,
-  $vlan = undef) {
+  $vlan = undef,
+  $link = {}) {
 
   $interfaces = lookup('eizo::interfaces', {merge => hash})
 
@@ -15,5 +16,11 @@ define eizo::interface::networkd(
 
   file { "/etc/systemd/network/${order}-${name}.network":
     content => template("eizo/interfaces/networkd.network.erb")
+  }
+
+  if ($link != {}) {
+    file { "/etc/systemd/network/${order}-${name}.link":
+      content => template("eizo/interfaces/networkd.link.erb")
+    }
   }
 }
