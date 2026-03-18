@@ -1,0 +1,19 @@
+# Managed by puppet
+[Unit]
+Description = Setup firewall
+DefaultDependencies = no
+Before = network-pre.target
+Wants = network-pre.target
+
+[Service]
+Type = oneshot
+RemainAfterExit = yes
+<% @interfaces.each do |iface_name, iface| -%>
+<% if iface.is_a?(Hash) && iface["vlan"].is_a?(Hash) -%>
+ExecStartPre = -/sbin/ip link add link <%= iface["vlan"]["over"] %> name <%= iface_name %> type vlan id <%= iface["vlan"]["id"] %>
+<% end -%>
+<% end -%>
+ExecStart = /etc/firewall/run
+
+[Install]
+WantedBy = multi-user.target

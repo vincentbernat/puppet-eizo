@@ -6,10 +6,11 @@ class eizo::firewall::service inherits eizo::firewall {
     command => 'systemctl daemon-reload'
   }
 
+  $interfaces = lookup('eizo::interfaces', {merge => hash})
   file { '/etc/systemd/system/firewall.service':
-    ensure => present,
-    source => "puppet:///modules/eizo/firewall/firewall.service",
-    notify => Exec["reload systemd (firewall)"]
+    ensure  => present,
+    content => template("eizo/firewall/firewall.service.erb"),
+    notify  => Exec["reload systemd (firewall)"]
   }
   ->
   service { 'firewall':
