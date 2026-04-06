@@ -59,7 +59,7 @@ done
 
 # Some may access special ports
 for userport in \
-    ntp:udp/ntp root:udp/ntp \
+    ntpsec:udp/ntp root:udp/ntp \
     root:tcp/http root:tcp/https \
     xbmc:tcp/http xbmc:tcp/https \
     postfix:tcp/submissions \
