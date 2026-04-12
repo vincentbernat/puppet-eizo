@@ -175,11 +175,6 @@ eizo::flexget::config:
           - mock:
               - title: $show
         from:
-          - rarbg:
-              category:
-                - x264 720p
-                - x264 1080p
-              sorted_by: seeders
           - piratebay:
               category: highres tv
               sort_by: seeds
@@ -187,12 +182,6 @@ eizo::flexget::config:
     no-redownload:
       exists_series:
         - /srv/media/TV/
-
-    no-wait:
-      series:
-        settings:
-          normal:
-            timeframe: 0 second
 
   tasks:
 
@@ -220,28 +209,6 @@ eizo::flexget::config:
         - blacklist
         - tv
         - transmission
-
-    tv search:
-      # flexget execute --task "tv search" --discover-now --cli-config "show=Mr. Robot"
-      manual: true
-      template:
-        - no-redownload
-        - no-wait
-        - blacklist
-        - tv
-        - search
-        - transmission
-
-    seed series:
-      # flexget execute --tasks "seed series" --disable-tracking --learn
-      manual: true
-      filesystem:
-        regexp: .*(avi|mkv|mp4)$
-        path: /srv/media/TV
-        recursive: true
-      template:
-        - no-wait
-        - tv
 
 # nginx configuration
 nginx::package_name: nginx-full
