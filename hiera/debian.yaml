@@ -17,7 +17,7 @@ eizo::debian::packages:
   - mmv
   - mtr-tiny
   - needrestart
-  - ntp
+  - ntpsec
   - parted
   - pciutils
   - smartmontools
