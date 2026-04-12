@@ -1,6 +1,7 @@
 eizo::interfaces:
   eth0:
     order: 1
+    online: carrier
     link:
       TCPSegmentationOffload: "false"
   lan-isolated:
@@ -23,6 +24,7 @@ eizo::interfaces:
     gateway:
       inet: 82.65.183.254
       inet6: fe80::3a07:16ff:fe1d:9460
+    online: routable
   lan-trusted:
     description: "Trusted LAN network"
     static:

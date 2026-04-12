@@ -4,6 +4,7 @@ define eizo::interface::networkd(
   $static = undef,
   $gateway = undef,
   $vlan = undef,
+  $online = undef,
   $link = {}) {
 
   $interfaces = lookup('eizo::interfaces', {merge => hash})
