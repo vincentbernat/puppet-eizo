@@ -12,4 +12,3 @@
 
 # Puppet configuration files
 /auth.conf
-/puppet.conf
