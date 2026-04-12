@@ -4,6 +4,7 @@ eizo::interfaces:
     online: carrier
     link:
       TCPSegmentationOffload: "false"
+      TCP6SegmentationOffload: "false"
   lan-isolated:
     description: "Isolated LAN network"
     vlan:
