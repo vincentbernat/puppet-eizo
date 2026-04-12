@@ -27,19 +27,19 @@ class eizo::debian(
     source => "puppet:///modules/eizo/debian/apt/99translations"
   }
 
-  apt::source { "bookworm":
+  apt::source { "trixie":
     location          => 'http://ftp.fr.debian.org/debian',
-    release           => 'bookworm',
+    release           => 'trixie',
     repos             => 'main contrib non-free-firmware',
   }
-  apt::source { "bookworm-security":
+  apt::source { "trixie-security":
     location => 'http://security.debian.org/debian-security',
-    release  => 'bookworm-security',
+    release  => 'trixie-security',
     repos    => 'main contrib non-free-firmware',
   }
-  apt::source { "bookworm-backports":
+  apt::source { "trixie-backports":
     location          => 'http://ftp.fr.debian.org/debian',
-    release           => 'bookworm-backports',
+    release           => 'trixie-backports',
     repos             => 'main contrib',
   }
 
