@@ -10,6 +10,8 @@ mysql::server::override_options:
     ssl-ca: ~
     ssl-cert: ~
     ssl-key: ~
+  client:
+    ssl: false
 
 # NFS
 eizo::nfs::exports:
