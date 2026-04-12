@@ -11,6 +11,10 @@ Name=<%= @name %>
 <% @static.each do |_family, address| -%>
 Address=<%= address %>
 <% end -%>
+<% else -%>
+DHCP=no
+LinkLocalAddressing=no
+KeepConfiguration=yes
 <% end -%>
 <% unless @vlan.is_a?(Hash) -%>
 <% @interfaces.each do |iface_name, iface| -%>
