@@ -37,6 +37,12 @@ class eizo::flexget::install inherits eizo::flexget {
   # python::pip { ['transmission-rpc', 'cfscrape', 'cloudscraper']:
   #   virtualenv => "${home}/venv"
   # }
+  #
+  # Currently:
+  #  venv/bin/python3 -m pip install "cython<3"
+  #  venv/bin/python3 -m pip install "pyyaml==6.0"
+  #  venv/bin/python3 -m pip install FlexGet==3.19.10 transmission-rpc
+  #
 
   file { '/usr/local/bin/flexget-cron':
     content => template('eizo/flexget/cron.erb'),
