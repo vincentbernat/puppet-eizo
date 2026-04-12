@@ -24,10 +24,10 @@ class eizo::interfaces {
     ensure => running
   }
 
-  # Don't use persistant names
+  # Don't use persistent names
   kernel_parameter { "net.ifnames":
     provider => "grub2",
-    value => "1"
+    value => "0"
   }
 
   # Avahi
