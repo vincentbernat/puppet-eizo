@@ -1,6 +1,6 @@
 class eizo::proftpd::install inherits eizo::proftpd {
 
-  package { 'proftpd-basic':
+  package { 'proftpd-core':
     ensure => present
   }
 
