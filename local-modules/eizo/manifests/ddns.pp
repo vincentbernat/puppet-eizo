@@ -22,7 +22,7 @@ class eizo::ddns($key, $secret, $domain, $ttl=60) {
 
   ensure_resource(
     package,
-    'python3-boto',
+    'python3-boto3',
     { ensure => present })
 
 }
