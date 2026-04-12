@@ -196,11 +196,9 @@ eizo::flexget::config:
 
     tv feed:
       inputs:
-        - rss: 
+        - rss:
             url: "https://showrss.info/other/all.rss"
             title: "tv:raw_title"
-        - rss: 'https://yourbittorrent.com/television/rss.xml'
-        - rss: 'https://www.limetorrents.pro/rss/20/'
         - rss: 'https://eztv1.xyz/ezrss.xml'
       template:
         - no-redownload
