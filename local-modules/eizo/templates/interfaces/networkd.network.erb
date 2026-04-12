@@ -26,3 +26,8 @@ VLAN=<%= iface_name %>
 Gateway=<%= gw %>
 <% end -%>
 <% end -%>
+
+[Link]
+<% @link.each do |key, value| -%>
+<%= key %>=<%= value %>
+<% end -%>
