@@ -11,7 +11,7 @@ mod "puppet/nginx",             "~> 1.1.0"
 mod 'puppetlabs-mysql',         '~> 10.10.0'
 mod "puppetlabs-cron_core",     "~> 1.1.0"
 mod "puppetlabs-mount_core",    "~> 1.0.4"
-mod "ssm/munin",                "~> 0.3.0"
+mod "ssm/munin",                "~> 0.4.0"
 mod "herculesteam/augeasproviders", "~> 2.4.1"
 
 # Local Variables:
