@@ -28,6 +28,6 @@ Gateway=<%= gw %>
 <% end -%>
 
 [Link]
-<% unless @online.is_a?(String) %>
+<% if @online.is_a?(String) -%>
 RequiredForOnline=<%= @online %>
 <% end %>
