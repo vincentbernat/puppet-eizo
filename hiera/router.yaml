@@ -3,7 +3,6 @@ eizo::interfaces:
     order: 1
     link:
       TCPSegmentationOffload: "false"
-      RequiredForOnline: "carrier"
   lan-isolated:
     description: "Isolated LAN network"
     vlan:
