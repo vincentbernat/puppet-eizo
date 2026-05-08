@@ -4,6 +4,16 @@ class eizo::system {
     source => "puppet:///modules/eizo/system/logind.conf"
   }
 
+  file { '/etc/modprobe.d/security.conf':
+    content => @(END)
+      # Workaround for Copy Fail, Copy Fail 2 and Dirty Frag
+      install algif_aead /bin/false
+      install esp4 /bin/false
+      install esp6 /bin/false
+      install rxrpc /bin/false
+    | END
+  }
+
   # Log with systemd-journald only
   package { ["rsyslog", "syslog-ng"]:
     ensure => absent
