@@ -17,7 +17,7 @@ class eizo::firewall::config inherits eizo::firewall {
     content => @(END)
       blacklist nf_nat_sip
       blacklist nf_conntrack_sip
-    | END
+      | END
   }
 
 }
