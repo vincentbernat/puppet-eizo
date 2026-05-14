@@ -36,5 +36,9 @@ ip46tables -A LAN-TRUSTED-FORWARD -o lan-trusted -j ACCEPT
 # mdns
 ip46tables -A LAN-TRUSTED-INPUT -p udp --dport mdns -j ACCEPT
 
+# Access to HTTP/HTTPS
+ip46tables -A LAN-TRUSTED-INPUT -p tcp --dport http -j ACCEPT
+ip46tables -A LAN-TRUSTED-INPUT -p tcp --dport https -j ACCEPT
+
 reject LAN-TRUSTED-INPUT
 reject LAN-TRUSTED-FORWARD
