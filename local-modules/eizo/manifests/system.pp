@@ -11,6 +11,7 @@ class eizo::system {
       install esp4 /bin/false
       install esp6 /bin/false
       install rxrpc /bin/false
+      install rds /bin/false
       | END
   }
 
