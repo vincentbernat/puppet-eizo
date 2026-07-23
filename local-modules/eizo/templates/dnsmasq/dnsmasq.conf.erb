@@ -45,9 +45,9 @@ synth-domain=home.arpa,<%= net %>,<%= iface %>-*
 host-record=<%= @hostname %>.home.arpa,<%= range[1] %>
 dhcp-range=::,constructor:<%= iface %>,ra-names
 dhcp-option=tag:<%= iface %>,option:classless-static-route<% @dhcp.each do |oiface, oparams|
-  if oiface != iface and oparams.key? "static" and oiface != "internet" then
+  if oiface != iface and oparams.key? "static" then
     net = IPAddr.new oparams["static"]["inet"]
--%>,<%= net.to_s %>/<%= net.prefix %>,<%= params["static"]["inet"].split("/")[0] %><% end end %>
+-%>,<% if oiface != "internet"  %>0.0.0.0/0<% else %><%= net.to_s %>/<%= net.prefix %><% end %>,<%= params["static"]["inet"].split("/")[0] %><% end end %>
 <%  end
    end %>
 
