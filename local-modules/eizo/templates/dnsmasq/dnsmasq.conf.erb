@@ -44,10 +44,10 @@ dhcp-range=set:<%= iface %>,<%= range[2] %>,<%= range[-2] %>,24h
 synth-domain=home.arpa,<%= net %>,<%= iface %>-*
 host-record=<%= @hostname %>.home.arpa,<%= range[1] %>
 dhcp-range=::,constructor:<%= iface %>,ra-names
-dhcp-option=tag:<%= iface %>,option:classless-static-route<% @dhcp.each do |oiface, oparams|
-  if oiface != iface and oparams.key? "static" then
+dhcp-option=tag:<%= iface %>,option:classless-static-route,0.0.0.0/0,<%= params["static"]["inet"].split("/")[0] %><% @dhcp.each do |oiface, oparams|
+  if oiface != iface and oparams.key? "static" and oiface != "internet" then
     net = IPAddr.new oparams["static"]["inet"]
--%>,<% if oiface == "internet"  %>0.0.0.0/0<% else %><%= net.to_s %>/<%= net.prefix %><% end %>,<%= params["static"]["inet"].split("/")[0] %><% end end %>
+-%>,<%= net.to_s %>/<%= net.prefix %>,<%= params["static"]["inet"].split("/")[0] %><% end end %>
 <%  end
    end %>
 
